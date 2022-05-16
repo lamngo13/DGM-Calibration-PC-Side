@@ -1,0 +1,12 @@
+C:\Users\llama\Desktop\Clockz\ClockApp\bin\Debug\ClockApp.exe.config
+C:\Users\llama\Desktop\Clockz\ClockApp\bin\Debug\ClockApp.exe
+C:\Users\llama\Desktop\Clockz\ClockApp\bin\Debug\ClockApp.pdb
+C:\Users\llama\Desktop\Clockz\ClockApp\bin\Debug\ClockApp.xml
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.vbprojAssemblyReference.cache
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.dp.resources
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.Resources.resources
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.vbproj.GenerateResource.cache
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.vbproj.CoreCompileInputs.cache
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.exe
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.xml
+C:\Users\llama\Desktop\Clockz\ClockApp\obj\Debug\ClockApp.pdb
