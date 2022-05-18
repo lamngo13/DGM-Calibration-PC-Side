@@ -177,10 +177,12 @@
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SerialPort1.PortName = "COM4"
+        'make this dynamic, for now I'm hardcoding it
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles openCom.Click
         SerialPort1.PortName = "COM4"
+        'make this dynamic, for now I'm hardcoding it
 
         SerialPort1.Open()
 
