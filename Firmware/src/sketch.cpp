@@ -199,7 +199,7 @@ void loop() {
   giterator++;
  
   //label
-  add_sout("cal-dgm");
+  add_sout("Cal-DGM-v1.0");
 
   char buff2[sizeof(Gl_Pulse_DGM_1)*8+1];
   char *pulsechar = ltoa(Gl_Pulse_DGM_1,buff2,10);

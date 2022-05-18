@@ -192,6 +192,7 @@
             Try
                 SerialPort1.PortName = comstr + CStr(tempcomport)
                 SerialPort1.Open()
+                'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
                 'maybe bad
                 comgo = False
                 'serial port name??
