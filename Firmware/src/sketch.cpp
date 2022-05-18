@@ -212,7 +212,8 @@ void loop() {
   //oh im getting it from add_sout
 
   
-  //add temp by conversions lol
+  //add temp
+  //MAYBE CONVERT THIS
   int ambtemp = bme.readTemperature();
   char ambtempbuff [sizeof(ambtemp)*4+1];
   char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
@@ -221,6 +222,7 @@ void loop() {
   
 
   //add pretend ref meter temp
+  //MAYBE CONVERT THIS??
   int reftemp = 1234;
   char reftempbuff [sizeof(reftemp)*4+1];
   char *reftempchar = itoa(reftemp,reftempbuff,10);
@@ -228,6 +230,7 @@ void loop() {
   add_sout(reftempstr);
 
   //add ambient humidity
+  //MAYBE CONVERT THIS!
   int ambhum = bme.readHumidity();
   char ambhumbuff [sizeof(ambhum)*4+1];
   char *ambhumchar = itoa(ambhum, ambhumbuff, 10);
@@ -246,8 +249,8 @@ void loop() {
   //each sensor updates its correlated global when it is ready
   // lock the var when ur sending it so it doesn't conflict when it is being read
 
-  char buff2[sizeof(Gl_Pulse_DGM_1)*8+1];
-  char *pulsechar = ltoa(Gl_Pulse_DGM_1,buff2,10);
+  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   String pulseString = pulsechar;
   add_sout(pulseString);
   my_system_counter += 1000;
@@ -259,8 +262,8 @@ void loop() {
     }
   //append iAccum to string
   //make iAccum to string
-  char buff [sizeof(iAccum)*4+1];
-  char *acchar = itoa(iAccum,buff,10);
+  char accumbuff [sizeof(iAccum)*4+1];
+  char *acchar = itoa(iAccum,accumbuff,10);
   String accumstring = acchar;
   add_sout(accumstring);
  
