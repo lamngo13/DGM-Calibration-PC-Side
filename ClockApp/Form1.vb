@@ -146,6 +146,10 @@
                     'change this one off condition
 
                     'diff condition for the first bc must have > else discard
+                    '//output Label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+                    '//output: Label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+                    '//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+                    'btw ONLY CONNECT IF LABEL HAS Cal-DGM
                     first = scanone()
                     second = scanone()
                     third = scanone()
