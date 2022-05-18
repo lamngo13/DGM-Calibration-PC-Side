@@ -185,10 +185,12 @@ void setup() {
   attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
   attachInterrupt(DGM_B, Read_Quad_1, CHANGE);
  
-  //status = bme.begin(0x76);  
+  status = bme.begin(0x76);  
 }
 
 void loop() {
+
+  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
   //reset sOutput
   for (int a = 0; a < 1024; a++) {
     sOutput[a] = '\0';
@@ -200,6 +202,49 @@ void loop() {
  
   //label
   add_sout("Cal-DGM-v1.0");
+
+  //AMBIENT TEMP
+  //PRETEND REF METER TEMP
+  //and ambient humidity just for funzies
+  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+  
+  //ok lowkey where am i getting the commas from
+  //oh im getting it from add_sout
+
+  
+  //add temp by conversions lol
+  int ambtemp = bme.readTemperature();
+  char ambtempbuff [sizeof(ambtemp)*4+1];
+  char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
+  String ambtempstr = ambtempchar;
+  add_sout(ambtempstr);
+  
+
+  //add pretend ref meter temp
+  int reftemp = 1234;
+  char reftempbuff [sizeof(reftemp)*4+1];
+  char *reftempchar = itoa(reftemp,reftempbuff,10);
+  String reftempstr = reftempchar;
+  add_sout(reftempstr);
+
+  //add ambient humidity
+  int ambhum = bme.readHumidity();
+  char ambhumbuff [sizeof(ambhum)*4+1];
+  char *ambhumchar = itoa(ambhum, ambhumbuff, 10);
+  String ambhumstr = ambhumchar;
+  add_sout(ambhumstr);
+
+
+
+
+  //rtos - real time operating system
+  // have different prcessses (threads) that operate independently
+  //sensors take different tiems to read
+  // thread each sensor
+  // u have globals for each sensor output
+  //send those globals at regular intervals
+  //each sensor updates its correlated global when it is ready
+  // lock the var when ur sending it so it doesn't conflict when it is being read
 
   char buff2[sizeof(Gl_Pulse_DGM_1)*8+1];
   char *pulsechar = ltoa(Gl_Pulse_DGM_1,buff2,10);
