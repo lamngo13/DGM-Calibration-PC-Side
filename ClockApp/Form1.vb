@@ -127,6 +127,8 @@
                 'start parsing stuff
                 ioStr += Trim(SerialPort1.ReadExisting())
                 If InStr(ioStr, Chr(10)) Then
+                    'Returns an integer specifying the start position of the first occurrence of one string within another. 
+                    'The Integer Is a one-based index If a match Is found. If no match Is found, the function returns zero.
                     stritt = 1
                     currstr = ioStr
                     ioStr = ""
@@ -176,15 +178,33 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        SerialPort1.PortName = "COM4"
+        'what does this do lmao
+        'lemmegetuhhhmfuhhhhSerialPort1.PortName = "COM3"
         'make this dynamic, for now I'm hardcoding it
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles openCom.Click
-        SerialPort1.PortName = "COM4"
-        'make this dynamic, for now I'm hardcoding it
+        Dim comgo As Boolean = True
+        Dim tempcomport As Integer = 1
+        Dim comstr As String = "COM"
+        While (comgo)
+            'comstr += CStr(tempcomport)
+            Try
+                SerialPort1.PortName = comstr + CStr(tempcomport)
+                SerialPort1.Open()
+                'maybe bad
+                comgo = False
+                'serial port name??
+            Catch ex As Exception
+                tempcomport += 1
+            End Try
+        End While
 
-        SerialPort1.Open()
+        'good
+        'SerialPort1.PortName = "COM3"
+        'make this dynamic, for now I'm hardcoding it
+        'SerialPort1.Open()
+        'end good
 
     End Sub
 End Class
