@@ -61,7 +61,7 @@ const uint crc_table16[] =
 };
 
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-int ambtemp;
+static int ambtemp;
 static int reftemp;
 int ambhum;
 int pulsecount;
@@ -186,7 +186,6 @@ void Read_Quad_1(void) {
  
 void setup() {
   Serial.begin(460800);
-
   status = bme.begin(0x76);  
 
   //create timer that sends data 5 times a second (aka once every 200ms)
@@ -201,29 +200,22 @@ void setup() {
   //HOW DO I DO THIS IN THREADING??????????
   pinMode(DGM_A, INPUT_PULLDOWN);
   pinMode(DGM_B, INPUT_PULLUP);
-  //end DGM pins
+  
+  //make interrputs
+  attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
+  attachInterrupt(DGM_B, Read_Quad_1, CHANGE);
 
-  //notes
-  /*
-  void xlabelth(void *pvParameters );
-void xambtempth(void *pvParameters );
-void xreftempth(void *pvParameters );
-void xambhumth(void *pvParameters );
-void xpulsecountth(void *pvParameters );
-void xchecksumth(void *pvParameters );
-*/
   //START THREADING
+  //main prints globals, and all other tasks update those globals
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  /////xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
-  //make interrputs
-  attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
-  attachInterrupt(DGM_B, Read_Quad_1, CHANGE);
+  
  
   
 }
@@ -317,7 +309,7 @@ void xambtempth(void *pvParameters) {
     ambtemp = bme.readTemperature();
 
     //end while
-    vTaskDelay(1);
+    vTaskDelay(2);
   }
 }
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
