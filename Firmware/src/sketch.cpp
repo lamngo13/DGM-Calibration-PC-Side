@@ -61,12 +61,12 @@ const uint crc_table16[] =
 };
 
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-void xlabelth(void *pvParameters );
+//void xlabelth(void *pvParameters );
 void xambtempth(void *pvParameters );
 void xreftempth(void *pvParameters );
 void xambhumth(void *pvParameters );
 void xpulsecountth(void *pvParameters );
-void xchecksumth(void *pvParameters );
+//void xchecksumth(void *pvParameters );
 void xmainth(void *pvParameters );
 
 int ambtemp;
@@ -209,12 +209,12 @@ void xchecksumth(void *pvParameters );
 */
   //START THREADING
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
-  xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
   //make interrputs
   attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
@@ -224,96 +224,7 @@ void xchecksumth(void *pvParameters );
 }
 
 void loop() {
-
-  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-  //reset sOutput
-  for (int a = 0; a < 1024; a++) {
-    sOutput[a] = '\0';
-  }
-  giterator = 0;
-  //write a start of the block
-  sOutput[giterator] = '>';
-  giterator++;
- 
-  //label
-  add_sout("Cal-DGM-v1.0");
-
-  //AMBIENT TEMP
-  //PRETEND REF METER TEMP
-  //and ambient humidity just for funzies
-  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-  
-  //ok lowkey where am i getting the commas from
-  //oh im getting it from add_sout
-
-  
-  //add temp
-  //MAYBE CONVERT THIS
-  int ambtemp = bme.readTemperature();
-  char ambtempbuff [sizeof(ambtemp)*4+1];
-  char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
-  String ambtempstr = ambtempchar;
-  add_sout(ambtempstr);
-  
-
-  //add pretend ref meter temp
-  //MAYBE CONVERT THIS??
-  int reftemp = 1234;
-  char reftempbuff [sizeof(reftemp)*4+1];
-  char *reftempchar = itoa(reftemp,reftempbuff,10);
-  String reftempstr = reftempchar;
-  add_sout(reftempstr);
-
-  //add ambient humidity
-  //MAYBE CONVERT THIS!
-  int ambhum = bme.readHumidity();
-  char ambhumbuff [sizeof(ambhum)*4+1];
-  char *ambhumchar = itoa(ambhum, ambhumbuff, 10);
-  String ambhumstr = ambhumchar;
-  add_sout(ambhumstr);
-
-
-
-
-  //rtos - real time operating system
-  // have different prcessses (threads) that operate independently
-  //sensors take different tiems to read
-  // thread each sensor
-  // u have globals for each sensor output
-  //send those globals at regular intervals
-  //each sensor updates its correlated global when it is ready
-  // lock the var when ur sending it so it doesn't conflict when it is being read
-
-  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
-  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
-  String pulseString = pulsechar;
-  add_sout(pulseString);
-  my_system_counter += 1000;
-
-  // Calculate CRC
-  int iAccum = 0xFFFF;
-  for (int i = 0; i < 1024; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
-   iAccum = ((iAccum & 0x00FF) << 8) ^ crc_table16[( (iAccum >> 8) ^ sOutput[i] ) & 0x00FF];
-    }
-  //append iAccum to string
-  //make iAccum to string
-  char accumbuff [sizeof(iAccum)*4+1];
-  char *acchar = itoa(iAccum,accumbuff,10);
-  String accumstring = acchar;
-  add_sout(accumstring);
- 
- 
- 
-  //ultimate end
-  sOutput[giterator++] = 13;
-  sOutput[giterator++] = 10;
-  sOutput[giterator] = '\0';
- 
-  if (shouldSend) {
-    shouldSend = false;
-    Serial.print(sOutput);
-  }
-
+  //empty bc threading amirite
 }
 
 void xmainth(void *pvParameters) {
@@ -424,8 +335,7 @@ void xambhumth(void *pvParameters) {
 void xpulsecountth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-
-
+    pulsecount = 5555;
     //end while
   }
 }
