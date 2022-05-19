@@ -7,6 +7,9 @@
 #include <string>
 #include <vector>
 #include <sstream>
+// #include <Wire.h>
+// #include <Adafruit_Sensor.h>
+// #include <Adafruit_BME280.h>
  
 #include <SPI.h>
  
@@ -189,7 +192,7 @@ void setup() {
   status = bme.begin(0x76);  
 
   //create timer that sends data 5 times a second (aka once every 200ms)
-  timer = timerBegin(1, 80, true);
+  timer = timerBegin(2, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 200000, true);
   timerAlarmEnable(timer);
@@ -207,9 +210,9 @@ void setup() {
 
   //START THREADING
   //main prints globals, and all other tasks update those globals
-  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
+  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  //xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
@@ -318,9 +321,14 @@ void xambtempth(void *pvParameters) {
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 
 void xreftempth(void *pvParameters) {
+  ////reftemp = 0;
   (void) pvParameters;
   while (1) {
     //MAKE THIS READ THE BOARD IN THE FUTURE
+    //LOOKS LIKE THE PROBLEM IS WHEN REFTEMP HITS 99 FOR WHATEVER GODFORSAKEN REASON
+    /////if (reftemp < 105) {
+      /////reftemp++;
+    /////}
     reftemp++;
     vTaskDelay(1);
   }
@@ -344,3 +352,37 @@ void xpulsecountth(void *pvParameters) {
     //vTaskDelay(1);
   }
 }
+// #include <Wire.h>
+// #include <Adafruit_Sensor.h>
+// #include <Adafruit_BME280.h>
+
+// #define SEALEVELPRESSURE_HPA (1013.25)
+
+// Adafruit_BME280 bme;
+
+// void setup() {
+// 	Serial.begin(460800);
+
+// 	int status = bme.begin(0x76);
+// }
+
+// void loop() {
+// 	Serial.print("Temperature = ");
+// 	Serial.print(bme.readTemperature());
+// 	Serial.println("*C");
+
+// 	Serial.print("Pressure = ");
+// 	Serial.print(bme.readPressure() / 100.0F);
+// 	Serial.println("hPa");
+
+// 	Serial.print("Approx. Altitude = ");
+// 	Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+// 	Serial.println("m");
+
+// 	Serial.print("Humidity = ");
+// 	Serial.print(bme.readHumidity());
+// 	Serial.println("%");
+
+// 	Serial.println();
+// 	delay(1000);
+// }
