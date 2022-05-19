@@ -67,6 +67,14 @@ void xreftempth(void *pvParameters );
 void xambhumth(void *pvParameters );
 void xpulsecountth(void *pvParameters );
 void xchecksumth(void *pvParameters );
+void xmainth(void *pvParameters );
+
+int ambtemp;
+int reftemp;
+int ambhum;
+int pulsecount;
+int checksum;
+
  
 void IRAM_ATTR onTimer() {
    shouldSend = true; 
@@ -185,9 +193,28 @@ void setup() {
   //originally 9600
  
   //initialize pins to be read:
+  //HOW DO I DO THIS IN THREADING??????????
   pinMode(DGM_A, INPUT_PULLDOWN);
   pinMode(DGM_B, INPUT_PULLUP);
   //end DGM pins
+
+  //notes
+  /*
+  void xlabelth(void *pvParameters );
+void xambtempth(void *pvParameters );
+void xreftempth(void *pvParameters );
+void xambhumth(void *pvParameters );
+void xpulsecountth(void *pvParameters );
+void xchecksumth(void *pvParameters );
+*/
+  //START THREADING
+  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
+  xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
   //make interrputs
   attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
@@ -287,4 +314,118 @@ void loop() {
     Serial.print(sOutput);
   }
 
+}
+
+void xmainth(void *pvParameters) {
+  (void) pvParameters;
+  //print everything to serial 5 times a sec
+  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+  //convert to string then send
+  while (1) {
+    /*
+    timer = timerBegin(0, 80, true);
+  timerAttachInterrupt(timer, &onTimer, true);
+  timerAlarmWrite(timer, 200000, true);
+  timerAlarmEnable(timer);
+  i think the first line should be in setup, but I think the rest should be in here
+  */
+
+ for (int a = 0; a < 1024; a++) {
+    sOutput[a] = '\0';
+  }
+  giterator = 0;
+  //write a start of the block
+  sOutput[giterator] = '>';
+  giterator++;
+ 
+  //label
+  add_sout("Cal-DGM-v1.0");
+
+  //add amb temp
+  char ambtempbuff [sizeof(ambtemp)*4+1];
+  char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
+  String ambtempstring = ambtempchar;
+  add_sout(ambtempstring);
+
+  //add ref meter temp
+  char reftempbuff [sizeof(reftemp)*4+1];
+  char *reftempchar = itoa(reftemp,reftempbuff,10);
+  String reftempstring = reftempchar;
+  add_sout(reftempstring);
+
+  //add ambient humidity
+  char ambhumbuff [sizeof(ambhum)*4+1];
+  char *ambhumchar = itoa(ambhum,ambhumbuff,10);
+  String ambhumstring = ambhumchar;
+  add_sout(ambhumstring);
+
+  //add pulse count
+  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+  String pulseString = pulsechar;
+  add_sout(pulseString);
+
+  /// Calculate CRC
+  int iAccum = 0xFFFF;
+  for (int i = 0; i < 1024; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
+   iAccum = ((iAccum & 0x00FF) << 8) ^ crc_table16[( (iAccum >> 8) ^ sOutput[i] ) & 0x00FF];
+    }
+  //append iAccum to string
+  //make iAccum to string
+  char accumbuff [sizeof(iAccum)*4+1];
+  char *acchar = itoa(iAccum,accumbuff,10);
+  String accumstring = acchar;
+  add_sout(accumstring);
+ 
+ 
+ 
+  //ultimate end
+  sOutput[giterator++] = 13;
+  sOutput[giterator++] = 10;
+  sOutput[giterator] = '\0';
+ 
+  if (shouldSend) {
+    shouldSend = false;
+    Serial.print(sOutput);
+  }
+
+  //end while
+  }
+
+}
+
+void xambtempth(void *pvParameters) {
+  (void) pvParameters;
+  while (1) {
+    ambtemp = bme.readTemperature();
+
+    //end while
+  }
+}
+//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+
+void xreftempth(void *pvParameters) {
+  (void) pvParameters;
+  while (1) {
+    //MAKE THIS READ THE BOARD IN THE FUTURE
+    reftemp = 1234;
+  }
+}
+
+void xambhumth(void *pvParameters) {
+  (void) pvParameters;
+  while (1) {
+    ambhum = bme.readHumidity();
+  }
+}
+
+//pulsecount
+//TODOOOOOOOOOOO IDK HOW TO DO INTERRPUT WITH THREADING
+void xpulsecountth(void *pvParameters) {
+  (void) pvParameters;
+  while (1) {
+
+
+    //end while
+  }
 }
