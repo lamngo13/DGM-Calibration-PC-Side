@@ -190,7 +190,7 @@ void setup() {
   status = bme.begin(0x76);  
 
   //create timer that sends data 5 times a second (aka once every 200ms)
-  timer = timerBegin(0, 80, true);
+  timer = timerBegin(1, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 200000, true);
   timerAlarmEnable(timer);
@@ -215,7 +215,7 @@ void xchecksumth(void *pvParameters );
   //START THREADING
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  //////xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
@@ -306,7 +306,7 @@ void xmainth(void *pvParameters) {
   }
 
   //end while
-  vTaskDelay(200);
+  vTaskDelay(1);
   }
 
 }
@@ -327,7 +327,7 @@ void xreftempth(void *pvParameters) {
   while (1) {
     //MAKE THIS READ THE BOARD IN THE FUTURE
     reftemp++;
-    vTaskDelay(100);
+    vTaskDelay(1);
   }
 }
 
