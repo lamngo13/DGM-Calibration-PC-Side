@@ -209,7 +209,7 @@ void setup() {
   //main prints globals, and all other tasks update those globals
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  /////xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //////xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
@@ -307,6 +307,9 @@ void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
     ambtemp = bme.readTemperature();
+    //bme.getPressure()
+    //THIS SHOULD DO BOTH OF THE THINGS !!
+    //asdf = bme.getTemperatureSensor()
 
     //end while
     vTaskDelay(2);
