@@ -61,6 +61,12 @@ const uint crc_table16[] =
 };
 
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+int ambtemp;
+int reftemp;
+int ambhum;
+int pulsecount;
+int checksum;
+
 //void xlabelth(void *pvParameters );
 void xambtempth(void *pvParameters );
 void xreftempth(void *pvParameters );
@@ -69,11 +75,7 @@ void xpulsecountth(void *pvParameters );
 //void xchecksumth(void *pvParameters );
 void xmainth(void *pvParameters );
 
-int ambtemp;
-int reftemp;
-int ambhum;
-int pulsecount;
-int checksum;
+
 
  
 void IRAM_ATTR onTimer() {
@@ -185,6 +187,8 @@ void Read_Quad_1(void) {
 void setup() {
   Serial.begin(460800);
 
+  status = bme.begin(0x76);  
+
   //create timer that sends data 5 times a second (aka once every 200ms)
   timer = timerBegin(0, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
@@ -210,17 +214,17 @@ void xchecksumth(void *pvParameters );
   //START THREADING
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
   //make interrputs
   attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
   attachInterrupt(DGM_B, Read_Quad_1, CHANGE);
  
-  status = bme.begin(0x76);  
+  
 }
 
 void loop() {
