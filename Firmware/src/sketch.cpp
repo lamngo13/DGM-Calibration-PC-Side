@@ -59,6 +59,14 @@ const uint crc_table16[] =
 0xEF1F, 0xFF3E, 0xCF5D, 0xDF7C, 0xAF9B, 0xBFBA, 0x8FD9, 0x9FF8, 0x6E17, 0x7E36, 0x4E55, 0x5E74,
 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0,
 };
+
+//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+void xlabelth(void *pvParameters );
+void xambtempth(void *pvParameters );
+void xreftempth(void *pvParameters );
+void xambhumth(void *pvParameters );
+void xpulsecountth(void *pvParameters );
+void xchecksumth(void *pvParameters );
  
 void IRAM_ATTR onTimer() {
    shouldSend = true; 
