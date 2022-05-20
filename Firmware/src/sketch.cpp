@@ -7,11 +7,15 @@
 #include <string>
 #include <vector>
 #include <sstream>
-// #include <Wire.h>
-// #include <Adafruit_Sensor.h>
-// #include <Adafruit_BME280.h>
+//import Adafruit_GPIO.SPI as SPI
+// import Adafruit_MAX31855.MAX31855 as MAX31855
+// import RPi.GPIO as GPIO
+//#include <MAX31855.h>
  
 #include <SPI.h>
+
+#include "Adafruit_MAX31855.h"
+#include <LiquidCrystal.h>
  
 Adafruit_BME280 bme;
  
@@ -192,7 +196,7 @@ void setup() {
   status = bme.begin(0x76);  
 
   //create timer that sends data 5 times a second (aka once every 200ms)
-  timer = timerBegin(2, 80, true);
+  timer = timerBegin(1, 80, true);
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 200000, true);
   timerAlarmEnable(timer);
@@ -210,12 +214,12 @@ void setup() {
 
   //START THREADING
   //main prints globals, and all other tasks update those globals
-  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);  //main will send things 5 times a sec
+  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   //xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
-  //////xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
   //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
   
@@ -271,8 +275,12 @@ void xmainth(void *pvParameters) {
   add_sout(ambhumstring);
 
   //add pulse count
-  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
-  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+  // char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+  // char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+  // String pulseString = pulsechar;
+  // add_sout(pulseString);
+  char pulsebuff[sizeof(pulsecount)*8+1];
+  char *pulsechar = ltoa(pulsecount,pulsebuff,10);
   String pulseString = pulsechar;
   add_sout(pulseString);
 
@@ -347,11 +355,13 @@ void xambhumth(void *pvParameters) {
 void xpulsecountth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    pulsecount = 5555;
+    pulsecount++;
     //end while
-    //vTaskDelay(1);
+    vTaskDelay(1);
   }
 }
+
+//testing the bme280
 // #include <Wire.h>
 // #include <Adafruit_Sensor.h>
 // #include <Adafruit_BME280.h>
@@ -385,4 +395,82 @@ void xpulsecountth(void *pvParameters) {
 
 // 	Serial.println();
 // 	delay(1000);
+// }
+
+// //testing the MAX31855
+//  This is an example for the Adafruit Thermocouple Sensor w/MAX31855K
+
+//   Designed specifically to work with the Adafruit Thermocouple Sensor
+//   ----> https://www.adafruit.com/products/269
+
+//   These displays use SPI to communicate, 3 pins are required to
+//   interface
+//   Adafruit invests time and resources providing this open source code,
+//   please support Adafruit and open-source hardware by purchasing
+//   products from Adafruit!
+
+//   Written by Limor Fried/Ladyada for Adafruit Industries.
+//   BSD license, all text above must be included in any redistribution
+//  ****************************************************/
+// #include <SPI.h>
+// #include <Wire.h>
+// #include "Adafruit_MAX31855.h"
+// #include <LiquidCrystal.h>
+
+// // Example creating a thermocouple instance with software SPI on any three
+// // digital IO pins.
+// #define MAXDO   3
+// #define MAXCS   4
+// #define MAXCLK  5
+
+// // Initialize the Thermocouple
+// Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
+
+// // initialize the library with the numbers of the interface pins
+// LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
+
+// void setup() {
+//   #ifndef ESP8266
+//     while (!Serial);     // will pause Zero, Leonardo, etc until serial console opens
+//   #endif
+//   Serial.begin(9600);
+//   // set up the LCD's number of columns and rows:
+//   lcd.begin(16, 2);
+
+//   lcd.clear();
+//   lcd.print("MAX31855 test");
+//   // wait for MAX chip to stabilize
+//   delay(500);
+//   if (!thermocouple.begin()) {
+//     lcd.print("ERROR.");
+//     while (1) delay(10);
+//   }
+//   lcd.print("DONE.");
+// }
+
+// void loop() {
+//   // basic readout test, just print the current temp
+//    lcd.clear();
+//    lcd.setCursor(0, 0);
+//    lcd.print("Int. Temp = ");
+//    lcd.println(thermocouple.readInternal());
+//    Serial.print("Int. Temp = ");
+//    Serial.println(thermocouple.readInternal());
+
+//    double c = thermocouple.readCelsius();
+//    lcd.setCursor(0, 1);
+//    if (isnan(c))
+//    {
+//      lcd.print("T/C Problem");
+//    }
+//    else
+//    {
+//      lcd.print("C = ");
+//      lcd.print(c);
+//      lcd.print("  ");
+//      Serial.print("Thermocouple Temp = *");
+//      Serial.println(c);
+//    }
+
+//    delay(1000);
 // }
