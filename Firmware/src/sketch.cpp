@@ -238,7 +238,7 @@ void setup() {
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
-  //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
   //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
@@ -262,7 +262,7 @@ void xmainth(void *pvParameters) {
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 200000, true);
   timerAlarmEnable(timer);
-  i think the first line should be in setup, but I think the rest should be in here
+  i think the first line should be in setup, but I think the rest should be in here???
   */
 
  for (int a = 0; a < 1024; a++) {
@@ -295,14 +295,14 @@ void xmainth(void *pvParameters) {
   add_sout(ambhumstring);
 
   //add pulse count
-  // char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
-  // char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
-  // String pulseString = pulsechar;
-  // add_sout(pulseString);
-  char pulsebuff[sizeof(pulsecount)*8+1];
-  char *pulsechar = ltoa(pulsecount,pulsebuff,10);
+  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   String pulseString = pulsechar;
   add_sout(pulseString);
+  // char pulsebuff[sizeof(pulsecount)*8+1];
+  // char *pulsechar = ltoa(pulsecount,pulsebuff,10);
+  // String pulseString = pulsechar;
+  // add_sout(pulseString);
 
   /// Calculate CRC
   int iAccum = 0xFFFF;
@@ -337,13 +337,11 @@ void xmainth(void *pvParameters) {
 void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    ambtemp = int (thermocouple.readCelsius());
-    //bme.getPressure()
-    //THIS SHOULD DO BOTH OF THE THINGS !!
-    //asdf = bme.getTemperatureSensor()
-
+    //well this is returning a number, but def not the right one
+    //ambtemp = int (thermocouple.readCelsius());
+    ambtemp = int (thermocouple.readFahrenheit());
     //end while
-    vTaskDelay(2);
+    vTaskDelay(1);
   }
 }
 //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
@@ -352,13 +350,7 @@ void xreftempth(void *pvParameters) {
   ////reftemp = 0;
   (void) pvParameters;
   while (1) {
-    //MAKE THIS READ THE BOARD IN THE FUTURE
-    //LOOKS LIKE THE PROBLEM IS WHEN REFTEMP HITS 99 FOR WHATEVER GODFORSAKEN REASON
-    /////if (reftemp < 105) {
-      /////reftemp++;
-    /////}
-    reftemp++;
-    double c = thermocouple.readCelsius();
+    reftemp = thermocouple.readCelsius();
     vTaskDelay(1);
   }
 }
@@ -366,8 +358,8 @@ void xreftempth(void *pvParameters) {
 void xambhumth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    ambhum = bme.readHumidity();
-    //vTaskDelay(1);
+    ambhum = thermocouple.readInternal();
+    vTaskDelay(1);
   }
 }
 
@@ -375,6 +367,10 @@ void xambhumth(void *pvParameters) {
 //TODOOOOOOOOOOO IDK HOW TO DO INTERRPUT WITH THREADING
 void xpulsecountth(void *pvParameters) {
   (void) pvParameters;
+  //MAYBE REMOFVE
+  
+
+  //END MAYBE REMOVE
   while (1) {
     pulsecount++;
     //end while
