@@ -22,8 +22,8 @@ Adafruit_BME280 bme;
 String status;
  
 //setup pins to read spinner:
-const int DGM_A = 36;
-const int DGM_B = 39;
+const int DGM_A = 32; // 36
+const int DGM_B = 35; // 39
  
 //bool Pin_DGM_1_QUAD_A;
 //bool Pin_DGM_1_QUAD_B;
@@ -42,9 +42,13 @@ char sOutput[1024];
 
 int temptemp;
 
-#define MAXDO   3
-#define MAXCS   4
-#define MAXCLK  5
+//#define MAXDO   3
+//#define MAXCS   4
+//#define MAXCLK  5
+
+#define MAXDO   25
+#define MAXCS   26
+#define MAXCLK  27
 
 Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
@@ -353,6 +357,7 @@ void xreftempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
     reftemp = thermocouple.readCelsius();
+    //reftemp = bme.readTemperature();
     vTaskDelay(1);
   }
 }
