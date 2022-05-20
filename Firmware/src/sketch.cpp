@@ -39,6 +39,13 @@ int my_system_counter = 1000;
  
 int giterator = 0;
 char sOutput[1024];
+
+#define MAXDO   3
+#define MAXCS   4
+#define MAXCLK  5
+
+Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
+LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
  
 const uint crc_table16[] =
  
@@ -192,8 +199,20 @@ void Read_Quad_1(void) {
  
  
 void setup() {
+  #define ESP8266
+  // void setup() {
+
+//   if (!thermocouple.begin()) {
+//     lcd.print("ERROR.");
+//     while (1) delay(10);
+//   }
+//   lcd.print("DONE.");
+// }
   Serial.begin(460800);
   status = bme.begin(0x76);  
+
+  //thermometer
+  thermocouple.begin();
 
   //create timer that sends data 5 times a second (aka once every 200ms)
   timer = timerBegin(1, 80, true);
@@ -215,8 +234,9 @@ void setup() {
   //START THREADING
   //main prints globals, and all other tasks update those globals
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
+
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  //xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
   //////xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
@@ -317,7 +337,7 @@ void xmainth(void *pvParameters) {
 void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    ambtemp = bme.readTemperature();
+    ambtemp = int (thermocouple.readCelsius());
     //bme.getPressure()
     //THIS SHOULD DO BOTH OF THE THINGS !!
     //asdf = bme.getTemperatureSensor()
@@ -338,6 +358,7 @@ void xreftempth(void *pvParameters) {
       /////reftemp++;
     /////}
     reftemp++;
+    double c = thermocouple.readCelsius();
     vTaskDelay(1);
   }
 }
@@ -360,6 +381,124 @@ void xpulsecountth(void *pvParameters) {
     vTaskDelay(1);
   }
 }
+
+// //will delete
+// #include <SPI.h>
+
+// #include "Adafruit_MAX31855.h"
+
+ 
+
+// // Default connection is using software SPI, but comment and uncomment one of
+
+// // the two examples below to switch between software SPI and hardware SPI:
+
+ 
+
+// // Example creating a thermocouple instance with software SPI on any three
+
+// // digital IO pins.
+
+// #define MAXDO   3
+
+// #define MAXCS   4
+
+// #define MAXCLK  5
+
+ 
+
+// // initialize the Thermocouple
+
+// Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
+
+ 
+
+// // Example creating a thermocouple instance with hardware SPI
+
+// // on a given CS pin.
+
+// //#define MAXCS   10
+
+// //Adafruit_MAX31855 thermocouple(MAXCS);
+
+ 
+
+// // Example creating a thermocouple instance with hardware SPI
+
+// // on SPI1 using specified CS pin.
+
+// //#define MAXCS   10
+
+// //Adafruit_MAX31855 thermocouple(MAXCS, SPI1);
+
+ 
+
+// void setup() {
+
+//   Serial.begin(9600);
+
+ 
+
+//   while (!Serial) delay(1); // wait for Serial on Leonardo/Zero, etc
+
+ 
+
+//   Serial.println("MAX31855 test");
+
+//   // wait for MAX chip to stabilize
+
+//   delay(500);
+
+//   Serial.print("Initializing sensor...");
+
+//   if (!thermocouple.begin()) {
+
+//     Serial.println("ERROR.");
+
+//     while (1) delay(10);
+
+//   }
+
+//   Serial.println("DONE.");
+
+// }
+
+ 
+
+// void loop() {
+
+//   // basic readout test, just print the current temp
+
+//    Serial.print("Internal Temp = ");
+
+//    Serial.println(thermocouple.readInternal());
+
+ 
+
+//    double c = thermocouple.readCelsius();
+
+//    if (isnan(c)) {
+
+//      Serial.println("Something wrong with thermocouple!");
+
+//    } else {
+
+//      Serial.print("C = ");
+
+//      Serial.println(c);
+
+//    }
+
+//    //Serial.print("F = ");
+
+//    //Serial.println(thermocouple.readFahrenheit());
+
+ 
+
+//    delay(1000);
+
+// }
+// //will delete
 
 //testing the bme280
 // #include <Wire.h>
@@ -397,7 +536,7 @@ void xpulsecountth(void *pvParameters) {
 // 	delay(1000);
 // }
 
-// //testing the MAX31855
+// //testing the MAX31855----------------------------------------------------------------------------
 //  This is an example for the Adafruit Thermocouple Sensor w/MAX31855K
 
 //   Designed specifically to work with the Adafruit Thermocouple Sensor
