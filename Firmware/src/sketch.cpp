@@ -40,6 +40,8 @@ int my_system_counter = 1000;
 int giterator = 0;
 char sOutput[1024];
 
+int temptemp;
+
 #define MAXDO   3
 #define MAXCS   4
 #define MAXCLK  5
@@ -199,20 +201,13 @@ void Read_Quad_1(void) {
  
  
 void setup() {
-  #define ESP8266
-  // void setup() {
+  //#define ESP8266 idk if this is necessary????
 
-//   if (!thermocouple.begin()) {
-//     lcd.print("ERROR.");
-//     while (1) delay(10);
-//   }
-//   lcd.print("DONE.");
-// }
   Serial.begin(460800);
   status = bme.begin(0x76);  
 
   //thermometer
-  thermocouple.begin();
+  //thermocouple.begin(); idk if this is necessary????
 
   //create timer that sends data 5 times a second (aka once every 200ms)
   timer = timerBegin(1, 80, true);
@@ -294,7 +289,7 @@ void xmainth(void *pvParameters) {
   String ambhumstring = ambhumchar;
   add_sout(ambhumstring);
 
-  //add pulse count
+  //add pulse count !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
   char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   String pulseString = pulsechar;
@@ -326,7 +321,16 @@ void xmainth(void *pvParameters) {
   if (shouldSend) {
     shouldSend = false;
     Serial.print(sOutput);
+    //DEBUGGING HARDWARE - this block below prints max num anyway
+    // temptemp = (int) thermocouple.readFahrenheit();
+    // char tempbuff [sizeof(temptemp)*4+1];
+    // char *tempchar = itoa(temptemp,tempbuff,10);
+    // String tempstring = tempchar;
+    // Serial.print(tempstring);
+
+    //end printing stuff
   }
+
 
   //end while
   vTaskDelay(1);
@@ -337,8 +341,6 @@ void xmainth(void *pvParameters) {
 void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    //well this is returning a number, but def not the right one
-    //ambtemp = int (thermocouple.readCelsius());
     ambtemp = int (thermocouple.readFahrenheit());
     //end while
     vTaskDelay(1);
