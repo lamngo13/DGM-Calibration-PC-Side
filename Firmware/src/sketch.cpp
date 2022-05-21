@@ -7,10 +7,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
-//import Adafruit_GPIO.SPI as SPI
-// import Adafruit_MAX31855.MAX31855 as MAX31855
-// import RPi.GPIO as GPIO
-//#include <MAX31855.h>
+
  
 #include <SPI.h>
 
@@ -22,11 +19,11 @@ Adafruit_BME280 bme;
 String status;
  
 //setup pins to read spinner:
+//WILL HAVE TO CHANGE FOR DGM1 and DGM2
 const int DGM_A = 32; // 36
 const int DGM_B = 35; // 39
  
-//bool Pin_DGM_1_QUAD_A;
-//bool Pin_DGM_1_QUAD_B;
+
 char Gc_DGM_1_Old = 0;
 bool Gb_New_DGM_1 = 0;
 bool shouldSend = false;
@@ -39,12 +36,6 @@ int my_system_counter = 1000;
  
 int giterator = 0;
 char sOutput[1024];
-
-int temptemp;
-
-//#define MAXDO   3
-//#define MAXCS   4
-//#define MAXCLK  5
 
 #define MAXDO   25
 #define MAXCS   26
@@ -80,15 +71,18 @@ const uint crc_table16[] =
 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0,
 };
 
-//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+static int pressure;
+static double doublepressure;
 static int ambtemp;
 static double doubleambtemp;
 static int reftemp;
-int ambhum;
-int pulsecount;
-int checksum;
-static int pressure;
-static double doublepressure;
+static double doublereftemp;
+static int ambhum;
+static double doubleambhum;
+static int pulsecount;
+static int checksum;
+
 
 void xmainth(void *pvParameters);
 void xpressure(void *pvParameters);
@@ -235,10 +229,10 @@ void setup() {
   //MAIN
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
-  xTaskCreatePinnedToCore(xpressure, "xpressure", 1300, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
+  xTaskCreatePinnedToCore(xpressure, "xpressure", 1350, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1350, NULL, 1, NULL, 1);
  
 }
 
@@ -371,8 +365,9 @@ void xreftempth(void *pvParameters) {
   ////reftemp = 0;
   (void) pvParameters;
   while (1) {
-    reftemp = thermocouple.readCelsius();
-    //reftemp = bme.readTemperature();
+    doublereftemp = thermocouple.readCelsius();
+    doublereftemp *= 100;
+    reftemp = doublereftemp;
     vTaskDelay(1);
   }
 }
@@ -380,7 +375,9 @@ void xreftempth(void *pvParameters) {
 void xambhumth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    ambhum = thermocouple.readInternal();
+    doubleambhum = double (bme.readHumidity());
+    doubleambhum *= 100;
+    ambhum = doubleambhum;
     vTaskDelay(1);
   }
 }
