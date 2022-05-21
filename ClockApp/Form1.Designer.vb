@@ -129,8 +129,8 @@ Partial Class dp
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.ClientSize = New System.Drawing.Size(634, 417)
+        Me.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.ClientSize = New System.Drawing.Size(852, 534)
         Me.Controls.Add(Me.crcdifflabel)
         Me.Controls.Add(Me.lblthird)
         Me.Controls.Add(Me.lblsecond)

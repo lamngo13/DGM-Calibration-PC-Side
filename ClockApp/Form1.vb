@@ -31,6 +31,9 @@
     Public inputchecksum As String = ""
     Public intchecksum As Integer
 
+    Public inputtruechceksum As String = ""
+    Public inttruechecksum As Integer = ""
+
     Public gooddata As Boolean = True
     Public refportgood As Boolean = False
 
@@ -174,14 +177,8 @@
                 'verify checksum
                 Dim iAccum As Integer = &HFFFF
                 'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
-                'add everything in currstr, then subtract the checksum
-                'The ASCII code for a blank space is the decimal number 32
-                'For j As Integer = i To 3 - 1
-                'Console.WriteLine("i value: {0}, j value: {1}", i, j)
-                'Next
-                'CHECK SUMASDFASDFLKHAJSDLFKHJASDLKFHSADLKFHASLDKFHSADLKFHSADLKF
-                If (currstr.Length > 20) Then
-                    For i As Integer = 0 To (InStr(currstr, inputchecksum)) 'its 44 which is about right?
+                If (currstr.Length <> vbNullString) Then
+                    For i As Integer = 1 To (InStr(currstr, inputchecksum)) 'its 44 which is about right?
                         'THESE LINES ABOVE OUGHT TO BE CHANGED MAYBE!?
 
                         'DEBUGGING
@@ -227,9 +224,7 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'what does this do lmao
-        'lemmegetuhhhmfuhhhhSerialPort1.PortName = "COM3"
-        'make this dynamic, for now I'm hardcoding it
+        'what does this do lol
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles openCom.Click
