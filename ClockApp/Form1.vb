@@ -8,12 +8,28 @@
     Public calchecksum As Integer
     '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
     Public inputlabel As String = ""
+
     Public inputpressure As String = ""
+    Public intpressure As Integer
+    Public doublepressure As Double
+
     Public inputambtemp As String = ""
+    Public intambtemp As Integer
+    Public doubleambtemp As Double
+
     Public inputreftemp As String = ""
+    Public intreftemp As Integer
+    Public doublereftemp As Double
+
     Public inputambhum As String = ""
+    Public intambhum As Integer
+    Public doubleambhum As Double
+
     Public inputpulsecount As String = ""
+    Public intpulsecount As Integer
+
     Public inputchecksum As String = ""
+    Public intchecksum As Integer
 
     Public gooddata As Boolean = True
     Public refportgood As Boolean = False
@@ -132,12 +148,28 @@
                     '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
                     'btw ONLY CONNECT IF LABEL HAS Cal-DGM
                     inputlabel = scanone()
+
                     inputpressure = scanone()
+                    intpressure = Val(inputpressure)
+                    doublepressure = (intpressure / 100)
+
                     inputambtemp = scanone()
+                    intambtemp = Val(inputpressure)
+                    doubleambtemp = (intambtemp / 100)
+
                     inputreftemp = scanone()
+                    intreftemp = Val(inputreftemp)
+                    doublereftemp = (intreftemp / 10)
+
                     inputambhum = scanone()
+                    intambhum = Val(inputambhum)
+                    doubleambhum = (intambhum / 10)
+
                     inputpulsecount = scanone()
+                    intpulsecount = Val(inputpulsecount)
+
                     inputchecksum = scanone()
+                    intchecksum = Val(inputchecksum)
                 End If
                 'verify checksum
                 Dim iAccum As Integer = &HFFFF
