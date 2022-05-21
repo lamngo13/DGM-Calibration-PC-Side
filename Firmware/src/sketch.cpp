@@ -75,22 +75,25 @@ static int pressure;
 //more accurate as double
 static double doublepressure;
 //array for average
-int pressureArr [10];
+#define PRESSUREBLOCKSIZE 10
+int pressureArr [PRESSUREBLOCKSIZE];
 int pressureitr = 0;
 //iterator for above array
 
 //others are the same deal
-
+#define AMBBLOCKSIZE 10
 static int ambtemp;
 static double doubleambtemp;
 int ambtempArr [10];
 int ambtempitr = 0;
 
+#define REFBLOCKSIZE 10
 static int reftemp;
 static double doublereftemp;
 int reftempArr [10];
 int reftempitr = 0;
 
+#define HUMBLOCKSIZE 10
 static int ambhum;
 static double doubleambhum;
 int ambhumArr [10];
@@ -326,24 +329,43 @@ void xmainth(void *pvParameters) {
 
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 void xpressure(void *pvParameters) {
+  int temppressure;
+  int sumpressure;
   (void) pvParameters;
   while (1) {
     doublepressure = double (bme.readPressure());
     //convert pascal to mmHg
     doublepressure /= 133.322;
     doublepressure *=100;
-    pressure = int (doublepressure);
-    //reftemp = bme.readTemperature();
+    temppressure = int (doublepressure);
+    pressureArr[pressureitr] = temppressure;
+    pressureitr++;
+    if (pressureitr >=PRESSUREBLOCKSIZE) {pressureitr = 0;}
+    sumpressure = 0;
+    for (int i = 0; i < PRESSUREBLOCKSIZE; i++) {sumpressure += pressureArr[i];}
+    pressure = (sumpressure/PRESSUREBLOCKSIZE);
+
     vTaskDelay(1);
   }
 }
 
 void xambtempth(void *pvParameters) {
+  int tempambtemp;
+  int sumambtemp;
   (void) pvParameters;
   while (1) {
     doubleambtemp = thermocouple.readInternal();
     doubleambtemp *= 100;
-    ambtemp = int (doubleambtemp);
+    tempambtemp = int (doubleambtemp);  // this is in celsius
+
+    //take the average of BLOCKSIZE measurements, and update the global ambient temp with the average
+    ambtempArr[ambtempitr] = tempambtemp;
+    ambtempitr++;
+    if (ambtempitr >=AMBBLOCKSIZE) {ambtempitr = 0;}
+    sumambtemp = 0;
+    for (int i = 0; i < AMBBLOCKSIZE; i++) {sumambtemp += ambtempArr[i];}
+    ambtemp = (sumambtemp/AMBBLOCKSIZE);
+
     //end while
     vTaskDelay(1);
   }
@@ -351,22 +373,41 @@ void xambtempth(void *pvParameters) {
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 
 void xreftempth(void *pvParameters) {
-  ////reftemp = 0;
+  int tempreftemp;
+  int sumreftemp;
   (void) pvParameters;
   while (1) {
     doublereftemp = thermocouple.readCelsius();
     doublereftemp *= 100;
-    reftemp = doublereftemp;
+    tempreftemp = doublereftemp;
+
+    reftempArr[reftempitr] = tempreftemp;
+    reftempitr++;
+    if (reftempitr >=REFBLOCKSIZE) {reftempitr = 0;}
+    sumreftemp = 0;
+    for (int i = 0; i < REFBLOCKSIZE; i++) {sumreftemp += reftempArr[i];}
+    reftemp = (sumreftemp/REFBLOCKSIZE);
+
     vTaskDelay(1);
   }
 }
 
 void xambhumth(void *pvParameters) {
+  int tempambhum;
+  int sumambhum;
   (void) pvParameters;
   while (1) {
     doubleambhum = double (bme.readHumidity());
     doubleambhum *= 100;
-    ambhum = doubleambhum;
+    tempambhum = doubleambhum;
+    
+    ambhumArr[ambhumitr] = tempambhum;
+    ambhumitr++;
+    if (ambhumitr >=HUMBLOCKSIZE) {ambhumitr = 0;}
+    sumambhum = 0;
+    for (int i = 0; i < HUMBLOCKSIZE; i++) {sumambhum += ambhumArr[i];}
+    ambhum = (sumambhum/HUMBLOCKSIZE);
+
     vTaskDelay(1);
   }
 }
