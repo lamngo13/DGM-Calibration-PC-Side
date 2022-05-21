@@ -174,26 +174,48 @@
                 'For j As Integer = i To 3 - 1
                 'Console.WriteLine("i value: {0}, j value: {1}", i, j)
                 'Next
-                '///If (currstr <> vbNullString) Then
-                '///For i As Integer = 1 To currstr.Length
-                '///iAccum = ((iAccum & &HFF << 8) ^ crc_table(((iAccum >> 8) Xor Asc(currstr(i))) & &HFF))
-                '///Next
-                '///iAccum -= third + 32
-                '///End If
+                'CHECK SUMASDFASDFLKHAJSDLFKHJASDLKFHSADLKFHASLDKFHSADLKFHSADLKF
+                If (currstr.Length > 20) Then
+                    For i As Integer = 1 To (InStr(currstr, inputchecksum)) ' looks like its giving me an error at the end so im doing -1????
+                        'DEBUGGING
+                        'Dim fooz As Integer = (iAccum And &HFF) ' THIS OK
+                        'Dim fooa As Integer = ((iAccum And &HFF) << 8) ' THIS GIVE PROBLEM
+                        'Dim foob As Integer = iAccum >> 8
+                        'Dim fooy As Integer = Asc(currstr(54))
+                        'Dim fooc As Integer = ((iAccum >> 8) Xor Asc(currstr(i))) ' THIS GIVES PROBLEM WHEN currstr(54)
+                        'Dim food As Integer = ((iAccum >> 8) Xor Asc(currstr(i))) And &HFF
+                        'Dim tablelook As Integer = crc_table(food)
+                        'Dim fooe As Integer = Asc(currstr(i)) And &HFF
+                        'Dim foof As Integer = crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF)
+                        'END DEBUGGING
+                        'VISUAL BASIC IS DUMB AS HELL ONE OF TWO PROBLEMS IS HAPPENING
+                        'Problem 1: &HFF is NOT the same as &H00FF but visual basic will NOT let me type &H0FF NOT THIS I DONT THINK
+                        'to fix I will just use int values
+                        'Problem 2: it's saying '&' is somehow not the right bitwise operator ITS THIS ONE I THINK
+                        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF))) ' THIS IS GIVING OUTTA BOUNDS
+                    Next ' end of for loop
+                    'iAccum -= Val(inputchecksum) + 32 nah do this by not going until the checksum, bc think abt how crc works
+                End If
 
-                'readbuffersize should go TWICE as fast as the data is coming in
-                '!!!TODO ASK DAD!!!
+                If (Not iAccum = Val(inputchecksum)) Then
+                    gooddata = False
+                End If
+                ' END CHECKSUM ASDLKJFHASDLIKFHJASDLKFHASDLKFHJSADLKFJHLASKDHJ
+
 
                 'ONLY UPDATE VALS IF GOOD
+                'If (gooddata) Then
+                'do this stuff below
+                'MAKE THIS CONDITIONAL TO GOODDATA
                 lblsp.Text = currstr
                 lblfirst.Text = inputlabel
-                lblsecond.Text = inputpressure
-                lblthird.Text = inputambtemp
+                lblsecond.Text = inputchecksum
+                lblthird.Text = iAccum.ToString()
+                crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
             End If
-            End If
 
-
-
+            'end of tick!
+        End If
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -224,7 +246,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        System.Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                        System.Threading.Thread.Sleep(500) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
                         If (giveup > 5) Then

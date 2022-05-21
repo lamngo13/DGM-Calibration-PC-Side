@@ -31,6 +31,7 @@ Partial Class dp
         Me.lblfirst = New System.Windows.Forms.Label()
         Me.lblsecond = New System.Windows.Forms.Label()
         Me.lblthird = New System.Windows.Forms.Label()
+        Me.crcdifflabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblClock
@@ -38,9 +39,10 @@ Partial Class dp
         Me.lblClock.AutoSize = True
         Me.lblClock.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblClock.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblClock.Location = New System.Drawing.Point(39, 47)
+        Me.lblClock.Location = New System.Drawing.Point(12, 17)
+        Me.lblClock.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.lblClock.Name = "lblClock"
-        Me.lblClock.Size = New System.Drawing.Size(456, 118)
+        Me.lblClock.Size = New System.Drawing.Size(151, 39)
         Me.lblClock.TabIndex = 0
         Me.lblClock.Text = "12:00:00"
         '
@@ -58,17 +60,19 @@ Partial Class dp
         Me.lblsp.AutoSize = True
         Me.lblsp.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblsp.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.lblsp.Location = New System.Drawing.Point(67, 248)
+        Me.lblsp.Location = New System.Drawing.Point(21, 87)
+        Me.lblsp.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.lblsp.Name = "lblsp"
-        Me.lblsp.Size = New System.Drawing.Size(364, 118)
+        Me.lblsp.Size = New System.Drawing.Size(120, 39)
         Me.lblsp.TabIndex = 1
         Me.lblsp.Text = "Label1"
         '
         'openCom
         '
-        Me.openCom.Location = New System.Drawing.Point(730, 106)
+        Me.openCom.Location = New System.Drawing.Point(231, 37)
+        Me.openCom.Margin = New System.Windows.Forms.Padding(1, 1, 1, 1)
         Me.openCom.Name = "openCom"
-        Me.openCom.Size = New System.Drawing.Size(290, 107)
+        Me.openCom.Size = New System.Drawing.Size(92, 38)
         Me.openCom.TabIndex = 2
         Me.openCom.Text = "Connect"
         Me.openCom.UseVisualStyleBackColor = True
@@ -78,9 +82,10 @@ Partial Class dp
         Me.lblfirst.AutoSize = True
         Me.lblfirst.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!)
         Me.lblfirst.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.lblfirst.Location = New System.Drawing.Point(67, 445)
+        Me.lblfirst.Location = New System.Drawing.Point(21, 156)
+        Me.lblfirst.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.lblfirst.Name = "lblfirst"
-        Me.lblfirst.Size = New System.Drawing.Size(248, 118)
+        Me.lblfirst.Size = New System.Drawing.Size(85, 39)
         Me.lblfirst.TabIndex = 4
         Me.lblfirst.Text = "first:"
         '
@@ -89,9 +94,10 @@ Partial Class dp
         Me.lblsecond.AutoSize = True
         Me.lblsecond.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!)
         Me.lblsecond.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.lblsecond.Location = New System.Drawing.Point(64, 596)
+        Me.lblsecond.Location = New System.Drawing.Point(20, 209)
+        Me.lblsecond.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.lblsecond.Name = "lblsecond"
-        Me.lblsecond.Size = New System.Drawing.Size(443, 118)
+        Me.lblsecond.Size = New System.Drawing.Size(148, 39)
         Me.lblsecond.TabIndex = 5
         Me.lblsecond.Text = "second: "
         '
@@ -100,25 +106,39 @@ Partial Class dp
         Me.lblthird.AutoSize = True
         Me.lblthird.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!)
         Me.lblthird.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.lblthird.Location = New System.Drawing.Point(90, 771)
+        Me.lblthird.Location = New System.Drawing.Point(28, 271)
+        Me.lblthird.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.lblthird.Name = "lblthird"
-        Me.lblthird.Size = New System.Drawing.Size(283, 118)
+        Me.lblthird.Size = New System.Drawing.Size(95, 39)
         Me.lblthird.TabIndex = 6
         Me.lblthird.Text = "third:"
         '
+        'crcdifflabel
+        '
+        Me.crcdifflabel.AutoSize = True
+        Me.crcdifflabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.0!)
+        Me.crcdifflabel.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.crcdifflabel.Location = New System.Drawing.Point(32, 332)
+        Me.crcdifflabel.Name = "crcdifflabel"
+        Me.crcdifflabel.Size = New System.Drawing.Size(137, 39)
+        Me.crcdifflabel.TabIndex = 7
+        Me.crcdifflabel.Text = "Diffcrc: "
+        '
         'dp
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(19.0!, 37.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.ClientSize = New System.Drawing.Size(2007, 1126)
+        Me.ClientSize = New System.Drawing.Size(634, 417)
+        Me.Controls.Add(Me.crcdifflabel)
         Me.Controls.Add(Me.lblthird)
         Me.Controls.Add(Me.lblsecond)
         Me.Controls.Add(Me.lblfirst)
         Me.Controls.Add(Me.openCom)
         Me.Controls.Add(Me.lblsp)
         Me.Controls.Add(Me.lblClock)
+        Me.Margin = New System.Windows.Forms.Padding(1, 1, 1, 1)
         Me.Name = "dp"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "A Clock"
@@ -136,4 +156,5 @@ Partial Class dp
     Friend WithEvents lblfirst As Label
     Friend WithEvents lblsecond As Label
     Friend WithEvents lblthird As Label
+    Friend WithEvents crcdifflabel As Label
 End Class
