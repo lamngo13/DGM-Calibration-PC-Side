@@ -212,6 +212,7 @@ void setup() {
   //#define ESP8266 idk if this is necessary????
 
   Serial.begin(460800);
+  //make sure baud rate is the same on all devices and applications!!
   status = bme.begin(0x76);  
 
   //thermometer
@@ -223,10 +224,7 @@ void setup() {
   timerAlarmWrite(timer, 200000, true);
   timerAlarmEnable(timer);
  
-  //originally 9600
- 
   //initialize pins to be read:
-  //HOW DO I DO THIS IN THREADING??????????
   pinMode(DGM_A, INPUT_PULLDOWN);
   pinMode(DGM_B, INPUT_PULLUP);
   
@@ -239,13 +237,11 @@ void setup() {
   //MAIN
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
-  //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
-  xTaskCreatePinnedToCore(xpressure, "xpressure", 3000, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xpressure, "xpressure", 1100, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
-  //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
 }
 
@@ -255,9 +251,6 @@ void loop() {
 
 void xmainth(void *pvParameters) {
   (void) pvParameters;
-  //print everything to serial 5 times a sec
-  //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-  //convert to string then send
   while (1) {
     /*
     timer = timerBegin(0, 80, true);
@@ -267,6 +260,7 @@ void xmainth(void *pvParameters) {
   i think the first line should be in setup, but I think the rest should be in here???
   */
 
+ //iterator for the final output string
  for (int a = 0; a < 1024; a++) {
     sOutput[a] = '\0';
   }
@@ -361,6 +355,7 @@ void xpressure(void *pvParameters) {
   (void) pvParameters;
   while (1) {
     flpressure = bme.readPressure();
+    flpressure /= 133.322;
     flpressure *=100;
     pressure = int (flpressure);
     //reftemp = bme.readTemperature();
