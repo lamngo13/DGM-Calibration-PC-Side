@@ -15,6 +15,9 @@
     Public inputpulsecount As String = ""
     Public inputchecksum As String = ""
 
+    Public gooddata As Boolean = True
+    Public refportgood As Boolean = False
+
     'dim numbers = New Integer()
 
     Dim crc_table = New UInteger() {&H0, &H1021, &H2042, &H3063, &H4084, &H50A5, &H60C6, &H70E7, &H8108, &H9129, &HA14A, &HB16B,
@@ -165,6 +168,7 @@
                 End If
                 'verify checksum
                 Dim iAccum As Integer = &HFFFF
+                'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
                 'add everything in currstr, then subtract the checksum
                 'The ASCII code for a blank space is the decimal number 32
                 'For j As Integer = i To 3 - 1
@@ -179,6 +183,8 @@
 
                 'readbuffersize should go TWICE as fast as the data is coming in
                 '!!!TODO ASK DAD!!!
+
+                'ONLY UPDATE VALS IF GOOD
                 lblsp.Text = currstr
                 lblfirst.Text = inputlabel
                 lblsecond.Text = inputpressure
@@ -200,42 +206,46 @@
         Dim comgo As Boolean = True
         Dim tempcomport As Integer = 1
         Dim comstr As String = "COM"
-        While (comgo)
-            'comstr += CStr(tempcomport)
-            Try
-                SerialPort1.PortName = comstr + CStr(tempcomport)
-                SerialPort1.Open()
-                'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
-                'maybe bad THIS ISNT WORKING MAN
-                Dim fooinputstr As String
-                Dim zgo As Boolean = True
-                Dim giveup As Integer = 0
-                While (zgo)
-                    fooinputstr = SerialPort1.ReadExisting()
-                    If (fooinputstr.Length > 1) Then
-                        zgo = False
+        If (Not refportgood) Then
+            While (comgo)
+                'comstr += CStr(tempcomport)
+                Try
+                    SerialPort1.PortName = comstr + CStr(tempcomport)
+                    SerialPort1.Open()
+                    'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
+                    'maybe bad THIS ISNT WORKING MAN
+                    Dim fooinputstr As String
+                    Dim zgo As Boolean = True
+                    Dim giveup As Integer = 0
+                    While (zgo)
+                        fooinputstr = SerialPort1.ReadExisting()
+                        If (fooinputstr.Length > 1) Then
+                            zgo = False
+                        End If
+                        'give up will end the while loop if the com port goes a long time without transmitting anything
+                        giveup += 1
+                        System.Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                        'LIERALLY 10 ms WORKS BUT 9 DOESNT
+                        'so im going to use 15 just to be safe
+                        If (giveup > 5) Then
+                            zgo = False
+                        End If
+                    End While
+                    'fooinputstr = SerialPort1.ReadExisting()
+                    If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'PROBLEM HERE (I think it's because the serial port sends junk before an actual thing?? Or idk)
+                        'THIS WORKS IN DEBUGGING BUT I SUSPECT ITS A TIMING ISSUE
+                        'ID SAY SLEEP FOR A BIT IFF A COM PORT CAN BE OPENED
+                        refportgood = True
+                        comgo = False
                     End If
-                    'give up will end the while loop if the com port goes a long time without transmitting anything
-                    giveup += 1
-                    System.Threading.Thread.Sleep(15) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
-                    'LIERALLY 10 ms WORKS BUT 9 DOESNT
-                    'so im going to use 15 just to be safe
-                    If (giveup > 5) Then
-                        zgo = False
-                    End If
-                End While
-                'fooinputstr = SerialPort1.ReadExisting()
-                If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'PROBLEM HERE (I think it's because the serial port sends junk before an actual thing?? Or idk)
-                    'THIS WORKS IN DEBUGGING BUT I SUSPECT ITS A TIMING ISSUE
-                    'ID SAY SLEEP FOR A BIT IFF A COM PORT CAN BE OPENED
-                    comgo = False
-                End If
-                'comgo = False
-                'serial port name??
-            Catch ex As Exception
-                tempcomport += 1
-            End Try
-        End While
+                    'comgo = False
+                    'serial port name??
+                Catch ex As Exception
+                    tempcomport += 1
+                End Try
+            End While
+        End If
+
 
         'good
         'SerialPort1.PortName = "COM3"
