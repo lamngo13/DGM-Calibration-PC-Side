@@ -40,8 +40,7 @@ char sOutput[1024];
 #define MAXCS   26
 #define MAXCLK  27
 
-Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
-LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
+Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);  //initialize thermometer with correct pins
  
 const uint crc_table16[] =
  
@@ -71,6 +70,7 @@ const uint crc_table16[] =
 };
 
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+
 static int pressure;
 //more accurate as double
 static double doublepressure;
@@ -99,8 +99,7 @@ static double doubleambhum;
 int ambhumArr [10];
 int ambhumitr = 0;
 
-static int pulsecount;  // DOES THIS NEED AVERAGE ARRAY????
-
+static int pulsecount;  //no average needed
 static int checksum;  //this is handled in main
 
 //initialize threading
@@ -210,9 +209,7 @@ void Read_Quad_1(void) {
         return;
       }
     }
-    //end if changed
   }
-  //end function
 }
  
  
@@ -268,7 +265,7 @@ void xmainth(void *pvParameters) {
   giterator++;
  
   //label
-  add_sout("Cal-DGM-v1.0");
+  add_sout("Cal-DGM-v1.0");  // the add_sout appends the string WITH COMMA AND SPACE to the ultimate output string
 
   //add pressure 
   char pressurebuff [sizeof(pressure)*4+1];
@@ -366,7 +363,6 @@ void xambtempth(void *pvParameters) {
     for (int i = 0; i < AMBBLOCKSIZE; i++) {sumambtemp += ambtempArr[i];}
     ambtemp = (sumambtemp/AMBBLOCKSIZE);
 
-    //end while
     vTaskDelay(1);
   }
 }
