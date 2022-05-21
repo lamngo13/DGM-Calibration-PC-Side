@@ -72,17 +72,33 @@ const uint crc_table16[] =
 
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 static int pressure;
+//more accurate as double
 static double doublepressure;
-//pressure array
-//pressure iterator
+//array for average
+int pressureArr [10];
+int pressureitr = 0;
+//iterator for above array
+
+//others are the same deal
+
 static int ambtemp;
 static double doubleambtemp;
+int ambtempArr [10];
+int ambtempitr = 0;
+
 static int reftemp;
 static double doublereftemp;
+int reftempArr [10];
+int reftempitr = 0;
+
 static int ambhum;
 static double doubleambhum;
-static int pulsecount;
-static int checksum;
+int ambhumArr [10];
+int ambhumitr = 0;
+
+static int pulsecount;  // DOES THIS NEED AVERAGE ARRAY????
+
+static int checksum;  //this is handled in main
 
 //initialize threading
 void xmainth(void *pvParameters);
@@ -222,12 +238,12 @@ void setup() {
   //START THREADING
   //main prints globals, and all other tasks update those globals
   //make main its own core!
-  xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
+  xTaskCreatePinnedToCore(xmainth, "xmainth", 1500, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
-  xTaskCreatePinnedToCore(xpressure, "xpressure", 1350, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
-  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1350, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xpressure, "xpressure", 1500, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
+  xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1500, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1500, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1500, NULL, 1, NULL, 1);
  
 }
 
@@ -325,7 +341,7 @@ void xpressure(void *pvParameters) {
 void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    doubleambtemp = thermocouple.readCelsius();
+    doubleambtemp = thermocouple.readInternal();
     doubleambtemp *= 100;
     ambtemp = int (doubleambtemp);
     //end while
