@@ -87,14 +87,17 @@ static int reftemp;
 int ambhum;
 int pulsecount;
 int checksum;
+static int pressure;
+static float flpressure;
 
 //void xlabelth(void *pvParameters );
-void xambtempth(void *pvParameters );
-void xreftempth(void *pvParameters );
-void xambhumth(void *pvParameters );
-void xpulsecountth(void *pvParameters );
+void xpressure(void *pvParameters);
+void xambtempth(void *pvParameters);
+void xreftempth(void *pvParameters);
+void xambhumth(void *pvParameters);
+void xpulsecountth(void *pvParameters);
 //void xchecksumth(void *pvParameters );
-void xmainth(void *pvParameters );
+void xmainth(void *pvParameters);
 
 
 
@@ -227,24 +230,23 @@ void setup() {
   pinMode(DGM_A, INPUT_PULLDOWN);
   pinMode(DGM_B, INPUT_PULLUP);
   
-  //make interrputs
+  //make interrputs for DGM
   attachInterrupt(DGM_A, Read_Quad_1, CHANGE);
   attachInterrupt(DGM_B, Read_Quad_1, CHANGE);
 
   //START THREADING
   //main prints globals, and all other tasks update those globals
+  //MAIN
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
   //xTaskCreatePinnedToCore(xlabelth, "xlableth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(xpressure, "xpressure", 3000, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
   //xTaskCreatePinnedToCore(xchecksumth, "xchecksumth", 1024, NULL, 2, NULL, ARDUINO_RUNNING_CORE);
  
-  
- 
-  
 }
 
 void loop() {
@@ -254,7 +256,7 @@ void loop() {
 void xmainth(void *pvParameters) {
   (void) pvParameters;
   //print everything to serial 5 times a sec
-  //output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+  //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
   //convert to string then send
   while (1) {
     /*
@@ -275,6 +277,12 @@ void xmainth(void *pvParameters) {
  
   //label
   add_sout("Cal-DGM-v1.0");
+
+  //add pressure 
+  char pressurebuff [sizeof(pressure)*4+1];
+  char *pressurechar = itoa(pressure,pressurebuff,10);
+  String pressurestring = pressurechar;
+  add_sout(pressurechar);
 
   //add amb temp
   char ambtempbuff [sizeof(ambtemp)*4+1];
@@ -348,6 +356,18 @@ void xmainth(void *pvParameters) {
 
 }
 
+void xpressure(void *pvParameters) {
+  ////reftemp = 0;
+  (void) pvParameters;
+  while (1) {
+    flpressure = bme.readPressure();
+    flpressure *=100;
+    pressure = int (flpressure);
+    //reftemp = bme.readTemperature();
+    vTaskDelay(1);
+  }
+}
+
 void xambtempth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
@@ -358,7 +378,9 @@ void xambtempth(void *pvParameters) {
     vTaskDelay(1);
   }
 }
-//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+
+
 
 void xreftempth(void *pvParameters) {
   ////reftemp = 0;
