@@ -217,8 +217,10 @@
                     End If
                     'give up will end the while loop if the com port goes a long time without transmitting anything
                     giveup += 1
-                    System.Threading.Thread.Sleep(300) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
-                    If (giveup > 4) Then
+                    System.Threading.Thread.Sleep(15) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                    'LIERALLY 10 ms WORKS BUT 9 DOESNT
+                    'so im going to use 15 just to be safe
+                    If (giveup > 5) Then
                         zgo = False
                     End If
                 End While
