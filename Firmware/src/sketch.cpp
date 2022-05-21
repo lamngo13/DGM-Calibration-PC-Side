@@ -88,16 +88,14 @@ int ambhum;
 int pulsecount;
 int checksum;
 static int pressure;
-static float flpressure;
+static double doublepressure;
 
-//void xlabelth(void *pvParameters );
+void xmainth(void *pvParameters);
 void xpressure(void *pvParameters);
 void xambtempth(void *pvParameters);
 void xreftempth(void *pvParameters);
 void xambhumth(void *pvParameters);
-void xpulsecountth(void *pvParameters);
-//void xchecksumth(void *pvParameters );
-void xmainth(void *pvParameters);
+
 
 
 
@@ -237,11 +235,10 @@ void setup() {
   //MAIN
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
-  xTaskCreatePinnedToCore(xpressure, "xpressure", 1100, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
+  xTaskCreatePinnedToCore(xpressure, "xpressure", 1300, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1024, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1024, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(xpulsecountth, "xpulsecountth", 1024, NULL, 1, NULL, 1);
  
 }
 
@@ -306,10 +303,6 @@ void xmainth(void *pvParameters) {
   char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   String pulseString = pulsechar;
   add_sout(pulseString);
-  // char pulsebuff[sizeof(pulsecount)*8+1];
-  // char *pulsechar = ltoa(pulsecount,pulsebuff,10);
-  // String pulseString = pulsechar;
-  // add_sout(pulseString);
 
   /// Calculate CRC
   int iAccum = 0xFFFF;
@@ -342,22 +335,21 @@ void xmainth(void *pvParameters) {
 
     //end printing stuff
   }
-
-
   //end while
   vTaskDelay(1);
   }
 
 }
 
+//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 void xpressure(void *pvParameters) {
   ////reftemp = 0;
   (void) pvParameters;
   while (1) {
-    flpressure = bme.readPressure();
-    flpressure /= 133.322;
-    flpressure *=100;
-    pressure = int (flpressure);
+    doublepressure = double (bme.readPressure());
+    doublepressure /= 133.322;
+    doublepressure *=100;
+    pressure = int (doublepressure);
     //reftemp = bme.readTemperature();
     vTaskDelay(1);
   }
@@ -374,8 +366,6 @@ void xambtempth(void *pvParameters) {
   }
 }
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-
-
 
 void xreftempth(void *pvParameters) {
   ////reftemp = 0;
@@ -395,17 +385,17 @@ void xambhumth(void *pvParameters) {
   }
 }
 
-//pulsecount
-//TODOOOOOOOOOOO IDK HOW TO DO INTERRPUT WITH THREADING
-void xpulsecountth(void *pvParameters) {
-  (void) pvParameters;
-  //MAYBE REMOFVE
+// //pulsecount
+// //TODOOOOOOOOOOO IDK HOW TO DO INTERRPUT WITH THREADING
+// void xpulsecountth(void *pvParameters) {
+//   (void) pvParameters;
+//   //MAYBE REMOFVE
   
 
-  //END MAYBE REMOVE
-  while (1) {
-    pulsecount++;
-    //end while
-    vTaskDelay(1);
-  }
-}
+//   //END MAYBE REMOVE
+//   while (1) {
+//     pulsecount++;
+//     //end while
+//     vTaskDelay(1);
+//   }
+// }
