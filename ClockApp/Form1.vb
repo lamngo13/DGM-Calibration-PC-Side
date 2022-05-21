@@ -1,13 +1,20 @@
 ﻿Public Class dp
     Public checksum As Integer
     Public backit As Integer = 9999
+
     Public currstr As String
-    Public first As String = ""
-    Public second As String = ""
-    Public third As String = ""
     Public stritt As Integer = 1
     Public isgood As Boolean = True
     Public calchecksum As Integer
+    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+    Public inputlabel As String = ""
+    Public inputpressure As String = ""
+    Public inputambtemp As String = ""
+    Public inputreftemp As String = ""
+    Public inputambhum As String = ""
+    Public inputpulsecount As String = ""
+    Public inputchecksum As String = ""
+
     'dim numbers = New Integer()
 
     Dim crc_table = New UInteger() {&H0, &H1021, &H2042, &H3063, &H4084, &H50A5, &H60C6, &H70E7, &H8108, &H9129, &HA14A, &HB16B,
@@ -65,7 +72,7 @@
         'diff here is discard if first char is not >
         If (Mid(currstr, 1, 1) <> ">") Then
             isgood = False
-            Return first
+            Return inputlabel
         End If
         While (go)
 
@@ -146,13 +153,15 @@
                     'change this one off condition
 
                     'diff condition for the first bc must have > else discard
-                    '//output Label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-                    '//output: Label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-                    '//output: label, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+                    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
                     'btw ONLY CONNECT IF LABEL HAS Cal-DGM
-                    first = scanone()
-                    second = scanone()
-                    third = scanone()
+                    inputlabel = scanone()
+                    inputpressure = scanone()
+                    inputambtemp = scanone()
+                    inputreftemp = scanone()
+                    inputambhum = scanone()
+                    inputpulsecount = scanone()
+                    inputchecksum = scanone()
                 End If
                 'verify checksum
                 Dim iAccum As Integer = &HFFFF
@@ -171,10 +180,10 @@
                 'readbuffersize should go TWICE as fast as the data is coming in
                 '!!!TODO ASK DAD!!!
                 lblsp.Text = currstr
-                    lblfirst.Text = first
-                    lblsecond.Text = iAccum
-                    lblthird.Text = third
-                End If
+                lblfirst.Text = inputlabel
+                lblsecond.Text = inputpressure
+                lblthird.Text = inputambtemp
+            End If
             End If
 
 
@@ -197,8 +206,29 @@
                 SerialPort1.PortName = comstr + CStr(tempcomport)
                 SerialPort1.Open()
                 'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
-                'maybe bad
-                comgo = False
+                'maybe bad THIS ISNT WORKING MAN
+                Dim fooinputstr As String
+                Dim zgo As Boolean = True
+                Dim giveup As Integer = 0
+                While (zgo)
+                    fooinputstr = SerialPort1.ReadExisting()
+                    If (fooinputstr.Length > 1) Then
+                        zgo = False
+                    End If
+                    'give up will end the while loop if the com port goes a long time without transmitting anything
+                    giveup += 1
+                    System.Threading.Thread.Sleep(300) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                    If (giveup > 4) Then
+                        zgo = False
+                    End If
+                End While
+                'fooinputstr = SerialPort1.ReadExisting()
+                If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'PROBLEM HERE (I think it's because the serial port sends junk before an actual thing?? Or idk)
+                    'THIS WORKS IN DEBUGGING BUT I SUSPECT ITS A TIMING ISSUE
+                    'ID SAY SLEEP FOR A BIT IFF A COM PORT CAN BE OPENED
+                    comgo = False
+                End If
+                'comgo = False
                 'serial port name??
             Catch ex As Exception
                 tempcomport += 1
