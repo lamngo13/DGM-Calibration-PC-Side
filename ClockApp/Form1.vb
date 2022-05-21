@@ -95,33 +95,7 @@
         stritt += 1
         Return theString
     End Function
-    Public Function getbackit()
-        'myChar = myString.Chars(3)
-        'Dim MyString, FirstWord, LastWord, MidWords
-        'MyString = "Mid Function Demo"    ' Create text string.
-        'FirstWord = Mid(MyString, 1, 3)    ' Returns "Mid".
-        'LastWord = Mid(MyString, 14, 4)    ' Returns "Demo".
-        'MidWords = Mid(MyString, 5)    ' Returns "Function Demo".
-        'three commands to work with string
-        'mid - returns a string of any size (one char) counts from 
-        'say u have string called A
-        'mid(A, how many chars follow always left to right, number of chars)
-        ' to get very first string, mid(A,1,1)
-        'array starts at 0, but string starts at 1
-        'for i to len(string)
-        'mid(A,i,1)
-        'trim gets rid of leadint or trailing spaces
-        'microsoft.visualbasic.left or ....right
-        'left 7 returns the 7 on the lft
-        'instr - gives u the location of the first occurence of a particular char
-        'len gives u a good actual val, not 1024
-        '
-    End Function
-    Public Function parse() As Integer
-        'read until u reach a ',' then iterate once more to account for the space
 
-
-    End Function
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblClock.Click
 
     End Sub
@@ -131,7 +105,6 @@
 
         lblClock.Text = TimeString ' 24 hour time
         If (SerialPort1.IsOpen) Then
-            'parse instead of simply display - but this requires (globals??)
 
             If (SerialPort1.ReadBufferSize > 0) Then
                 'start parsing stuff
@@ -176,7 +149,9 @@
                 'Next
                 'CHECK SUMASDFASDFLKHAJSDLFKHJASDLKFHSADLKFHASLDKFHSADLKFHSADLKF
                 If (currstr.Length > 20) Then
-                    For i As Integer = 1 To (InStr(currstr, inputchecksum)) ' looks like its giving me an error at the end so im doing -1????
+                    For i As Integer = 0 To (InStr(currstr, inputchecksum)) 'its 44 which is about right?
+                        'THESE LINES ABOVE OUGHT TO BE CHANGED MAYBE!?
+
                         'DEBUGGING
                         'Dim fooz As Integer = (iAccum And &HFF) ' THIS OK
                         'Dim fooa As Integer = ((iAccum And &HFF) << 8) ' THIS GIVE PROBLEM
@@ -192,6 +167,7 @@
                         'Problem 1: &HFF is NOT the same as &H00FF but visual basic will NOT let me type &H0FF NOT THIS I DONT THINK
                         'to fix I will just use int values
                         'Problem 2: it's saying '&' is somehow not the right bitwise operator ITS THIS ONE I THINK
+
                         iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF))) ' THIS IS GIVING OUTTA BOUNDS
                     Next ' end of for loop
                     'iAccum -= Val(inputchecksum) + 32 nah do this by not going until the checksum, bc think abt how crc works
@@ -208,7 +184,7 @@
                 'do this stuff below
                 'MAKE THIS CONDITIONAL TO GOODDATA
                 lblsp.Text = currstr
-                lblfirst.Text = inputlabel
+                lblfirst.Text = "calced index of incrc: " + (InStr(currstr, inputchecksum)).ToString()
                 lblsecond.Text = inputchecksum
                 lblthird.Text = iAccum.ToString()
                 crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
@@ -246,7 +222,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        System.Threading.Thread.Sleep(500) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                        Threading.Thread.Sleep(500) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
                         If (giveup > 5) Then
