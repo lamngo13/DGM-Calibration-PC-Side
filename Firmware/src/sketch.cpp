@@ -18,25 +18,24 @@ Adafruit_BME280 bme;
  
 String status;
  
-//setup pins to read spinner:
+//setup pins to read spinner 
 //WILL HAVE TO CHANGE FOR DGM1 and DGM2
 const int DGM_A = 32; // 36
 const int DGM_B = 35; // 39
  
-
+//globals for dgm
 char Gc_DGM_1_Old = 0;
 bool Gb_New_DGM_1 = 0;
 bool shouldSend = false;
 hw_timer_t * timer = NULL;
- 
-//global long
 long Gl_Pulse_DGM_1 = 0;
- 
-int my_system_counter = 1000;
- 
+
+//iterator for output string
 int giterator = 0;
+//ultimate output string
 char sOutput[1024];
 
+//pins for MAX31855
 #define MAXDO   25
 #define MAXCS   26
 #define MAXCLK  27
@@ -74,6 +73,8 @@ const uint crc_table16[] =
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 static int pressure;
 static double doublepressure;
+//pressure array
+//pressure iterator
 static int ambtemp;
 static double doubleambtemp;
 static int reftemp;
@@ -83,21 +84,19 @@ static double doubleambhum;
 static int pulsecount;
 static int checksum;
 
-
+//initialize threading
 void xmainth(void *pvParameters);
 void xpressure(void *pvParameters);
 void xambtempth(void *pvParameters);
 void xreftempth(void *pvParameters);
 void xambhumth(void *pvParameters);
-
-
-
-
  
+//system timer, this value changes 5 times a second 
 void IRAM_ATTR onTimer() {
    shouldSend = true; 
 }
  
+//function to append a string to the ultimate output 
 void add_sout(String input) {
   boolean go = true;
   int striterator = 0;
@@ -110,12 +109,10 @@ void add_sout(String input) {
    
   }
   sOutput[giterator++] = ',';
-  //giterator++;
   sOutput[giterator++] = ' ';
-  //giterator++;
 }
  
- 
+//called upon interrupt to read changes in the spinner 
 void Read_Quad_1(void) {
   //read pins
   bool Pin_DGM_1_QUAD_A = digitalRead(DGM_A);
@@ -201,8 +198,6 @@ void Read_Quad_1(void) {
  
  
 void setup() {
-  //#define ESP8266 idk if this is necessary????
-
   Serial.begin(460800);
   //make sure baud rate is the same on all devices and applications!!
   status = bme.begin(0x76);  
@@ -226,7 +221,7 @@ void setup() {
 
   //START THREADING
   //main prints globals, and all other tasks update those globals
-  //MAIN
+  //make main its own core!
   xTaskCreatePinnedToCore(xmainth, "xmainth", 1024, NULL, 1, NULL, 0);  //main will send things 5 times a sec
 
   xTaskCreatePinnedToCore(xpressure, "xpressure", 1350, NULL, 1, NULL, 1); // this is using a weirdly large ammount of memory??
@@ -237,19 +232,12 @@ void setup() {
 }
 
 void loop() {
-  //empty bc threading amirite
+  //empty bc threading lets goo
 }
 
 void xmainth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
-    /*
-    timer = timerBegin(0, 80, true);
-  timerAttachInterrupt(timer, &onTimer, true);
-  timerAlarmWrite(timer, 200000, true);
-  timerAlarmEnable(timer);
-  i think the first line should be in setup, but I think the rest should be in here???
-  */
 
  //iterator for the final output string
  for (int a = 0; a < 1024; a++) {
@@ -274,11 +262,6 @@ void xmainth(void *pvParameters) {
   char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
-  // String ambtempstring = "foo";
-  // sprintf(ambtempchar,"%f",121.7);
-  // // ambtempstring = ambtempchar;
-
-  // add_sout(ambtempchar);
 
   //add ref meter temp
   char reftempbuff [sizeof(reftemp)*4+1];
@@ -292,7 +275,7 @@ void xmainth(void *pvParameters) {
   String ambhumstring = ambhumchar;
   add_sout(ambhumstring);
 
-  //add pulse count !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //add pulse count
   char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
   char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   String pulseString = pulsechar;
@@ -303,31 +286,21 @@ void xmainth(void *pvParameters) {
   for (int i = 0; i < 1024; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
    iAccum = ((iAccum & 0x00FF) << 8) ^ crc_table16[( (iAccum >> 8) ^ sOutput[i] ) & 0x00FF];
     }
-  //append iAccum to string
-  //make iAccum to string
   char accumbuff [sizeof(iAccum)*4+1];
   char *acchar = itoa(iAccum,accumbuff,10);
   String accumstring = acchar;
   add_sout(accumstring);
  
- 
- 
   //ultimate end
-  sOutput[giterator++] = 13;
-  sOutput[giterator++] = 10;
-  sOutput[giterator] = '\0';
+  sOutput[giterator++] = 13;  //line feed
+  sOutput[giterator++] = 10;  //carriage return
+  sOutput[giterator] = '\0';  //null terminator
  
+  //will send the output string 5 times a second 
+  //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
   if (shouldSend) {
     shouldSend = false;
     Serial.print(sOutput);
-    //DEBUGGING HARDWARE - this block below prints max num anyway
-    // temptemp = (int) thermocouple.readFahrenheit();
-    // char tempbuff [sizeof(temptemp)*4+1];
-    // char *tempchar = itoa(temptemp,tempbuff,10);
-    // String tempstring = tempchar;
-    // Serial.print(tempstring);
-
-    //end printing stuff
   }
   //end while
   vTaskDelay(1);
@@ -337,10 +310,10 @@ void xmainth(void *pvParameters) {
 
 //output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
 void xpressure(void *pvParameters) {
-  ////reftemp = 0;
   (void) pvParameters;
   while (1) {
     doublepressure = double (bme.readPressure());
+    //convert pascal to mmHg
     doublepressure /= 133.322;
     doublepressure *=100;
     pressure = int (doublepressure);
@@ -381,18 +354,3 @@ void xambhumth(void *pvParameters) {
     vTaskDelay(1);
   }
 }
-
-// //pulsecount
-// //TODOOOOOOOOOOO IDK HOW TO DO INTERRPUT WITH THREADING
-// void xpulsecountth(void *pvParameters) {
-//   (void) pvParameters;
-//   //MAYBE REMOFVE
-  
-
-//   //END MAYBE REMOVE
-//   while (1) {
-//     pulsecount++;
-//     //end while
-//     vTaskDelay(1);
-//   }
-// }
