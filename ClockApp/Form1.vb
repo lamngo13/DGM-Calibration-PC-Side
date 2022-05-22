@@ -177,16 +177,6 @@
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)
 
-                    inputtruechecksum = scanone()
-                    inttruechecksum = Val(inputtruechecksum)
-                    'get checksum like real basic checksum
-                    ourcs = 0
-                    If (currstr <> vbNullString) Then
-                        'ourcs = Asc(currstr(0))
-                        For j As Integer = 0 To (InStr(currstr, inputtruechecksum) - 1)
-                            ourcs += Asc(currstr(j))
-                        Next
-                    End If
                 End If
                 'verify checksum
 
@@ -195,33 +185,13 @@
                 'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
                 If (currstr.Length <> vbNullString) Then
                     For i As Integer = 0 To (InStr(currstr, inputchecksum) - 1)
-                        'THESE LINES ABOVE OUGHT TO BE CHANGED MAYBE!?
-
-                        'DEBUGGING
-                        'Dim fooz As Integer = (iAccum And &HFF) ' THIS OK
-                        'Dim fooa As Integer = ((iAccum And &HFF) << 8) ' THIS GIVE PROBLEM
-                        'Dim foob As Integer = iAccum >> 8
-                        'Dim fooy As Integer = Asc(currstr(54))
-                        'Dim fooc As Integer = ((iAccum >> 8) Xor Asc(currstr(i))) ' THIS GIVES PROBLEM WHEN currstr(54)
-                        'Dim food As Integer = ((iAccum >> 8) Xor Asc(currstr(i))) And &HFF
-                        'Dim tablelook As Integer = crc_table(food)
-                        'Dim fooe As Integer = Asc(currstr(i)) And &HFF
-                        'Dim foof As Integer = crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF)
-                        'END DEBUGGING
-                        'VISUAL BASIC IS DUMB AS HELL ONE OF TWO PROBLEMS IS HAPPENING
-                        'Problem 1: &HFF is NOT the same as &H00FF but visual basic will NOT let me type &H0FF NOT THIS I DONT THINK
-                        'to fix I will just use int values
-                        'Problem 2: it's saying '&' is somehow not the right bitwise operator ITS THIS ONE I THINK
-
-                        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF))) ' THIS IS GIVING OUTTA BOUNDS
+                        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(currstr(i))) And &HFF)))
                     Next ' end of for loop
-                    'iAccum -= Val(inputchecksum) + 32 nah do this by not going until the checksum, bc think abt how crc works
                 End If
 
                 If (Not iAccum = Val(inputchecksum)) Then
                     gooddata = False
                 End If
-                ' END CHECKSUM ASDLKJFHASDLIKFHJASDLKFHASDLKFHJSADLKFJHLASKDHJ
 
 
                 'ONLY UPDATE VALS IF GOOD
@@ -230,8 +200,8 @@
                 'MAKE THIS CONDITIONAL TO GOODDATA
                 lblsp.Text = currstr
                 lblfirst.Text = InStr(currstr, inputchecksum).ToString()
-                lblsecond.Text = currstr(1) 'inputchecksum
-                lblthird.Text = currstr(2)   'iAccum.ToString()
+                lblsecond.Text = inputchecksum 'inputchecksum
+                lblthird.Text = iAccum   'iAccum.ToString()
                 crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
             End If
 
