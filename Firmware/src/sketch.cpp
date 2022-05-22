@@ -298,8 +298,8 @@ void xmainth(void *pvParameters) {
   add_sout(pulseString);
 
   /// Calculate CRC
-  int iAccum = 0xFFFF;
-  for (int i = 0; i < 1024; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
+  uint16_t iAccum = 0xFFFF;
+  for (int i = 0; i < giterator; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
    iAccum = ((iAccum & 0x00FF) << 8) ^ crc_table16[( (iAccum >> 8) ^ sOutput[i] ) & 0x00FF];
     }
   char accumbuff [sizeof(iAccum)*4+1];

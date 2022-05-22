@@ -189,10 +189,12 @@
                     End If
                 End If
                 'verify checksum
-                Dim iAccum As Integer = &HFFFF
+
+                'CRC TIME
+                Dim iAccum As UInt16 = &HFFFF
                 'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
                 If (currstr.Length <> vbNullString) Then
-                    For i As Integer = 1 To (InStr(currstr, inputchecksum)) 'its 44 which is about right?
+                    For i As Integer = 0 To (InStr(currstr, inputchecksum) - 1)
                         'THESE LINES ABOVE OUGHT TO BE CHANGED MAYBE!?
 
                         'DEBUGGING
@@ -227,10 +229,10 @@
                 'do this stuff below
                 'MAKE THIS CONDITIONAL TO GOODDATA
                 lblsp.Text = currstr
-                lblfirst.Text = "calced index of incrc: " + (InStr(currstr, inputchecksum)).ToString()
-                lblsecond.Text = inputtruechecksum
-                lblthird.Text = ourcs   'iAccum.ToString()
-                crcdifflabel.Text = "our crc vs input crc: " + (ourcs - Val(inputtruechecksum)).ToString()
+                lblfirst.Text = InStr(currstr, inputchecksum).ToString()
+                lblsecond.Text = currstr(1) 'inputchecksum
+                lblthird.Text = currstr(2)   'iAccum.ToString()
+                crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
             End If
 
             'end of tick!
@@ -284,13 +286,6 @@
                 End Try
             End While
         End If
-
-
-        'good
-        'SerialPort1.PortName = "COM3"
-        'make this dynamic, for now I'm hardcoding it
-        'SerialPort1.Open()
-        'end good
 
     End Sub
 End Class
