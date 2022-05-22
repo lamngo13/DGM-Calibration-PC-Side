@@ -285,7 +285,7 @@ void xmainth(void *pvParameters) {
   String reftempstring = reftempchar;
   add_sout(reftempstring);
 
-  //add ambient humidity
+  //add ambient humidity this is getting messed up but luckily it doesn't matter!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   char ambhumbuff [sizeof(ambhum)*4+1];
   char *ambhumchar = itoa(ambhum,ambhumbuff,10);
   String ambhumstring = ambhumchar;
@@ -305,7 +305,7 @@ void xmainth(void *pvParameters) {
   char accumbuff [sizeof(iAccum)*4+1];
   char *acchar = itoa(iAccum,accumbuff,10);
   String accumstring = acchar;
-  add_sout(accumstring);
+  add_sout("|"+accumstring);
  
   //ultimate end
   sOutput[giterator++] = 13;  //line feed

@@ -30,9 +30,12 @@
 
     Public inputchecksum As String = ""
     Public intchecksum As Integer
+    Public trimmedcrc As String = ""
+    Public inttrimmedcrc As Integer
 
-    Public inputtruechecksum As String = ""
-    Public inttruechecksum As Integer
+    'Public inputtruechecksum As String = ""
+    'Public inttruechecksum As Integer
+
 
     Public ourcs As Integer
     Public ourcsitr As Integer
@@ -176,6 +179,8 @@
 
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)
+                    trimmedcrc = inputchecksum.Replace("|", "")
+                    inttrimmedcrc = Val(trimmedcrc)
 
                 End If
                 'verify checksum
@@ -202,7 +207,7 @@
                 lblfirst.Text = InStr(currstr, inputchecksum).ToString()
                 lblsecond.Text = inputchecksum 'inputchecksum
                 lblthird.Text = iAccum   'iAccum.ToString()
-                crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
+                crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inttrimmedcrc)).ToString()
             End If
 
             'end of tick!
