@@ -306,6 +306,16 @@ void xmainth(void *pvParameters) {
   char *acchar = itoa(iAccum,accumbuff,10);
   String accumstring = acchar;
   add_sout(accumstring);
+
+  //make true checksum
+  int truechecksum = 0;
+  for (int z = 0; z < 1024; z++) {
+    truechecksum += sOutput[z];
+  }
+  char zcsbuff [sizeof(truechecksum)*4+1];
+  char *zcschar = itoa(truechecksum,zcsbuff,10);
+  String zcsstring = zcschar;
+  add_sout(zcsstring);
  
   //ultimate end
   sOutput[giterator++] = 13;  //line feed

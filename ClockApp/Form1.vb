@@ -31,8 +31,11 @@
     Public inputchecksum As String = ""
     Public intchecksum As Integer
 
-    Public inputtruechceksum As String = ""
-    Public inttruechecksum As Integer = ""
+    Public inputtruechecksum As String = ""
+    Public inttruechecksum As Integer
+
+    Public ourcs As Integer
+    Public ourcsitr As Integer
 
     Public gooddata As Boolean = True
     Public refportgood As Boolean = False
@@ -173,6 +176,17 @@
 
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)
+
+                    inputtruechecksum = scanone()
+                    inttruechecksum = Val(inputtruechecksum)
+                    'get checksum like real basic checksum
+                    ourcs = 0
+                    If (currstr <> vbNullString) Then
+                        'ourcs = Asc(currstr(0))
+                        For j As Integer = 0 To (InStr(currstr, inputtruechecksum) - 1)
+                            ourcs += Asc(currstr(j))
+                        Next
+                    End If
                 End If
                 'verify checksum
                 Dim iAccum As Integer = &HFFFF
@@ -214,9 +228,9 @@
                 'MAKE THIS CONDITIONAL TO GOODDATA
                 lblsp.Text = currstr
                 lblfirst.Text = "calced index of incrc: " + (InStr(currstr, inputchecksum)).ToString()
-                lblsecond.Text = inputchecksum
-                lblthird.Text = iAccum.ToString()
-                crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(inputchecksum)).ToString()
+                lblsecond.Text = inputtruechecksum
+                lblthird.Text = ourcs   'iAccum.ToString()
+                crcdifflabel.Text = "our crc vs input crc: " + (ourcs - Val(inputtruechecksum)).ToString()
             End If
 
             'end of tick!
