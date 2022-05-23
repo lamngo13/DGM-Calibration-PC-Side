@@ -46,7 +46,7 @@ Partial Class temp2vonfig
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.configbutton = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -247,15 +247,15 @@ Partial Class temp2vonfig
         Me.Label14.TabIndex = 24
         Me.Label14.Text = "In (units per units)"
         '
-        'Button1
+        'configbutton
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.Location = New System.Drawing.Point(45, 22)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(159, 71)
-        Me.Button1.TabIndex = 25
-        Me.Button1.Text = "Configure"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.configbutton.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.configbutton.Location = New System.Drawing.Point(45, 22)
+        Me.configbutton.Name = "configbutton"
+        Me.configbutton.Size = New System.Drawing.Size(159, 71)
+        Me.configbutton.TabIndex = 25
+        Me.configbutton.Text = "Configure"
+        Me.configbutton.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -284,7 +284,7 @@ Partial Class temp2vonfig
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.configbutton)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.TextBox1)
@@ -340,7 +340,7 @@ Partial Class temp2vonfig
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents configbutton As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
 End Class

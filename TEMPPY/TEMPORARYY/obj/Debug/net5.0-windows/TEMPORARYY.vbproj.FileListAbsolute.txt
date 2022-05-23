@@ -6,7 +6,6 @@ C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\bin\
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\bin\Debug\net5.0-windows\ref\TEMPORARYY.dll
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\bin\Debug\net5.0-windows\TEMPORARYY.pdb
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.vbprojAssemblyReference.cache
-C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.Form1.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.temp2vonfig.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.vbproj.GenerateResource.cache
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.GeneratedMSBuildEditorConfig.editorconfig

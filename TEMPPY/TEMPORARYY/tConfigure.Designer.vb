@@ -26,7 +26,7 @@ Partial Class tConfigure
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.closeconfig = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -65,22 +65,22 @@ Partial Class tConfigure
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Label4"
         '
-        'Button1
+        'closeconfig
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.Location = New System.Drawing.Point(505, 99)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(217, 166)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Confirm"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.closeconfig.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.closeconfig.Location = New System.Drawing.Point(505, 99)
+        Me.closeconfig.Name = "closeconfig"
+        Me.closeconfig.Size = New System.Drawing.Size(217, 166)
+        Me.closeconfig.TabIndex = 4
+        Me.closeconfig.Text = "Confirm"
+        Me.closeconfig.UseVisualStyleBackColor = False
         '
         'tConfigure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.closeconfig)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -96,5 +96,5 @@ Partial Class tConfigure
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents closeconfig As Button
 End Class
