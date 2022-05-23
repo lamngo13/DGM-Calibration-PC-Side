@@ -29,13 +29,16 @@ Partial Class Configure
         Me.celsiusradiobutton = New System.Windows.Forms.RadioButton()
         Me.fahrenheitradiobutton = New System.Windows.Forms.RadioButton()
         Me.kelvinradiobutton = New System.Windows.Forms.RadioButton()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.usrcorrectionfactortxtbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'configconfirmbutton
         '
-        Me.configconfirmbutton.Location = New System.Drawing.Point(577, 294)
+        Me.configconfirmbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.configconfirmbutton.Location = New System.Drawing.Point(654, 366)
         Me.configconfirmbutton.Name = "configconfirmbutton"
-        Me.configconfirmbutton.Size = New System.Drawing.Size(195, 131)
+        Me.configconfirmbutton.Size = New System.Drawing.Size(118, 59)
         Me.configconfirmbutton.TabIndex = 0
         Me.configconfirmbutton.Text = "Confirm"
         Me.configconfirmbutton.UseVisualStyleBackColor = True
@@ -107,12 +110,32 @@ Partial Class Configure
         Me.kelvinradiobutton.Text = "Kelvin"
         Me.kelvinradiobutton.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.Label1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label1.Location = New System.Drawing.Point(12, 96)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(225, 20)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Enter (??) Correction Factor:"
+        '
+        'usrcorrectionfactortxtbox
+        '
+        Me.usrcorrectionfactortxtbox.Location = New System.Drawing.Point(239, 98)
+        Me.usrcorrectionfactortxtbox.Name = "usrcorrectionfactortxtbox"
+        Me.usrcorrectionfactortxtbox.Size = New System.Drawing.Size(157, 20)
+        Me.usrcorrectionfactortxtbox.TabIndex = 8
+        '
         'Configure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.usrcorrectionfactortxtbox)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.kelvinradiobutton)
         Me.Controls.Add(Me.fahrenheitradiobutton)
         Me.Controls.Add(Me.celsiusradiobutton)
@@ -134,4 +157,6 @@ Partial Class Configure
     Friend WithEvents celsiusradiobutton As RadioButton
     Friend WithEvents fahrenheitradiobutton As RadioButton
     Friend WithEvents kelvinradiobutton As RadioButton
+    Friend WithEvents Label1 As Label
+    Friend WithEvents usrcorrectionfactortxtbox As TextBox
 End Class
