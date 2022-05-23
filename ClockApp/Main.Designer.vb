@@ -46,7 +46,7 @@ Partial Class Main
         Me.testlabel4 = New System.Windows.Forms.Label()
         Me.testlabel5 = New System.Windows.Forms.Label()
         Me.testlabel6 = New System.Windows.Forms.Label()
-        Me.configureButton = New System.Windows.Forms.Button()
+        Me.configurebutton = New System.Windows.Forms.Button()
         Me.warmuplabel1 = New System.Windows.Forms.Label()
         Me.warmuptxtbox6 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox5 = New System.Windows.Forms.TextBox()
@@ -77,12 +77,21 @@ Partial Class Main
         Me.testlabel22 = New System.Windows.Forms.Label()
         Me.testlabel11 = New System.Windows.Forms.Label()
         Me.reftemplabel0 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.reftemplabel6 = New System.Windows.Forms.Label()
+        Me.reftemplabel5 = New System.Windows.Forms.Label()
+        Me.reftemplabel4 = New System.Windows.Forms.Label()
+        Me.reftemplabel3 = New System.Windows.Forms.Label()
+        Me.reftemplabel2 = New System.Windows.Forms.Label()
+        Me.reftemplabel1 = New System.Windows.Forms.Label()
+        Me.testtemplabel0 = New System.Windows.Forms.Label()
+        Me.testtemplabel6 = New System.Windows.Forms.Label()
+        Me.testtemplabel5 = New System.Windows.Forms.Label()
+        Me.testtemplabel4 = New System.Windows.Forms.Label()
+        Me.testtemplabel3 = New System.Windows.Forms.Label()
+        Me.testtemplabel2 = New System.Windows.Forms.Label()
+        Me.testtemplabel1 = New System.Windows.Forms.Label()
+        Me.connectbutton = New System.Windows.Forms.Button()
+        Me.startbutton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -299,14 +308,15 @@ Partial Class Main
         Me.testlabel6.TabIndex = 23
         Me.testlabel6.Text = "Test 6:"
         '
-        'configureButton
+        'configurebutton
         '
-        Me.configureButton.Location = New System.Drawing.Point(12, 648)
-        Me.configureButton.Name = "configureButton"
-        Me.configureButton.Size = New System.Drawing.Size(117, 47)
-        Me.configureButton.TabIndex = 24
-        Me.configureButton.Text = "Configure"
-        Me.configureButton.UseVisualStyleBackColor = True
+        Me.configurebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.configurebutton.Location = New System.Drawing.Point(802, 138)
+        Me.configurebutton.Name = "configurebutton"
+        Me.configurebutton.Size = New System.Drawing.Size(140, 46)
+        Me.configurebutton.TabIndex = 24
+        Me.configurebutton.Text = "Configure"
+        Me.configurebutton.UseVisualStyleBackColor = True
         '
         'warmuplabel1
         '
@@ -626,77 +636,180 @@ Partial Class Main
         Me.reftemplabel0.TabIndex = 54
         Me.reftemplabel0.Text = "Ref M. Temp"
         '
-        'Label1
+        'reftemplabel6
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label1.Location = New System.Drawing.Point(333, 504)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 20)
-        Me.Label1.TabIndex = 60
-        Me.Label1.Text = "0"
+        Me.reftemplabel6.AutoSize = True
+        Me.reftemplabel6.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel6.Location = New System.Drawing.Point(333, 504)
+        Me.reftemplabel6.Name = "reftemplabel6"
+        Me.reftemplabel6.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel6.TabIndex = 60
+        Me.reftemplabel6.Text = "0"
         '
-        'Label2
+        'reftemplabel5
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.SystemColors.Control
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label2.Location = New System.Drawing.Point(333, 478)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 20)
-        Me.Label2.TabIndex = 59
-        Me.Label2.Text = "0"
+        Me.reftemplabel5.AutoSize = True
+        Me.reftemplabel5.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel5.Location = New System.Drawing.Point(333, 478)
+        Me.reftemplabel5.Name = "reftemplabel5"
+        Me.reftemplabel5.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel5.TabIndex = 59
+        Me.reftemplabel5.Text = "0"
         '
-        'Label3
+        'reftemplabel4
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.SystemColors.Control
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label3.Location = New System.Drawing.Point(333, 452)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(18, 20)
-        Me.Label3.TabIndex = 58
-        Me.Label3.Text = "0"
+        Me.reftemplabel4.AutoSize = True
+        Me.reftemplabel4.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel4.Location = New System.Drawing.Point(333, 452)
+        Me.reftemplabel4.Name = "reftemplabel4"
+        Me.reftemplabel4.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel4.TabIndex = 58
+        Me.reftemplabel4.Text = "0"
         '
-        'Label4
+        'reftemplabel3
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.SystemColors.Control
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label4.Location = New System.Drawing.Point(333, 426)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(18, 20)
-        Me.Label4.TabIndex = 57
-        Me.Label4.Text = "0"
+        Me.reftemplabel3.AutoSize = True
+        Me.reftemplabel3.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel3.Location = New System.Drawing.Point(333, 426)
+        Me.reftemplabel3.Name = "reftemplabel3"
+        Me.reftemplabel3.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel3.TabIndex = 57
+        Me.reftemplabel3.Text = "0"
         '
-        'Label5
+        'reftemplabel2
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.SystemColors.Control
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label5.Location = New System.Drawing.Point(333, 400)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(18, 20)
-        Me.Label5.TabIndex = 56
-        Me.Label5.Text = "0"
+        Me.reftemplabel2.AutoSize = True
+        Me.reftemplabel2.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel2.Location = New System.Drawing.Point(333, 400)
+        Me.reftemplabel2.Name = "reftemplabel2"
+        Me.reftemplabel2.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel2.TabIndex = 56
+        Me.reftemplabel2.Text = "0"
         '
-        'Label6
+        'reftemplabel1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.SystemColors.Control
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label6.Location = New System.Drawing.Point(333, 377)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(18, 20)
-        Me.Label6.TabIndex = 55
-        Me.Label6.Text = "0"
+        Me.reftemplabel1.AutoSize = True
+        Me.reftemplabel1.BackColor = System.Drawing.SystemColors.Control
+        Me.reftemplabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.reftemplabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.reftemplabel1.Location = New System.Drawing.Point(333, 377)
+        Me.reftemplabel1.Name = "reftemplabel1"
+        Me.reftemplabel1.Size = New System.Drawing.Size(18, 20)
+        Me.reftemplabel1.TabIndex = 55
+        Me.reftemplabel1.Text = "0"
+        '
+        'testtemplabel0
+        '
+        Me.testtemplabel0.AutoSize = True
+        Me.testtemplabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel0.ForeColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel0.Location = New System.Drawing.Point(439, 341)
+        Me.testtemplabel0.Name = "testtemplabel0"
+        Me.testtemplabel0.Size = New System.Drawing.Size(105, 20)
+        Me.testtemplabel0.TabIndex = 61
+        Me.testtemplabel0.Text = "Test M. Temp"
+        '
+        'testtemplabel6
+        '
+        Me.testtemplabel6.AutoSize = True
+        Me.testtemplabel6.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel6.Location = New System.Drawing.Point(439, 504)
+        Me.testtemplabel6.Name = "testtemplabel6"
+        Me.testtemplabel6.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel6.TabIndex = 67
+        Me.testtemplabel6.Text = "0"
+        '
+        'testtemplabel5
+        '
+        Me.testtemplabel5.AutoSize = True
+        Me.testtemplabel5.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel5.Location = New System.Drawing.Point(439, 478)
+        Me.testtemplabel5.Name = "testtemplabel5"
+        Me.testtemplabel5.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel5.TabIndex = 66
+        Me.testtemplabel5.Text = "0"
+        '
+        'testtemplabel4
+        '
+        Me.testtemplabel4.AutoSize = True
+        Me.testtemplabel4.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel4.Location = New System.Drawing.Point(439, 452)
+        Me.testtemplabel4.Name = "testtemplabel4"
+        Me.testtemplabel4.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel4.TabIndex = 65
+        Me.testtemplabel4.Text = "0"
+        '
+        'testtemplabel3
+        '
+        Me.testtemplabel3.AutoSize = True
+        Me.testtemplabel3.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel3.Location = New System.Drawing.Point(439, 426)
+        Me.testtemplabel3.Name = "testtemplabel3"
+        Me.testtemplabel3.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel3.TabIndex = 64
+        Me.testtemplabel3.Text = "0"
+        '
+        'testtemplabel2
+        '
+        Me.testtemplabel2.AutoSize = True
+        Me.testtemplabel2.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel2.Location = New System.Drawing.Point(439, 400)
+        Me.testtemplabel2.Name = "testtemplabel2"
+        Me.testtemplabel2.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel2.TabIndex = 63
+        Me.testtemplabel2.Text = "0"
+        '
+        'testtemplabel1
+        '
+        Me.testtemplabel1.AutoSize = True
+        Me.testtemplabel1.BackColor = System.Drawing.SystemColors.Control
+        Me.testtemplabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtemplabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtemplabel1.Location = New System.Drawing.Point(439, 377)
+        Me.testtemplabel1.Name = "testtemplabel1"
+        Me.testtemplabel1.Size = New System.Drawing.Size(18, 20)
+        Me.testtemplabel1.TabIndex = 62
+        Me.testtemplabel1.Text = "0"
+        '
+        'connectbutton
+        '
+        Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.connectbutton.Location = New System.Drawing.Point(631, 136)
+        Me.connectbutton.Name = "connectbutton"
+        Me.connectbutton.Size = New System.Drawing.Size(135, 48)
+        Me.connectbutton.TabIndex = 68
+        Me.connectbutton.Text = "Connect"
+        Me.connectbutton.UseVisualStyleBackColor = True
+        '
+        'startbutton
+        '
+        Me.startbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.startbutton.Location = New System.Drawing.Point(631, 213)
+        Me.startbutton.Name = "startbutton"
+        Me.startbutton.Size = New System.Drawing.Size(134, 49)
+        Me.startbutton.TabIndex = 69
+        Me.startbutton.Text = "Start"
+        Me.startbutton.UseVisualStyleBackColor = True
         '
         'Main
         '
@@ -704,12 +817,21 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1049, 707)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.startbutton)
+        Me.Controls.Add(Me.connectbutton)
+        Me.Controls.Add(Me.testtemplabel6)
+        Me.Controls.Add(Me.testtemplabel5)
+        Me.Controls.Add(Me.testtemplabel4)
+        Me.Controls.Add(Me.testtemplabel3)
+        Me.Controls.Add(Me.testtemplabel2)
+        Me.Controls.Add(Me.testtemplabel1)
+        Me.Controls.Add(Me.testtemplabel0)
+        Me.Controls.Add(Me.reftemplabel6)
+        Me.Controls.Add(Me.reftemplabel5)
+        Me.Controls.Add(Me.reftemplabel4)
+        Me.Controls.Add(Me.reftemplabel3)
+        Me.Controls.Add(Me.reftemplabel2)
+        Me.Controls.Add(Me.reftemplabel1)
         Me.Controls.Add(Me.reftemplabel0)
         Me.Controls.Add(Me.testlabel66)
         Me.Controls.Add(Me.testlabel55)
@@ -740,7 +862,7 @@ Partial Class Main
         Me.Controls.Add(Me.warmuptxtbox2)
         Me.Controls.Add(Me.warmuptxtbox1)
         Me.Controls.Add(Me.warmuplabel1)
-        Me.Controls.Add(Me.configureButton)
+        Me.Controls.Add(Me.configurebutton)
         Me.Controls.Add(Me.testlabel6)
         Me.Controls.Add(Me.testlabel5)
         Me.Controls.Add(Me.testlabel4)
@@ -796,7 +918,7 @@ Partial Class Main
     Friend WithEvents testlabel4 As Label
     Friend WithEvents testlabel5 As Label
     Friend WithEvents testlabel6 As Label
-    Friend WithEvents configureButton As Button
+    Friend WithEvents configurebutton As Button
     Friend WithEvents warmuplabel1 As Label
     Friend WithEvents warmuptxtbox6 As TextBox
     Friend WithEvents warmuptxtbox5 As TextBox
@@ -827,10 +949,19 @@ Partial Class Main
     Friend WithEvents testlabel22 As Label
     Friend WithEvents testlabel11 As Label
     Friend WithEvents reftemplabel0 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents reftemplabel6 As Label
+    Friend WithEvents reftemplabel5 As Label
+    Friend WithEvents reftemplabel4 As Label
+    Friend WithEvents reftemplabel3 As Label
+    Friend WithEvents reftemplabel2 As Label
+    Friend WithEvents reftemplabel1 As Label
+    Friend WithEvents testtemplabel0 As Label
+    Friend WithEvents testtemplabel6 As Label
+    Friend WithEvents testtemplabel5 As Label
+    Friend WithEvents testtemplabel4 As Label
+    Friend WithEvents testtemplabel3 As Label
+    Friend WithEvents testtemplabel2 As Label
+    Friend WithEvents testtemplabel1 As Label
+    Friend WithEvents connectbutton As Button
+    Friend WithEvents startbutton As Button
 End Class

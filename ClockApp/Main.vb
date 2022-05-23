@@ -6,7 +6,7 @@
 
     End Sub
 
-    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configureButton.Click
+    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebutton.Click
         Dim configure As New Configure
         configure.StartPosition = FormStartPosition.CenterScreen
         configure.ShowDialog()
