@@ -17,3 +17,4 @@ C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\ref\TEMPORARYY.dll
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.pdb
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.genruntimeconfig.cache
+C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\TEMPPY\TEMPORARYY\obj\Debug\net5.0-windows\TEMPORARYY.tConfigure.resources
