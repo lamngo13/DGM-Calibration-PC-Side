@@ -176,6 +176,8 @@
 
                     inputpulsecount = scanone()
                     intpulsecount = Val(inputpulsecount)
+                    'TEST ADD TO MAIN FORM
+                    'refpulseslabel1.Text = inputpulsecount
 
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)
