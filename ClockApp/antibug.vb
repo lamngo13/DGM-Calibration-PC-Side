@@ -69,7 +69,6 @@
 &H2E93, &H3EB2, &HED1, &H1EF0}
 
 
-
     Public Function scanone() As String
         'test check this way??
         Dim go = True
@@ -95,6 +94,7 @@
 
     End Function
     Public Function firstParse() As String
+        Dim Main As New Main
         Dim go = True
         Dim theString = ""
         'diff here is discard if first char is not >
@@ -174,10 +174,11 @@
                     intambhum = Val(inputambhum)
                     doubleambhum = (intambhum / 10)
 
+
                     inputpulsecount = scanone()
                     intpulsecount = Val(inputpulsecount)
                     'TEST ADD TO MAIN FORM
-                    'refpulseslabel1.Text = inputpulsecount
+                    Main.refpulselabel1.Text = inputpulsecount
 
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)

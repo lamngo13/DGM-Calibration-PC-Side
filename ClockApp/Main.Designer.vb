@@ -942,7 +942,6 @@ Partial Class Main
     Friend WithEvents warmuplabel2 As Label
     Friend WithEvents warmuplabel3 As Label
     Friend WithEvents refpulselabel0 As Label
-    Friend WithEvents refpulselabel1 As Label
     Friend WithEvents refpulselabel2 As Label
     Friend WithEvents refpulselabel3 As Label
     Friend WithEvents refpulselabel4 As Label
@@ -978,4 +977,5 @@ Partial Class Main
     Friend WithEvents connectbutton As Button
     Friend WithEvents startbutton As Button
     Friend WithEvents Label1 As Label
+    Public WithEvents refpulselabel1 As Label
 End Class

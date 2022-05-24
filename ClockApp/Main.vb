@@ -1,4 +1,10 @@
 ﻿Public Class Main
+
+    Public Function send_error()
+        Dim ErrorForm As New ErrorForm
+        ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        ErrorForm.ShowDialog()
+    End Function
     Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
         Dim antibug As New antibug
         antibug.StartPosition = FormStartPosition.CenterScreen
