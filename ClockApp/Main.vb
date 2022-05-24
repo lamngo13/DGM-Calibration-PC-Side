@@ -215,22 +215,30 @@
             End If
 
         End If
-        'NEW STUFF
+        'NEW STUFF bruh
+        If (duringwarmup) Then
+            pulsecountduringwarmup = intpulsecount
+        End If
+        If (testongoing) Then
+            If (Not duringwarmup) Then
+                test1pulses = intpulsecount - pulsecountduringwarmup 'MAKE THIS DYNAMIC
+            End If
+            antibug5.Text = "TESTONGOING"
+        Else
+            antibug5.Text = "NOT ONGOING TEST"
+        End If
 
         antibug1.Text = "counted pulses:" + test1pulses.ToString()
         antibug3.Text = "running test time:" + test1time.ToString()
         antibug7.Text = "overall time: " + bigtimer.ToString()
-        antibug6.Text = "raw pulse count: " + inputpulsecount.ToString()
+        antibug6.Text = "raw pulse count: " + inputpulsecount
 
-        If (testongoing) Then
-            'check something to make sure this is triggering
-            test1pulses += Val(inputpulsecount) 'MAKE THIS DYNAMIC
-        End If
+
         '''
         If (testover) Then
             antibug2.Text = "is test over: TEST OVER"
-        Else
-            antibug2.Text = "is test over: NO ITS GOING ON"
+            'Else
+            'antibug2.Text = "is test over: NO ITS GOING ON"
         End If
         '''
 

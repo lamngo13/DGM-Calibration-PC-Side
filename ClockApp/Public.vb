@@ -15,6 +15,7 @@ Module _Public
     Public testover As Boolean = False
     Public testongoing As Boolean = False
     Public bigtimer As Double
+    Public pulsecountduringwarmup As Integer
 
     'text boxes
     Public test1usrflowrate As Integer
