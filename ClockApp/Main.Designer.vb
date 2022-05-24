@@ -22,6 +22,7 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.antibugbutton = New System.Windows.Forms.Button()
         Me.flowratetxtbox1 = New System.Windows.Forms.TextBox()
         Me.flowratetxtbox2 = New System.Windows.Forms.TextBox()
@@ -93,6 +94,18 @@ Partial Class Main
         Me.connectbutton = New System.Windows.Forms.Button()
         Me.startbutton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.maintimer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.mainclocklbl = New System.Windows.Forms.Label()
+        Me.mainserialport1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.maintimer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.antibug1 = New System.Windows.Forms.Label()
+        Me.antibug2 = New System.Windows.Forms.Label()
+        Me.antibug3 = New System.Windows.Forms.Label()
+        Me.antibug4 = New System.Windows.Forms.Label()
+        Me.antibug5 = New System.Windows.Forms.Label()
+        Me.antibug6 = New System.Windows.Forms.Label()
+        Me.antibug7 = New System.Windows.Forms.Label()
+        Me.antibug8 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -817,11 +830,123 @@ Partial Class Main
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(627, 429)
+        Me.Label1.Location = New System.Drawing.Point(627, 361)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(195, 20)
         Me.Label1.TabIndex = 70
         Me.Label1.Text = "todo time and what else??"
+        '
+        'maintimer1
+        '
+        Me.maintimer1.Enabled = True
+        '
+        'mainclocklbl
+        '
+        Me.mainclocklbl.AutoSize = True
+        Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.mainclocklbl.ForeColor = System.Drawing.SystemColors.Control
+        Me.mainclocklbl.Location = New System.Drawing.Point(669, 41)
+        Me.mainclocklbl.Name = "mainclocklbl"
+        Me.mainclocklbl.Size = New System.Drawing.Size(57, 20)
+        Me.mainclocklbl.TabIndex = 71
+        Me.mainclocklbl.Text = "Label2"
+        '
+        'mainserialport1
+        '
+        Me.mainserialport1.BaudRate = 460800
+        '
+        'maintimer2
+        '
+        Me.maintimer2.Enabled = True
+        Me.maintimer2.Interval = 10
+        '
+        'antibug1
+        '
+        Me.antibug1.AutoSize = True
+        Me.antibug1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug1.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug1.Location = New System.Drawing.Point(534, 389)
+        Me.antibug1.Name = "antibug1"
+        Me.antibug1.Size = New System.Drawing.Size(71, 20)
+        Me.antibug1.TabIndex = 72
+        Me.antibug1.Text = "antibug1"
+        '
+        'antibug2
+        '
+        Me.antibug2.AutoSize = True
+        Me.antibug2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug2.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug2.Location = New System.Drawing.Point(534, 418)
+        Me.antibug2.Name = "antibug2"
+        Me.antibug2.Size = New System.Drawing.Size(71, 20)
+        Me.antibug2.TabIndex = 73
+        Me.antibug2.Text = "antibug2"
+        '
+        'antibug3
+        '
+        Me.antibug3.AutoSize = True
+        Me.antibug3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug3.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug3.Location = New System.Drawing.Point(534, 448)
+        Me.antibug3.Name = "antibug3"
+        Me.antibug3.Size = New System.Drawing.Size(71, 20)
+        Me.antibug3.TabIndex = 74
+        Me.antibug3.Text = "antibug3"
+        '
+        'antibug4
+        '
+        Me.antibug4.AutoSize = True
+        Me.antibug4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug4.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug4.Location = New System.Drawing.Point(534, 481)
+        Me.antibug4.Name = "antibug4"
+        Me.antibug4.Size = New System.Drawing.Size(71, 20)
+        Me.antibug4.TabIndex = 75
+        Me.antibug4.Text = "antibug4"
+        '
+        'antibug5
+        '
+        Me.antibug5.AutoSize = True
+        Me.antibug5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug5.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug5.Location = New System.Drawing.Point(534, 513)
+        Me.antibug5.Name = "antibug5"
+        Me.antibug5.Size = New System.Drawing.Size(71, 20)
+        Me.antibug5.TabIndex = 76
+        Me.antibug5.Text = "antibug5"
+        '
+        'antibug6
+        '
+        Me.antibug6.AutoSize = True
+        Me.antibug6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug6.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug6.Location = New System.Drawing.Point(534, 546)
+        Me.antibug6.Name = "antibug6"
+        Me.antibug6.Size = New System.Drawing.Size(71, 20)
+        Me.antibug6.TabIndex = 77
+        Me.antibug6.Text = "antibug6"
+        '
+        'antibug7
+        '
+        Me.antibug7.AutoSize = True
+        Me.antibug7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug7.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug7.Location = New System.Drawing.Point(534, 577)
+        Me.antibug7.Name = "antibug7"
+        Me.antibug7.Size = New System.Drawing.Size(71, 20)
+        Me.antibug7.TabIndex = 78
+        Me.antibug7.Text = "antibug7"
+        '
+        'antibug8
+        '
+        Me.antibug8.AutoSize = True
+        Me.antibug8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.antibug8.ForeColor = System.Drawing.SystemColors.Control
+        Me.antibug8.Location = New System.Drawing.Point(534, 607)
+        Me.antibug8.Name = "antibug8"
+        Me.antibug8.Size = New System.Drawing.Size(71, 20)
+        Me.antibug8.TabIndex = 79
+        Me.antibug8.Text = "antibug8"
         '
         'Main
         '
@@ -829,6 +954,15 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1049, 707)
+        Me.Controls.Add(Me.antibug8)
+        Me.Controls.Add(Me.antibug7)
+        Me.Controls.Add(Me.antibug6)
+        Me.Controls.Add(Me.antibug5)
+        Me.Controls.Add(Me.antibug4)
+        Me.Controls.Add(Me.antibug3)
+        Me.Controls.Add(Me.antibug2)
+        Me.Controls.Add(Me.antibug1)
+        Me.Controls.Add(Me.mainclocklbl)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.startbutton)
         Me.Controls.Add(Me.connectbutton)
@@ -978,4 +1112,16 @@ Partial Class Main
     Friend WithEvents startbutton As Button
     Friend WithEvents Label1 As Label
     Public WithEvents refpulselabel1 As Label
+    Friend WithEvents maintimer1 As Timer
+    Friend WithEvents mainclocklbl As Label
+    Friend WithEvents mainserialport1 As IO.Ports.SerialPort
+    Friend WithEvents maintimer2 As Timer
+    Friend WithEvents antibug1 As Label
+    Friend WithEvents antibug2 As Label
+    Friend WithEvents antibug3 As Label
+    Friend WithEvents antibug4 As Label
+    Friend WithEvents antibug5 As Label
+    Friend WithEvents antibug6 As Label
+    Friend WithEvents antibug7 As Label
+    Friend WithEvents antibug8 As Label
 End Class
