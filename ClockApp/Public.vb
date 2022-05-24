@@ -46,7 +46,11 @@ Module _Public
 
 
     Public flowratetxtbox() As TextBox
+    Public endvoltxtbox() As TextBox
+    Public warmuptxtbox() As TextBox
     Public reftemplabel() As Label
+    Public refpulselabel() As Label
+    Public testpulselabel() As Label
 
     Public Class ControlArrayUtils
 

@@ -262,12 +262,18 @@
 
 
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
+        endvoltxtbox = ControlArrayUtils.getControlArray(Me, "endvoltxtbox", NUM_OF_ROWS)
+        warmuptxtbox = ControlArrayUtils.getControlArray(Me, "warmuptxtbox", NUM_OF_ROWS)
+        refpulselabel = ControlArrayUtils.getControlArray(Me, "refpulselabel", NUM_OF_ROWS)
+        testpulselabel = ControlArrayUtils.getControlArray(Me, "testpulselabel", NUM_OF_ROWS)
+        reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
 
         flowratetxtbox(1).Text = "999"
         flowratetxtbox(2).Text = "111"
-
-        reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
-
+        endvoltxtbox(1).Text = "goodski"
+        warmuptxtbox(1).Text = "goodski"
+        refpulselabel(1).Text = "bruh"
+        testpulselabel(1).Text = "bruh"
         reftemplabel(1).Text = "bruh amchine"
 
     End Sub
@@ -369,11 +375,11 @@
     End Sub
 
     Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
-        test1usrendvol = endvoltxtbox1.Text
+        test1usrendvol = Val(endvoltxtbox1.Text)
     End Sub
 
     Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
-        test1usrwarmup = warmuptxtbox1.Text
+        test1usrwarmup = Val(warmuptxtbox1.Text)
     End Sub
 
     Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
