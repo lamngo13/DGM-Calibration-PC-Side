@@ -261,10 +261,10 @@
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
 
-        Flow_Rate_TB = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
+        flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
 
-        Flow_Rate_TB(1).Text = "999"
-        Flow_Rate_TB(2).Text = "111"
+        flowratetxtbox(1).Text = "999"
+        flowratetxtbox(2).Text = "111"
 
         reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
 

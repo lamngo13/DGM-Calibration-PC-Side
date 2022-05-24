@@ -45,7 +45,7 @@ Module _Public
 
 
 
-    Public Flow_Rate_TB() As TextBox
+    Public flowratetxtbox() As TextBox
     Public reftemplabel() As Label
 
     Public Class ControlArrayUtils
