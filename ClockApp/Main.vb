@@ -1,54 +1,68 @@
 ﻿Public Class Main
-    Public checksum As Integer
-    Public backit As Integer = 9999
+    Dim checksum As Integer
+    Dim backit As Integer = 9999
 
 
 
-    Public currstr As String
-    Public debugstr As String
-    Public stritt As Integer = 1
-    Public isgood As Boolean = True
-    Public calchecksum As Integer
+    Dim currstr As String
+    Dim debugstr As String
+    Dim stritt As Integer = 1
+    Dim isgood As Boolean = True
+    Dim calchecksum As Integer
     '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-    Public inputlabel As String = ""
+    Dim inputlabel As String = ""
 
-    Public inputpressure As String = ""
-    Public intpressure As Integer
-    Public doublepressure As Double
+    Dim inputpressure As String = ""
+    Dim intpressure As Integer
+    Dim doublepressure As Double
 
-    Public inputambtemp As String = ""
-    Public intambtemp As Integer
-    Public doubleambtemp As Double
+    Dim inputambtemp As String = ""
+    Dim intambtemp As Integer
+    Dim doubleambtemp As Double
 
-    Public inputreftemp As String = ""
-    Public intreftemp As Integer
-    Public doublereftemp As Double
+    Dim inputreftemp As String = ""
+    Dim intreftemp As Integer
+    Dim doublereftemp As Double
 
-    Public inputambhum As String = ""
-    Public intambhum As Integer
-    Public doubleambhum As Double
+    Dim inputambhum As String = ""
+    Dim intambhum As Integer
+    Dim doubleambhum As Double
 
-    Public inputpulsecount As String = ""
-    Public intpulsecount As Integer
+    Dim inputpulsecount As String = ""
+    Dim intpulsecount As Integer
 
-    Public inputchecksum As String = ""
-    Public intchecksum As Integer
-    Public trimmedcrc As String = ""
-    Public inttrimmedcrc As Integer
+    Dim inputchecksum As String = ""
+    Dim intchecksum As Integer
+    Dim trimmedcrc As String = ""
+    Dim inttrimmedcrc As Integer
 
     'Public inputtruechecksum As String = ""
     'Public inttruechecksum As Integer
 
+    Dim testpulses = New Integer() {1, 0, 0, 0, 0, 0}
+    Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim testtimers = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim currenttest As Integer = 1
+    Dim duringwarmup As Boolean = False
+    Dim bigtimer As Double
+    Dim testover As Boolean = False
+    Dim testongoing As Boolean = False
+    Dim warmuptimer As Double
 
-    Public ourcs As Integer
-    Public ourcsitr As Integer
 
-    Public gooddata As Boolean = True
-    Public refportgood As Boolean = False
+
+    Dim ourcs As Integer
+    Dim ourcsitr As Integer
+
+    Dim gooddata As Boolean = True
+    Dim refportgood As Boolean = False
 
     'dim numbers = New Integer()
 
-    Public crc_table = New UInteger() {&H0, &H1021, &H2042, &H3063, &H4084, &H50A5, &H60C6, &H70E7, &H8108, &H9129, &HA14A, &HB16B,
+    Dim crc_table = New UInteger() {&H0, &H1021, &H2042, &H3063, &H4084, &H50A5, &H60C6, &H70E7, &H8108, &H9129, &HA14A, &HB16B,
 &HC18C, &HD1AD, &HE1CE, &HF1EF, &H1231, &H210, &H3273, &H2252, &H52B5, &H4294, &H72F7, &H62D6,
 &H9339, &H8318, &HB37B, &HA35A, &HD3BD, &HC39C, &HF3FF, &HE3DE, &H2462, &H3443, &H420, &H1401,
 &H64E6, &H74C7, &H44A4, &H5485, &HA56A, &HB54B, &H8528, &H9509, &HE5EE, &HF5CF, &HC5AC, &HD58D,
@@ -218,44 +232,10 @@
 
         End If
         'NEW STUFF bruh
-        If (duringwarmup) Then
-            pulsecountduringwarmup = intpulsecount
-        End If
-        If (testongoing) Then
-            If (Not duringwarmup) Then
-                test1pulses = intpulsecount - pulsecountduringwarmup 'MAKE THIS DYNAMIC
-            End If
-            antibug5.Text = "TESTONGOING"
-        Else
-            antibug5.Text = "NOT ONGOING TEST"
-        End If
+        refpulselabel(currenttest).Text = testpulses(currenttest).ToString()
+        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString() ' THIS DOES NOT FLASH
+        antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
 
-        antibug1.Text = "counted pulses:" + test1pulses.ToString()
-        antibug3.Text = "running test time:" + test1time.ToString()
-        antibug7.Text = "overall time: " + bigtimer.ToString()
-        antibug6.Text = "raw pulse count: " + inputpulsecount
-
-
-        '''
-        If (testover) Then
-            antibug2.Text = "is test over: TEST OVER"
-            'Else
-            'antibug2.Text = "is test over: NO ITS GOING ON"
-        End If
-        '''
-
-        'If (testongoing) Then
-
-        'End If
-        '''
-        If (duringwarmup) Then
-            antibug4.Text = "warmup: during warmup"
-        Else
-            antibug4.Text = "warmup: NOTWARMUP"
-        End If
-        '''
-
-        'end of tick!
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -268,13 +248,13 @@
         testpulselabel = ControlArrayUtils.getControlArray(Me, "testpulselabel", NUM_OF_ROWS)
         reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
 
-        flowratetxtbox(1).Text = "999"
-        flowratetxtbox(2).Text = "111"
-        endvoltxtbox(1).Text = "goodski"
-        warmuptxtbox(1).Text = "goodski"
-        refpulselabel(1).Text = "bruh"
-        testpulselabel(1).Text = "bruh"
-        reftemplabel(1).Text = "bruh amchine"
+        'flowratetxtbox(1).Text = "999"
+        'flowratetxtbox(2).Text = "111"
+        'endvoltxtbox(1).Text = "goodski"
+        'warmuptxtbox(1).Text = "goodski"
+        'refpulselabel(1).Text = "bruh"
+        'testpulselabel(1).Text = "bruh"
+        'reftemplabel(1).Text = "bruh amchine"
 
     End Sub
 
@@ -342,48 +322,88 @@
     End Sub
 
     Private Sub maintimer2_Tick(sender As Object, e As EventArgs) Handles maintimer2.Tick
+
         'this happens super fast
         'handle real timer stuff after start is pressed
         'start ticking the warmuptimer
-        If (testongoing) Then
-            bigtimer += 0.01
+        Dim debug1 As Integer = testpulses(currenttest)
+        Dim debug2 As Integer = testendvolume(currenttest)
+        Dim debug3 As Integer = currenttest
 
-            If (warmuptimer > test1usrwarmup) Then ' MAKE THIS DYNAMIC
+        'debugg
+        antibug1.Text = "big timer: " + bigtimer.ToString()
+        antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
+        antibug3.Text = "total pulse count: " + intpulsecount.ToString()
+        antibug4.Text = "current test: " + currenttest.ToString()
+        'antibug5.Text = "testonging: " + testongoing.ToString()
+        antibug6.Text = "during warmup: " + duringwarmup.ToString()
+        'antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
+
+        testpulselabel(currenttest).Text = testtimers(currenttest).ToString()
+
+        If (testongoing) Then
+
+
+
+            'debug
+            If testpulses(currenttest) = 0 Then
+                testpulses(1) = (12)
+            End If
+            'end debug
+
+
+
+            bigtimer += 0.1
+
+            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then ' MAKE THIS DYNAMIC
                 duringwarmup = False
             End If
             If (duringwarmup) Then
-                warmuptimer += 0.01 ' MAKE THIS DYNAMIC
+                warmuptimer += 0.1 ' MAKE THIS DYNAMIC
+                warmuptimes(currenttest) += 0.1
             End If
             'check for end condition off of pulses/volume
             If (Not duringwarmup) Then
-                test1time += 0.01 ' MAKE THIS DYNAMIC
+                testtimers(currenttest) += 0.1 ' MAKE THIS DYNAMIC
+                testpulses(currenttest) = intpulsecount - warmuptimes(currenttest)
             End If
-            If (test1pulses > test1usrendvol) Then
-                'end the test
-                testongoing = False
-                duringwarmup = False
-                testover = True
 
+            'go to next test
+            debug1 = testpulses(currenttest)
+            debug2 = testendvolume(currenttest)
+            debug3 = currenttest
+            If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
+                duringwarmup = True
+                'currenttest += 1
             End If
+
             'end test ongoing
         End If
+        'debugging
+        'print values
+
 
     End Sub
 
     Private Sub flowratetxtbox1_TextChanged(sender As Object, e As EventArgs) Handles flowratetxtbox1.TextChanged
-        test1usrflowrate = flowratetxtbox1.Text
+        'testusrflowrate(1) = flowratetxtbox1.Text
     End Sub
 
     Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
-        test1usrendvol = Val(endvoltxtbox1.Text)
+        'testusrendvol(1) = Val(endvoltxtbox1.Text)
     End Sub
 
     Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
-        test1usrwarmup = Val(warmuptxtbox1.Text)
+        'testusrwarmup(1) = Val(warmuptxtbox1.Text)
     End Sub
 
     Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
         testongoing = True
         duringwarmup = True
+        currenttest = 1
+        'assign vals based on user input
+        For startiterator = 1 To 6
+            ' testusrwarmup(startiterator) = 
+        Next
     End Sub
 End Class

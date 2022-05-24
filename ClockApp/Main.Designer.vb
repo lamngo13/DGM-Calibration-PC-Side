@@ -123,6 +123,7 @@ Partial Class Main
         Me.flowratetxtbox1.Name = "flowratetxtbox1"
         Me.flowratetxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox1.TabIndex = 1
+        Me.flowratetxtbox1.Text = "1000"
         '
         'flowratetxtbox2
         '
@@ -130,6 +131,7 @@ Partial Class Main
         Me.flowratetxtbox2.Name = "flowratetxtbox2"
         Me.flowratetxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox2.TabIndex = 2
+        Me.flowratetxtbox2.Text = "1000"
         '
         'flowratetxtbox3
         '
@@ -137,6 +139,7 @@ Partial Class Main
         Me.flowratetxtbox3.Name = "flowratetxtbox3"
         Me.flowratetxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox3.TabIndex = 3
+        Me.flowratetxtbox3.Text = "1000"
         '
         'flowratetxtbox4
         '
@@ -219,6 +222,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox3.TabIndex = 12
+        Me.endvoltxtbox3.Text = "10000"
         '
         'endvoltxtbox2
         '
@@ -226,6 +230,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox2.TabIndex = 11
+        Me.endvoltxtbox2.Text = "10000"
         '
         'endvoltxtbox1
         '
@@ -233,6 +238,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
+        Me.endvoltxtbox1.Text = "10000"
         '
         'endvollabel1
         '
@@ -370,6 +376,7 @@ Partial Class Main
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
         Me.warmuptxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox3.TabIndex = 28
+        Me.warmuptxtbox3.Text = "3"
         '
         'warmuptxtbox2
         '
@@ -377,6 +384,7 @@ Partial Class Main
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox2.TabIndex = 27
+        Me.warmuptxtbox2.Text = "3"
         '
         'warmuptxtbox1
         '
@@ -384,6 +392,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox1.TabIndex = 26
+        Me.warmuptxtbox1.Text = "3"
         '
         'warmuplabel2
         '
@@ -858,7 +867,6 @@ Partial Class Main
         'maintimer2
         '
         Me.maintimer2.Enabled = True
-        Me.maintimer2.Interval = 10
         '
         'antibug1
         '
