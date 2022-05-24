@@ -2,6 +2,8 @@
     Public checksum As Integer
     Public backit As Integer = 9999
 
+
+
     Public currstr As String
     Public debugstr As String
     Public stritt As Integer = 1
@@ -257,7 +259,17 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'what does this do lol
+
+
+        Flow_Rate_TB = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
+
+        Flow_Rate_TB(1).Text = "999"
+        Flow_Rate_TB(2).Text = "111"
+
+        reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
+
+        reftemplabel(1).Text = "bruh amchine"
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles connectbutton.Click
