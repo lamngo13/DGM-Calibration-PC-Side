@@ -190,11 +190,22 @@
                     Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     refcrcstr = tcrc
                     refcrcint = CInt(refcrcstr)
+                    Dim aa As String = scanone()
+                    Dim ab As String = scanone()
+                    Dim ac As String = scanone()
+                    Dim ad As String = scanone()
+                    Dim ae As String = scanone()
+                    Dim af As String = scanone()
+                    Dim Gs_inputchecksum As String = scanone()
+
+                    ''looking for the 7th one
 
                     iAccum = &HFFFF
                     'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
+                    Dim ii As Integer
                     If (tempinstr <> vbNullString) Then
-                        For i As Integer = 0 To (InStr(tempinstr, startrefcrc))
+                        For i As Integer = 0 To (InStr(tempinstr, Gs_inputchecksum) - 1)
+                            ii = i
                             iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
                         Next ' end of for loop
                     End If
