@@ -94,10 +94,9 @@ Partial Class Main
         Me.connectbutton = New System.Windows.Forms.Button()
         Me.startbutton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.maintimer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Main_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.mainclocklbl = New System.Windows.Forms.Label()
         Me.mainserialport1 = New System.IO.Ports.SerialPort(Me.components)
-        Me.maintimer2 = New System.Windows.Forms.Timer(Me.components)
         Me.antibug1 = New System.Windows.Forms.Label()
         Me.antibug2 = New System.Windows.Forms.Label()
         Me.antibug3 = New System.Windows.Forms.Label()
@@ -106,6 +105,7 @@ Partial Class Main
         Me.antibug6 = New System.Windows.Forms.Label()
         Me.antibug7 = New System.Windows.Forms.Label()
         Me.antibug8 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -845,9 +845,9 @@ Partial Class Main
         Me.Label1.TabIndex = 70
         Me.Label1.Text = "todo time and what else??"
         '
-        'maintimer1
+        'Main_Timer
         '
-        Me.maintimer1.Enabled = True
+        Me.Main_Timer.Enabled = True
         '
         'mainclocklbl
         '
@@ -863,11 +863,6 @@ Partial Class Main
         'mainserialport1
         '
         Me.mainserialport1.BaudRate = 460800
-        '
-        'maintimer2
-        '
-        Me.maintimer2.Enabled = True
-        Me.maintimer2.Interval = 101
         '
         'antibug1
         '
@@ -956,6 +951,10 @@ Partial Class Main
         Me.antibug8.Size = New System.Drawing.Size(71, 20)
         Me.antibug8.TabIndex = 79
         Me.antibug8.Text = "antibug8"
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
         '
         'Main
         '
@@ -1121,10 +1120,9 @@ Partial Class Main
     Friend WithEvents startbutton As Button
     Friend WithEvents Label1 As Label
     Public WithEvents refpulselabel1 As Label
-    Friend WithEvents maintimer1 As Timer
+    Friend WithEvents Main_Timer As Timer
     Friend WithEvents mainclocklbl As Label
     Friend WithEvents mainserialport1 As IO.Ports.SerialPort
-    Friend WithEvents maintimer2 As Timer
     Friend WithEvents antibug1 As Label
     Friend WithEvents antibug2 As Label
     Friend WithEvents antibug3 As Label
@@ -1133,4 +1131,5 @@ Partial Class Main
     Friend WithEvents antibug6 As Label
     Friend WithEvents antibug7 As Label
     Friend WithEvents antibug8 As Label
+    Friend WithEvents Timer1 As Timer
 End Class

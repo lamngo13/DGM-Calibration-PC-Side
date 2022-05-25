@@ -1,6 +1,7 @@
 ﻿Public Class antibug
 
     Dim Main As New Main
+
     'Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
     '    Static ioStr As String = ""
 
@@ -98,7 +99,12 @@
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        lblsp.Text = Gs_str
+        'lblsp.Text = Gs_str
+        lblsp.Text = Gs_currstr
+        lblfirst.Text = InStr(Gs_currstr, Gs_inputchecksum).ToString()
+        lblsecond.Text = Gs_inputchecksum 'inputchecksum
+        lblthird.Text = iAccum   'iAccum.ToString()
+        crcdifflabel.Text = "our crc vs input crc: " + (iAccum - Val(Gi_inttrimmedcrc)).ToString()
     End Sub
 
     Private Sub antibug_Load(sender As Object, e As EventArgs) Handles MyBase.Load
