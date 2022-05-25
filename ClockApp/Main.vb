@@ -188,117 +188,111 @@
                 'start parsing stuff
                 ioStr += Trim(mainserialport1.ReadExisting())
                 Dim bruh2 = ioStr
-                If (InStr(ioStr, Chr(10))) Then
-                    If (ioStr <> "") Then
-                        If (ioStr.Length > 15) Then
-                            Gs_currstr = ioStr
-                            goodParse()  'NEWLY ADDED
-                            'ioStr = ""
-                            Gs_str = Gs_currstr  ' this is for debugging
-                            Dim tempinstr = Gs_str
-                            Dim startrefcrc As Integer = InStr(tempinstr, "|")
-                            Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
-                            Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
-                            refcrcstr = tcrc
-                            refcrcint = CInt(refcrcstr)
-                            'Dim aa As String = scanone()
-                            'Dim ab As String = scanone()
-                            'Dim ac As String = scanone()
-                            'Dim ad As String = scanone()
-                            'Dim ae As String = scanone()
-                            'Dim af As String = scanone()
-                            'Dim Gs_inputchecksum As String = scanone()
+                If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
-                            ''looking for the 7th one
+                    Gs_currstr = ioStr
+                    goodParse()  'NEWLY ADDED
+                    'ioStr = ""
+                    Gs_str = Gs_currstr  ' this is for debugging
+                    Dim tempinstr = Gs_str
+                    Dim startrefcrc As Integer = InStr(tempinstr, "|")
+                    Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
+                    Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
+                    refcrcstr = tcrc
+                    refcrcint = CInt(refcrcstr)
+                    'Dim aa As String = scanone()
+                    'Dim ab As String = scanone()
+                    'Dim ac As String = scanone()
+                    'Dim ad As String = scanone()
+                    'Dim ae As String = scanone()
+                    'Dim af As String = scanone()
+                    'Dim Gs_inputchecksum As String = scanone()
 
-                            iAccum = &HFFFF
-                            'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
-                            Dim ii As Integer
-                            If (tempinstr <> vbNullString) Then
-                                For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
-                                    ii = i
-                                    iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
-                                Next ' end of for loop
-                            End If
+                    ''looking for the 7th one
 
-                            If (iAccum = refcrcint) Then
-                                refUpdateVals()
-                            End If
-                            'ioStr = ""
-                        Else
-                            'Gs_currstr = ""
-                        End If
+                    iAccum = &HFFFF
+                    'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
+                    Dim ii As Integer
+                    If (tempinstr <> vbNullString) Then
+                        For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
+                            ii = i
+                            iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
+                        Next ' end of for loop
                     End If
+
+                    If (iAccum = refcrcint) Then
+                        refUpdateVals()
                     End If
-                    'Returns an integer specifying the start position of the first occurrence of one string within another. 
-                    'The Integer Is a one-based index If a match Is found. If no match Is found, the function returns zero.
-                    ' 7 members
-                    'stritt = 1
-                    '''''PASTE AFTER THIS LINE HEREEEEEEEEEEEEEE
-
-                    'first portion
-                    'stritt = 1
-                    'If Len(Gs_currstr) > 10 Then
-                    '    'change this one off condition
-
-                    '    'diff condition for the first bc must have > else discard
-                    '    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-                    '    'btw ONLY CONNECT IF LABEL HAS Cal-DGM
-                    '    inputlabel = scanone()
-
-                    '    inputpressure = scanone()
-                    '    intpressure = Val(inputpressure)
-                    '    doublepressure = (intpressure / 100)
-
-                    '    inputambtemp = scanone()
-                    '    intambtemp = Val(inputpressure)
-                    '    doubleambtemp = (intambtemp / 100)
-
-                    '    inputreftemp = scanone()
-                    '    intreftemp = Val(inputreftemp)
-                    '    doublereftemp = (intreftemp / 10)
-
-                    '    inputambhum = scanone()
-                    '    intambhum = Val(inputambhum)
-                    '    doubleambhum = (intambhum / 10)
-
-
-                    '    inputpulsecount = scanone()
-                    '    intpulsecount = CInt(inputpulsecount)
-
-
-                    '    Gi_BL_Debug = CInt(inputpulsecount)
-
-
-
-
-                    '    Gs_inputchecksum = scanone()
-                    '    intchecksum = Val(Gs_inputchecksum)
-                    '    trimmedcrc = Gs_inputchecksum.Replace("|", "")
-                    '    Gi_inttrimmedcrc = Val(trimmedcrc)
-
-
-                    'End If
-                    'verify checksum
-
-                    'CRC TIME
-                    'iAccum = &HFFFF
-                    ''gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
-                    'If (Gs_currstr.Length <> vbNullString) Then
-                    '    For i As Integer = 0 To (InStr(Gs_currstr, Gs_inputchecksum) - 1)
-                    '        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(Gs_currstr(i))) And &HFF)))
-                    '    Next ' end of for loop
-                    'End If
-
-                    'If (Not iAccum = Val(Gs_inputchecksum)) Then
-                    '    gooddata = False
-                    'End If
-
-                    'If (gooddata) Then
-                    '    'ONLY UPDATE VALS IF DATA IS GOOD
-                    'End If
-
                 End If
+                'Returns an integer specifying the start position of the first occurrence of one string within another. 
+                'The Integer Is a one-based index If a match Is found. If no match Is found, the function returns zero.
+                ' 7 members
+                'stritt = 1
+                '''''PASTE AFTER THIS LINE HEREEEEEEEEEEEEEE
+
+                'first portion
+                'stritt = 1
+                'If Len(Gs_currstr) > 10 Then
+                '    'change this one off condition
+
+                '    'diff condition for the first bc must have > else discard
+                '    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
+                '    'btw ONLY CONNECT IF LABEL HAS Cal-DGM
+                '    inputlabel = scanone()
+
+                '    inputpressure = scanone()
+                '    intpressure = Val(inputpressure)
+                '    doublepressure = (intpressure / 100)
+
+                '    inputambtemp = scanone()
+                '    intambtemp = Val(inputpressure)
+                '    doubleambtemp = (intambtemp / 100)
+
+                '    inputreftemp = scanone()
+                '    intreftemp = Val(inputreftemp)
+                '    doublereftemp = (intreftemp / 10)
+
+                '    inputambhum = scanone()
+                '    intambhum = Val(inputambhum)
+                '    doubleambhum = (intambhum / 10)
+
+
+                '    inputpulsecount = scanone()
+                '    intpulsecount = CInt(inputpulsecount)
+
+
+                '    Gi_BL_Debug = CInt(inputpulsecount)
+
+
+
+
+                '    Gs_inputchecksum = scanone()
+                '    intchecksum = Val(Gs_inputchecksum)
+                '    trimmedcrc = Gs_inputchecksum.Replace("|", "")
+                '    Gi_inttrimmedcrc = Val(trimmedcrc)
+
+
+                'End If
+                'verify checksum
+
+                'CRC TIME
+                'iAccum = &HFFFF
+                ''gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
+                'If (Gs_currstr.Length <> vbNullString) Then
+                '    For i As Integer = 0 To (InStr(Gs_currstr, Gs_inputchecksum) - 1)
+                '        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(Gs_currstr(i))) And &HFF)))
+                '    Next ' end of for loop
+                'End If
+
+                'If (Not iAccum = Val(Gs_inputchecksum)) Then
+                '    gooddata = False
+                'End If
+
+                'If (gooddata) Then
+                '    'ONLY UPDATE VALS IF DATA IS GOOD
+                'End If
+
+            End If
 
         End If
         'NEW STUFF bruh
