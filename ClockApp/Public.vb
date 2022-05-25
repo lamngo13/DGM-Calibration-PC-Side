@@ -129,7 +129,27 @@ Module _Public
 
         End Function
 
+
+
     End Class
+
+    Public Class conversions
+        Public Shared Function cIntToDouble(thein As Integer) As Double ' why can't I share this
+            Dim returnable As Double
+            returnable = thein
+            returnable /= 100
+            Return returnable
+        End Function
+
+        Public Shared Function convertCelToFar(theval As Double) As Double
+            theval *= 1.8
+            theval += 32
+            Return theval
+        End Function
+
+    End Class
+
+
 End Module
 
 

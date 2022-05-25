@@ -1,5 +1,13 @@
 ﻿Public Class Main
     Const NUM_OF_ROWS As Integer = 5
+    Const REF_MEMBERS_MAX As Integer = 25
+
+    Const REF_INPUT_LABEL As Integer = 1
+    Const REF_AMB_TEMP As Integer = 2
+    Const REF_METER_TEMP As Integer = 3
+    Const REF_AMB_HUM As Integer = 4
+    Const REF_PULSECOUNT As Integer = 5
+    Const REF_CHECKSUM As Integer = 6
 
     Dim Gs_str As String = "foo"
     Dim intpulsecount As Integer
@@ -50,7 +58,7 @@
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Dim testreftemp = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim endtestnum As Integer = 6
@@ -65,6 +73,16 @@
 
     Dim ourcs As Integer
     Dim ourcsitr As Integer
+
+
+
+    'inputlabel, inputpressure, doublepressure, inputambtemp, inputreftemp, inputambhum, 
+    Dim s_ref_in(REF_MEMBERS_MAX) As String
+    Dim zrefinputlabel As String
+    Dim zrefinputpressure As String
+    Dim zrefinputambtemp As String
+    Dim zrefinputreftemp As String
+    Dim zrefinputambhum As String
 
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
@@ -93,6 +111,22 @@
         Return theString
 
     End Function
+
+    Public Sub goodParse()
+        Dim zindex As Integer = 1
+        Dim tempStr As String = ""
+        Dim i As Integer
+        For i = 1 To Len(Gs_currstr)
+            If (Mid(Gs_currstr, i, 1) <> ",") Then
+                tempStr &= Mid(Gs_currstr, i, 1)
+            Else
+                s_ref_in(zindex) = tempStr
+                zindex += 1
+                tempStr = ""
+            End If
+        Next
+    End Sub
+
     Public Function firstParse() As String
         Dim Main As New Main
         Dim go = True
@@ -373,7 +407,7 @@
                 testtimers(currenttest) += 0.1
                 'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                testreftemp(currenttest) = inputreftemp
+                testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
             End If
 
             'check for end condition off of pulses/volume
