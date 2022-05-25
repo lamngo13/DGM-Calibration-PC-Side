@@ -3,7 +3,7 @@
 
     Dim Gs_str As String = "foo"
     Dim intpulsecount As Integer = 999999
-    Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
+    '''''''''''''' Dim testpulses = New Integer() {1, 2, 3, 4, 5, 6, 7}
     Dim checksum As Integer
     Dim backit As Integer = 9999
 
@@ -44,12 +44,12 @@
     'Dim inttruechecksum As Integer
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim testtimers = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0}
-    Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testtimers = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
 
