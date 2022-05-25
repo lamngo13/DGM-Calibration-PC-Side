@@ -1,6 +1,6 @@
 ﻿Public Class Main
     Const NUM_OF_ROWS As Integer = 5
-    Const REF_MEMBERS_MAX As Integer = 25
+    'Const REF_MEMBERS_MAX As Integer = 25
 
     Const REF_INPUT_LABEL As Integer = 1
     Const REF_AMB_TEMP As Integer = 2
@@ -8,6 +8,7 @@
     Const REF_AMB_HUM As Integer = 4
     Const REF_PULSECOUNT As Integer = 5
     Const REF_CHECKSUM As Integer = 6
+    Const REF_MAX_MEMBERS = 7
 
     Dim Gs_str As String = "foo"
     Dim intpulsecount As Integer
@@ -73,11 +74,14 @@
 
     Dim ourcs As Integer
     Dim ourcsitr As Integer
+    Dim refcrcstr As String
+    Dim refcrcint As Integer
+
 
 
 
     'inputlabel, inputpressure, doublepressure, inputambtemp, inputreftemp, inputambhum, 
-    Dim s_ref_in(REF_MEMBERS_MAX) As String
+    Dim s_ref_in(REF_MAX_MEMBERS) As String
     Dim zrefinputlabel As String
     Dim zrefinputpressure As String
     Dim zrefinputambtemp As String
@@ -123,8 +127,12 @@
                 s_ref_in(zindex) = tempStr
                 zindex += 1
                 tempStr = ""
+                If (zindex = REF_MAX_MEMBERS) Then
+                    Exit For
+                End If
             End If
         Next
+        Gs_currstr = ""
     End Sub
 
     Public Function firstParse() As String
@@ -171,9 +179,31 @@
                 If InStr(ioStr, Chr(10)) Then
                     'Returns an integer specifying the start position of the first occurrence of one string within another. 
                     'The Integer Is a one-based index If a match Is found. If no match Is found, the function returns zero.
+                    ' 7 members
                     stritt = 1
                     Gs_currstr = ioStr
+                    ioStr = ""
                     Gs_str = Gs_currstr  ' this is for debugging
+                    Dim tempinstr = Gs_str
+                    Dim startrefcrc As Integer = InStr(tempinstr, "|")
+                    Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
+                    Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
+                    refcrcstr = tcrc
+                    refcrcint = CInt(refcrcstr)
+
+                    iAccum = &HFFFF
+                    'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
+                    If (tempinstr <> vbNullString) Then
+                        For i As Integer = 0 To (InStr(tempinstr, startrefcrc))
+                            iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
+                        Next ' end of for loop
+                    End If
+
+                    Dim bruh = iAccum
+
+
+                    'Dim endofrefcrc As Integer = 
+
 
                     ioStr = ""
                 Else
