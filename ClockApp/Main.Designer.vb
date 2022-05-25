@@ -106,6 +106,13 @@ Partial Class Main
         Me.antibug7 = New System.Windows.Forms.Label()
         Me.antibug8 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.testtimerlabel6 = New System.Windows.Forms.Label()
+        Me.testtimerlabel5 = New System.Windows.Forms.Label()
+        Me.testtimerlabel4 = New System.Windows.Forms.Label()
+        Me.testtimerlabel3 = New System.Windows.Forms.Label()
+        Me.testtimerlabel2 = New System.Windows.Forms.Label()
+        Me.testtimerlabel1 = New System.Windows.Forms.Label()
+        Me.testtimerlabel0 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -839,7 +846,7 @@ Partial Class Main
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(627, 361)
+        Me.Label1.Location = New System.Drawing.Point(1169, 362)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(195, 20)
         Me.Label1.TabIndex = 70
@@ -869,7 +876,7 @@ Partial Class Main
         Me.antibug1.AutoSize = True
         Me.antibug1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug1.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug1.Location = New System.Drawing.Point(534, 389)
+        Me.antibug1.Location = New System.Drawing.Point(1076, 390)
         Me.antibug1.Name = "antibug1"
         Me.antibug1.Size = New System.Drawing.Size(71, 20)
         Me.antibug1.TabIndex = 72
@@ -880,7 +887,7 @@ Partial Class Main
         Me.antibug2.AutoSize = True
         Me.antibug2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug2.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug2.Location = New System.Drawing.Point(534, 418)
+        Me.antibug2.Location = New System.Drawing.Point(1076, 419)
         Me.antibug2.Name = "antibug2"
         Me.antibug2.Size = New System.Drawing.Size(71, 20)
         Me.antibug2.TabIndex = 73
@@ -891,7 +898,7 @@ Partial Class Main
         Me.antibug3.AutoSize = True
         Me.antibug3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug3.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug3.Location = New System.Drawing.Point(534, 448)
+        Me.antibug3.Location = New System.Drawing.Point(1076, 449)
         Me.antibug3.Name = "antibug3"
         Me.antibug3.Size = New System.Drawing.Size(71, 20)
         Me.antibug3.TabIndex = 74
@@ -902,7 +909,7 @@ Partial Class Main
         Me.antibug4.AutoSize = True
         Me.antibug4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug4.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug4.Location = New System.Drawing.Point(534, 481)
+        Me.antibug4.Location = New System.Drawing.Point(1076, 482)
         Me.antibug4.Name = "antibug4"
         Me.antibug4.Size = New System.Drawing.Size(71, 20)
         Me.antibug4.TabIndex = 75
@@ -913,7 +920,7 @@ Partial Class Main
         Me.antibug5.AutoSize = True
         Me.antibug5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug5.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug5.Location = New System.Drawing.Point(534, 513)
+        Me.antibug5.Location = New System.Drawing.Point(1076, 514)
         Me.antibug5.Name = "antibug5"
         Me.antibug5.Size = New System.Drawing.Size(71, 20)
         Me.antibug5.TabIndex = 76
@@ -924,7 +931,7 @@ Partial Class Main
         Me.antibug6.AutoSize = True
         Me.antibug6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug6.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug6.Location = New System.Drawing.Point(534, 546)
+        Me.antibug6.Location = New System.Drawing.Point(1076, 547)
         Me.antibug6.Name = "antibug6"
         Me.antibug6.Size = New System.Drawing.Size(71, 20)
         Me.antibug6.TabIndex = 77
@@ -935,7 +942,7 @@ Partial Class Main
         Me.antibug7.AutoSize = True
         Me.antibug7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug7.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug7.Location = New System.Drawing.Point(534, 577)
+        Me.antibug7.Location = New System.Drawing.Point(1076, 578)
         Me.antibug7.Name = "antibug7"
         Me.antibug7.Size = New System.Drawing.Size(71, 20)
         Me.antibug7.TabIndex = 78
@@ -946,7 +953,7 @@ Partial Class Main
         Me.antibug8.AutoSize = True
         Me.antibug8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug8.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug8.Location = New System.Drawing.Point(534, 607)
+        Me.antibug8.Location = New System.Drawing.Point(1076, 608)
         Me.antibug8.Name = "antibug8"
         Me.antibug8.Size = New System.Drawing.Size(71, 20)
         Me.antibug8.TabIndex = 79
@@ -956,12 +963,102 @@ Partial Class Main
         '
         Me.Timer1.Enabled = True
         '
+        'testtimerlabel6
+        '
+        Me.testtimerlabel6.AutoSize = True
+        Me.testtimerlabel6.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel6.Location = New System.Drawing.Point(563, 504)
+        Me.testtimerlabel6.Name = "testtimerlabel6"
+        Me.testtimerlabel6.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel6.TabIndex = 86
+        Me.testtimerlabel6.Text = "0"
+        '
+        'testtimerlabel5
+        '
+        Me.testtimerlabel5.AutoSize = True
+        Me.testtimerlabel5.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel5.Location = New System.Drawing.Point(563, 478)
+        Me.testtimerlabel5.Name = "testtimerlabel5"
+        Me.testtimerlabel5.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel5.TabIndex = 85
+        Me.testtimerlabel5.Text = "0"
+        '
+        'testtimerlabel4
+        '
+        Me.testtimerlabel4.AutoSize = True
+        Me.testtimerlabel4.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel4.Location = New System.Drawing.Point(563, 452)
+        Me.testtimerlabel4.Name = "testtimerlabel4"
+        Me.testtimerlabel4.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel4.TabIndex = 84
+        Me.testtimerlabel4.Text = "0"
+        '
+        'testtimerlabel3
+        '
+        Me.testtimerlabel3.AutoSize = True
+        Me.testtimerlabel3.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel3.Location = New System.Drawing.Point(563, 426)
+        Me.testtimerlabel3.Name = "testtimerlabel3"
+        Me.testtimerlabel3.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel3.TabIndex = 83
+        Me.testtimerlabel3.Text = "0"
+        '
+        'testtimerlabel2
+        '
+        Me.testtimerlabel2.AutoSize = True
+        Me.testtimerlabel2.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel2.Location = New System.Drawing.Point(563, 400)
+        Me.testtimerlabel2.Name = "testtimerlabel2"
+        Me.testtimerlabel2.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel2.TabIndex = 82
+        Me.testtimerlabel2.Text = "0"
+        '
+        'testtimerlabel1
+        '
+        Me.testtimerlabel1.AutoSize = True
+        Me.testtimerlabel1.BackColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.testtimerlabel1.Location = New System.Drawing.Point(563, 377)
+        Me.testtimerlabel1.Name = "testtimerlabel1"
+        Me.testtimerlabel1.Size = New System.Drawing.Size(18, 20)
+        Me.testtimerlabel1.TabIndex = 81
+        Me.testtimerlabel1.Text = "0"
+        '
+        'testtimerlabel0
+        '
+        Me.testtimerlabel0.AutoSize = True
+        Me.testtimerlabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testtimerlabel0.ForeColor = System.Drawing.SystemColors.Control
+        Me.testtimerlabel0.Location = New System.Drawing.Point(563, 341)
+        Me.testtimerlabel0.Name = "testtimerlabel0"
+        Me.testtimerlabel0.Size = New System.Drawing.Size(83, 20)
+        Me.testtimerlabel0.TabIndex = 80
+        Me.testtimerlabel0.Text = "Test Timer"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
-        Me.ClientSize = New System.Drawing.Size(1049, 707)
+        Me.ClientSize = New System.Drawing.Size(1405, 707)
+        Me.Controls.Add(Me.testtimerlabel6)
+        Me.Controls.Add(Me.testtimerlabel5)
+        Me.Controls.Add(Me.testtimerlabel4)
+        Me.Controls.Add(Me.testtimerlabel3)
+        Me.Controls.Add(Me.testtimerlabel2)
+        Me.Controls.Add(Me.testtimerlabel1)
+        Me.Controls.Add(Me.testtimerlabel0)
         Me.Controls.Add(Me.antibug8)
         Me.Controls.Add(Me.antibug7)
         Me.Controls.Add(Me.antibug6)
@@ -1132,4 +1229,11 @@ Partial Class Main
     Friend WithEvents antibug7 As Label
     Friend WithEvents antibug8 As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents testtimerlabel6 As Label
+    Friend WithEvents testtimerlabel5 As Label
+    Friend WithEvents testtimerlabel4 As Label
+    Friend WithEvents testtimerlabel3 As Label
+    Friend WithEvents testtimerlabel2 As Label
+    Friend WithEvents testtimerlabel1 As Label
+    Friend WithEvents testtimerlabel0 As Label
 End Class

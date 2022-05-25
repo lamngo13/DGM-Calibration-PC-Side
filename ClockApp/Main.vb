@@ -45,7 +45,7 @@
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Dim testtimers = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testtimers = New Double() {1, 2, 3, 4, 5, 6, 7}  ' DOUBLE
     Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -223,7 +223,7 @@
         End If
         'NEW STUFF bruh
 
-        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
+        '''''''''''''''''''''''''''''''''''''''''''''''''''refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
 
         'rrefpulselabel(currenttest).Text = intpulsecount
 
@@ -242,6 +242,7 @@
         refpulselabel = ControlArrayUtils.getControlArray(Me, "refpulselabel", NUM_OF_ROWS)
         testpulselabel = ControlArrayUtils.getControlArray(Me, "testpulselabel", NUM_OF_ROWS)
         reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
+        testtimerlabel = ControlArrayUtils.getControlArray(Me, "testtimerlabel", NUM_OF_ROWS)
 
         'flowratetxtbox(1).Text = "999"
         'flowratetxtbox(2).Text = "111"
@@ -333,26 +334,34 @@
         antibug6.Text = "during warmup: " + duringwarmup.ToString()
         'antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
 
-        testpulselabel(currenttest).Text = testtimers(currenttest).ToString()
+        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))  ' this works
+        testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+        testtimerlabel(5).Text = 555 ' random bug
 
         If (testongoing) Then
             bigtimer += 0.1
 
+            'check for end of warmup
             If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
                 duringwarmup = False
             End If
+
+            'increment warmup timer(s)
             If (duringwarmup) Then
                 warmuptimer += 0.1
                 warmuptimes(currenttest) += 0.1
                 warmuppulses(currenttest) = intpulsecount
             End If
 
-            'check for end condition off of pulses/volume
+
             If (Not duringwarmup) Then
-                testtimers(currenttest) += 0.1
+                debug1 = testtimers(currenttest)
+                testtimers(currenttest) += 0.1 ' THIS NOT WORKING
+                debug1 = testtimers(currenttest)
                 testpulses(currenttest) = intpulsecount ' - warmuptimes(currenttest)
             End If
 
+            'check for end condition off of pulses/volume
             'go to next test
             If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
                 duringwarmup = True
