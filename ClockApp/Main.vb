@@ -336,37 +336,24 @@
         testpulselabel(currenttest).Text = testtimers(currenttest).ToString()
 
         If (testongoing) Then
+            bigtimer += 0.1
 
-
-
-            'debug
-            If testpulses(currenttest) = 0 Then
-                testpulses(1) = (12)
-            End If
-            'end debug
-
-
-
-
-
-            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then ' MAKE THIS DYNAMIC
+            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
                 duringwarmup = False
             End If
             If (duringwarmup) Then
-                warmuptimer += 0.1 ' MAKE THIS DYNAMIC
+                warmuptimer += 0.1
                 warmuptimes(currenttest) += 0.1
                 warmuppulses(currenttest) = intpulsecount
             End If
+
             'check for end condition off of pulses/volume
             If (Not duringwarmup) Then
-                testtimers(currenttest) += 0.1 ' MAKE THIS DYNAMIC
+                testtimers(currenttest) += 0.1
                 testpulses(currenttest) = intpulsecount ' - warmuptimes(currenttest)
             End If
 
             'go to next test
-            debug1 = testpulses(currenttest)
-            debug2 = testendvolume(currenttest)
-            debug3 = currenttest
             If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
                 duringwarmup = True
                 'currenttest += 1
@@ -403,6 +390,6 @@
     End Sub
 
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If testongoing Then bigtimer += 0.1
+        'If testongoing Then bigtimer += 0.1
     End Sub
 End Class
