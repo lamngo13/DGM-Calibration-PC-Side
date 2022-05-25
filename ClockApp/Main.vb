@@ -45,11 +45,12 @@
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Dim testtimers = New Double() {1, 2, 3, 4, 5, 6, 7}  ' DOUBLE
+    Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
     Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim testreftemp = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim endtestnum As Integer = 6
@@ -337,12 +338,17 @@
 
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))  ' this works
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
-        testtimerlabel(5).Text = 555 ' random bug
+        reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+
 
         If (testongoing) Then
+            'ensure correct string:
+            teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
             'END TEST IF NO MORE TEST SPECIFIED
             If (currenttest = endtestnum) Then
                 testongoing = False
+                testover = True
+                teststatuslabel2.Text = "Test Over"
             End If
         End If
 
@@ -362,11 +368,12 @@
                 warmuppulses(currenttest) = intpulsecount
             End If
 
-
+            'USE VALS FROM INPUT
             If (Not duringwarmup) Then
-                testtimers(currenttest) += 0.1 ' THIS NOT WORKING
+                testtimers(currenttest) += 0.1
                 'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                testreftemp(currenttest) = inputreftemp
             End If
 
             'check for end condition off of pulses/volume
@@ -381,9 +388,12 @@
 
             'end test ongoing
         End If
-        'debugging
-        'print values
 
+
+        'to process after test
+        If (testover) Then
+            'process the vals lmao
+        End If
     End Sub
 
 

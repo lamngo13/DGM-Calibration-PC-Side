@@ -8,7 +8,8 @@ Module _Public
     Public Gs_currstr As String
     Public Gs_inputchecksum As String
     Public Gi_inttrimmedcrc As Integer
-    Public testpulses = New Integer() {1, 2, 3, 4, 5, 6, 7}
+    Public Gs_tempunits As String = "Celsius"
+    Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     'dim numbers = New Integer()
 
 

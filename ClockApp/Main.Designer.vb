@@ -113,6 +113,8 @@ Partial Class Main
         Me.testtimerlabel2 = New System.Windows.Forms.Label()
         Me.testtimerlabel1 = New System.Windows.Forms.Label()
         Me.testtimerlabel0 = New System.Windows.Forms.Label()
+        Me.teststatuslabel1 = New System.Windows.Forms.Label()
+        Me.teststatuslabel2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -1046,12 +1048,36 @@ Partial Class Main
         Me.testtimerlabel0.TabIndex = 80
         Me.testtimerlabel0.Text = "Test Timer"
         '
+        'teststatuslabel1
+        '
+        Me.teststatuslabel1.AutoSize = True
+        Me.teststatuslabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.teststatuslabel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.teststatuslabel1.Location = New System.Drawing.Point(27, 547)
+        Me.teststatuslabel1.Name = "teststatuslabel1"
+        Me.teststatuslabel1.Size = New System.Drawing.Size(95, 20)
+        Me.teststatuslabel1.TabIndex = 87
+        Me.teststatuslabel1.Text = "Test Status:"
+        '
+        'teststatuslabel2
+        '
+        Me.teststatuslabel2.AutoSize = True
+        Me.teststatuslabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.teststatuslabel2.ForeColor = System.Drawing.SystemColors.Control
+        Me.teststatuslabel2.Location = New System.Drawing.Point(30, 567)
+        Me.teststatuslabel2.Name = "teststatuslabel2"
+        Me.teststatuslabel2.Size = New System.Drawing.Size(98, 20)
+        Me.teststatuslabel2.TabIndex = 88
+        Me.teststatuslabel2.Text = "Not Running"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1405, 707)
+        Me.Controls.Add(Me.teststatuslabel2)
+        Me.Controls.Add(Me.teststatuslabel1)
         Me.Controls.Add(Me.testtimerlabel6)
         Me.Controls.Add(Me.testtimerlabel5)
         Me.Controls.Add(Me.testtimerlabel4)
@@ -1236,4 +1262,6 @@ Partial Class Main
     Friend WithEvents testtimerlabel2 As Label
     Friend WithEvents testtimerlabel1 As Label
     Friend WithEvents testtimerlabel0 As Label
+    Friend WithEvents teststatuslabel1 As Label
+    Friend WithEvents teststatuslabel2 As Label
 End Class
