@@ -29,7 +29,7 @@
     Dim doubleambhum As Double
 
     Dim inputpulsecount As String = ""
-    Dim intpulsecount As Integer
+    'Dim intpulsecount As Integer
 
     Dim inputchecksum As String = ""
     Dim intchecksum As Integer
@@ -39,12 +39,13 @@
     'Public inputtruechecksum As String = ""
     'Public inttruechecksum As Integer
 
-    Dim testpulses = New Integer() {1, 0, 0, 0, 0, 0}
+    'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testtimers = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0}
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0}
+    Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim bigtimer As Double
@@ -160,10 +161,6 @@
                     'currstr = ""
                 End If
 
-
-                'currstr = Trim(SerialPort1.ReadExisting())
-
-
                 'first portion
                 stritt = 1
                 If Len(currstr) > 10 Then
@@ -192,7 +189,17 @@
 
 
                     inputpulsecount = scanone()
-                    intpulsecount = Val(inputpulsecount)
+                    intpulsecount = CInt(inputpulsecount)
+
+                    'Dim i_Debug As Int16
+                    'i_Debug = CInt(inputpulsecount)
+                    'If i_Debug > 0 Then intpulsecount = CInt(inputpulsecount)
+
+                    Gi_BL_Debug = CInt(inputpulsecount)
+                    'refpulselabel(1).Text = Label2.Text
+
+
+
 
                     inputchecksum = scanone()
                     intchecksum = Val(inputchecksum)
@@ -232,9 +239,14 @@
 
         End If
         'NEW STUFF bruh
-        refpulselabel(currenttest).Text = testpulses(currenttest).ToString()
+
+        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
+
+        'rrefpulselabel(currenttest).Text = intpulsecount
+
+
         antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString() ' THIS DOES NOT FLASH
-        antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
+        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
 
     End Sub
 
@@ -361,11 +373,12 @@
             If (duringwarmup) Then
                 warmuptimer += 0.1 ' MAKE THIS DYNAMIC
                 warmuptimes(currenttest) += 0.1
+                warmuppulses(currenttest) = intpulsecount
             End If
             'check for end condition off of pulses/volume
             If (Not duringwarmup) Then
                 testtimers(currenttest) += 0.1 ' MAKE THIS DYNAMIC
-                testpulses(currenttest) = intpulsecount - warmuptimes(currenttest)
+                testpulses(currenttest) = intpulsecount ' - warmuptimes(currenttest)
             End If
 
             'go to next test

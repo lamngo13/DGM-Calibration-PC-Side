@@ -6,6 +6,10 @@ Module _Public
     Public Const NUM_OF_ROWS As Integer = 5
 
     Public Gs_str As String = "foo"
+    Public intpulsecount As Integer = 999999
+    Public testpulses = New Integer() {0, 0, 0, 0, 0, 0}
+
+    'Public intchecksum As Integer
     'Public maintimer As Double
     'Public warmuptimer As Double
     'Public currenttest As Integer
@@ -51,6 +55,9 @@ Module _Public
     Public reftemplabel() As Label
     Public refpulselabel() As Label
     Public testpulselabel() As Label
+
+
+    Public Gi_BL_Debug As Integer = 0
 
     Public Class ControlArrayUtils
 
