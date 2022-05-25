@@ -2,7 +2,7 @@
     Const NUM_OF_ROWS As Integer = 5
 
     Dim Gs_str As String = "foo"
-    Dim intpulsecount As Integer = 999999
+    Dim intpulsecount As Integer
     '''''''''''''' Dim testpulses = New Integer() {1, 2, 3, 4, 5, 6, 7}
     Dim checksum As Integer
     Dim backit As Integer = 9999
@@ -52,6 +52,7 @@
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
+    Dim endtestnum As Integer = 6
 
     Dim bigtimer As Double = 0.0
 
@@ -339,6 +340,14 @@
         testtimerlabel(5).Text = 555 ' random bug
 
         If (testongoing) Then
+            'END TEST IF NO MORE TEST SPECIFIED
+            If (currenttest = endtestnum) Then
+                testongoing = False
+            End If
+        End If
+
+        If (testongoing) Then
+
             bigtimer += 0.1
 
             'check for end of warmup
@@ -355,17 +364,19 @@
 
 
             If (Not duringwarmup) Then
-                debug1 = testtimers(currenttest)
                 testtimers(currenttest) += 0.1 ' THIS NOT WORKING
-                debug1 = testtimers(currenttest)
-                testpulses(currenttest) = intpulsecount ' - warmuptimes(currenttest)
+                'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
+                testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
             End If
 
             'check for end condition off of pulses/volume
             'go to next test
+            debug1 = testpulses(currenttest)
+            debug2 = CInt(endvoltxtbox(currenttest).Text)
             If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
                 duringwarmup = True
-                'currenttest += 1
+                currenttest += 1
+                warmuptimer = 0  'reset warmup timer
             End If
 
             'end test ongoing
@@ -394,7 +405,11 @@
         currenttest = 1
         'assign vals based on user input
         For startiterator = 1 To 6
-            ' testusrwarmup(startiterator) = 
+            If (flowratetxtbox(startiterator).Text = "") Then
+                endtestnum = startiterator
+                startiterator = 7
+            End If
+            'find something that disables start button!!!
         Next
     End Sub
 
