@@ -92,30 +92,30 @@
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
 
-    Public Function scanone() As String
-        'test check this way??
-        Dim go = True
-        Dim theString = ""
+    'Public Function scanone() As String
+    '    'test check this way??
+    '    Dim go = True
+    '    Dim theString = ""
 
-        While (go)
+    '    While (go)
 
-            'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
-            'If (Gs_currstr.Chars(stritt) = ",") Then
-            If (Mid(Gs_currstr, stritt, 1) = ",") Then
-                go = False
-            Else
-                'append to string
-                'theString += Gs_currstr.Chars(stritt).ToString()
-                theString += Mid(Gs_currstr, stritt, 1)
-                stritt += 1
-            End If
+    '        'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
+    '        'If (Gs_currstr.Chars(stritt) = ",") Then
+    '        If (Mid(Gs_currstr, stritt, 1) = ",") Then
+    '            go = False
+    '        Else
+    '            'append to string
+    '            'theString += Gs_currstr.Chars(stritt).ToString()
+    '            theString += Mid(Gs_currstr, stritt, 1)
+    '            stritt += 1
+    '        End If
 
-        End While
-        'maybe extra iteration to account for space??
-        stritt += 1
-        Return theString
+    '    End While
+    '    'maybe extra iteration to account for space??
+    '    stritt += 1
+    '    Return theString
 
-    End Function
+    'End Function
 
     Public Sub goodParse()
         Dim zindex As Integer = 1
@@ -145,39 +145,36 @@
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
     End Sub
 
-    Public Function firstParse() As String
-        Dim Main As New Main
-        Dim go = True
-        Dim theString = ""
-        'diff here is discard if first char is not >
-        If (Mid(Gs_currstr, 1, 1) <> ">") Then
-            isgood = False
-            Return inputlabel
-        End If
-        While (go)
+    'Public Function firstParse() As String
+    '    Dim Main As New Main
+    '    Dim go = True
+    '    Dim theString = ""
+    '    'diff here is discard if first char is not >
+    '    If (Mid(Gs_currstr, 1, 1) <> ">") Then
+    '        isgood = False
+    '        Return inputlabel
+    '    End If
+    '    While (go)
 
-            'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
-            'If (Gs_currstr.Chars(stritt) = ",") Then
-            If (Mid(Gs_currstr, stritt, 1) = ",") Then
-                go = False
-            Else
-                'append to string
-                'theString += Gs_currstr.Chars(stritt).ToString()
-                theString += Mid(Gs_currstr, stritt, 1)
-                stritt += 1
-            End If
+    '        'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
+    '        'If (Gs_currstr.Chars(stritt) = ",") Then
+    '        If (Mid(Gs_currstr, stritt, 1) = ",") Then
+    '            go = False
+    '        Else
+    '            'append to string
+    '            'theString += Gs_currstr.Chars(stritt).ToString()
+    '            theString += Mid(Gs_currstr, stritt, 1)
+    '            stritt += 1
+    '        End If
 
-        End While
-        'maybe extra iteration to account for space??
-        stritt += 1
-        Return theString
-    End Function
+    '    End While
+    '    'maybe extra iteration to account for space??
+    '    stritt += 1
+    '    Return theString
+    'End Function
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
         Static ioStr As String = ""
-
-
-        Timer_Old()
         ioStr = ""
         Gs_currstr = ""
         mainclocklbl.Text = TimeString ' 24 hour time
@@ -185,31 +182,21 @@
 
             If (mainserialport1.ReadBufferSize > 0) Then
                 antibug8.Text = "CONNECTED YAY"
-                'start parsing stuff
                 ioStr += Trim(mainserialport1.ReadExisting())
                 Dim bruh2 = ioStr
                 If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
                     Gs_currstr = ioStr
-                    goodParse()  'NEWLY ADDED
-                    'ioStr = ""
+                    goodParse()
                     Gs_str = Gs_currstr  ' this is for debugging
                     Dim tempinstr = Gs_str
+
+                    'start to verify crc
                     Dim startrefcrc As Integer = InStr(tempinstr, "|")
                     Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
                     Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     refcrcstr = tcrc
                     refcrcint = CInt(refcrcstr)
-                    'Dim aa As String = scanone()
-                    'Dim ab As String = scanone()
-                    'Dim ac As String = scanone()
-                    'Dim ad As String = scanone()
-                    'Dim ae As String = scanone()
-                    'Dim af As String = scanone()
-                    'Dim Gs_inputchecksum As String = scanone()
-
-                    ''looking for the 7th one
-
                     iAccum = &HFFFF
                     'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
                     Dim ii As Integer
@@ -220,90 +207,88 @@
                         Next ' end of for loop
                     End If
 
+                    'only update vals if crc is good
                     If (iAccum = refcrcint) Then
                         refUpdateVals()
                     End If
                 End If
-                'Returns an integer specifying the start position of the first occurrence of one string within another. 
-                'The Integer Is a one-based index If a match Is found. If no match Is found, the function returns zero.
-                ' 7 members
-                'stritt = 1
-                '''''PASTE AFTER THIS LINE HEREEEEEEEEEEEEEE
+            End If
+        End If
+        'start doing things with the read data
+        Dim debug1 As Integer = testpulses(currenttest)
+        Dim debug2 As Integer = testendvolume(currenttest)
+        Dim debug3 As Integer = currenttest
 
-                'first portion
-                'stritt = 1
-                'If Len(Gs_currstr) > 10 Then
-                '    'change this one off condition
+        'debugg
+        antibug1.Text = "big timer: " & CStr(bigtimer)
+        antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
+        antibug3.Text = "total pulse count: " + intpulsecount.ToString()
+        antibug4.Text = "current test: " + currenttest.ToString()
+        antibug6.Text = "during warmup: " + duringwarmup.ToString()
+        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
+        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
 
-                '    'diff condition for the first bc must have > else discard
-                '    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
-                '    'btw ONLY CONNECT IF LABEL HAS Cal-DGM
-                '    inputlabel = scanone()
+        'update labels with good values
+        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
+        testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+        reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
 
-                '    inputpressure = scanone()
-                '    intpressure = Val(inputpressure)
-                '    doublepressure = (intpressure / 100)
+        'If overall test is currently going
+        If (testongoing) Then
+            'ensure correct string:
+            teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
 
-                '    inputambtemp = scanone()
-                '    intambtemp = Val(inputpressure)
-                '    doubleambtemp = (intambtemp / 100)
+            'END TEST IF NO MORE TEST SPECIFIED
+            If (currenttest = endtestnum) Then
+                testongoing = False
+                testover = True
+                teststatuslabel2.Text = "Test Over"
+            End If
+        End If
 
-                '    inputreftemp = scanone()
-                '    intreftemp = Val(inputreftemp)
-                '    doublereftemp = (intreftemp / 10)
+        'If overall test is currently going and end condition not met
+        If (testongoing) Then
 
-                '    inputambhum = scanone()
-                '    intambhum = Val(inputambhum)
-                '    doubleambhum = (intambhum / 10)
+            bigtimer += 0.1
 
-
-                '    inputpulsecount = scanone()
-                '    intpulsecount = CInt(inputpulsecount)
-
-
-                '    Gi_BL_Debug = CInt(inputpulsecount)
-
-
-
-
-                '    Gs_inputchecksum = scanone()
-                '    intchecksum = Val(Gs_inputchecksum)
-                '    trimmedcrc = Gs_inputchecksum.Replace("|", "")
-                '    Gi_inttrimmedcrc = Val(trimmedcrc)
-
-
-                'End If
-                'verify checksum
-
-                'CRC TIME
-                'iAccum = &HFFFF
-                ''gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP
-                'If (Gs_currstr.Length <> vbNullString) Then
-                '    For i As Integer = 0 To (InStr(Gs_currstr, Gs_inputchecksum) - 1)
-                '        iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(Gs_currstr(i))) And &HFF)))
-                '    Next ' end of for loop
-                'End If
-
-                'If (Not iAccum = Val(Gs_inputchecksum)) Then
-                '    gooddata = False
-                'End If
-
-                'If (gooddata) Then
-                '    'ONLY UPDATE VALS IF DATA IS GOOD
-                'End If
-
+            'check for end of warmup
+            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
+                duringwarmup = False
             End If
 
+            'increment warmup timer(s)
+            If (duringwarmup) Then
+                warmuptimer += 0.1
+                warmuptimes(currenttest) += 0.1
+                warmuppulses(currenttest) = intpulsecount
+            End If
+
+            'USE VALS FROM INPUT
+            If (Not duringwarmup) Then
+                testtimers(currenttest) += 0.1
+                'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
+                testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
+            End If
+
+            'check for end condition off of pulses/volume
+            'go to next test
+            debug1 = testpulses(currenttest)
+            debug2 = CInt(endvoltxtbox(currenttest).Text)
+            If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
+                duringwarmup = True
+                currenttest += 1
+                warmuptimer = 0  'reset warmup timer
+            End If
+
+            'end test ongoing
         End If
-        'NEW STUFF bruh
-
-        '''''''''''''''''''''''''''''''''''''''''''''''''''refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
-
-        'rrefpulselabel(currenttest).Text = intpulsecount
 
 
-        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString() ' THIS DOES NOT FLASH
-        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        'to process after test
+        If (testover) Then
+            'process the vals lmao
+        End If
 
     End Sub
 
@@ -406,6 +391,8 @@
         antibug4.Text = "current test: " + currenttest.ToString()
         'antibug5.Text = "testonging: " + testongoing.ToString()
         antibug6.Text = "during warmup: " + duringwarmup.ToString()
+        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString() ' THIS DOES NOT FLASH
+        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
         'antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
 
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))  ' this works
