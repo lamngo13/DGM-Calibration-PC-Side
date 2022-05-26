@@ -271,19 +271,37 @@
                     'xdCalculatedCS
                     'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum) 'THIS YIELDS "C"
                     xdCalculatedCS = 0 ' reset just to be sure
-                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' one before "!"
+                    'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' one before "!"
+
+                    Dim a As String = Mid(xdTempInStr, 2, 1)
+                    Dim b As String = Mid(xdTempInStr, 3, 1)
+                    Dim c As String = Mid(xdTempInStr, 4, 1)
+                    Dim d As String = Mid(xdTempInStr, 5, 1)
+
+                    Dim ii As Integer = InStr(xdTempInStr, "!")
+                    Dim iii As Integer = Len(xdTempInStr)
+
+                    For j As Integer = 2 To InStr(xdTempInStr, "!")
                         'redo cs if past 9999
+
+
+                        xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
+
                         If (xdCalculatedCS > 9999) Then
-                            xdCalculatedCS -= 1000
+                            xdCalculatedCS -= 10000
                         End If
 
-                        xdCalculatedCS += Asc(xdTempInStr(j))
                         bruh7 = Asc(xdTempInStr(j))
                         'add data to cs
                     Next
+                    xdCalculatedCS = 10000 - xdCalculatedCS
                     bruh7 = bruh7 ' dummy for debugging
                     xdTempInStr = xdTempInStr ' for debugging
-                    Dim bruh6 As Integer = 420 ' this for breakpoint
+                    Dim bruh6 As Integer = xdParsedCheckInt - xdCalculatedCS ' this for breakpoint
+                    bruh6 = bruh6
+
+                    'update values if good
+                    'what values do I need: volume, temp
                     If (xdCalculatedCS = xdParsedCheckInt) Then
                         'updatevals XD
                         Dim bruh5 As Integer = 420 ' this for breakpoint
