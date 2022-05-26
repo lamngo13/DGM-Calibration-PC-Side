@@ -163,10 +163,10 @@
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
     End Sub
 
-    Public Sub xdUpdateVals()   'somewhere it's one off!!!!!
-        Dim aaa = xdCurrStr  ' debugging
-        xdInputVol = CDbl(s_xd_in(XD_IN_VOL)) ' TODO PARSING IS OFFFFFFFF
-        xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))  ' TODO CHANGE THSI
+    Public Sub xdUpdateVals()
+        Dim aaa = xdCurrStr
+        xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
+        xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
     End Sub
 
@@ -225,6 +225,7 @@
         antibug6.Text = "during warmup: " + duringwarmup.ToString()
         antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
         antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        'end debugg, safe to take out in future
 
         ''START PARSING FROM DGM---------------------------------------------
         xdIoStr = ""
@@ -270,7 +271,7 @@
         End If
 
 
-        'update labels with good values
+        'update labels with good values **************************************************
         'ref ------------------
         refpulselabel(currenttest).Text = CStr(refvols(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
@@ -321,7 +322,7 @@
                 warmuppulses(currenttest) = intpulsecount
             End If
 
-            'USE VALS FROM INPUT
+            'USE VALS FROM INPUT **********************************************************
             If (Not duringwarmup) Then
 
                 'ref stuff ------------------
@@ -332,7 +333,6 @@
                 testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
                 pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
                 refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
-                'stdrefvols(currenttest) = 555
                 stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                 'xd stuff --------------------
@@ -352,12 +352,15 @@
                 currenttest += 1 'goto next test
                 warmuptimer = 0  'reset warmup timer
             End If
+
+            'End if testongoing
         End If
 
 
         'to process after test
         If (testover) Then
             'process the vals lmao like average them and move them to a spreadsheet
+            'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
             endlabel1.Text = "curr test num: " + CStr(currenttest)
             Dim avgStdRefVolPostTest As Double
