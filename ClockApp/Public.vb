@@ -10,8 +10,8 @@ Module _Public
     Public Gi_inttrimmedcrc As Integer
     Public Gs_tempunits As String = "Celsius"
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Public usrStdTemp = New Double = 20 ' 20 degrees celsius
-    Public usrStdPressure = New Double = 760 '760 mmHg
+    Public usrStdTemp As Double = 20 ' 20 degrees celsius
+    Public usrStdPressure As Double = 760 '760 mmHg
     'dim numbers = New Integer()
 
 

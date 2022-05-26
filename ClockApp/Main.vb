@@ -319,8 +319,8 @@
                 pressureArr(currenttest) = conversions.cIntToDouble(intpressure)
                 refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
                 'stdrefvols(currenttest) = 555
-                'stdrefvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) * usrrefscalingfactor ' DO I NEED DIFF VALS FOR THIS *********************
-                stdrefvols(currenttest) = (refvols(currenttest))
+                stdrefvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) ' DO I NEED DIFF VALS FOR THIS *********************
+                ''''''stdrefvols(currenttest) = refvols(currenttest) * (usrStdTemp / testreftemp(currenttest))
                 ''standardize(invol As Double, inTemp As Double, inPressure As Double)
 
                 'xd stuff --------------------
