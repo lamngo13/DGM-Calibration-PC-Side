@@ -18,6 +18,13 @@
     Dim checksum As Integer
     Dim backit As Integer = 9999
 
+    Dim xdCurrStr As String = ""
+    Dim xdIoStr As String = ""
+    Dim xdParsedCheckStr As String = ""
+    Dim xdParsedCheckInt As Integer
+    Dim xdStartCheck As Integer
+    Dim xdEndCheck As Integer
+
 
     'Dim Gs_currstr As String
     Dim debugstr As String
@@ -197,12 +204,13 @@
                     Gs_str = Gs_currstr  ' this is for debugging
                     Dim tempinstr = Gs_str
 
-                    'start to verify crc
+                    'read input crc
                     Dim startrefcrc As Integer = InStr(tempinstr, "|")
                     Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
                     Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     refcrcstr = tcrc
                     refcrcint = CInt(refcrcstr)
+                    'check ur own local crc calculation
                     iAccum = &HFFFF
                     'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
                     Dim ii As Integer
@@ -220,6 +228,9 @@
                 End If
             End If
         End If
+
+        ''START PARSING FROM DGM
+
         'start doing things with the read data ' ----------------------------------------
         Dim debug1 As Integer = testpulses(currenttest)
         Dim debug2 As Integer = testendvolume(currenttest)
@@ -233,7 +244,34 @@
         antibug6.Text = "during warmup: " + duringwarmup.ToString()
         antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
         antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+
+        ''START PARSING FROM DGM---------------------------------------------
+        xdIoStr = ""
+        xdCurrStr = ""
         If (xd502port.IsOpen) Then
+            If (xd502port.ReadBufferSize > 0) Then
+                'read data
+                xdIoStr = xd502port.ReadExisting()
+                Dim bruh4 As String = xdIoStr
+                If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
+                    xdCurrStr = xdIoStr
+                    'MAKE AN XD VERSION OF THISgoodParseRef()
+                    Dim xdTempInStr = xdCurrStr
+
+                    'read checksum input
+                    xdStartCheck = InStr(xdTempInStr, "!CS:, ")
+                    'Dim startrefcrc As Integer = InStr(tempinstr, "|")
+                    'Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
+                    'Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
+                    'refcrcstr = tcrc
+                    'refcrcint = CInt(refcrcstr)<<<
+                    xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
+                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck + 1, xdEndCheck - xdStartCheck)
+                    xdParsedCheckInt = CInt(xdParsedCheckStr)
+
+                    'stuff
+                End If
+            End If
             'antibug11.Text = "xd502input: " + xd502port.ReadExisting()
         End If
 
