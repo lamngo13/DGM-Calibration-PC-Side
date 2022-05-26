@@ -86,9 +86,9 @@
     Dim refcrcstr As String
     Dim refcrcint As Integer
 
-    Const XD_IN_VOL = 20
-    Const XD_IN_TEMP = 10
-    Const XD_IN_DATE = 1
+    Const XD_IN_VOL = 20 + 1
+    Const XD_IN_TEMP = 10 + 1
+    Const XD_IN_DATE = 1 + 1
 
     Dim xdInputVol As Double
     Dim xdInputTemp As Double
@@ -161,7 +161,7 @@
 
     Public Sub xdUpdateVals()   'somewhere it's one off!!!!!
         Dim aaa = xdCurrStr  ' debugging
-        xdInputVol = CDbl(s_xd_in(XD_IN_VOL + 1)) ' TODO PARSING IS OFFFFFFFF
+        xdInputVol = CDbl(s_xd_in(XD_IN_VOL)) ' TODO PARSING IS OFFFFFFFF
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))  ' TODO CHANGE THSI
         xdDate = s_xd_in(XD_IN_DATE)
     End Sub
@@ -296,6 +296,7 @@
         If (testongoing) Then
 
             bigtimer += 0.1
+            bigtimer = Math.Round(bigtimer, 2)
 
             'check for end of warmup
             If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
@@ -305,14 +306,17 @@
             'increment warmup timer(s)
             If (duringwarmup) Then
                 warmuptimer += 0.1
+                warmuptimer = Math.Round(warmuptimer, 2)
                 warmuptimes(currenttest) += 0.1
                 warmuppulses(currenttest) = intpulsecount
             End If
 
             'USE VALS FROM INPUT
             If (Not duringwarmup) Then
+
                 'ref stuff ------------------
                 testtimers(currenttest) += 0.1
+                testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
                 testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
@@ -320,12 +324,11 @@
                 refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
                 'stdrefvols(currenttest) = 555
                 stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
-                ''''''stdrefvols(currenttest) = refvols(currenttest) * (usrStdTemp / testreftemp(currenttest))
-                ''standardize(invol As Double, inTemp As Double, inPressure As Double)
 
                 'xd stuff --------------------
                 testxdtemp(currenttest) = Math.Round(xdInputTemp, 2)
                 testxdvol(currenttest) = Math.Round(xdInputVol, 2)
+
             End If
 
             'check for end condition off of pulses/volume
