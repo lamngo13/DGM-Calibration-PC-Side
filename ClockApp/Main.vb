@@ -11,6 +11,7 @@
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8
 
+    Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
     Dim intpulsecount As Integer
     '''''''''''''' Dim testpulses = New Integer() {1, 2, 3, 4, 5, 6, 7}
@@ -91,6 +92,7 @@
 
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
+    Dim xdportgood As Boolean = False
 
     'Public Function scanone() As String
     '    'test check this way??
@@ -117,7 +119,7 @@
 
     'End Function
 
-    Public Sub goodParse()
+    Public Sub goodParseRef()
         Dim zindex As Integer = 1
         Dim tempStr As String = ""
         Dim i As Integer
@@ -133,6 +135,10 @@
                 End If
             End If
         Next
+    End Sub
+
+    Public Sub goodParseXD()
+
     End Sub
 
     Public Sub refUpdateVals()
@@ -178,16 +184,16 @@
         ioStr = ""
         Gs_currstr = ""
         mainclocklbl.Text = TimeString ' 24 hour time
-        If (mainserialport1.IsOpen) Then
+        If (refport.IsOpen) Then
 
-            If (mainserialport1.ReadBufferSize > 0) Then
-                antibug8.Text = "CONNECTED YAY"
-                ioStr += Trim(mainserialport1.ReadExisting())
+            If (refport.ReadBufferSize > 0) Then
+                antibug8.Text = "REFCONNECTED"
+                ioStr += Trim(refport.ReadExisting())
                 Dim bruh2 = ioStr
                 If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
                     Gs_currstr = ioStr
-                    goodParse()
+                    goodParseRef()
                     Gs_str = Gs_currstr  ' this is for debugging
                     Dim tempinstr = Gs_str
 
@@ -266,28 +272,23 @@
             'USE VALS FROM INPUT
             If (Not duringwarmup) Then
                 testtimers(currenttest) += 0.1
-                'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
             End If
 
             'check for end condition off of pulses/volume
             'go to next test
-            debug1 = testpulses(currenttest)
-            debug2 = CInt(endvoltxtbox(currenttest).Text)
             If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
                 duringwarmup = True
-                currenttest += 1
+                currenttest += 1 'goto next test
                 warmuptimer = 0  'reset warmup timer
             End If
-
-            'end test ongoing
         End If
 
 
         'to process after test
         If (testover) Then
-            'process the vals lmao
+            'process the vals lmao like average them and move them to a spreadsheet
         End If
 
     End Sub
@@ -315,27 +316,33 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles connectbutton.Click
         Dim comgo As Boolean = True
+        Dim xdcomgo As Boolean = True
         Dim tempcomport As Integer = 1
         Dim comstr As String = "COM"
+        Dim refportsodontmesswith As Integer
+
+        Dim bruh2 As String = "bruh2"
+
         If (Not refportgood) Then
+            'ref connection
             While (comgo)
                 'comstr += CStr(tempcomport)
                 Try
-                    mainserialport1.PortName = comstr + CStr(tempcomport)
-                    mainserialport1.Open()
+                    refport.PortName = comstr + CStr(tempcomport)
+                    refport.Open()
                     'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
                     'maybe bad THIS ISNT WORKING MAN
                     Dim fooinputstr As String
                     Dim zgo As Boolean = True
                     Dim giveup As Integer = 0
                     While (zgo)
-                        fooinputstr = mainserialport1.ReadExisting()
+                        fooinputstr = refport.ReadExisting()
                         If (fooinputstr.Length > 1) Then
                             zgo = False
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(500) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                        Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
                         If (giveup > 5) Then
@@ -343,11 +350,10 @@
                         End If
                     End While
                     'fooinputstr = SerialPort1.ReadExisting()
-                    If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'PROBLEM HERE (I think it's because the serial port sends junk before an actual thing?? Or idk)
-                        'THIS WORKS IN DEBUGGING BUT I SUSPECT ITS A TIMING ISSUE
-                        'ID SAY SLEEP FOR A BIT IFF A COM PORT CAN BE OPENED
+                    If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'found it!
                         refportgood = True
                         comgo = False
+                        refportsodontmesswith = tempcomport
                     End If
                     'comgo = False
                     'serial port name??
@@ -355,7 +361,62 @@
                     tempcomport += 1
                 End Try
             End While
+            'end ref
         End If
+
+        'XD502 Connection
+        comstr = "COM"
+        tempcomport = 1
+        If (Not xdportgood) Then
+
+            'don't overlap com ports
+            If (tempcomport = refportsodontmesswith) Then
+                tempcomport += 1
+            End If
+
+            'ref connection
+            While (xdcomgo)
+                'comstr += CStr(tempcomport)
+                'DEBUG TAKE OUT
+                If tempcomport = 5 Then
+                    Dim bruh As String = "bruh"
+
+                End If
+                Try
+                    xd502port.PortName = comstr + CStr(tempcomport)
+                    xd502port.Open()
+                    Dim fooinputstr As String
+                    Dim zgo As Boolean = True
+                    Dim giveup As Integer = 0
+                    While (zgo)
+                        fooinputstr = xd502port.ReadExisting()
+                        If (fooinputstr.Length > 1) Then
+                            zgo = False
+                        End If
+                        'give up will end the while loop if the com port goes a long time without transmitting anything
+                        giveup += 1
+                        Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
+                        'LIERALLY 10 ms WORKS BUT 9 DOESNT
+                        'so im going to use 15 just to be safe
+                        If (giveup > 5) Then
+                            zgo = False
+                        End If
+                    End While
+                    'fooinputstr = SerialPort1.ReadExisting()
+                    If (InStr(1, fooinputstr, "-502", 1)) Then
+                        xdportgood = True
+                        xdcomgo = False
+                    End If
+                    'comgo = False
+                    'serial port name??
+                Catch ex As Exception
+                    tempcomport += 1
+                End Try
+            End While
+            'end ref
+        End If
+
+
 
     End Sub
     Public Function send_error()
