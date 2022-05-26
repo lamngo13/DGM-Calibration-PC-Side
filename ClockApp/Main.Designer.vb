@@ -105,7 +105,6 @@ Partial Class Main
         Me.antibug6 = New System.Windows.Forms.Label()
         Me.antibug7 = New System.Windows.Forms.Label()
         Me.antibug8 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.testtimerlabel6 = New System.Windows.Forms.Label()
         Me.testtimerlabel5 = New System.Windows.Forms.Label()
         Me.testtimerlabel4 = New System.Windows.Forms.Label()
@@ -966,10 +965,6 @@ Partial Class Main
         Me.antibug8.TabIndex = 79
         Me.antibug8.Text = "antibug8"
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        '
         'testtimerlabel6
         '
         Me.testtimerlabel6.AutoSize = True
@@ -1309,7 +1304,6 @@ Partial Class Main
     Friend WithEvents antibug6 As Label
     Friend WithEvents antibug7 As Label
     Friend WithEvents antibug8 As Label
-    Friend WithEvents Timer1 As Timer
     Friend WithEvents testtimerlabel6 As Label
     Friend WithEvents testtimerlabel5 As Label
     Friend WithEvents testtimerlabel4 As Label

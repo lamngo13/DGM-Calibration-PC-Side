@@ -206,12 +206,7 @@
             End If
         End If
 
-        ''START PARSING FROM DGM
 
-        'start doing things with the read data ' ----------------------------------------
-        Dim debug1 As Integer = testpulses(currenttest)
-        Dim debug2 As Integer = testendvolume(currenttest)
-        Dim debug3 As Integer = currenttest
 
         'debugg
         antibug1.Text = "big timer: " & CStr(bigtimer)
@@ -244,7 +239,6 @@
                     xdParsedCheckInt = CInt(xdParsedCheckStr)
 
                     xdCalculatedCS = 0 ' reset just to be sure
-                    'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' one before "!"
 
                     For j As Integer = 2 To InStr(xdTempInStr, "!")
 
@@ -257,7 +251,6 @@
                     xdCalculatedCS = 10000 - xdCalculatedCS
 
                     'update values if good
-                    'what values do I need: volume, temp
                     If (xdCalculatedCS = xdParsedCheckInt) Then
                         xdUpdateVals()
                     End If
@@ -273,12 +266,9 @@
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
-        testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
-        'UNCOMMENT AFTER U FIX PARSING
         'dgm
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
-
-        'dgm
+        testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
 
         'If overall test is currently going
         If (testongoing) Then
@@ -312,11 +302,11 @@
 
             'USE VALS FROM INPUT
             If (Not duringwarmup) Then
+                'ref stuff ------------------
                 testtimers(currenttest) += 0.1
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
-                'xd stuff
-                'weird double stuff testxdtemp(currenttest) = conversions.cIntToDouble(xdInputTemp)
+                'xd stuff --------------------
                 testxdtemp(currenttest) = xdInputTemp
                 testxdvol(currenttest) = xdInputVol
             End If
@@ -340,7 +330,7 @@
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
+        'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
         endvoltxtbox = ControlArrayUtils.getControlArray(Me, "endvoltxtbox", NUM_OF_ROWS)
         warmuptxtbox = ControlArrayUtils.getControlArray(Me, "warmuptxtbox", NUM_OF_ROWS)
@@ -359,6 +349,7 @@
         Dim comstr As String = "COM"
         Dim refportsodontmesswith As Integer
 
+        'REF CONNECTION ================================================================================================================================
         If (refport.IsOpen) Then
             refportgood = True
             comgo = False
@@ -367,15 +358,12 @@
         If (Not refportgood) Then
             'ref connection
             While (comgo)
-                'comstr += CStr(tempcomport)
                 Try
                     If (tempcomport > 300) Then
                         comgo = False
                     End If
                     refport.PortName = comstr + CStr(tempcomport)
                     refport.Open()
-                    'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
-                    'maybe bad THIS ISNT WORKING MAN
                     Dim fooinputstr As String
                     Dim zgo As Boolean = True
                     Dim giveup As Integer = 0
@@ -386,21 +374,16 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
-                        'LIERALLY 10 ms WORKS BUT 9 DOESNT
-                        'so im going to use 15 just to be safe
+                        Threading.Thread.Sleep(200)
                         If (giveup > 5) Then
                             zgo = False
                         End If
                     End While
-                    'fooinputstr = SerialPort1.ReadExisting()
                     If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'found it!
                         refportgood = True
                         comgo = False
                         refportsodontmesswith = tempcomport
                     End If
-                    'comgo = False
-                    'serial port name??
                 Catch ex As Exception
                     tempcomport += 1
                 End Try
@@ -408,7 +391,7 @@
             'end ref
         End If
 
-        'XD502 Connection
+        'XD502 Connection============================================================================================================
         If (xd502port.IsOpen) Then
             xdportgood = True
             xdcomgo = False
@@ -422,10 +405,8 @@
                 tempcomport += 1
             End If
 
-            'ref connection
+            'XD connection
             While (xdcomgo)
-                'comstr += CStr(tempcomport)
-                'DEBUG TAKE OUT
                 If tempcomport = 5 Then
                     Dim bruh As String = "bruh"
 
@@ -446,9 +427,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
-                        'LIERALLY 10 ms WORKS BUT 9 DOESNT
-                        'so im going to use 15 just to be safe
+                        Threading.Thread.Sleep(200)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -458,8 +437,6 @@
                         xdportgood = True
                         xdcomgo = False
                     End If
-                    'comgo = False
-                    'serial port name??
                 Catch ex As Exception
                     tempcomport += 1
                 End Try
@@ -531,7 +508,7 @@
 
     End Sub
 
-    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
         'If testongoing Then bigtimer += 0.1
     End Sub
 End Class
