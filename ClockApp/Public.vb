@@ -52,6 +52,7 @@ Module _Public
     Public testtimerlabel() As Label
     Public testtemplabel() As Label
     Public pressureLabel() As Label
+    Public stdVolLabel() As Label
 
 
     Public Gi_BL_Debug As Integer = 0
@@ -155,7 +156,9 @@ Module _Public
 
         Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
-            Return (invol * (usrStdTemp / inTemp) * (inPressure / usrStdPressure))
+            Dim returnable As Double
+            returnable = (invol * (usrStdTemp / inTemp) * (inPressure / usrStdPressure))
+            Return returnable
 
         End Function
 

@@ -65,6 +65,7 @@
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim stdrefvols = New Double() {0, 11, 22, 33, 44, 55, 66} ' DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -271,6 +272,9 @@
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
         pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
+        'Dim debugz As Integer = currenttest
+        stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))  'HMMM PROBLEM
+        'stdVolLabel(currenttest).Text = "bruh machine"
         'dgm
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
@@ -314,8 +318,11 @@
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
                 pressureArr(currenttest) = conversions.cIntToDouble(intpressure)
                 refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
-                'refvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) * usrrefscalingfactor ' DO I NEED DIFF VALS FOR THIS *********************
+                'stdrefvols(currenttest) = 555
+                'stdrefvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) * usrrefscalingfactor ' DO I NEED DIFF VALS FOR THIS *********************
+                stdrefvols(currenttest) = (refvols(currenttest))
                 ''standardize(invol As Double, inTemp As Double, inPressure As Double)
+
                 'xd stuff --------------------
                 testxdtemp(currenttest) = xdInputTemp
                 testxdvol(currenttest) = xdInputVol
@@ -350,6 +357,7 @@
         testtimerlabel = ControlArrayUtils.getControlArray(Me, "testtimerlabel", NUM_OF_ROWS)
         testtemplabel = ControlArrayUtils.getControlArray(Me, "testtemplabel", NUM_OF_ROWS)
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
+        stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
 
     End Sub
 
