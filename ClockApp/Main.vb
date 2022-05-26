@@ -24,7 +24,8 @@
     Dim xdParsedCheckInt As Integer
     Dim xdStartCheck As Integer
     Dim xdEndCheck As Integer
-
+    Dim xdGoodData As Boolean
+    Dim xdCalculatedCS As Integer
 
     'Dim Gs_currstr As String
     Dim debugstr As String
@@ -100,6 +101,7 @@
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
     Dim xdportgood As Boolean = False
+    Dim bruh7 As Integer
 
     'Public Function scanone() As String
     '    'test check this way??
@@ -261,20 +263,32 @@
                     'read checksum input
                     Dim lengthBetweenCSandNum As Integer = 8 '6 og
                     xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
-                    'Dim startrefcrc As Integer = InStr(tempinstr, "|")
-                    'Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
-                    'Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
-                    'refcrcstr = tcrc
-                    'refcrcint = CInt(refcrcstr)<<<
-
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
-                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
+                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck - 1, (xdEndCheck + 1) - xdStartCheck)
                     xdParsedCheckInt = CInt(xdParsedCheckStr)
 
-                    'stuff
+                    'calculate local checksum
+                    'xdCalculatedCS
+                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' gotta subtract bc some things aren't calculated in the cs
+                        'redo cs if past 9999
+                        If (xdCalculatedCS > 9999) Then
+                            xdCalculatedCS -= 1000
+                        End If
+
+                        xdCalculatedCS += Asc(xdTempInStr(j))
+                        bruh7 = Asc(xdTempInStr(j))
+                        'add data to cs
+                    Next
+                    bruh7 = bruh7 ' dummy for debugging
+                    xdTempInStr = xdTempInStr ' for debugging
+                    Dim bruh6 As Integer = 420 ' this for breakpoint
+                    If (xdCalculatedCS = xdParsedCheckInt) Then
+                        'updatevals XD
+                        Dim bruh5 As Integer = 420 ' this for breakpoint
+                    End If
+
                 End If
             End If
-            'antibug11.Text = "xd502input: " + xd502port.ReadExisting()
         End If
 
 
@@ -329,6 +343,8 @@
             End If
         End If
 
+        'NOW START STUFF FOR XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+
 
         'to process after test
         If (testover) Then
@@ -375,6 +391,9 @@
             While (comgo)
                 'comstr += CStr(tempcomport)
                 Try
+                    If (tempcomport > 300) Then
+                        comgo = False
+                    End If
                     refport.PortName = comstr + CStr(tempcomport)
                     refport.Open()
                     'AFTER U OPEN THE COMPORT SCAN FOR Cal-DGM
@@ -392,7 +411,7 @@
                         Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
-                        If ((giveup > 5) Or (tempcomport > 300)) Then
+                        If (giveup > 5) Then
                             zgo = False
                         End If
                     End While
@@ -434,6 +453,9 @@
 
                 End If
                 Try
+                    If (tempcomport > 300) Then
+                        xdcomgo = False
+                    End If
                     xd502port.PortName = comstr + CStr(tempcomport)
                     xd502port.Open()
                     Dim fooinputstr As String
@@ -449,7 +471,7 @@
                         Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
-                        If ((giveup > 5) Or (tempcomport > 300)) Then
+                        If (giveup > 5) Then
                             zgo = False
                         End If
                     End While
