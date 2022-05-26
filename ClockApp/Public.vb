@@ -48,6 +48,7 @@ Module _Public
     Public refpulselabel() As Label
     Public testpulselabel() As Label
     Public testtimerlabel() As Label
+    Public testtemplabel() As Label
 
 
     Public Gi_BL_Debug As Integer = 0

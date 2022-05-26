@@ -1,6 +1,5 @@
 ﻿Public Class Main
     Const NUM_OF_ROWS As Integer = 5
-    'Const REF_MEMBERS_MAX As Integer = 25
 
     Const REF_INPUT_LABEL As Integer = 1
     Const REF_INPUT_PRESSURE As Integer = 2
@@ -27,12 +26,10 @@
     Dim xdGoodData As Boolean
     Dim xdCalculatedCS As Integer
 
-    'Dim Gs_currstr As String
     Dim debugstr As String
     Dim stritt As Integer = 1
     Dim isgood As Boolean = True
     Dim calchecksum As Integer
-    '//output: label, pressure, ambient temp, pretend ref meter temp, ambient humidity, pulse count, checksum
     Dim inputlabel As String = ""
 
     Dim inputpressure As String = ""
@@ -70,6 +67,8 @@
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
+
+    Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim endtestnum As Integer = 6
@@ -89,9 +88,11 @@
 
     Const XD_IN_VOL = 20
     Const XD_IN_TEMP = 10
+    Const XD_IN_DATE = 1
 
     Dim xdInputVol As Integer
-    Dim xdInputTemp As Integer
+    Dim xdInputTemp As Double
+    Dim xdDate As String
 
 
 
@@ -111,30 +112,7 @@
     Dim xdportgood As Boolean = False
     Dim bruh7 As Integer
 
-    'Public Function scanone() As String
-    '    'test check this way??
-    '    Dim go = True
-    '    Dim theString = ""
 
-    '    While (go)
-
-    '        'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
-    '        'If (Gs_currstr.Chars(stritt) = ",") Then
-    '        If (Mid(Gs_currstr, stritt, 1) = ",") Then
-    '            go = False
-    '        Else
-    '            'append to string
-    '            'theString += Gs_currstr.Chars(stritt).ToString()
-    '            theString += Mid(Gs_currstr, stritt, 1)
-    '            stritt += 1
-    '        End If
-
-    '    End While
-    '    'maybe extra iteration to account for space??
-    '    stritt += 1
-    '    Return theString
-
-    'End Function
 
     Public Sub goodParseRef()
         Dim zindex As Integer = 1
@@ -162,7 +140,7 @@
             If (Mid(xdCurrStr, j, 1) <> ",") Then
                 xdTempInStr &= Mid(xdCurrStr, j, 1)
             Else
-                s_xd_in(zzindex) = xdTempInStr
+                s_xd_in(zzindex) = xdTempInStr   's_xd_in(zzindex) = xdTempInStr
                 zzindex += 1
                 xdTempInStr = ""
                 If (zzindex = XD_MAX_MEMBERS) Then
@@ -182,15 +160,17 @@
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
     End Sub
 
-    Public Sub xdUpdateVals()
+    Public Sub xdUpdateVals()   'somewhere it's one off!!!!!
         Dim aaa = xdCurrStr
-        'xdInputVol = CInt(s_xd_in(XD_IN_VOL))
-        xdInputTemp = CInt(s_xd_in(XD_IN_TEMP))
+        xdInputVol = CInt(s_xd_in(XD_IN_VOL + 1))
+        xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
+        xdDate = s_xd_in(XD_IN_DATE)
     End Sub
 
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+        'PARSE REF METER
         Static ioStr As String = ""
         ioStr = ""
         Gs_currstr = ""
@@ -294,9 +274,15 @@
 
 
         'update labels with good values
+        'ref
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+        'UNCOMMENT AFTER U FIX PARSING
+        'dgm
+        testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
+
+        'dgm
 
         'If overall test is currently going
         If (testongoing) Then
@@ -333,6 +319,9 @@
                 testtimers(currenttest) += 0.1
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
+                'xd stuff
+                'weird double stuff testxdtemp(currenttest) = conversions.cIntToDouble(xdInputTemp)
+                testxdtemp(currenttest) = xdInputTemp
             End If
 
             'check for end condition off of pulses/volume
@@ -343,8 +332,6 @@
                 warmuptimer = 0  'reset warmup timer
             End If
         End If
-
-        'NOW START STUFF FOR XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 
 
         'to process after test
@@ -364,14 +351,7 @@
         testpulselabel = ControlArrayUtils.getControlArray(Me, "testpulselabel", NUM_OF_ROWS)
         reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
         testtimerlabel = ControlArrayUtils.getControlArray(Me, "testtimerlabel", NUM_OF_ROWS)
-
-        'flowratetxtbox(1).Text = "999"
-        'flowratetxtbox(2).Text = "111"
-        'endvoltxtbox(1).Text = "goodski"
-        'warmuptxtbox(1).Text = "goodski"
-        'refpulselabel(1).Text = "bruh"
-        'testpulselabel(1).Text = "bruh"
-        'reftemplabel(1).Text = "bruh amchine"
+        testtemplabel = ControlArrayUtils.getControlArray(Me, "testtemplabel", NUM_OF_ROWS)
 
     End Sub
 
