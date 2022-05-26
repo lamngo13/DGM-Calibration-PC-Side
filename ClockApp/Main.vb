@@ -65,10 +65,11 @@
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-    Dim stdrefvols = New Double() {0, 11, 22, 33, 44, 55, 66} ' DOUBLE
+    Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim endtestnum As Integer = 6
@@ -278,6 +279,7 @@
         'dgm
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
+        xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
 
         'If overall test is currently going
         If (testongoing) Then
@@ -328,6 +330,7 @@
                 'xd stuff --------------------
                 testxdtemp(currenttest) = Math.Round(xdInputTemp, 2)
                 testxdvol(currenttest) = Math.Round(xdInputVol, 2)
+                testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
 
             End If
 
@@ -361,6 +364,7 @@
         testtemplabel = ControlArrayUtils.getControlArray(Me, "testtemplabel", NUM_OF_ROWS)
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
+        xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
 
     End Sub
 
