@@ -269,7 +269,9 @@
 
                     'calculate local checksum
                     'xdCalculatedCS
-                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum) ' gotta subtract bc some things aren't calculated in the cs
+                    'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum) 'THIS YIELDS "C"
+                    xdCalculatedCS = 0 ' reset just to be sure
+                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' one before "!"
                         'redo cs if past 9999
                         If (xdCalculatedCS > 9999) Then
                             xdCalculatedCS -= 1000
