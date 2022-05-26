@@ -69,6 +69,7 @@
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
     Dim endtestnum As Integer = 6
@@ -90,7 +91,7 @@
     Const XD_IN_TEMP = 10
     Const XD_IN_DATE = 1
 
-    Dim xdInputVol As Integer
+    Dim xdInputVol As Double
     Dim xdInputTemp As Double
     Dim xdDate As String
 
@@ -161,9 +162,9 @@
     End Sub
 
     Public Sub xdUpdateVals()   'somewhere it's one off!!!!!
-        Dim aaa = xdCurrStr
-        xdInputVol = CInt(s_xd_in(XD_IN_VOL + 1))
-        xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
+        Dim aaa = xdCurrStr  ' debugging
+        xdInputVol = CDbl(s_xd_in(XD_IN_VOL + 1)) ' TODO PARSING IS OFFFFFFFF
+        xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))  ' TODO CHANGE THSI
         xdDate = s_xd_in(XD_IN_DATE)
     End Sub
 
@@ -278,6 +279,7 @@
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+        testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
         'UNCOMMENT AFTER U FIX PARSING
         'dgm
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
@@ -322,6 +324,7 @@
                 'xd stuff
                 'weird double stuff testxdtemp(currenttest) = conversions.cIntToDouble(xdInputTemp)
                 testxdtemp(currenttest) = xdInputTemp
+                testxdvol(currenttest) = xdInputVol
             End If
 
             'check for end condition off of pulses/volume
