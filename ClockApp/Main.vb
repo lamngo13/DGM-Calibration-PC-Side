@@ -98,6 +98,8 @@
     Dim zrefinputreftemp As String
     Dim zrefinputambhum As String
 
+    Const XD_MAX_MEMBERS = 500
+    Dim s_xd_in(XD_MAX_MEMBERS) As String
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
     Dim xdportgood As Boolean = False
@@ -147,7 +149,21 @@
     End Sub
 
     Public Sub goodParseXD()
-
+        Dim zzindex As Integer = 1
+        Dim xdTempInStr As String = ""
+        Dim j As Integer
+        For j = 1 To Len(xdCurrStr)
+            If (Mid(xdCurrStr, j, 1) <> ",") Then
+                xdTempInStr &= Mid(xdCurrStr, j, 1)
+            Else
+                s_xd_in(zzindex) = xdTempInStr
+                zzindex += 1
+                xdTempInStr = ""
+                If (zzindex = XD_MAX_MEMBERS) Then
+                    Exit For
+                End If
+            End If
+        Next
     End Sub
 
     Public Sub refUpdateVals()
