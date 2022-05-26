@@ -259,14 +259,16 @@
                     Dim xdTempInStr = xdCurrStr
 
                     'read checksum input
-                    xdStartCheck = InStr(xdTempInStr, "!CS:, ")
+                    Dim lengthBetweenCSandNum As Integer = 8 '6 og
+                    xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
                     'Dim startrefcrc As Integer = InStr(tempinstr, "|")
                     'Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
                     'Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     'refcrcstr = tcrc
                     'refcrcint = CInt(refcrcstr)<<<
+
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
-                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck + 1, xdEndCheck - xdStartCheck)
+                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
                     xdParsedCheckInt = CInt(xdParsedCheckStr)
 
                     'stuff
