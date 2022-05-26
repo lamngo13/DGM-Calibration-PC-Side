@@ -261,15 +261,15 @@
                     Dim xdTempInStr = xdCurrStr
 
                     'read checksum input
-                    Dim lengthBetweenCSandNum As Integer = 8 '6 og
+                    Dim lengthBetweenCSandNum As Integer = 6 '6 og
                     xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
-                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck - 1, (xdEndCheck + 1) - xdStartCheck)
+                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
                     xdParsedCheckInt = CInt(xdParsedCheckStr)
 
                     'calculate local checksum
                     'xdCalculatedCS
-                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' gotta subtract bc some things aren't calculated in the cs
+                    For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum) ' gotta subtract bc some things aren't calculated in the cs
                         'redo cs if past 9999
                         If (xdCalculatedCS > 9999) Then
                             xdCalculatedCS -= 1000
