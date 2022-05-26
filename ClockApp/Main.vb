@@ -63,6 +63,7 @@
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
+    Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -265,7 +266,7 @@
 
         'update labels with good values
         'ref
-        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
+        refpulselabel(currenttest).Text = CStr(refvols(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
         'dgm
@@ -307,6 +308,7 @@
                 'ref stuff ------------------
                 testtimers(currenttest) += 0.1
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
                 'xd stuff --------------------
                 testxdtemp(currenttest) = xdInputTemp
@@ -315,7 +317,7 @@
 
             'check for end condition off of pulses/volume
             'go to next test
-            If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
+            If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                 duringwarmup = True
                 currenttest += 1 'goto next test
                 warmuptimer = 0  'reset warmup timer

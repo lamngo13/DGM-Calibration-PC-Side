@@ -239,7 +239,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox3.TabIndex = 12
-        Me.endvoltxtbox3.Text = "10000"
+        Me.endvoltxtbox3.Text = "30"
         '
         'endvoltxtbox2
         '
@@ -247,7 +247,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox2.TabIndex = 11
-        Me.endvoltxtbox2.Text = "10000"
+        Me.endvoltxtbox2.Text = "30"
         '
         'endvoltxtbox1
         '
@@ -255,7 +255,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "10000"
+        Me.endvoltxtbox1.Text = "30"
         '
         'endvollabel1
         '
@@ -1159,6 +1159,7 @@ Partial Class Main
         Me.refscalingtxtbox.Name = "refscalingtxtbox"
         Me.refscalingtxtbox.Size = New System.Drawing.Size(123, 20)
         Me.refscalingtxtbox.TabIndex = 96
+        Me.refscalingtxtbox.Text = "0.0016968"
         '
         'Main
         '
