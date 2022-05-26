@@ -54,6 +54,7 @@
     Dim trimmedcrc As String = ""
 
     Dim usrrefscalingfactor As Double
+    Dim numtests As Integer
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -283,6 +284,11 @@
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
         xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
 
+        'others-----------------------
+        For m As Integer = 1 To endtestnum
+            resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
+        Next
+
         'If overall test is currently going
         If (testongoing) Then
             'ensure correct string:
@@ -352,6 +358,14 @@
         'to process after test
         If (testover) Then
             'process the vals lmao like average them and move them to a spreadsheet
+            numtests = currenttest - 1
+            endlabel1.Text = "curr test num: " + CStr(currenttest)
+            Dim avgStdRefVolPostTest As Double
+            For k As Integer = 1 To currenttest
+                avgStdRefVolPostTest += stdrefvols(k)
+            Next
+            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / numtests, 2)
+            endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
         End If
 
     End Sub
@@ -370,6 +384,7 @@
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
+        resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
     End Sub
 

@@ -54,6 +54,7 @@ Module _Public
     Public pressureLabel() As Label
     Public stdVolLabel() As Label
     Public xdstdvollabel() As Label
+    Public resTestLabel() As Label
 
     Public Gi_BL_Debug As Integer = 0
 
