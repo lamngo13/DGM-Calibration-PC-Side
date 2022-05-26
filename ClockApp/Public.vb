@@ -10,6 +10,8 @@ Module _Public
     Public Gi_inttrimmedcrc As Integer
     Public Gs_tempunits As String = "Celsius"
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Public usrStdTemp = New Double = 20 ' 20 degrees celsius
+    Public usrStdPressure = New Double = 760 '760 mmHg
     'dim numbers = New Integer()
 
 
@@ -49,6 +51,7 @@ Module _Public
     Public testpulselabel() As Label
     Public testtimerlabel() As Label
     Public testtemplabel() As Label
+    Public pressureLabel() As Label
 
 
     Public Gi_BL_Debug As Integer = 0
@@ -105,6 +108,8 @@ Module _Public
 
         End Function
 
+
+
         Public Shared Function IsInteger(ByVal Value As String) As Boolean
 
             If Value = "" Then Return False
@@ -146,6 +151,12 @@ Module _Public
             theval *= 1.8
             theval += 32
             Return theval
+        End Function
+
+        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
+            'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
+            Return (invol * (usrStdTemp / inTemp) * (inPressure / usrStdPressure))
+
         End Function
 
     End Class

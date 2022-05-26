@@ -64,6 +64,7 @@
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -269,6 +270,7 @@
         refpulselabel(currenttest).Text = CStr(refvols(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+        pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
         'dgm
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
@@ -310,6 +312,10 @@
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
                 testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
+                pressureArr(currenttest) = conversions.cIntToDouble(intpressure)
+                refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                'refvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) * usrrefscalingfactor ' DO I NEED DIFF VALS FOR THIS *********************
+                ''standardize(invol As Double, inTemp As Double, inPressure As Double)
                 'xd stuff --------------------
                 testxdtemp(currenttest) = xdInputTemp
                 testxdvol(currenttest) = xdInputVol
@@ -343,6 +349,7 @@
         reftemplabel = ControlArrayUtils.getControlArray(Me, "reftemplabel", NUM_OF_ROWS)
         testtimerlabel = ControlArrayUtils.getControlArray(Me, "testtimerlabel", NUM_OF_ROWS)
         testtemplabel = ControlArrayUtils.getControlArray(Me, "testtemplabel", NUM_OF_ROWS)
+        pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
 
     End Sub
 
