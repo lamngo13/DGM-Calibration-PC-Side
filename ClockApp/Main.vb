@@ -80,6 +80,8 @@
     Dim testongoing As Boolean = False
     Dim warmuptimer As Double
 
+    Dim hasCalculatedAfterTest As Boolean = False
+
 
 
     Dim ourcs As Integer
@@ -268,15 +270,15 @@
 
 
         'update labels with good values
-        'ref
+        'ref ------------------
         refpulselabel(currenttest).Text = CStr(refvols(currenttest))
         testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
         reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
         pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
-        'Dim debugz As Integer = currenttest
-        stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))  'HMMM PROBLEM
-        'stdVolLabel(currenttest).Text = "bruh machine"
-        'dgm
+        stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
+
+
+        'dgm --------------------------
         testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
         xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
@@ -328,7 +330,10 @@
                 stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                 'xd stuff --------------------
-                testxdtemp(currenttest) = Math.Round(xdInputTemp, 2)
+                testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
+                ' If (units = celsius)
+                testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
+                'AGAIN, THIS MAKES IT CELSIUS
                 testxdvol(currenttest) = Math.Round(xdInputVol, 2)
                 testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
 

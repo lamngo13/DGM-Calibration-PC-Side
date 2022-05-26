@@ -154,6 +154,13 @@ Module _Public
             Return theval
         End Function
 
+        Public Shared Function convertFarToCel(theVal As Double) As Double
+            Dim returnable As Double
+            theVal -= 32
+            returnable = (theVal * (5 / 9))
+            Return returnable
+        End Function
+
         Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
             Dim returnable As Double
