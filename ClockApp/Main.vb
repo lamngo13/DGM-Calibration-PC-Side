@@ -49,15 +49,9 @@
     Dim doubleambhum As Double
 
     Dim inputpulsecount As String = ""
-    'Dim intpulsecount As Integer
 
-    'Dim inputchecksum As String = ""
     Dim intchecksum As Integer
     Dim trimmedcrc As String = ""
-    'Dim inttrimmedcrc As Integer
-
-    'Dim inputtruechecksum As String = ""
-    'Dim inttruechecksum As Integer
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -111,7 +105,6 @@
     Dim gooddata As Boolean = True
     Dim refportgood As Boolean = False
     Dim xdportgood As Boolean = False
-    Dim bruh7 As Integer
 
 
 
@@ -171,6 +164,7 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
         'PARSE REF METER
         Static ioStr As String = ""
         ioStr = ""
@@ -504,85 +498,6 @@
         Dim configure As New Configure
         configure.StartPosition = FormStartPosition.CenterScreen
         configure.ShowDialog()
-    End Sub
-
-    Private Sub Timer_Old()
-        'this happens super fast
-        'handle real timer stuff after start is pressed
-        'start ticking the warmuptimer
-        Dim debug1 As Integer = testpulses(currenttest)
-        Dim debug2 As Integer = testendvolume(currenttest)
-        Dim debug3 As Integer = currenttest
-
-        'debugg
-        antibug1.Text = "big timer: " & CStr(bigtimer)
-        antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
-        antibug3.Text = "total pulse count: " + intpulsecount.ToString()
-        antibug4.Text = "current test: " + currenttest.ToString()
-        'antibug5.Text = "testonging: " + testongoing.ToString()
-        antibug6.Text = "during warmup: " + duringwarmup.ToString()
-        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString() ' THIS DOES NOT FLASH
-        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
-        'antibug7.Text = "current warmup pulses: " + warmuptimes(currenttest).ToString()
-
-        refpulselabel(currenttest).Text = CStr(testpulses(currenttest))  ' this works
-        testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
-        reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
-
-
-        If (testongoing) Then
-            'ensure correct string:
-            teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
-            'END TEST IF NO MORE TEST SPECIFIED
-            If (currenttest = endtestnum) Then
-                testongoing = False
-                testover = True
-                teststatuslabel2.Text = "Test Over"
-            End If
-        End If
-
-        If (testongoing) Then
-
-            bigtimer += 0.1
-
-            'check for end of warmup
-            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
-                duringwarmup = False
-            End If
-
-            'increment warmup timer(s)
-            If (duringwarmup) Then
-                warmuptimer += 0.1
-                warmuptimes(currenttest) += 0.1
-                warmuppulses(currenttest) = intpulsecount
-            End If
-
-            'USE VALS FROM INPUT
-            If (Not duringwarmup) Then
-                testtimers(currenttest) += 0.1
-                'testpulses(currenttest) = intpulsecount - warmuptimes(currenttest) ' THIS SHOULD BE warmuppulses(currenttest)
-                testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
-            End If
-
-            'check for end condition off of pulses/volume
-            'go to next test
-            debug1 = testpulses(currenttest)
-            debug2 = CInt(endvoltxtbox(currenttest).Text)
-            If (testpulses(currenttest) > Val(endvoltxtbox(currenttest).Text)) Then
-                duringwarmup = True
-                currenttest += 1
-                warmuptimer = 0  'reset warmup timer
-            End If
-
-            'end test ongoing
-        End If
-
-
-        'to process after test
-        If (testover) Then
-            'process the vals lmao
-        End If
     End Sub
 
 
