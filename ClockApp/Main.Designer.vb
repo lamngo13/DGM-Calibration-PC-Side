@@ -119,6 +119,10 @@ Partial Class Main
         Me.antibug11 = New System.Windows.Forms.Label()
         Me.xd502port = New System.IO.Ports.SerialPort(Me.components)
         Me.messagetxtbox = New System.Windows.Forms.TextBox()
+        Me.scalinglabel1 = New System.Windows.Forms.Label()
+        Me.scalinglabel2 = New System.Windows.Forms.Label()
+        Me.scalinglabel3 = New System.Windows.Forms.Label()
+        Me.refscalingtxtbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -344,7 +348,7 @@ Partial Class Main
         'configurebutton
         '
         Me.configurebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.configurebutton.Location = New System.Drawing.Point(802, 138)
+        Me.configurebutton.Location = New System.Drawing.Point(923, 138)
         Me.configurebutton.Name = "configurebutton"
         Me.configurebutton.Size = New System.Drawing.Size(140, 46)
         Me.configurebutton.TabIndex = 24
@@ -830,7 +834,7 @@ Partial Class Main
         'connectbutton
         '
         Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.connectbutton.Location = New System.Drawing.Point(631, 136)
+        Me.connectbutton.Location = New System.Drawing.Point(752, 136)
         Me.connectbutton.Name = "connectbutton"
         Me.connectbutton.Size = New System.Drawing.Size(135, 48)
         Me.connectbutton.TabIndex = 68
@@ -840,7 +844,7 @@ Partial Class Main
         'startbutton
         '
         Me.startbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.startbutton.Location = New System.Drawing.Point(631, 213)
+        Me.startbutton.Location = New System.Drawing.Point(752, 213)
         Me.startbutton.Name = "startbutton"
         Me.startbutton.Size = New System.Drawing.Size(134, 49)
         Me.startbutton.TabIndex = 69
@@ -867,7 +871,7 @@ Partial Class Main
         Me.mainclocklbl.AutoSize = True
         Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.mainclocklbl.ForeColor = System.Drawing.SystemColors.Control
-        Me.mainclocklbl.Location = New System.Drawing.Point(669, 41)
+        Me.mainclocklbl.Location = New System.Drawing.Point(764, 50)
         Me.mainclocklbl.Name = "mainclocklbl"
         Me.mainclocklbl.Size = New System.Drawing.Size(57, 20)
         Me.mainclocklbl.TabIndex = 71
@@ -1116,12 +1120,56 @@ Partial Class Main
         Me.messagetxtbox.TabIndex = 92
         Me.messagetxtbox.Text = "Message: nothing yet!"
         '
+        'scalinglabel1
+        '
+        Me.scalinglabel1.AutoSize = True
+        Me.scalinglabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.scalinglabel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.scalinglabel1.Location = New System.Drawing.Point(569, 63)
+        Me.scalinglabel1.Name = "scalinglabel1"
+        Me.scalinglabel1.Size = New System.Drawing.Size(127, 20)
+        Me.scalinglabel1.TabIndex = 93
+        Me.scalinglabel1.Text = "Enter Reference"
+        '
+        'scalinglabel2
+        '
+        Me.scalinglabel2.AutoSize = True
+        Me.scalinglabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.scalinglabel2.ForeColor = System.Drawing.SystemColors.Control
+        Me.scalinglabel2.Location = New System.Drawing.Point(569, 83)
+        Me.scalinglabel2.Name = "scalinglabel2"
+        Me.scalinglabel2.Size = New System.Drawing.Size(106, 20)
+        Me.scalinglabel2.TabIndex = 94
+        Me.scalinglabel2.Text = "Meter Scaling"
+        '
+        'scalinglabel3
+        '
+        Me.scalinglabel3.AutoSize = True
+        Me.scalinglabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.scalinglabel3.ForeColor = System.Drawing.SystemColors.Control
+        Me.scalinglabel3.Location = New System.Drawing.Point(569, 103)
+        Me.scalinglabel3.Name = "scalinglabel3"
+        Me.scalinglabel3.Size = New System.Drawing.Size(54, 20)
+        Me.scalinglabel3.TabIndex = 95
+        Me.scalinglabel3.Text = "factor:"
+        '
+        'refscalingtxtbox
+        '
+        Me.refscalingtxtbox.Location = New System.Drawing.Point(573, 138)
+        Me.refscalingtxtbox.Name = "refscalingtxtbox"
+        Me.refscalingtxtbox.Size = New System.Drawing.Size(123, 20)
+        Me.refscalingtxtbox.TabIndex = 96
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1405, 707)
+        Me.Controls.Add(Me.refscalingtxtbox)
+        Me.Controls.Add(Me.scalinglabel3)
+        Me.Controls.Add(Me.scalinglabel2)
+        Me.Controls.Add(Me.scalinglabel1)
         Me.Controls.Add(Me.messagetxtbox)
         Me.Controls.Add(Me.antibug11)
         Me.Controls.Add(Me.antibug10)
@@ -1318,4 +1366,8 @@ Partial Class Main
     Friend WithEvents antibug11 As Label
     Friend WithEvents xd502port As IO.Ports.SerialPort
     Friend WithEvents messagetxtbox As TextBox
+    Friend WithEvents scalinglabel1 As Label
+    Friend WithEvents scalinglabel2 As Label
+    Friend WithEvents scalinglabel3 As Label
+    Friend WithEvents refscalingtxtbox As TextBox
 End Class

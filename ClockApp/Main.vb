@@ -53,6 +53,8 @@
     Dim intchecksum As Integer
     Dim trimmedcrc As String = ""
 
+    Dim usrrefscalingfactor As Double
+
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
@@ -164,7 +166,7 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
-
+        antibug11.Text = CStr(usrrefscalingfactor)
         'PARSE REF METER
         Static ioStr As String = ""
         ioStr = ""
@@ -510,5 +512,9 @@
 
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
         'If testongoing Then bigtimer += 0.1
+    End Sub
+
+    Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
+        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
     End Sub
 End Class
