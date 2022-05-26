@@ -220,7 +220,7 @@
                 End If
             End If
         End If
-        'start doing things with the read data
+        'start doing things with the read data ' ----------------------------------------
         Dim debug1 As Integer = testpulses(currenttest)
         Dim debug2 As Integer = testendvolume(currenttest)
         Dim debug3 As Integer = currenttest
@@ -233,6 +233,10 @@
         antibug6.Text = "during warmup: " + duringwarmup.ToString()
         antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
         antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        If (xd502port.IsOpen) Then
+            'antibug11.Text = "xd502input: " + xd502port.ReadExisting()
+        End If
+
 
         'update labels with good values
         refpulselabel(currenttest).Text = CStr(testpulses(currenttest))
@@ -321,7 +325,10 @@
         Dim comstr As String = "COM"
         Dim refportsodontmesswith As Integer
 
-        Dim bruh2 As String = "bruh2"
+        If (refport.IsOpen) Then
+            refportgood = True
+            comgo = False
+        End If
 
         If (Not refportgood) Then
             'ref connection
@@ -345,7 +352,7 @@
                         Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
-                        If (giveup > 5) Then
+                        If ((giveup > 5) Or (tempcomport > 300)) Then
                             zgo = False
                         End If
                     End While
@@ -365,6 +372,10 @@
         End If
 
         'XD502 Connection
+        If (xd502port.IsOpen) Then
+            xdportgood = True
+            xdcomgo = False
+        End If
         comstr = "COM"
         tempcomport = 1
         If (Not xdportgood) Then
@@ -398,7 +409,7 @@
                         Threading.Thread.Sleep(200) ' LETS GO THIS WORKS!!!!! Just need to tweak it a bit
                         'LIERALLY 10 ms WORKS BUT 9 DOESNT
                         'so im going to use 15 just to be safe
-                        If (giveup > 5) Then
+                        If ((giveup > 5) Or (tempcomport > 300)) Then
                             zgo = False
                         End If
                     End While
@@ -414,6 +425,18 @@
                 End Try
             End While
             'end ref
+        End If
+        If ((Not refportgood) And (Not xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! NEITHER port connected!"
+        End If
+        If ((Not refportgood) And (xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! Reference meter not connected!"
+        End If
+        If ((refportgood) And (Not xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! Test meter not connected!"
+        End If
+        If (refportgood And xdportgood) Then
+            messagetxtbox.Text = "Message: Both ports connected!"
         End If
 
 
@@ -530,17 +553,21 @@
     End Sub
 
     Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
-        testongoing = True
-        duringwarmup = True
-        currenttest = 1
-        'assign vals based on user input
-        For startiterator = 1 To 6
-            If (flowratetxtbox(startiterator).Text = "") Then
-                endtestnum = startiterator
-                startiterator = 7
-            End If
-            'find something that disables start button!!!
-        Next
+        If (refportgood And xdportgood) Then
+            testongoing = True
+            duringwarmup = True
+            currenttest = 1
+            'assign vals based on user input
+            For startiterator = 1 To 6
+                If (flowratetxtbox(startiterator).Text = "") Then ' find out how many rows are filled, this needs more!!
+                    endtestnum = startiterator
+                    startiterator = 7
+                End If
+                'find something that disables start button!!!
+            Next
+        End If
+
+
     End Sub
 
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick

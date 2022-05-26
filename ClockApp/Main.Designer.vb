@@ -119,6 +119,7 @@ Partial Class Main
         Me.antibug10 = New System.Windows.Forms.Label()
         Me.antibug11 = New System.Windows.Forms.Label()
         Me.xd502port = New System.IO.Ports.SerialPort(Me.components)
+        Me.messagetxtbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -251,7 +252,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "10000"
+        Me.endvoltxtbox1.Text = "9999999999"
         '
         'endvollabel1
         '
@@ -405,7 +406,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "3"
+        Me.warmuptxtbox1.Text = "0"
         '
         'warmuplabel2
         '
@@ -1101,11 +1102,24 @@ Partial Class Main
         Me.antibug11.AutoSize = True
         Me.antibug11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug11.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug11.Location = New System.Drawing.Point(1105, 631)
+        Me.antibug11.Location = New System.Drawing.Point(30, 616)
         Me.antibug11.Name = "antibug11"
         Me.antibug11.Size = New System.Drawing.Size(80, 20)
         Me.antibug11.TabIndex = 91
         Me.antibug11.Text = "antibug11"
+        '
+        'xd502port
+        '
+        Me.xd502port.BaudRate = 460800
+        '
+        'messagetxtbox
+        '
+        Me.messagetxtbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.messagetxtbox.Location = New System.Drawing.Point(31, 660)
+        Me.messagetxtbox.Name = "messagetxtbox"
+        Me.messagetxtbox.Size = New System.Drawing.Size(550, 26)
+        Me.messagetxtbox.TabIndex = 92
+        Me.messagetxtbox.Text = "Message: nothing yet!"
         '
         'Main
         '
@@ -1113,6 +1127,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1405, 707)
+        Me.Controls.Add(Me.messagetxtbox)
         Me.Controls.Add(Me.antibug11)
         Me.Controls.Add(Me.antibug10)
         Me.Controls.Add(Me.antibug9)
@@ -1308,4 +1323,5 @@ Partial Class Main
     Friend WithEvents antibug10 As Label
     Friend WithEvents antibug11 As Label
     Friend WithEvents xd502port As IO.Ports.SerialPort
+    Friend WithEvents messagetxtbox As TextBox
 End Class
