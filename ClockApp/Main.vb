@@ -87,6 +87,12 @@
     Dim refcrcstr As String
     Dim refcrcint As Integer
 
+    Const XD_IN_VOL = 20
+    Const XD_IN_TEMP = 10
+
+    Dim xdInputVol As Integer
+    Dim xdInputTemp As Integer
+
 
 
 
@@ -176,33 +182,13 @@
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
     End Sub
 
-    'Public Function firstParse() As String
-    '    Dim Main As New Main
-    '    Dim go = True
-    '    Dim theString = ""
-    '    'diff here is discard if first char is not >
-    '    If (Mid(Gs_currstr, 1, 1) <> ">") Then
-    '        isgood = False
-    '        Return inputlabel
-    '    End If
-    '    While (go)
+    Public Sub xdUpdateVals()
+        Dim aaa = xdCurrStr
+        xdInputVol = CInt(s_xd_in(XD_IN_VOL))
+        xdInputTemp = CInt(s_xd_in(XD_IN_TEMP))
+    End Sub
 
-    '        'INDEX OUTTA BONDS ERROR HERE BELOW ! gotta fix
-    '        'If (Gs_currstr.Chars(stritt) = ",") Then
-    '        If (Mid(Gs_currstr, stritt, 1) = ",") Then
-    '            go = False
-    '        Else
-    '            'append to string
-    '            'theString += Gs_currstr.Chars(stritt).ToString()
-    '            theString += Mid(Gs_currstr, stritt, 1)
-    '            stritt += 1
-    '        End If
 
-    '    End While
-    '    'maybe extra iteration to account for space??
-    '    stritt += 1
-    '    Return theString
-    'End Function
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
         Static ioStr As String = ""
@@ -273,7 +259,7 @@
                 Dim bruh4 As String = xdIoStr
                 If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
                     xdCurrStr = xdIoStr
-                    'MAKE AN XD VERSION OF THISgoodParseRef()
+                    goodParseXD()
                     Dim xdTempInStr = xdCurrStr
 
                     'read checksum input
@@ -319,12 +305,14 @@
                     'update values if good
                     'what values do I need: volume, temp
                     If (xdCalculatedCS = xdParsedCheckInt) Then
-                        'updatevals XD
-                        Dim bruh5 As Integer = 420 ' this for breakpoint
+                        xdUpdateVals()
+                        Dim aa As Integer = xdInputTemp
+                        Dim bb As Integer = xdInputVol
                     End If
 
                 End If
             End If
+
         End If
 
 
