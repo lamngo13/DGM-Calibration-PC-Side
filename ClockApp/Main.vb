@@ -184,7 +184,7 @@
 
     Public Sub xdUpdateVals()
         Dim aaa = xdCurrStr
-        xdInputVol = CInt(s_xd_in(XD_IN_VOL))
+        'xdInputVol = CInt(s_xd_in(XD_IN_VOL))
         xdInputTemp = CInt(s_xd_in(XD_IN_TEMP))
     End Sub
 
@@ -198,9 +198,8 @@
         If (refport.IsOpen) Then
 
             If (refport.ReadBufferSize > 0) Then
-                antibug8.Text = "REFCONNECTED"
                 ioStr += Trim(refport.ReadExisting())
-                Dim bruh2 = ioStr
+
                 If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
                     Gs_currstr = ioStr
@@ -214,13 +213,11 @@
                     Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     refcrcstr = tcrc
                     refcrcint = CInt(refcrcstr)
+
                     'check ur own local crc calculation
                     iAccum = &HFFFF
-                    'gooddata WILL EQUAL FALSE IF IACCUM DOESNT MATCH UP (Gs_currstr, Gs_inputchecksum) - 1)
-                    Dim ii As Integer
                     If (tempinstr <> vbNullString) Then
                         For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
-                            ii = i
                             iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
                         Next ' end of for loop
                     End If
@@ -229,6 +226,7 @@
                     If (iAccum = refcrcint) Then
                         refUpdateVals()
                     End If
+
                 End If
             End If
         End If
@@ -256,58 +254,37 @@
             If (xd502port.ReadBufferSize > 0) Then
                 'read data
                 xdIoStr = xd502port.ReadExisting()
-                Dim bruh4 As String = xdIoStr
+
                 If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
+
                     xdCurrStr = xdIoStr
                     goodParseXD()
                     Dim xdTempInStr = xdCurrStr
 
                     'read checksum input
-                    Dim lengthBetweenCSandNum As Integer = 6 '6 og
+                    Dim lengthBetweenCSandNum As Integer = 6
                     xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
                     xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
                     xdParsedCheckInt = CInt(xdParsedCheckStr)
 
-                    'calculate local checksum
-                    'xdCalculatedCS
-                    'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum) 'THIS YIELDS "C"
                     xdCalculatedCS = 0 ' reset just to be sure
                     'For j As Integer = 1 To (xdStartCheck - lengthBetweenCSandNum - 2) ' one before "!"
 
-                    Dim a As String = Mid(xdTempInStr, 2, 1)
-                    Dim b As String = Mid(xdTempInStr, 3, 1)
-                    Dim c As String = Mid(xdTempInStr, 4, 1)
-                    Dim d As String = Mid(xdTempInStr, 5, 1)
-
-                    Dim ii As Integer = InStr(xdTempInStr, "!")
-                    Dim iii As Integer = Len(xdTempInStr)
-
                     For j As Integer = 2 To InStr(xdTempInStr, "!")
-                        'redo cs if past 9999
-
 
                         xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
-
                         If (xdCalculatedCS > 9999) Then
                             xdCalculatedCS -= 10000
                         End If
-
-                        bruh7 = Asc(xdTempInStr(j))
-                        'add data to cs
                     Next
+
                     xdCalculatedCS = 10000 - xdCalculatedCS
-                    bruh7 = bruh7 ' dummy for debugging
-                    xdTempInStr = xdTempInStr ' for debugging
-                    Dim bruh6 As Integer = xdParsedCheckInt - xdCalculatedCS ' this for breakpoint
-                    bruh6 = bruh6
 
                     'update values if good
                     'what values do I need: volume, temp
                     If (xdCalculatedCS = xdParsedCheckInt) Then
                         xdUpdateVals()
-                        Dim aa As Integer = xdInputTemp
-                        Dim bb As Integer = xdInputVol
                     End If
 
                 End If
