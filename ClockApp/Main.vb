@@ -315,17 +315,17 @@
                 testtimers(currenttest) += 0.1
                 testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
                 refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
-                testreftemp(currenttest) = conversions.cIntToDouble(inputreftemp)
-                pressureArr(currenttest) = conversions.cIntToDouble(intpressure)
-                refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
+                pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
+                refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
                 'stdrefvols(currenttest) = 555
-                stdrefvols(currenttest) = conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)) ' DO I NEED DIFF VALS FOR THIS *********************
+                stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
                 ''''''stdrefvols(currenttest) = refvols(currenttest) * (usrStdTemp / testreftemp(currenttest))
                 ''standardize(invol As Double, inTemp As Double, inPressure As Double)
 
                 'xd stuff --------------------
-                testxdtemp(currenttest) = xdInputTemp
-                testxdvol(currenttest) = xdInputVol
+                testxdtemp(currenttest) = Math.Round(xdInputTemp, 2)
+                testxdvol(currenttest) = Math.Round(xdInputVol, 2)
             End If
 
             'check for end condition off of pulses/volume

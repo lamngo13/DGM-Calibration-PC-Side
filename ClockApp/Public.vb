@@ -162,6 +162,10 @@ Module _Public
 
         End Function
 
+        Public Shared Function roundDouble(inDouble As Double)
+
+        End Function
+
     End Class
 
 
