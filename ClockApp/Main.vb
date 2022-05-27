@@ -82,7 +82,8 @@
     Dim warmuptimer As Double
 
     Dim hasCalculatedAfterTest As Boolean = False
-
+    Dim continueButtonAvailable As Boolean = False
+    'Dim Gb_testgo As Boolean = True
 
 
     Dim ourcs As Integer
@@ -292,67 +293,85 @@
 
         'If overall test is currently going
         If (testongoing) Then
-            'ensure correct string:
-            teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
+            If (Gb_testgo) Then
+                'ensure correct string:
+                teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
 
-            'END TEST IF NO MORE TEST SPECIFIED
-            If (currenttest = endtestnum) Then
-                testongoing = False
-                testover = True
-                teststatuslabel2.Text = "Test Over"
-            End If
-        End If
-
-        'If overall test is currently going and end condition not met
-        If (testongoing) Then
-
-            bigtimer += 0.1
-            bigtimer = Math.Round(bigtimer, 2)
-
-            'check for end of warmup
-            If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
-                duringwarmup = False
+                'END TEST IF NO MORE TEST SPECIFIED
+                If (currenttest = endtestnum) Then
+                    testongoing = False
+                    testover = True
+                    teststatuslabel2.Text = "Test Over"
+                End If
             End If
 
-            'increment warmup timer(s)
-            If (duringwarmup) Then
-                warmuptimer += 0.1
-                warmuptimer = Math.Round(warmuptimer, 2)
-                warmuptimes(currenttest) += 0.1
-                warmuppulses(currenttest) = intpulsecount
+            'If overall test is currently going and end condition not met
+            If (testongoing) Then
+                If (Gb_testgo) Then
+                    bigtimer += 0.1
+                    bigtimer = Math.Round(bigtimer, 2)
+
+                    'check for end of warmup
+                    If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
+                        duringwarmup = False
+                    End If
+
+                    'increment warmup timer(s)
+                    If (duringwarmup) Then
+                        warmuptimer += 0.1
+                        warmuptimer = Math.Round(warmuptimer, 2)
+                        warmuptimes(currenttest) += 0.1
+                        warmuppulses(currenttest) = intpulsecount
+                    End If
+
+                    'USE VALS FROM INPUT **********************************************************
+                    If (Not duringwarmup) Then
+
+                        'ref stuff ------------------
+                        testtimers(currenttest) += 0.1
+                        testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
+                        testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                        refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                        testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
+                        pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
+                        refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+
+                        'xd stuff --------------------
+                        testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
+                        ' If (units = celsius)
+                        testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
+                        'AGAIN, THIS MAKES IT CELSIUS
+                        testxdvol(currenttest) = Math.Round(xdInputVol, 2)
+                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+
+                    End If
+
+                    'check for end condition off of pulses/volume
+                    'go to next test
+                    If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                        If (currenttest = endtestnum) Then
+                            testongoing = False
+                            testover = True
+                            teststatuslabel2.Text = "Test Over"
+                        Else
+                            'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
+                            duringwarmup = True
+                            currenttest += 1 'goto next test
+                            warmuptimer = 0  'reset warmup timer
+                            Gb_testgo = False
+                            Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
+                            Dim DialogForm As New DialogUsr
+                            DialogForm.StartPosition = FormStartPosition.CenterScreen
+                            DialogForm.ShowDialog()
+                        End If
+
+                    End If
+
+                End If
+
+
             End If
-
-            'USE VALS FROM INPUT **********************************************************
-            If (Not duringwarmup) Then
-
-                'ref stuff ------------------
-                testtimers(currenttest) += 0.1
-                testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
-                testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
-                testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
-                pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
-                refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
-                stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
-
-                'xd stuff --------------------
-                testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
-                ' If (units = celsius)
-                testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
-                'AGAIN, THIS MAKES IT CELSIUS
-                testxdvol(currenttest) = Math.Round(xdInputVol, 2)
-                testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-
-            End If
-
-            'check for end condition off of pulses/volume
-            'go to next test
-            If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
-                duringwarmup = True
-                currenttest += 1 'goto next test
-                warmuptimer = 0  'reset warmup timer
-            End If
-
             'End if testongoing
         End If
 
@@ -563,5 +582,9 @@
 
     Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
         usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
+    End Sub
+
+    Private Sub continueButton_Click(sender As Object, e As EventArgs) Handles continueButton.Click
+        Gb_testgo = True
     End Sub
 End Class

@@ -12,6 +12,8 @@ Module _Public
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Public usrStdTemp As Double = 20 ' 20 degrees celsius
     Public usrStdPressure As Double = 760 '760 mmHg
+    Public Gb_testgo As Boolean = True
+    Public Gs_dialogText As String
     'dim numbers = New Integer()
 
 

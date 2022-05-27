@@ -86,6 +86,12 @@
     <Compile Include="Configure.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DialogUsr.Designer.vb">
+      <DependentUpon>DialogUsr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogUsr.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ErrorForm.Designer.vb">
       <DependentUpon>ErrorForm.vb</DependentUpon>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Configure.resx">
       <DependentUpon>Configure.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogUsr.resx">
+      <DependentUpon>DialogUsr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.vb</DependentUpon>

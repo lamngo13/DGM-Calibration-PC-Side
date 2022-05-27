@@ -154,6 +154,7 @@ Partial Class Main
         Me.Label6 = New System.Windows.Forms.Label()
         Me.avgRefVolLabel0 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.continueButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -171,7 +172,7 @@ Partial Class Main
         Me.flowratetxtbox1.Name = "flowratetxtbox1"
         Me.flowratetxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox1.TabIndex = 1
-        Me.flowratetxtbox1.Text = "1000"
+        Me.flowratetxtbox1.Text = "1111"
         '
         'flowratetxtbox2
         '
@@ -179,7 +180,7 @@ Partial Class Main
         Me.flowratetxtbox2.Name = "flowratetxtbox2"
         Me.flowratetxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox2.TabIndex = 2
-        Me.flowratetxtbox2.Text = "1000"
+        Me.flowratetxtbox2.Text = "2222"
         '
         'flowratetxtbox3
         '
@@ -187,7 +188,7 @@ Partial Class Main
         Me.flowratetxtbox3.Name = "flowratetxtbox3"
         Me.flowratetxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.flowratetxtbox3.TabIndex = 3
-        Me.flowratetxtbox3.Text = "1000"
+        Me.flowratetxtbox3.Text = "3333"
         '
         'flowratetxtbox4
         '
@@ -270,7 +271,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox3.TabIndex = 12
-        Me.endvoltxtbox3.Text = "30"
+        Me.endvoltxtbox3.Text = "20"
         '
         'endvoltxtbox2
         '
@@ -278,7 +279,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox2.TabIndex = 11
-        Me.endvoltxtbox2.Text = "30"
+        Me.endvoltxtbox2.Text = "20"
         '
         'endvoltxtbox1
         '
@@ -286,7 +287,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "30"
+        Me.endvoltxtbox1.Text = "20"
         '
         'endvollabel1
         '
@@ -1121,7 +1122,7 @@ Partial Class Main
         Me.antibug11.AutoSize = True
         Me.antibug11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug11.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug11.Location = New System.Drawing.Point(30, 616)
+        Me.antibug11.Location = New System.Drawing.Point(30, 598)
         Me.antibug11.Name = "antibug11"
         Me.antibug11.Size = New System.Drawing.Size(80, 20)
         Me.antibug11.TabIndex = 91
@@ -1134,9 +1135,9 @@ Partial Class Main
         'messagetxtbox
         '
         Me.messagetxtbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.messagetxtbox.Location = New System.Drawing.Point(31, 660)
+        Me.messagetxtbox.Location = New System.Drawing.Point(31, 626)
         Me.messagetxtbox.Name = "messagetxtbox"
-        Me.messagetxtbox.Size = New System.Drawing.Size(550, 26)
+        Me.messagetxtbox.Size = New System.Drawing.Size(700, 26)
         Me.messagetxtbox.TabIndex = 92
         Me.messagetxtbox.Text = "Message: nothing yet!"
         '
@@ -1435,7 +1436,7 @@ Partial Class Main
         Me.endlabel1.AutoSize = True
         Me.endlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.endlabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel1.Location = New System.Drawing.Point(618, 598)
+        Me.endlabel1.Location = New System.Drawing.Point(764, 598)
         Me.endlabel1.Name = "endlabel1"
         Me.endlabel1.Size = New System.Drawing.Size(78, 20)
         Me.endlabel1.TabIndex = 119
@@ -1446,7 +1447,7 @@ Partial Class Main
         Me.endlabel2.AutoSize = True
         Me.endlabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.endlabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel2.Location = New System.Drawing.Point(618, 632)
+        Me.endlabel2.Location = New System.Drawing.Point(764, 632)
         Me.endlabel2.Name = "endlabel2"
         Me.endlabel2.Size = New System.Drawing.Size(78, 20)
         Me.endlabel2.TabIndex = 120
@@ -1457,7 +1458,7 @@ Partial Class Main
         Me.endlabel3.AutoSize = True
         Me.endlabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.endlabel3.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel3.Location = New System.Drawing.Point(618, 660)
+        Me.endlabel3.Location = New System.Drawing.Point(764, 660)
         Me.endlabel3.Name = "endlabel3"
         Me.endlabel3.Size = New System.Drawing.Size(78, 20)
         Me.endlabel3.TabIndex = 121
@@ -1557,12 +1558,23 @@ Partial Class Main
         Me.Label7.TabIndex = 129
         Me.Label7.Text = "NOT SURE ABT THIS COLUMN TBH"
         '
+        'continueButton
+        '
+        Me.continueButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.continueButton.Location = New System.Drawing.Point(923, 214)
+        Me.continueButton.Name = "continueButton"
+        Me.continueButton.Size = New System.Drawing.Size(134, 49)
+        Me.continueButton.TabIndex = 130
+        Me.continueButton.Text = "Continue Test"
+        Me.continueButton.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1457, 707)
+        Me.Controls.Add(Me.continueButton)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
@@ -1829,4 +1841,5 @@ Partial Class Main
     Friend WithEvents Label6 As Label
     Friend WithEvents avgRefVolLabel0 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents continueButton As Button
 End Class

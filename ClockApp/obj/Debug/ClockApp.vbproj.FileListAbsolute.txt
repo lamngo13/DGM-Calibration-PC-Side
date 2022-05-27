@@ -25,3 +25,4 @@ C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\Clo
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.Main.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.Configure.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.ErrorForm.resources
+C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.DialogUsr.resources
