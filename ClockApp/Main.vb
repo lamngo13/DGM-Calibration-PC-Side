@@ -367,6 +367,8 @@
                         testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
                         pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
                         refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
+                        'SOME ABSOLUTE CRAZINESS
+                        testreftemp(currenttest) = 30
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest), "Cel"), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                         'xd stuff --------------------
