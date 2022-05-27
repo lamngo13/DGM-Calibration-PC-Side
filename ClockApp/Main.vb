@@ -353,7 +353,8 @@
                     'check for end condition off of pulses/volume
                     'go to next test
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
-                        endstdrefvols(currenttest) = stdrefvols(currenttest)
+                        ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
+                        ''endlabel3.Text = CStr(endstdrefvols(currenttest))
                         If (currenttest = endtestnum - 1) Then
                             testongoing = False
                             testover = True
@@ -388,14 +389,15 @@
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
             endlabel1.Text = "curr test num: " + CStr(currenttest)
-            Dim avgStdRefVolPostTest As String
+            Dim asdf As String
+            Dim avgStdRefVolPostTest As Double
             For k As Integer = 1 To currenttest
-                Dim asdf As String = "bruh"
-                avgStdRefVolPostTest &= CStr(endstdrefvols(k)) + " "
+                avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text)
+                asdf &= stdVolLabel(k).Text + " "
             Next
-            '''''''''avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / numtests, 2)
-            avgStdRefVolPostTest &= "currenttest: " + CStr(currenttest)
+            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / currenttest, 2)
             endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
+            endlabel3.Text = asdf
         End If
 
     End Sub
