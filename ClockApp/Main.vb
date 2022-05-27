@@ -69,6 +69,7 @@
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim endstdrefvols = New Double() {9, 9, 9, 9, 9, 9, 9} ' DOUBLE
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -352,6 +353,7 @@
                     'check for end condition off of pulses/volume
                     'go to next test
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                        endstdrefvols(currenttest) = stdrefvols(currenttest)
                         If (currenttest = endtestnum - 1) Then
                             testongoing = False
                             testover = True
@@ -386,11 +388,13 @@
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
             endlabel1.Text = "curr test num: " + CStr(currenttest)
-            Dim avgStdRefVolPostTest As Double
+            Dim avgStdRefVolPostTest As String
             For k As Integer = 1 To currenttest
-                avgStdRefVolPostTest += stdrefvols(k)
+                Dim asdf As String = "bruh"
+                avgStdRefVolPostTest &= CStr(endstdrefvols(k)) + " "
             Next
-            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / numtests, 2)
+            '''''''''avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / numtests, 2)
+            avgStdRefVolPostTest &= "currenttest: " + CStr(currenttest)
             endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
         End If
 
