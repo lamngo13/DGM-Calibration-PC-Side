@@ -167,7 +167,8 @@ Module _Public
         Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
             Dim returnable As Double
-            returnable = (invol * (usrStdTemp / inTemp) * (inPressure / usrStdPressure))
+            'MAYBE WRONG GOTTA CHECK THIS
+            returnable = (invol * (usrStdTemp / inTemp) * (usrStdPressure / inPressure))
             Return returnable
 
         End Function
