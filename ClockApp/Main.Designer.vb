@@ -146,15 +146,14 @@ Partial Class Main
         Me.endlabel1 = New System.Windows.Forms.Label()
         Me.endlabel2 = New System.Windows.Forms.Label()
         Me.endlabel3 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.avgRefVolLabel0 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.continueButton = New System.Windows.Forms.Button()
+        Me.avglabel1 = New System.Windows.Forms.Label()
+        Me.avglabel2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.avglabel11 = New System.Windows.Forms.Label()
+        Me.avglabel22 = New System.Windows.Forms.Label()
+        Me.avglabel33 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -1464,95 +1463,12 @@ Partial Class Main
         Me.endlabel3.TabIndex = 121
         Me.endlabel3.Text = "endlabel3"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label1.Location = New System.Drawing.Point(1134, 507)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 20)
-        Me.Label1.TabIndex = 128
-        Me.Label1.Text = "0"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.SystemColors.Control
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label2.Location = New System.Drawing.Point(1134, 481)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 20)
-        Me.Label2.TabIndex = 127
-        Me.Label2.Text = "0"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.SystemColors.Control
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label3.Location = New System.Drawing.Point(1134, 455)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(18, 20)
-        Me.Label3.TabIndex = 126
-        Me.Label3.Text = "0"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.SystemColors.Control
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label4.Location = New System.Drawing.Point(1134, 429)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(18, 20)
-        Me.Label4.TabIndex = 125
-        Me.Label4.Text = "0"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.SystemColors.Control
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label5.Location = New System.Drawing.Point(1134, 403)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(18, 20)
-        Me.Label5.TabIndex = 124
-        Me.Label5.Text = "0"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.SystemColors.Control
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label6.Location = New System.Drawing.Point(1134, 380)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(18, 20)
-        Me.Label6.TabIndex = 123
-        Me.Label6.Text = "0"
-        '
-        'avgRefVolLabel0
-        '
-        Me.avgRefVolLabel0.AutoSize = True
-        Me.avgRefVolLabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.avgRefVolLabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.avgRefVolLabel0.Location = New System.Drawing.Point(1134, 344)
-        Me.avgRefVolLabel0.Name = "avgRefVolLabel0"
-        Me.avgRefVolLabel0.Size = New System.Drawing.Size(93, 20)
-        Me.avgRefVolLabel0.TabIndex = 122
-        Me.avgRefVolLabel0.Text = "Avg Ref Vol"
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Label7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label7.Location = New System.Drawing.Point(1090, 547)
+        Me.Label7.Location = New System.Drawing.Point(1089, 617)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(275, 20)
         Me.Label7.TabIndex = 129
@@ -1568,21 +1484,89 @@ Partial Class Main
         Me.continueButton.Text = "Continue Test"
         Me.continueButton.UseVisualStyleBackColor = True
         '
+        'avglabel1
+        '
+        Me.avglabel1.AutoSize = True
+        Me.avglabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.avglabel1.Location = New System.Drawing.Point(1154, 344)
+        Me.avglabel1.Name = "avglabel1"
+        Me.avglabel1.Size = New System.Drawing.Size(110, 20)
+        Me.avglabel1.TabIndex = 131
+        Me.avglabel1.Text = "avg ref stdvols"
+        '
+        'avglabel2
+        '
+        Me.avglabel2.AutoSize = True
+        Me.avglabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel2.ForeColor = System.Drawing.SystemColors.Control
+        Me.avglabel2.Location = New System.Drawing.Point(1154, 403)
+        Me.avglabel2.Name = "avglabel2"
+        Me.avglabel2.Size = New System.Drawing.Size(118, 20)
+        Me.avglabel2.TabIndex = 132
+        Me.avglabel2.Text = "avg test stdvols"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.Label3.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label3.Location = New System.Drawing.Point(1154, 477)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(35, 20)
+        Me.Label3.TabIndex = 133
+        Me.Label3.Text = "diff "
+        '
+        'avglabel11
+        '
+        Me.avglabel11.AutoSize = True
+        Me.avglabel11.BackColor = System.Drawing.SystemColors.Control
+        Me.avglabel11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.avglabel11.Location = New System.Drawing.Point(1154, 364)
+        Me.avglabel11.Name = "avglabel11"
+        Me.avglabel11.Size = New System.Drawing.Size(18, 20)
+        Me.avglabel11.TabIndex = 134
+        Me.avglabel11.Text = "0"
+        '
+        'avglabel22
+        '
+        Me.avglabel22.AutoSize = True
+        Me.avglabel22.BackColor = System.Drawing.SystemColors.Control
+        Me.avglabel22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.avglabel22.Location = New System.Drawing.Point(1154, 429)
+        Me.avglabel22.Name = "avglabel22"
+        Me.avglabel22.Size = New System.Drawing.Size(18, 20)
+        Me.avglabel22.TabIndex = 135
+        Me.avglabel22.Text = "0"
+        '
+        'avglabel33
+        '
+        Me.avglabel33.AutoSize = True
+        Me.avglabel33.BackColor = System.Drawing.SystemColors.Control
+        Me.avglabel33.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.avglabel33.Location = New System.Drawing.Point(1154, 503)
+        Me.avglabel33.Name = "avglabel33"
+        Me.avglabel33.Size = New System.Drawing.Size(18, 20)
+        Me.avglabel33.TabIndex = 136
+        Me.avglabel33.Text = "0"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1457, 707)
+        Me.Controls.Add(Me.avglabel33)
+        Me.Controls.Add(Me.avglabel22)
+        Me.Controls.Add(Me.avglabel11)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.avglabel2)
+        Me.Controls.Add(Me.avglabel1)
         Me.Controls.Add(Me.continueButton)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.avgRefVolLabel0)
         Me.Controls.Add(Me.endlabel3)
         Me.Controls.Add(Me.endlabel2)
         Me.Controls.Add(Me.endlabel1)
@@ -1833,13 +1817,12 @@ Partial Class Main
     Friend WithEvents endlabel1 As Label
     Friend WithEvents endlabel2 As Label
     Friend WithEvents endlabel3 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents avgRefVolLabel0 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents continueButton As Button
+    Friend WithEvents avglabel1 As Label
+    Friend WithEvents avglabel2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents avglabel11 As Label
+    Friend WithEvents avglabel22 As Label
+    Friend WithEvents avglabel33 As Label
 End Class

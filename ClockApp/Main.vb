@@ -102,6 +102,9 @@
     Dim xdInputTemp As Double
     Dim xdDate As String
 
+    Dim avgStdRefVolPostTest As Double
+    Dim avgStdTestVolPostTest As Double
+    Dim processingDone As Boolean = False
 
 
 
@@ -289,6 +292,29 @@
         testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
         xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
 
+        ''test over???????????????????????????
+        'to process after test
+        If (testover And Not processingDone) Then
+            processingDone = True
+            'process the vals lmao like average them and move them to a spreadsheet
+            'hasCalculatedAfterTest boolean that will go to true after we process everything
+            numtests = currenttest - 1
+            endlabel1.Text = "curr test num: " + CStr(currenttest)
+            Dim asdf As String
+            For k As Integer = 1 To currenttest
+                avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text)
+                avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
+                asdf &= stdVolLabel(k).Text + " "
+            Next
+            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / currenttest + 1, 2)
+            avgStdTestVolPostTest = Math.Round(avgStdTestVolPostTest / currenttest + 1, 2)
+            avglabel11.Text = CStr(avgStdRefVolPostTest)
+            avglabel22.Text = CStr(avgStdTestVolPostTest)
+            avglabel33.Text = (avgStdRefVolPostTest / avgStdTestVolPostTest)
+            endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
+            endlabel3.Text = asdf
+        End If
+
         'others-----------------------
         For m As Integer = 1 To endtestnum
             resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
@@ -383,22 +409,7 @@
         End If
 
 
-        'to process after test
-        If (testover) Then
-            'process the vals lmao like average them and move them to a spreadsheet
-            'hasCalculatedAfterTest boolean that will go to true after we process everything
-            numtests = currenttest - 1
-            endlabel1.Text = "curr test num: " + CStr(currenttest)
-            Dim asdf As String
-            Dim avgStdRefVolPostTest As Double
-            For k As Integer = 1 To currenttest
-                avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text)
-                asdf &= stdVolLabel(k).Text + " "
-            Next
-            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / currenttest, 2)
-            endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
-            endlabel3.Text = asdf
-        End If
+
 
     End Sub
 
