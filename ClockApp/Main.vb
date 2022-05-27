@@ -65,6 +65,7 @@
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim xdWarmupVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -306,8 +307,8 @@
                 avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
                 asdf &= stdVolLabel(k).Text + " "
             Next
-            avgStdRefVolPostTest = Math.Round(avgStdRefVolPostTest / currenttest + 1, 2)
-            avgStdTestVolPostTest = Math.Round(avgStdTestVolPostTest / currenttest + 1, 2)
+            avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / currenttest), 2)
+            avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / currenttest), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
             avglabel22.Text = CStr(avgStdTestVolPostTest)
             avglabel33.Text = (avgStdRefVolPostTest / avgStdTestVolPostTest)
@@ -351,6 +352,7 @@
                         warmuptimer = Math.Round(warmuptimer, 2)
                         warmuptimes(currenttest) += 0.1
                         warmuppulses(currenttest) = intpulsecount
+                        xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
                     End If
 
                     'USE VALS FROM INPUT **********************************************************
@@ -371,7 +373,7 @@
                         ' If (units = celsius)
                         testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                         'AGAIN, THIS MAKES IT CELSIUS
-                        testxdvol(currenttest) = Math.Round(xdInputVol, 2)
+                        testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
 
                     End If
