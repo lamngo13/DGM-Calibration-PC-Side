@@ -56,6 +56,8 @@
     Dim usrrefscalingfactor As Double
     Dim numtests As Integer
 
+    Dim finaldiabox As Boolean = False
+
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
@@ -350,10 +352,12 @@
                     'check for end condition off of pulses/volume
                     'go to next test
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
-                        If (currenttest = endtestnum) Then
+                        If (currenttest = endtestnum - 1) Then
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
+                            messagetxtbox.Text = "TEST OVER"
+                            'finaldialogbox = True
                         Else
                             'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
                             duringwarmup = True
