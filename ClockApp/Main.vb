@@ -367,7 +367,7 @@
                         testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
                         pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
                         refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
-                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest), "Cel"), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                         'xd stuff --------------------
                         testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
@@ -375,7 +375,7 @@
                         '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                         'AGAIN, THIS MAKES IT CELSIUS
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
-                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest), "Cel"), 2)
 
                     End If
 

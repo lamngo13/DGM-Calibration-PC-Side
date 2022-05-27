@@ -164,11 +164,17 @@ Module _Public
             Return returnable
         End Function
 
-        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
-            'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
+        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double, inUnits As String) As Double
             Dim returnable As Double
+            Dim tempusrStdTemp
+            'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
+            If (inUnits = "Cel") Then
+                inTemp += 273.15
+                tempusrStdTemp = usrStdTemp + 273.15
+                returnable = (invol * (tempusrStdTemp / inTemp) * (usrStdPressure / inPressure))
+            End If
             'MAYBE WRONG GOTTA CHECK THIS
-            returnable = (invol * (usrStdTemp / inTemp) * (usrStdPressure / inPressure))
+            'returnable = (invol * (usrStdTemp / inTemp) * (usrStdPressure / inPressure))
             Return returnable
 
         End Function
