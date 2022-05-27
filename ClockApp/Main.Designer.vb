@@ -286,7 +286,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "10"
+        Me.endvoltxtbox1.Text = "1000"
         '
         'endvollabel1
         '
