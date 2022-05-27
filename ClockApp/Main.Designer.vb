@@ -1121,7 +1121,7 @@ Partial Class Main
         Me.antibug11.AutoSize = True
         Me.antibug11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.antibug11.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug11.Location = New System.Drawing.Point(30, 598)
+        Me.antibug11.Location = New System.Drawing.Point(282, 567)
         Me.antibug11.Name = "antibug11"
         Me.antibug11.Size = New System.Drawing.Size(80, 20)
         Me.antibug11.TabIndex = 91

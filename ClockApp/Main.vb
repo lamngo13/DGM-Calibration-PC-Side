@@ -226,6 +226,7 @@
 
 
         'debugg
+        antibug11.Text = CStr(xdWarmupVols(currenttest))
         antibug1.Text = "big timer: " & CStr(bigtimer)
         antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
         antibug3.Text = "total pulse count: " + intpulsecount.ToString()
@@ -311,7 +312,7 @@
             avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / currenttest), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
             avglabel22.Text = CStr(avgStdTestVolPostTest)
-            avglabel33.Text = (avgStdRefVolPostTest / avgStdTestVolPostTest)
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
             endlabel3.Text = asdf
         End If
@@ -371,7 +372,7 @@
                         'xd stuff --------------------
                         testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
                         ' If (units = celsius)
-                        testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
+                        '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                         'AGAIN, THIS MAKES IT CELSIUS
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
