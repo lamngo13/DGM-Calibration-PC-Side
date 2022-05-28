@@ -9,6 +9,7 @@
     Const REF_PULSECOUNT As Integer = 6
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8
+    Const BAD_INPUT_LIMIT = 20
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -125,6 +126,12 @@
 
     Dim DialogForm As New DialogUsr
 
+    Dim consecBadCSVals As Integer = 0
+    Dim consecBadCRCVals As Integer = 0
+
+    Dim 
+
+
 
 
     Public Sub goodParseRef()
@@ -183,6 +190,15 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
+        If ((consecBadCRCVals > BAD_INPUT_LIMIT) Or (consecBadCSVals > BAD_INPUT_LIMIT)) Then
+            'END TEST OR SOMETHING
+            'this means there have been BAD_INPUT_LIMIT consecutive failures and something is super wrong so stop the whole thing!
+            'TODO FIGURE OUT HOW TO STOP THE WHOLE THING
+            'ideas: testongoing = false
+            'how do I reinitialize all values? (all values except config values?? AND usr test vol flow rate values)
+            'maybe I could make a reinitialize function
+        End If
         antibug11.Text = CStr(usrrefscalingfactor)
         'PARSE REF METER
         Static ioStr As String = ""
@@ -210,6 +226,7 @@
                         refcrcint = CInt(refcrcstr)
                     Catch ex As Exception
                         refcrcint = 1 ' there's no way it will be this, so vals will not update
+                        consecBadCRCVals += 1
                     End Try
 
 
@@ -224,6 +241,7 @@
                     'only update vals if crc is good
                     If (iAccum = refcrcint) Then
                         refUpdateVals()
+                        consecBadCRCVals = 0 ' resets bad counter
                     End If
 
                 End If
@@ -266,6 +284,7 @@
                         xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
                     Catch ex As Exception
                         xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
+                        consecBadCSVals += 1
                     End Try
 
 
@@ -284,6 +303,7 @@
                     'update values if good
                     If (xdCalculatedCS = xdParsedCheckInt) Then
                         xdUpdateVals()
+                        consecBadCSVals = 0  ' resets bad counter
                     End If
 
                 End If
@@ -652,5 +672,9 @@
             DialogForm.ShowDialog()
         End If
 
+    End Sub
+
+    Public Sub reInitValsBcBadConnection()
+        'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
     End Sub
 End Class
