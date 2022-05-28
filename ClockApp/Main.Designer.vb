@@ -147,13 +147,14 @@ Partial Class Main
         Me.endlabel2 = New System.Windows.Forms.Label()
         Me.endlabel3 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.continueButton = New System.Windows.Forms.Button()
         Me.avglabel1 = New System.Windows.Forms.Label()
         Me.avglabel2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.avglabel11 = New System.Windows.Forms.Label()
         Me.avglabel22 = New System.Windows.Forms.Label()
         Me.avglabel33 = New System.Windows.Forms.Label()
+        Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
+        Me.validateRadioButton = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -1474,16 +1475,6 @@ Partial Class Main
         Me.Label7.TabIndex = 129
         Me.Label7.Text = "NOT SURE ABT THIS COLUMN TBH"
         '
-        'continueButton
-        '
-        Me.continueButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.continueButton.Location = New System.Drawing.Point(923, 214)
-        Me.continueButton.Name = "continueButton"
-        Me.continueButton.Size = New System.Drawing.Size(134, 49)
-        Me.continueButton.TabIndex = 130
-        Me.continueButton.Text = "Continue Test"
-        Me.continueButton.UseVisualStyleBackColor = True
-        '
         'avglabel1
         '
         Me.avglabel1.AutoSize = True
@@ -1553,19 +1544,46 @@ Partial Class Main
         Me.avglabel33.TabIndex = 136
         Me.avglabel33.Text = "0"
         '
+        'calibrateRadioButton
+        '
+        Me.calibrateRadioButton.AutoSize = True
+        Me.calibrateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.calibrateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.calibrateRadioButton.Location = New System.Drawing.Point(926, 240)
+        Me.calibrateRadioButton.Name = "calibrateRadioButton"
+        Me.calibrateRadioButton.Size = New System.Drawing.Size(90, 24)
+        Me.calibrateRadioButton.TabIndex = 137
+        Me.calibrateRadioButton.TabStop = True
+        Me.calibrateRadioButton.Text = "Calibrate"
+        Me.calibrateRadioButton.UseVisualStyleBackColor = True
+        '
+        'validateRadioButton
+        '
+        Me.validateRadioButton.AutoSize = True
+        Me.validateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.validateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.validateRadioButton.Location = New System.Drawing.Point(926, 214)
+        Me.validateRadioButton.Name = "validateRadioButton"
+        Me.validateRadioButton.Size = New System.Drawing.Size(85, 24)
+        Me.validateRadioButton.TabIndex = 138
+        Me.validateRadioButton.TabStop = True
+        Me.validateRadioButton.Text = "Validate"
+        Me.validateRadioButton.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(1457, 707)
+        Me.Controls.Add(Me.validateRadioButton)
+        Me.Controls.Add(Me.calibrateRadioButton)
         Me.Controls.Add(Me.avglabel33)
         Me.Controls.Add(Me.avglabel22)
         Me.Controls.Add(Me.avglabel11)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.avglabel2)
         Me.Controls.Add(Me.avglabel1)
-        Me.Controls.Add(Me.continueButton)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.endlabel3)
         Me.Controls.Add(Me.endlabel2)
@@ -1818,11 +1836,12 @@ Partial Class Main
     Friend WithEvents endlabel2 As Label
     Friend WithEvents endlabel3 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents continueButton As Button
     Friend WithEvents avglabel1 As Label
     Friend WithEvents avglabel2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents avglabel11 As Label
     Friend WithEvents avglabel22 As Label
     Friend WithEvents avglabel33 As Label
+    Friend WithEvents calibrateRadioButton As RadioButton
+    Friend WithEvents validateRadioButton As RadioButton
 End Class

@@ -123,6 +123,8 @@
     Dim refportgood As Boolean = False
     Dim xdportgood As Boolean = False
 
+    Dim DialogForm As New DialogUsr
+
 
 
     Public Sub goodParseRef()
@@ -399,7 +401,6 @@
                             warmuptimer = 0  'reset warmup timer
                             Gb_testgo = False
                             Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
-                            Dim DialogForm As New DialogUsr
                             DialogForm.StartPosition = FormStartPosition.CenterScreen
                             DialogForm.ShowDialog()
                         End If
@@ -610,7 +611,26 @@
         usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
     End Sub
 
-    Private Sub continueButton_Click(sender As Object, e As EventArgs) Handles continueButton.Click
+    Private Sub continueButton_Click(sender As Object, e As EventArgs)
         Gb_testgo = True
+    End Sub
+
+    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
+        If (calibrateRadioButton.Checked = True) Then
+            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
+
+        If (validateRadioButton.Checked = True) Then
+            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
     End Sub
 End Class
