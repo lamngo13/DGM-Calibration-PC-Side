@@ -206,7 +206,12 @@
                     Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
                     Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
                     refcrcstr = tcrc
-                    refcrcint = CInt(refcrcstr)
+                    Try
+                        refcrcint = CInt(refcrcstr)
+                    Catch ex As Exception
+                        refcrcint = 1 ' there's no way it will be this, so vals will not update
+                    End Try
+
 
                     'check ur own local crc calculation
                     iAccum = &HFFFF
@@ -257,7 +262,12 @@
                     xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
                     xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
-                    xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
+                    Try
+                        xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
+                    Catch ex As Exception
+                        xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
+                    End Try
+
 
                     xdCalculatedCS = 0 ' reset just to be sure
 
