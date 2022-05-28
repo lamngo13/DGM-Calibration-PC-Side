@@ -10,6 +10,7 @@
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8
     Const BAD_INPUT_LIMIT = 20
+    Const BAD_CONNECTION_LIMIT = 5
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -129,7 +130,10 @@
     Dim consecBadCSVals As Integer = 0
     Dim consecBadCRCVals As Integer = 0
 
-    Dim 
+    Dim refFailedConnectionCounter As Integer = 0
+    Dim xdFailedConnectionCounter As Integer = 0
+
+    Dim rowNumberCheck As Integer = 1
 
 
 
@@ -485,6 +489,8 @@
         Dim refportsodontmesswith As Integer
 
         'REF CONNECTION ================================================================================================================================
+
+        'don't try do connect if already connected
         If (refport.IsOpen) Then
             refportgood = True
             comgo = False
@@ -495,7 +501,14 @@
             While (comgo)
                 Try
                     If (tempcomport > 300) Then
-                        comgo = False
+                        If (refFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
+                            comgo = False
+                            '''''''''ask dad 
+                            Exit While ' ????????????
+                        Else
+                            refFailedConnectionCounter += 1
+                            tempcomport = 1
+                        End If
                     End If
                     refport.PortName = comstr + CStr(tempcomport)
                     refport.Open()
@@ -509,7 +522,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(200)
+                        Threading.Thread.Sleep(100)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -527,6 +540,8 @@
         End If
 
         'XD502 Connection============================================================================================================
+
+        'don't try to connect if already connected
         If (xd502port.IsOpen) Then
             xdportgood = True
             xdcomgo = False
@@ -542,12 +557,16 @@
 
             'XD connection
             While (xdcomgo)
-                If tempcomport = 5 Then
-                    Dim bruh As String = "bruh"
-
-                End If
                 Try
                     If (tempcomport > 300) Then
+                        If (xdFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
+                            xdcomgo = False
+                            ''ASK DAD
+                            Exit While
+                        Else
+                            xdFailedConnectionCounter += 1
+                            tempcomport = 1
+                        End If
                         xdcomgo = False
                     End If
                     xd502port.PortName = comstr + CStr(tempcomport)
@@ -562,7 +581,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(200)
+                        Threading.Thread.Sleep(100)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -576,7 +595,8 @@
                     tempcomport += 1
                 End Try
             End While
-            'end ref
+            'end xd connection attempts
+
         End If
         If ((Not refportgood) And (Not xdportgood)) Then
             messagetxtbox.Text = "Message: Error! NEITHER port connected!"
@@ -626,6 +646,24 @@
     End Sub
 
     Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
+
+
+
+        'ensure all rows properly filled out
+        'rowNumberCheck
+        'flowratetxtbox
+        'endvoltxtbox
+        'warmuptxtbox
+        Dim rowShouldBeFilled = False
+        For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
+            'only check future vals if partially filled out
+            If () Then
+        Next
+        rowNumberCheck = 0 ' reset this val
+        'ensure validation or calibration is checked
+
+
+        ''MAKE THIS CONDITIONAL ON OTHER STUFF
         If (refportgood And xdportgood) Then
             testongoing = True
             duringwarmup = True
@@ -639,7 +677,6 @@
                 'find something that disables start button!!!
             Next
         End If
-
 
     End Sub
 
