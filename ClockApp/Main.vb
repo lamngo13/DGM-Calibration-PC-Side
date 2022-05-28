@@ -314,7 +314,17 @@
             avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / currenttest), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
             avglabel22.Text = CStr(avgStdTestVolPostTest)
-            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            'HERE CHANGE TEXT IF VALIDATION OR CALIBRATION**********************
+            If (validateRadioButton.Checked) Then
+                'this is validation
+                resultLabel1.Text = "Percentage Off"
+                avglabel33.Text = CStr(Math.Round(100 * (avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            End If
+            If (calibrateRadioButton.Checked) Then
+                resultLabel1.Text = "New Scaling Factor for XD:"
+                avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            End If
+
             endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
             endlabel3.Text = asdf
         End If

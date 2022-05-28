@@ -149,7 +149,7 @@ Partial Class Main
         Me.Label7 = New System.Windows.Forms.Label()
         Me.avglabel1 = New System.Windows.Forms.Label()
         Me.avglabel2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.resultLabel1 = New System.Windows.Forms.Label()
         Me.avglabel11 = New System.Windows.Forms.Label()
         Me.avglabel22 = New System.Windows.Forms.Label()
         Me.avglabel33 = New System.Windows.Forms.Label()
@@ -1497,16 +1497,16 @@ Partial Class Main
         Me.avglabel2.TabIndex = 132
         Me.avglabel2.Text = "avg test stdvols"
         '
-        'Label3
+        'resultLabel1
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(1154, 477)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(35, 20)
-        Me.Label3.TabIndex = 133
-        Me.Label3.Text = "diff "
+        Me.resultLabel1.AutoSize = True
+        Me.resultLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.resultLabel1.ForeColor = System.Drawing.SystemColors.Control
+        Me.resultLabel1.Location = New System.Drawing.Point(1154, 477)
+        Me.resultLabel1.Name = "resultLabel1"
+        Me.resultLabel1.Size = New System.Drawing.Size(59, 20)
+        Me.resultLabel1.TabIndex = 133
+        Me.resultLabel1.Text = "Result:"
         '
         'avglabel11
         '
@@ -1581,7 +1581,7 @@ Partial Class Main
         Me.Controls.Add(Me.avglabel33)
         Me.Controls.Add(Me.avglabel22)
         Me.Controls.Add(Me.avglabel11)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.resultLabel1)
         Me.Controls.Add(Me.avglabel2)
         Me.Controls.Add(Me.avglabel1)
         Me.Controls.Add(Me.Label7)
@@ -1838,7 +1838,7 @@ Partial Class Main
     Friend WithEvents Label7 As Label
     Friend WithEvents avglabel1 As Label
     Friend WithEvents avglabel2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents resultLabel1 As Label
     Friend WithEvents avglabel11 As Label
     Friend WithEvents avglabel22 As Label
     Friend WithEvents avglabel33 As Label
