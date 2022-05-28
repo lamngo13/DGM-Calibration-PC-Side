@@ -286,7 +286,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "1000"
+        Me.endvoltxtbox1.Text = "10"
         '
         'endvollabel1
         '
@@ -424,7 +424,7 @@ Partial Class Main
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
         Me.warmuptxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox3.TabIndex = 28
-        Me.warmuptxtbox3.Text = "1"
+        Me.warmuptxtbox3.Text = "30"
         '
         'warmuptxtbox2
         '
@@ -432,7 +432,7 @@ Partial Class Main
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox2.TabIndex = 27
-        Me.warmuptxtbox2.Text = "1"
+        Me.warmuptxtbox2.Text = "30"
         '
         'warmuptxtbox1
         '
@@ -440,7 +440,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "1"
+        Me.warmuptxtbox1.Text = "30"
         '
         'warmuplabel2
         '

@@ -255,7 +255,7 @@
                     xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
                     xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
                     xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
-                    xdParsedCheckInt = CInt(xdParsedCheckStr)
+                    xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
 
                     xdCalculatedCS = 0 ' reset just to be sure
 
@@ -368,7 +368,7 @@
                         pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
                         refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
                         'SOME ABSOLUTE CRAZINESS
-                        testreftemp(currenttest) = 30
+                        '''testreftemp(currenttest) = testxdtemp(currenttest)
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest), "Cel"), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                         'xd stuff --------------------
