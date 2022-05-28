@@ -657,7 +657,7 @@
         Dim rowShouldBeFilled = False
         For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
             'only check future vals if partially filled out
-            If () Then
+            'If () Then
         Next
         rowNumberCheck = 0 ' reset this val
         'ensure validation or calibration is checked
