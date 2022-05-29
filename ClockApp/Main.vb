@@ -481,7 +481,113 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles connectbutton.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
+
+
+    End Sub
+    Public Function send_error()
+        Dim ErrorForm As New ErrorForm
+        ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        ErrorForm.ShowDialog()
+    End Function
+    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
+        Dim antibug As New antibug
+        antibug.StartPosition = FormStartPosition.CenterScreen
+        antibug.ShowDialog()
+
+    End Sub
+
+    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebuttonOrg.Click
+        Dim configure As New Configure
+        configure.StartPosition = FormStartPosition.CenterScreen
+        configure.ShowDialog()
+    End Sub
+
+
+    Private Sub flowratetxtbox1_TextChanged(sender As Object, e As EventArgs) Handles flowratetxtbox1.TextChanged
+        'testusrflowrate(1) = flowratetxtbox1.Text
+    End Sub
+
+    Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
+        'testusrendvol(1) = Val(endvoltxtbox1.Text)
+    End Sub
+
+    Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
+        'testusrwarmup(1) = Val(warmuptxtbox1.Text)
+    End Sub
+
+    Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbuttonOrg.Click
+
+
+
+        'ensure all rows properly filled out
+        'rowNumberCheck
+        'flowratetxtbox
+        'endvoltxtbox
+        'warmuptxtbox
+        Dim rowShouldBeFilled = False
+        For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
+            'only check future vals if partially filled out
+            'If () Then
+        Next
+        rowNumberCheck = 0 ' reset this val
+        'ensure validation or calibration is checked
+
+
+        ''MAKE THIS CONDITIONAL ON OTHER STUFF
+        If (refportgood And xdportgood) Then
+            testongoing = True
+            duringwarmup = True
+            currenttest = 1
+            'assign vals based on user input
+            For startiterator = 1 To 6
+                If (flowratetxtbox(startiterator).Text = "") Then ' find out how many rows are filled, this needs more!!
+                    endtestnum = startiterator
+                    startiterator = 7
+                End If
+                'find something that disables start button!!!
+            Next
+        End If
+
+    End Sub
+
+    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
+        'If testongoing Then bigtimer += 0.1
+    End Sub
+
+    Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
+        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
+    End Sub
+
+    Private Sub continueButton_Click(sender As Object, e As EventArgs)
+        Gb_testgo = True
+    End Sub
+
+    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
+        If (calibrateRadioButton.Checked = True) Then
+            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
+
+        If (validateRadioButton.Checked = True) Then
+            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Public Sub reInitValsBcBadConnection()
+        'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
+    End Sub
+
+    Private Sub connectbutton_Click(sender As Object, e As EventArgs) Handles connectbutton.Click
         Dim comgo As Boolean = True
         Dim xdcomgo As Boolean = True
         Dim tempcomport As Integer = 1
@@ -611,107 +717,5 @@
             messagetxtbox.Text = "Message: Both ports connected!"
         End If
 
-
-
-    End Sub
-    Public Function send_error()
-        Dim ErrorForm As New ErrorForm
-        ErrorForm.StartPosition = FormStartPosition.CenterScreen
-        ErrorForm.ShowDialog()
-    End Function
-    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
-        Dim antibug As New antibug
-        antibug.StartPosition = FormStartPosition.CenterScreen
-        antibug.ShowDialog()
-
-    End Sub
-
-    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebutton.Click
-        Dim configure As New Configure
-        configure.StartPosition = FormStartPosition.CenterScreen
-        configure.ShowDialog()
-    End Sub
-
-
-    Private Sub flowratetxtbox1_TextChanged(sender As Object, e As EventArgs) Handles flowratetxtbox1.TextChanged
-        'testusrflowrate(1) = flowratetxtbox1.Text
-    End Sub
-
-    Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
-        'testusrendvol(1) = Val(endvoltxtbox1.Text)
-    End Sub
-
-    Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
-        'testusrwarmup(1) = Val(warmuptxtbox1.Text)
-    End Sub
-
-    Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
-
-
-
-        'ensure all rows properly filled out
-        'rowNumberCheck
-        'flowratetxtbox
-        'endvoltxtbox
-        'warmuptxtbox
-        Dim rowShouldBeFilled = False
-        For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
-            'only check future vals if partially filled out
-            'If () Then
-        Next
-        rowNumberCheck = 0 ' reset this val
-        'ensure validation or calibration is checked
-
-
-        ''MAKE THIS CONDITIONAL ON OTHER STUFF
-        If (refportgood And xdportgood) Then
-            testongoing = True
-            duringwarmup = True
-            currenttest = 1
-            'assign vals based on user input
-            For startiterator = 1 To 6
-                If (flowratetxtbox(startiterator).Text = "") Then ' find out how many rows are filled, this needs more!!
-                    endtestnum = startiterator
-                    startiterator = 7
-                End If
-                'find something that disables start button!!!
-            Next
-        End If
-
-    End Sub
-
-    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
-        'If testongoing Then bigtimer += 0.1
-    End Sub
-
-    Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
-        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
-    End Sub
-
-    Private Sub continueButton_Click(sender As Object, e As EventArgs)
-        Gb_testgo = True
-    End Sub
-
-    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
-        If (calibrateRadioButton.Checked = True) Then
-            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
-            DialogForm.StartPosition = FormStartPosition.CenterScreen
-            DialogForm.ShowDialog()
-        End If
-
-    End Sub
-
-    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
-
-        If (validateRadioButton.Checked = True) Then
-            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
-            DialogForm.StartPosition = FormStartPosition.CenterScreen
-            DialogForm.ShowDialog()
-        End If
-
-    End Sub
-
-    Public Sub reInitValsBcBadConnection()
-        'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
     End Sub
 End Class

@@ -48,7 +48,7 @@ Partial Class Main
         Me.testlabel4 = New System.Windows.Forms.Label()
         Me.testlabel5 = New System.Windows.Forms.Label()
         Me.testlabel6 = New System.Windows.Forms.Label()
-        Me.configurebutton = New System.Windows.Forms.Button()
+        Me.configurebuttonOrg = New System.Windows.Forms.Button()
         Me.warmuplabel1 = New System.Windows.Forms.Label()
         Me.warmuptxtbox6 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox5 = New System.Windows.Forms.TextBox()
@@ -92,8 +92,7 @@ Partial Class Main
         Me.testtemplabel3 = New System.Windows.Forms.Label()
         Me.testtemplabel2 = New System.Windows.Forms.Label()
         Me.testtemplabel1 = New System.Windows.Forms.Label()
-        Me.connectbutton = New System.Windows.Forms.Button()
-        Me.startbutton = New System.Windows.Forms.Button()
+        Me.startbuttonOrg = New System.Windows.Forms.Button()
         Me.Main_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.mainclocklbl = New System.Windows.Forms.Label()
         Me.refport = New System.IO.Ports.SerialPort(Me.components)
@@ -160,8 +159,11 @@ Partial Class Main
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.connectbutton = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -384,15 +386,15 @@ Partial Class Main
         Me.testlabel6.TabIndex = 23
         Me.testlabel6.Text = "Test 6:"
         '
-        'configurebutton
+        'configurebuttonOrg
         '
-        Me.configurebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.configurebutton.Location = New System.Drawing.Point(955, 500)
-        Me.configurebutton.Name = "configurebutton"
-        Me.configurebutton.Size = New System.Drawing.Size(140, 46)
-        Me.configurebutton.TabIndex = 24
-        Me.configurebutton.Text = "Configure"
-        Me.configurebutton.UseVisualStyleBackColor = True
+        Me.configurebuttonOrg.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.configurebuttonOrg.Location = New System.Drawing.Point(955, 500)
+        Me.configurebuttonOrg.Name = "configurebuttonOrg"
+        Me.configurebuttonOrg.Size = New System.Drawing.Size(140, 46)
+        Me.configurebuttonOrg.TabIndex = 24
+        Me.configurebuttonOrg.Text = "Configure"
+        Me.configurebuttonOrg.UseVisualStyleBackColor = True
         '
         'warmuplabel1
         '
@@ -870,25 +872,15 @@ Partial Class Main
         Me.testtemplabel1.TabIndex = 62
         Me.testtemplabel1.Text = "0"
         '
-        'connectbutton
+        'startbuttonOrg
         '
-        Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.connectbutton.Location = New System.Drawing.Point(784, 498)
-        Me.connectbutton.Name = "connectbutton"
-        Me.connectbutton.Size = New System.Drawing.Size(135, 48)
-        Me.connectbutton.TabIndex = 68
-        Me.connectbutton.Text = "Connect"
-        Me.connectbutton.UseVisualStyleBackColor = True
-        '
-        'startbutton
-        '
-        Me.startbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.startbutton.Location = New System.Drawing.Point(784, 575)
-        Me.startbutton.Name = "startbutton"
-        Me.startbutton.Size = New System.Drawing.Size(134, 49)
-        Me.startbutton.TabIndex = 69
-        Me.startbutton.Text = "Start"
-        Me.startbutton.UseVisualStyleBackColor = True
+        Me.startbuttonOrg.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.startbuttonOrg.Location = New System.Drawing.Point(784, 575)
+        Me.startbuttonOrg.Name = "startbuttonOrg"
+        Me.startbuttonOrg.Size = New System.Drawing.Size(134, 49)
+        Me.startbuttonOrg.TabIndex = 69
+        Me.startbuttonOrg.Text = "Start"
+        Me.startbuttonOrg.UseVisualStyleBackColor = True
         '
         'Main_Timer
         '
@@ -1581,6 +1573,7 @@ Partial Class Main
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.IconButton1)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.mainclocklbl)
@@ -1627,6 +1620,34 @@ Partial Class Main
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.Text = "Dry Gas Meter Calibration / Certification"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Panel2.Controls.Add(Me.connectbutton)
+        Me.Panel2.Location = New System.Drawing.Point(372, 159)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(932, 100)
+        Me.Panel2.TabIndex = 72
+        '
+        'connectbutton
+        '
+        Me.connectbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.connectbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.connectbutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.connectbutton.ForeColor = System.Drawing.Color.White
+        Me.connectbutton.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.connectbutton.IconColor = System.Drawing.Color.White
+        Me.connectbutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.connectbutton.IconSize = 28
+        Me.connectbutton.Location = New System.Drawing.Point(20, 27)
+        Me.connectbutton.Name = "connectbutton"
+        Me.connectbutton.Size = New System.Drawing.Size(149, 46)
+        Me.connectbutton.TabIndex = 0
+        Me.connectbutton.Text = "CONNECT"
+        Me.connectbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.connectbutton.UseVisualStyleBackColor = False
         '
         'Main
         '
@@ -1693,8 +1714,7 @@ Partial Class Main
         Me.Controls.Add(Me.antibug3)
         Me.Controls.Add(Me.antibug2)
         Me.Controls.Add(Me.antibug1)
-        Me.Controls.Add(Me.startbutton)
-        Me.Controls.Add(Me.connectbutton)
+        Me.Controls.Add(Me.startbuttonOrg)
         Me.Controls.Add(Me.testtemplabel6)
         Me.Controls.Add(Me.testtemplabel5)
         Me.Controls.Add(Me.testtemplabel4)
@@ -1738,7 +1758,7 @@ Partial Class Main
         Me.Controls.Add(Me.warmuptxtbox2)
         Me.Controls.Add(Me.warmuptxtbox1)
         Me.Controls.Add(Me.warmuplabel1)
-        Me.Controls.Add(Me.configurebutton)
+        Me.Controls.Add(Me.configurebuttonOrg)
         Me.Controls.Add(Me.testlabel6)
         Me.Controls.Add(Me.testlabel5)
         Me.Controls.Add(Me.testlabel4)
@@ -1768,6 +1788,7 @@ Partial Class Main
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1797,7 +1818,7 @@ Partial Class Main
     Friend WithEvents testlabel4 As Label
     Friend WithEvents testlabel5 As Label
     Friend WithEvents testlabel6 As Label
-    Friend WithEvents configurebutton As Button
+    Friend WithEvents configurebuttonOrg As Button
     Friend WithEvents warmuplabel1 As Label
     Friend WithEvents warmuptxtbox6 As TextBox
     Friend WithEvents warmuptxtbox5 As TextBox
@@ -1840,8 +1861,7 @@ Partial Class Main
     Friend WithEvents testtemplabel3 As Label
     Friend WithEvents testtemplabel2 As Label
     Friend WithEvents testtemplabel1 As Label
-    Friend WithEvents connectbutton As Button
-    Friend WithEvents startbutton As Button
+    Friend WithEvents startbuttonOrg As Button
     Public WithEvents refpulselabel1 As Label
     Friend WithEvents Main_Timer As Timer
     Friend WithEvents mainclocklbl As Label
@@ -1909,4 +1929,6 @@ Partial Class Main
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents connectbutton As FontAwesome.Sharp.IconButton
 End Class
