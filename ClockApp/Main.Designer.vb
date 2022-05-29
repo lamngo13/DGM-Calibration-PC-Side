@@ -23,6 +23,7 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.antibugbutton = New System.Windows.Forms.Button()
         Me.flowratetxtbox1 = New System.Windows.Forms.TextBox()
         Me.flowratetxtbox2 = New System.Windows.Forms.TextBox()
@@ -156,6 +157,11 @@ Partial Class Main
         Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
         Me.validateRadioButton = New System.Windows.Forms.RadioButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -890,10 +896,11 @@ Partial Class Main
         '
         'mainclocklbl
         '
+        Me.mainclocklbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mainclocklbl.AutoSize = True
-        Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.mainclocklbl.ForeColor = System.Drawing.SystemColors.Control
-        Me.mainclocklbl.Location = New System.Drawing.Point(796, 412)
+        Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Italic)
+        Me.mainclocklbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.mainclocklbl.Location = New System.Drawing.Point(1448, 59)
         Me.mainclocklbl.Name = "mainclocklbl"
         Me.mainclocklbl.Size = New System.Drawing.Size(57, 20)
         Me.mainclocklbl.TabIndex = 71
@@ -1574,11 +1581,52 @@ Partial Class Main
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.Controls.Add(Me.IconButton1)
+        Me.Panel1.Controls.Add(Me.PictureBox1)
+        Me.Panel1.Controls.Add(Me.mainclocklbl)
+        Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1555, 332)
         Me.Panel1.TabIndex = 139
+        '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Sync
+        Me.IconButton1.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 24
+        Me.IconButton1.Location = New System.Drawing.Point(1476, 33)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(36, 23)
+        Me.IconButton1.TabIndex = 2
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(36, 33)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(153, 66)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TextBox1.BackColor = System.Drawing.Color.Black
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.Color.White
+        Me.TextBox1.Location = New System.Drawing.Point(0, 57)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(1543, 42)
+        Me.TextBox1.TabIndex = 1
+        Me.TextBox1.Text = "Dry Gas Meter Calibration / Certification"
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Main
         '
@@ -1645,7 +1693,6 @@ Partial Class Main
         Me.Controls.Add(Me.antibug3)
         Me.Controls.Add(Me.antibug2)
         Me.Controls.Add(Me.antibug1)
-        Me.Controls.Add(Me.mainclocklbl)
         Me.Controls.Add(Me.startbutton)
         Me.Controls.Add(Me.connectbutton)
         Me.Controls.Add(Me.testtemplabel6)
@@ -1718,6 +1765,9 @@ Partial Class Main
         Me.Controls.Add(Me.antibugbutton)
         Me.Name = "Main"
         Me.Text = "Form2"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1856,4 +1906,7 @@ Partial Class Main
     Friend WithEvents calibrateRadioButton As RadioButton
     Friend WithEvents validateRadioButton As RadioButton
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class
