@@ -790,4 +790,8 @@
         configure.StartPosition = FormStartPosition.CenterScreen
         configure.ShowDialog()
     End Sub
+
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+
+    End Sub
 End Class
