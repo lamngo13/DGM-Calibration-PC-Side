@@ -498,7 +498,7 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'BRUH MACHINE
         'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
         endvoltxtbox = ControlArrayUtils.getControlArray(Me, "endvoltxtbox", NUM_OF_ROWS)
