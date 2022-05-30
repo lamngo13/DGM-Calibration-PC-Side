@@ -135,6 +135,8 @@
 
     Dim rowNumberCheck As Integer = 1
 
+    Dim rowShouldBeFilled As Boolean = False
+
 
 
 
@@ -189,6 +191,17 @@
         xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
+    End Sub
+
+    Public Sub reWhiteInputsExistOnly()
+        For o As Integer = 1 To NUM_OF_ROWS
+            If (flowratetxtbox(o).BackColor = Color.FromArgb(255, 255, 215, 0)) Then
+                If (flowratetxtbox(0).Text <> vbNullString) Then
+
+                End If
+            End If
+        Next
+        'Color.FromArgb(255, 255, 215, 0)
     End Sub
 
 
@@ -654,17 +667,37 @@
         'flowratetxtbox
         'endvoltxtbox
         'warmuptxtbox
-        Dim rowShouldBeFilled = False
+        rowShouldBeFilled = False
+        Dim Gold, White
+        Gold = RGB(255, 215, 0)
+        White = RGB(255, 255, 255)
         For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
-            'only check future vals if partially filled out
-            'If () Then
+
+            'TODO write loop to make background white if was yellow then good vals are passed through
+
+            'check to see if any filled in.  If any ARE filled in , then highlight the boxes that aren't filled in
+            If (flowratetxtbox(n).Text <> vbNullString Or endvoltxtbox(n).Text <> vbNullString Or warmuptxtbox(n).Text <> vbNullString) Then  'will trigger if any input in the row is filled out
+                'check to see if any ohters are finished
+                If (flowratetxtbox(n).Text = vbNullString) Then
+                    flowratetxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+                    rowShouldBeFilled = True
+                End If
+                If (endvoltxtbox(n).Text = vbNullString) Then
+                    endvoltxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+                    rowShouldBeFilled = True
+                End If
+                If (warmuptxtbox(n).Text = vbNullString) Then
+                    warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+                    rowShouldBeFilled = True
+                End If
+            End If
         Next
         rowNumberCheck = 0 ' reset this val
         'ensure validation or calibration is checked
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
-        If (refportgood And xdportgood) Then
+        If (refportgood And xdportgood And (Not rowShouldBeFilled)) Then
             testongoing = True
             duringwarmup = True
             currenttest = 1

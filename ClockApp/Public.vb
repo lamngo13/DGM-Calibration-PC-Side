@@ -144,6 +144,15 @@ Module _Public
     End Class
 
     Public Class conversions
+        Public Shared Function IntegerToColor(ByRef RGB As Int32) As System.Drawing.Color
+            Dim Bytes As Byte() = BitConverter.GetBytes(RGB)
+            'Dim Alpha As Byte = Bytes(3)
+            Dim Alpha As Int32 = 255
+            Dim Red As Byte = Bytes(2)
+            Dim Green As Byte = Bytes(1)
+            Dim Blue As Byte = Bytes(0)
+            Return Color.FromArgb(Alpha, Red, Green, Blue)
+        End Function
         Public Shared Function cIntToDouble(thein As Integer) As Double ' why can't I share this
             Dim returnable As Double
             returnable = thein

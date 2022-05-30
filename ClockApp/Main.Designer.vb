@@ -429,6 +429,7 @@ Partial Class Main
         '
         'warmuptxtbox2
         '
+        Me.warmuptxtbox2.BackColor = System.Drawing.Color.White
         Me.warmuptxtbox2.Location = New System.Drawing.Point(417, 164)
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(123, 20)
