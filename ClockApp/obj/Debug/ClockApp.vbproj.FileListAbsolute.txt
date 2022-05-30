@@ -26,3 +26,5 @@ C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\Clo
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.Configure.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.ErrorForm.resources
 C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.DialogUsr.resources
+C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Lam\Desktop\dgmcalholder\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.vbproj.CopyComplete

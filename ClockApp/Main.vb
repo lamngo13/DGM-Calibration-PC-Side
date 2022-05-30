@@ -791,4 +791,135 @@
     Public Sub reInitValsBcBadConnection()
         'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
     End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim comgo As Boolean = True
+        Dim xdcomgo As Boolean = True
+        Dim tempcomport As Integer = 1
+        Dim comstr As String = "COM"
+        Dim refportsodontmesswith As Integer
+
+        'REF CONNECTION ================================================================================================================================
+
+        'don't try do connect if already connected
+        If (refport.IsOpen) Then
+            refportgood = True
+            comgo = False
+        End If
+
+        If (Not refportgood) Then
+            'ref connection
+            While (comgo)
+                Try
+                    If (tempcomport > 300) Then
+                        If (refFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
+                            comgo = False
+                            '''''''''ask dad 
+                            Exit While ' ????????????
+                        Else
+                            refFailedConnectionCounter += 1
+                            tempcomport = 1
+                        End If
+                    End If
+                    refport.PortName = comstr + CStr(tempcomport)
+                    refport.Open()
+                    Dim fooinputstr As String
+                    Dim zgo As Boolean = True
+                    Dim giveup As Integer = 0
+                    While (zgo)
+                        fooinputstr = refport.ReadExisting()
+                        If (fooinputstr.Length > 1) Then
+                            zgo = False
+                        End If
+                        'give up will end the while loop if the com port goes a long time without transmitting anything
+                        giveup += 1
+                        Threading.Thread.Sleep(100)
+                        If (giveup > 5) Then
+                            zgo = False
+                        End If
+                    End While
+                    If (InStr(1, fooinputstr, "Cal-DGM", 1)) Then 'found it!
+                        refportgood = True
+                        comgo = False
+                        refportsodontmesswith = tempcomport
+                    End If
+                Catch ex As Exception
+                    tempcomport += 1
+                End Try
+            End While
+            'end ref
+        End If
+
+        'XD502 Connection============================================================================================================
+
+        'don't try to connect if already connected
+        If (xd502port.IsOpen) Then
+            xdportgood = True
+            xdcomgo = False
+        End If
+        comstr = "COM"
+        tempcomport = 1
+        If (Not xdportgood) Then
+
+            'don't overlap com ports
+            If (tempcomport = refportsodontmesswith) Then
+                tempcomport += 1
+            End If
+
+            'XD connection
+            While (xdcomgo)
+                Try
+                    If (tempcomport > 300) Then
+                        If (xdFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
+                            xdcomgo = False
+                            ''ASK DAD
+                            Exit While
+                        Else
+                            xdFailedConnectionCounter += 1
+                            tempcomport = 1
+                        End If
+                        xdcomgo = False
+                    End If
+                    xd502port.PortName = comstr + CStr(tempcomport)
+                    xd502port.Open()
+                    Dim fooinputstr As String
+                    Dim zgo As Boolean = True
+                    Dim giveup As Integer = 0
+                    While (zgo)
+                        fooinputstr = xd502port.ReadExisting()
+                        If (fooinputstr.Length > 1) Then
+                            zgo = False
+                        End If
+                        'give up will end the while loop if the com port goes a long time without transmitting anything
+                        giveup += 1
+                        Threading.Thread.Sleep(100)
+                        If (giveup > 5) Then
+                            zgo = False
+                        End If
+                    End While
+                    'fooinputstr = SerialPort1.ReadExisting()
+                    If (InStr(1, fooinputstr, "-502", 1)) Then
+                        xdportgood = True
+                        xdcomgo = False
+                    End If
+                Catch ex As Exception
+                    tempcomport += 1
+                End Try
+            End While
+            'end xd connection attempts
+
+        End If
+        If ((Not refportgood) And (Not xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! NEITHER port connected!"
+        End If
+        If ((Not refportgood) And (xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! Reference meter not connected!"
+        End If
+        If ((refportgood) And (Not xdportgood)) Then
+            messagetxtbox.Text = "Message: Error! Test meter not connected!"
+        End If
+        If (refportgood And xdportgood) Then
+            messagetxtbox.Text = "Message: Both ports connected!"
+        End If
+    End Sub
 End Class

@@ -155,6 +155,7 @@ Partial Class Main
         Me.avglabel33 = New System.Windows.Forms.Label()
         Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
         Me.validateRadioButton = New System.Windows.Forms.RadioButton()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -1571,12 +1572,25 @@ Partial Class Main
         Me.validateRadioButton.Text = "Validate"
         Me.validateRadioButton.UseVisualStyleBackColor = True
         '
+        'IconButton1
+        '
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.IconButton1.IconColor = System.Drawing.Color.Black
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.Location = New System.Drawing.Point(590, 191)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(127, 77)
+        Me.IconButton1.TabIndex = 139
+        Me.IconButton1.Text = "IconButton1"
+        Me.IconButton1.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1457, 707)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.validateRadioButton)
         Me.Controls.Add(Me.calibrateRadioButton)
         Me.Controls.Add(Me.avglabel33)
@@ -1845,4 +1859,5 @@ Partial Class Main
     Friend WithEvents avglabel33 As Label
     Friend WithEvents calibrateRadioButton As RadioButton
     Friend WithEvents validateRadioButton As RadioButton
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class
