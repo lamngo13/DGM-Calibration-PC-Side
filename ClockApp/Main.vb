@@ -1,5 +1,5 @@
 ﻿Public Class Main
-    Const NUM_OF_ROWS As Integer = 5
+    Const NUM_OF_ROWS As Integer = 6
 
     Const REF_INPUT_LABEL As Integer = 1
     Const REF_INPUT_PRESSURE As Integer = 2
@@ -79,6 +79,8 @@
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim endstdrefvols = New Double() {9, 9, 9, 9, 9, 9, 9} ' DOUBLE
+
+    Dim rowused = New Boolean() {False, False, False, False, False, False, False} ' BOOLEANS
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -166,6 +168,39 @@
         Next
     End Sub
 
+    Public Sub findRunnableTests()
+        For r As Integer = 1 To NUM_OF_ROWS
+            'reset vals
+            rowused(r) = False
+            Try
+                If ((flowratetxtbox(r).Text <> vbNullString) And CDbl(flowratetxtbox(r).Text) > 0) Then
+                    If ((endvoltxtbox(r).Text <> vbNullString) And CDbl(endvoltxtbox(r).Text) > 0) Then
+                        If ((warmuptxtbox(r).Text <> vbNullString) And CDbl(warmuptxtbox(r).Text) > 0) Then
+                            rowused(r) = True
+                        End If
+                    End If
+                End If
+            Catch ex As Exception
+                rowused(r) = False
+            End Try
+
+        Next
+    End Sub
+
+    Public Sub disableButtons()
+        For q As Integer = 1 To NUM_OF_ROWS
+            If (testongoing) Then
+                flowratetxtbox(q).Enabled = False
+                endvoltxtbox(q).Enabled = False
+                warmuptxtbox(q).Enabled = False
+            Else
+                flowratetxtbox(q).Enabled = True
+                endvoltxtbox(q).Enabled = True
+                warmuptxtbox(q).Enabled = True
+            End If
+        Next
+    End Sub
+
     Public Sub goodParseXD()
         Dim zzindex As Integer = 1
         Dim xdTempInStr As String = ""
@@ -225,6 +260,9 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
+        'diable inputs if test ongoing
+        disableButtons()
 
         'validate user input in real time
         'reWhiteInputsExistOnly()
@@ -710,7 +748,7 @@
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
 
-
+        findRunnableTests()
         ''ensure reasonable vals
         'reasonableVals = True
         'For p As Integer = 1 To NUM_OF_ROWS

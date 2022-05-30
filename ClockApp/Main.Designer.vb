@@ -415,7 +415,7 @@ Partial Class Main
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
         Me.warmuptxtbox3.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox3.TabIndex = 28
-        Me.warmuptxtbox3.Text = "30"
+        Me.warmuptxtbox3.Text = "2"
         '
         'warmuptxtbox2
         '
@@ -424,7 +424,7 @@ Partial Class Main
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox2.TabIndex = 27
-        Me.warmuptxtbox2.Text = "30"
+        Me.warmuptxtbox2.Text = "2"
         '
         'warmuptxtbox1
         '
@@ -432,7 +432,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(123, 20)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "30"
+        Me.warmuptxtbox1.Text = "2"
         '
         'warmuplabel2
         '
