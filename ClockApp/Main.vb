@@ -196,8 +196,18 @@
     Public Sub reWhiteInputsExistOnly()
         For o As Integer = 1 To NUM_OF_ROWS
             If (flowratetxtbox(o).BackColor = Color.FromArgb(255, 255, 215, 0)) Then
-                If (flowratetxtbox(0).Text <> vbNullString) Then
-
+                If (flowratetxtbox(o).Text <> vbNullString) Then
+                    flowratetxtbox(o).BackColor = Color.FromArgb(255, 255, 255, 255)
+                End If
+            End If
+            If (endvoltxtbox(o).BackColor = Color.FromArgb(255, 255, 215, 0)) Then
+                If (endvoltxtbox(o).Text <> vbNullString) Then
+                    endvoltxtbox(o).BackColor = Color.FromArgb(255, 255, 255, 255)
+                End If
+            End If
+            If (warmuptxtbox(o).BackColor = Color.FromArgb(255, 255, 215, 0)) Then
+                If (warmuptxtbox(o).Text <> vbNullString) Then
+                    warmuptxtbox(o).BackColor = Color.FromArgb(255, 255, 255, 255)
                 End If
             End If
         Next
@@ -207,6 +217,9 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
+        'validate user input in real time
+        reWhiteInputsExistOnly()
 
         If ((consecBadCRCVals > BAD_INPUT_LIMIT) Or (consecBadCSVals > BAD_INPUT_LIMIT)) Then
             'END TEST OR SOMETHING

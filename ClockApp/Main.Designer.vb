@@ -479,75 +479,75 @@ Partial Class Main
         '
         'refpulselabel1
         '
-        Me.refpulselabel1.AutoSize = True
         Me.refpulselabel1.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel1.Location = New System.Drawing.Point(248, 376)
         Me.refpulselabel1.Name = "refpulselabel1"
-        Me.refpulselabel1.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel1.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel1.TabIndex = 35
-        Me.refpulselabel1.Text = "0"
+        Me.refpulselabel1.Text = "100.1"
+        Me.refpulselabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel2
         '
-        Me.refpulselabel2.AutoSize = True
         Me.refpulselabel2.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel2.Location = New System.Drawing.Point(248, 399)
         Me.refpulselabel2.Name = "refpulselabel2"
-        Me.refpulselabel2.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel2.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel2.TabIndex = 36
         Me.refpulselabel2.Text = "0"
+        Me.refpulselabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel3
         '
-        Me.refpulselabel3.AutoSize = True
         Me.refpulselabel3.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel3.Location = New System.Drawing.Point(248, 425)
         Me.refpulselabel3.Name = "refpulselabel3"
-        Me.refpulselabel3.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel3.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel3.TabIndex = 37
         Me.refpulselabel3.Text = "0"
+        Me.refpulselabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel4
         '
-        Me.refpulselabel4.AutoSize = True
         Me.refpulselabel4.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel4.Location = New System.Drawing.Point(248, 451)
         Me.refpulselabel4.Name = "refpulselabel4"
-        Me.refpulselabel4.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel4.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel4.TabIndex = 38
         Me.refpulselabel4.Text = "0"
+        Me.refpulselabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel5
         '
-        Me.refpulselabel5.AutoSize = True
         Me.refpulselabel5.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel5.Location = New System.Drawing.Point(248, 477)
         Me.refpulselabel5.Name = "refpulselabel5"
-        Me.refpulselabel5.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel5.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel5.TabIndex = 39
         Me.refpulselabel5.Text = "0"
+        Me.refpulselabel5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel6
         '
-        Me.refpulselabel6.AutoSize = True
         Me.refpulselabel6.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.refpulselabel6.Location = New System.Drawing.Point(248, 503)
         Me.refpulselabel6.Name = "refpulselabel6"
-        Me.refpulselabel6.Size = New System.Drawing.Size(18, 20)
+        Me.refpulselabel6.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel6.TabIndex = 40
         Me.refpulselabel6.Text = "0"
+        Me.refpulselabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'testpulselabel0
         '
