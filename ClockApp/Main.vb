@@ -684,6 +684,19 @@
 
         'ensure reasonable vals
         reasonableVals = True
+        For p As Integer = 1 To NUM_OF_ROWS
+            If (flowratetxtbox(p).Text <> vbNullString) Then
+                If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
+                    reasonableVals = False
+                    'flowrate is too low, make it red then send error
+                    flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
+                    GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+                    ErrorForm.ShowDialog()
+                End If
+            End If
+
+        Next
 
         'ensure all rows properly filled out
         'rowNumberCheck
