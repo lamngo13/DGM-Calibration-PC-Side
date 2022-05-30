@@ -498,10 +498,8 @@
 
     End Sub
 
-    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebuttonOrg.Click
-        Dim configure As New Configure
-        configure.StartPosition = FormStartPosition.CenterScreen
-        configure.ShowDialog()
+    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs)
+
     End Sub
 
 
@@ -717,5 +715,11 @@
             messagetxtbox.Text = "Message: Both ports connected!"
         End If
 
+    End Sub
+
+    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebutton.Click
+        Dim configure As New Configure
+        configure.StartPosition = FormStartPosition.CenterScreen
+        configure.ShowDialog()
     End Sub
 End Class

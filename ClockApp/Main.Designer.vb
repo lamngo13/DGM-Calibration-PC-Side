@@ -48,7 +48,6 @@ Partial Class Main
         Me.testlabel4 = New System.Windows.Forms.Label()
         Me.testlabel5 = New System.Windows.Forms.Label()
         Me.testlabel6 = New System.Windows.Forms.Label()
-        Me.configurebuttonOrg = New System.Windows.Forms.Button()
         Me.warmuplabel1 = New System.Windows.Forms.Label()
         Me.warmuptxtbox6 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox5 = New System.Windows.Forms.TextBox()
@@ -156,14 +155,18 @@ Partial Class Main
         Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
         Me.validateRadioButton = New System.Windows.Forms.RadioButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.stopbutton = New FontAwesome.Sharp.IconButton()
+        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
+        Me.configurebutton = New FontAwesome.Sharp.IconButton()
+        Me.configuretbutton = New FontAwesome.Sharp.IconButton()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.connectbutton = New FontAwesome.Sharp.IconButton()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -385,16 +388,6 @@ Partial Class Main
         Me.testlabel6.Size = New System.Drawing.Size(57, 20)
         Me.testlabel6.TabIndex = 23
         Me.testlabel6.Text = "Test 6:"
-        '
-        'configurebuttonOrg
-        '
-        Me.configurebuttonOrg.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.configurebuttonOrg.Location = New System.Drawing.Point(955, 500)
-        Me.configurebuttonOrg.Name = "configurebuttonOrg"
-        Me.configurebuttonOrg.Size = New System.Drawing.Size(140, 46)
-        Me.configurebuttonOrg.TabIndex = 24
-        Me.configurebuttonOrg.Text = "Configure"
-        Me.configurebuttonOrg.UseVisualStyleBackColor = True
         '
         'warmuplabel1
         '
@@ -1584,6 +1577,99 @@ Partial Class Main
         Me.Panel1.Size = New System.Drawing.Size(1555, 332)
         Me.Panel1.TabIndex = 139
         '
+        'Panel2
+        '
+        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Panel2.Controls.Add(Me.IconButton2)
+        Me.Panel2.Controls.Add(Me.stopbutton)
+        Me.Panel2.Controls.Add(Me.IconButton3)
+        Me.Panel2.Controls.Add(Me.configurebutton)
+        Me.Panel2.Controls.Add(Me.configuretbutton)
+        Me.Panel2.Location = New System.Drawing.Point(318, 159)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(986, 130)
+        Me.Panel2.TabIndex = 72
+        '
+        'stopbutton
+        '
+        Me.stopbutton.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.stopbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.stopbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.stopbutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.stopbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.stopbutton.ForeColor = System.Drawing.Color.White
+        Me.stopbutton.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.stopbutton.IconColor = System.Drawing.Color.White
+        Me.stopbutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.stopbutton.IconSize = 28
+        Me.stopbutton.Location = New System.Drawing.Point(763, 46)
+        Me.stopbutton.Name = "stopbutton"
+        Me.stopbutton.Size = New System.Drawing.Size(182, 46)
+        Me.stopbutton.TabIndex = 3
+        Me.stopbutton.Text = "STOP"
+        Me.stopbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.stopbutton.UseVisualStyleBackColor = False
+        '
+        'IconButton3
+        '
+        Me.IconButton3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton3.ForeColor = System.Drawing.Color.White
+        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.IconButton3.IconColor = System.Drawing.Color.White
+        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton3.IconSize = 28
+        Me.IconButton3.Location = New System.Drawing.Point(506, 72)
+        Me.IconButton3.Name = "IconButton3"
+        Me.IconButton3.Size = New System.Drawing.Size(180, 46)
+        Me.IconButton3.TabIndex = 2
+        Me.IconButton3.Text = "CERTIFY"
+        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton3.UseVisualStyleBackColor = False
+        '
+        'configurebutton
+        '
+        Me.configurebutton.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.configurebutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.configurebutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.configurebutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.configurebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.configurebutton.ForeColor = System.Drawing.Color.White
+        Me.configurebutton.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.configurebutton.IconColor = System.Drawing.Color.White
+        Me.configurebutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.configurebutton.IconSize = 28
+        Me.configurebutton.Location = New System.Drawing.Point(3, 46)
+        Me.configurebutton.Name = "configurebutton"
+        Me.configurebutton.Size = New System.Drawing.Size(180, 46)
+        Me.configurebutton.TabIndex = 1
+        Me.configurebutton.Text = "CONFIGURE"
+        Me.configurebutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.configurebutton.UseVisualStyleBackColor = False
+        '
+        'configuretbutton
+        '
+        Me.configuretbutton.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.configuretbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.configuretbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.configuretbutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.configuretbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.configuretbutton.ForeColor = System.Drawing.Color.White
+        Me.configuretbutton.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.configuretbutton.IconColor = System.Drawing.Color.White
+        Me.configuretbutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.configuretbutton.IconSize = 28
+        Me.configuretbutton.Location = New System.Drawing.Point(253, 46)
+        Me.configuretbutton.Name = "configuretbutton"
+        Me.configuretbutton.Size = New System.Drawing.Size(180, 46)
+        Me.configuretbutton.TabIndex = 0
+        Me.configuretbutton.Text = "CONNECT"
+        Me.configuretbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.configuretbutton.UseVisualStyleBackColor = False
+        '
         'IconButton1
         '
         Me.IconButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1621,33 +1707,25 @@ Partial Class Main
         Me.TextBox1.Text = "Dry Gas Meter Calibration / Certification"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'Panel2
+        'IconButton2
         '
-        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Panel2.Controls.Add(Me.connectbutton)
-        Me.Panel2.Location = New System.Drawing.Point(372, 159)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(932, 100)
-        Me.Panel2.TabIndex = 72
-        '
-        'connectbutton
-        '
-        Me.connectbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.connectbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.connectbutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.connectbutton.ForeColor = System.Drawing.Color.White
-        Me.connectbutton.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
-        Me.connectbutton.IconColor = System.Drawing.Color.White
-        Me.connectbutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.connectbutton.IconSize = 28
-        Me.connectbutton.Location = New System.Drawing.Point(20, 27)
-        Me.connectbutton.Name = "connectbutton"
-        Me.connectbutton.Size = New System.Drawing.Size(149, 46)
-        Me.connectbutton.TabIndex = 0
-        Me.connectbutton.Text = "CONNECT"
-        Me.connectbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.connectbutton.UseVisualStyleBackColor = False
+        Me.IconButton2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton2.ForeColor = System.Drawing.Color.White
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.CircleNotch
+        Me.IconButton2.IconColor = System.Drawing.Color.White
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 28
+        Me.IconButton2.Location = New System.Drawing.Point(506, 16)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(180, 46)
+        Me.IconButton2.TabIndex = 4
+        Me.IconButton2.Text = "CALIBRATE"
+        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton2.UseVisualStyleBackColor = False
         '
         'Main
         '
@@ -1758,7 +1836,6 @@ Partial Class Main
         Me.Controls.Add(Me.warmuptxtbox2)
         Me.Controls.Add(Me.warmuptxtbox1)
         Me.Controls.Add(Me.warmuplabel1)
-        Me.Controls.Add(Me.configurebuttonOrg)
         Me.Controls.Add(Me.testlabel6)
         Me.Controls.Add(Me.testlabel5)
         Me.Controls.Add(Me.testlabel4)
@@ -1787,8 +1864,8 @@ Partial Class Main
         Me.Text = "Form2"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1818,7 +1895,6 @@ Partial Class Main
     Friend WithEvents testlabel4 As Label
     Friend WithEvents testlabel5 As Label
     Friend WithEvents testlabel6 As Label
-    Friend WithEvents configurebuttonOrg As Button
     Friend WithEvents warmuplabel1 As Label
     Friend WithEvents warmuptxtbox6 As TextBox
     Friend WithEvents warmuptxtbox5 As TextBox
@@ -1930,5 +2006,9 @@ Partial Class Main
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents connectbutton As FontAwesome.Sharp.IconButton
+    Friend WithEvents configuretbutton As FontAwesome.Sharp.IconButton
+    Friend WithEvents stopbutton As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
+    Friend WithEvents configurebutton As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
 End Class
