@@ -11,6 +11,12 @@
     Const REF_MAX_MEMBERS = 8
     Const BAD_INPUT_LIMIT = 20
     Const BAD_CONNECTION_LIMIT = 5
+    Const FLOWRATE_MIN_INPUT_METRIC As Double = 1
+    Const FLOWRATE_MAX_INPUT_METRIC As Double = 1
+    Const ENDVOL_MAX_INPUT_METRIC As Double = 1
+    Const WARMUP_MIN_INPUT As Double = 1
+    Const WARMUP_MAX_INPUT As Double = 800
+
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -126,6 +132,7 @@
     Dim xdportgood As Boolean = False
 
     Dim DialogForm As New DialogUsr
+    Dim ErrorForm As New ErrorForm
 
     Dim consecBadCSVals As Integer = 0
     Dim consecBadCRCVals As Integer = 0
@@ -136,6 +143,7 @@
     Dim rowNumberCheck As Integer = 1
 
     Dim rowShouldBeFilled As Boolean = False
+    Dim reasonableVals As Boolean = True
 
 
 
@@ -674,6 +682,8 @@
     Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
 
 
+        'ensure reasonable vals
+        reasonableVals = True
 
         'ensure all rows properly filled out
         'rowNumberCheck
@@ -703,14 +713,22 @@
                     warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
                     rowShouldBeFilled = True
                 End If
+
             End If
         Next
+
+        If (rowShouldBeFilled) Then
+            'send error message if filled in poorly
+            GS_errorText = "Please Ensure all rows are filled out" + vbCrLf + "If one is todo fix this idk lol"
+            ErrorForm.StartPosition = FormStartPosition.CenterScreen
+            ErrorForm.ShowDialog()
+        End If
         rowNumberCheck = 0 ' reset this val
         'ensure validation or calibration is checked
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
-        If (refportgood And xdportgood And (Not rowShouldBeFilled)) Then
+        If (refportgood And xdportgood And (Not rowShouldBeFilled) And reasonableVals) Then
             testongoing = True
             duringwarmup = True
             currenttest = 1

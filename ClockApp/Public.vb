@@ -14,6 +14,7 @@ Module _Public
     Public usrStdPressure As Double = 760 '760 mmHg
     Public Gb_testgo As Boolean = True
     Public Gs_dialogText As String
+    Public GS_errorText As String
     'dim numbers = New Integer()
 
 
