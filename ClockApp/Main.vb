@@ -227,7 +227,7 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         'validate user input in real time
-        reWhiteInputsExistOnly()
+        'reWhiteInputsExistOnly()
 
         If ((consecBadCRCVals > BAD_INPUT_LIMIT) Or (consecBadCSVals > BAD_INPUT_LIMIT)) Then
             'END TEST OR SOMETHING
@@ -711,62 +711,62 @@
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
 
 
-        'ensure reasonable vals
-        reasonableVals = True
-        For p As Integer = 1 To NUM_OF_ROWS
-            If (flowratetxtbox(p).Text <> vbNullString) Then
-                If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
-                    reasonableVals = False
-                    'flowrate is too low, make it red then send error
-                    flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
-                    GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
-                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
-                    ErrorForm.ShowDialog()
-                End If
-            End If
+        ''ensure reasonable vals
+        'reasonableVals = True
+        'For p As Integer = 1 To NUM_OF_ROWS
+        '    If (flowratetxtbox(p).Text <> vbNullString) Then
+        '        If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
+        '            reasonableVals = False
+        '            'flowrate is too low, make it red then send error
+        '            flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
+        '            GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+        '            ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        '            ErrorForm.ShowDialog()
+        '        End If
+        '    End If
 
-        Next
+        'Next
 
-        'ensure all rows properly filled out
-        'rowNumberCheck
-        'flowratetxtbox
-        'endvoltxtbox
-        'warmuptxtbox
-        rowShouldBeFilled = False
-        Dim Gold, White
-        Gold = RGB(255, 215, 0)
-        White = RGB(255, 255, 255)
-        For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
+        ''ensure all rows properly filled out
+        ''rowNumberCheck
+        ''flowratetxtbox
+        ''endvoltxtbox
+        ''warmuptxtbox
+        'rowShouldBeFilled = False
+        'Dim Gold, White
+        'Gold = RGB(255, 215, 0)
+        'White = RGB(255, 255, 255)
+        'For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
 
-            'TODO write loop to make background white if was yellow then good vals are passed through
+        '    'TODO write loop to make background white if was yellow then good vals are passed through
 
-            'check to see if any filled in.  If any ARE filled in , then highlight the boxes that aren't filled in
-            If (flowratetxtbox(n).Text <> vbNullString Or endvoltxtbox(n).Text <> vbNullString Or warmuptxtbox(n).Text <> vbNullString) Then  'will trigger if any input in the row is filled out
-                'check to see if any ohters are finished
-                If (flowratetxtbox(n).Text = vbNullString) Then
-                    flowratetxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
-                If (endvoltxtbox(n).Text = vbNullString) Then
-                    endvoltxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
-                If (warmuptxtbox(n).Text = vbNullString) Then
-                    warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
+        '    'check to see if any filled in.  If any ARE filled in , then highlight the boxes that aren't filled in
+        '    If (flowratetxtbox(n).Text <> vbNullString Or endvoltxtbox(n).Text <> vbNullString Or warmuptxtbox(n).Text <> vbNullString) Then  'will trigger if any input in the row is filled out
+        '        'check to see if any ohters are finished
+        '        If (flowratetxtbox(n).Text = vbNullString) Then
+        '            flowratetxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
+        '        If (endvoltxtbox(n).Text = vbNullString) Then
+        '            endvoltxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
+        '        If (warmuptxtbox(n).Text = vbNullString) Then
+        '            warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
 
-            End If
-        Next
+        '    End If
+        'Next
 
-        If (rowShouldBeFilled) Then
-            'send error message if filled in poorly
-            GS_errorText = "Please Ensure all rows are filled out" + vbCrLf + "If one is todo fix this idk lol"
-            ErrorForm.StartPosition = FormStartPosition.CenterScreen
-            ErrorForm.ShowDialog()
-        End If
-        rowNumberCheck = 0 ' reset this val
-        'ensure validation or calibration is checked
+        'If (rowShouldBeFilled) Then
+        '    'send error message if filled in poorly
+        '    GS_errorText = "Please Ensure all rows are filled out" + vbCrLf + "If one is todo fix this idk lol"
+        '    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        '    ErrorForm.ShowDialog()
+        'End If
+        'rowNumberCheck = 0 ' reset this val
+        ''ensure validation or calibration is checked
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
