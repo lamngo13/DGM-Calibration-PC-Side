@@ -515,7 +515,69 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles connectbutton.Click
+    Public Function send_error()
+        Dim ErrorForm As New ErrorForm
+        ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        ErrorForm.ShowDialog()
+    End Function
+    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
+        Dim antibug As New antibug
+        antibug.StartPosition = FormStartPosition.CenterScreen
+        antibug.ShowDialog()
+
+    End Sub
+
+
+
+    Private Sub flowratetxtbox1_TextChanged(sender As Object, e As EventArgs) Handles flowratetxtbox1.TextChanged
+        'testusrflowrate(1) = flowratetxtbox1.Text
+    End Sub
+
+    Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
+        'testusrendvol(1) = Val(endvoltxtbox1.Text)
+    End Sub
+
+    Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
+        'testusrwarmup(1) = Val(warmuptxtbox1.Text)
+    End Sub
+
+
+    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
+        'If testongoing Then bigtimer += 0.1
+    End Sub
+
+    Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
+        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
+    End Sub
+
+    Private Sub continueButton_Click(sender As Object, e As EventArgs)
+        Gb_testgo = True
+    End Sub
+
+    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
+        If (calibrateRadioButton.Checked = True) Then
+            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
+
+        If (validateRadioButton.Checked = True) Then
+            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Public Sub reInitValsBcBadConnection()
+        'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles btnconnect.Click
         Dim comgo As Boolean = True
         Dim xdcomgo As Boolean = True
         Dim tempcomport As Integer = 1
@@ -644,46 +706,26 @@
         If (refportgood And xdportgood) Then
             messagetxtbox.Text = "Message: Both ports connected!"
         End If
-
-
-
-    End Sub
-    Public Function send_error()
-        Dim ErrorForm As New ErrorForm
-        ErrorForm.StartPosition = FormStartPosition.CenterScreen
-        ErrorForm.ShowDialog()
-    End Function
-    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
-        Dim antibug As New antibug
-        antibug.StartPosition = FormStartPosition.CenterScreen
-        antibug.ShowDialog()
-
     End Sub
 
-    Private Sub ConfigureButton_Click(sender As Object, e As EventArgs) Handles configurebutton.Click
-        Dim configure As New Configure
-        configure.StartPosition = FormStartPosition.CenterScreen
-        configure.ShowDialog()
-    End Sub
-
-
-    Private Sub flowratetxtbox1_TextChanged(sender As Object, e As EventArgs) Handles flowratetxtbox1.TextChanged
-        'testusrflowrate(1) = flowratetxtbox1.Text
-    End Sub
-
-    Private Sub endvoltxtbox1_TextChanged(sender As Object, e As EventArgs) Handles endvoltxtbox1.TextChanged
-        'testusrendvol(1) = Val(endvoltxtbox1.Text)
-    End Sub
-
-    Private Sub warmuptxtbox1_TextChanged(sender As Object, e As EventArgs) Handles warmuptxtbox1.TextChanged
-        'testusrwarmup(1) = Val(warmuptxtbox1.Text)
-    End Sub
-
-    Private Sub startbutton_Click(sender As Object, e As EventArgs) Handles startbutton.Click
+    Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
 
 
         'ensure reasonable vals
         reasonableVals = True
+        For p As Integer = 1 To NUM_OF_ROWS
+            If (flowratetxtbox(p).Text <> vbNullString) Then
+                If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
+                    reasonableVals = False
+                    'flowrate is too low, make it red then send error
+                    flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
+                    GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+                    ErrorForm.ShowDialog()
+                End If
+            End If
+
+        Next
 
         'ensure all rows properly filled out
         'rowNumberCheck
@@ -741,41 +783,11 @@
                 'find something that disables start button!!!
             Next
         End If
-
     End Sub
 
-    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs)
-        'If testongoing Then bigtimer += 0.1
-    End Sub
-
-    Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
-        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
-    End Sub
-
-    Private Sub continueButton_Click(sender As Object, e As EventArgs)
-        Gb_testgo = True
-    End Sub
-
-    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
-        If (calibrateRadioButton.Checked = True) Then
-            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
-            DialogForm.StartPosition = FormStartPosition.CenterScreen
-            DialogForm.ShowDialog()
-        End If
-
-    End Sub
-
-    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
-
-        If (validateRadioButton.Checked = True) Then
-            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
-            DialogForm.StartPosition = FormStartPosition.CenterScreen
-            DialogForm.ShowDialog()
-        End If
-
-    End Sub
-
-    Public Sub reInitValsBcBadConnection()
-        'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
+    Private Sub btnconfig_Click(sender As Object, e As EventArgs) Handles btnconfig.Click
+        Dim configure As New Configure
+        configure.StartPosition = FormStartPosition.CenterScreen
+        configure.ShowDialog()
     End Sub
 End Class

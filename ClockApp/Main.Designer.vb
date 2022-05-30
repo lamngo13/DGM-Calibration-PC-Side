@@ -47,7 +47,6 @@ Partial Class Main
         Me.testlabel4 = New System.Windows.Forms.Label()
         Me.testlabel5 = New System.Windows.Forms.Label()
         Me.testlabel6 = New System.Windows.Forms.Label()
-        Me.configurebutton = New System.Windows.Forms.Button()
         Me.warmuplabel1 = New System.Windows.Forms.Label()
         Me.warmuptxtbox6 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox5 = New System.Windows.Forms.TextBox()
@@ -91,8 +90,6 @@ Partial Class Main
         Me.testtemplabel3 = New System.Windows.Forms.Label()
         Me.testtemplabel2 = New System.Windows.Forms.Label()
         Me.testtemplabel1 = New System.Windows.Forms.Label()
-        Me.connectbutton = New System.Windows.Forms.Button()
-        Me.startbutton = New System.Windows.Forms.Button()
         Me.Main_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.mainclocklbl = New System.Windows.Forms.Label()
         Me.refport = New System.IO.Ports.SerialPort(Me.components)
@@ -155,6 +152,9 @@ Partial Class Main
         Me.avglabel33 = New System.Windows.Forms.Label()
         Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
         Me.validateRadioButton = New System.Windows.Forms.RadioButton()
+        Me.btnconnect = New FontAwesome.Sharp.IconButton()
+        Me.btnstart = New FontAwesome.Sharp.IconButton()
+        Me.btnconfig = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -376,16 +376,6 @@ Partial Class Main
         Me.testlabel6.Size = New System.Drawing.Size(57, 20)
         Me.testlabel6.TabIndex = 23
         Me.testlabel6.Text = "Test 6:"
-        '
-        'configurebutton
-        '
-        Me.configurebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.configurebutton.Location = New System.Drawing.Point(923, 138)
-        Me.configurebutton.Name = "configurebutton"
-        Me.configurebutton.Size = New System.Drawing.Size(140, 46)
-        Me.configurebutton.TabIndex = 24
-        Me.configurebutton.Text = "Configure"
-        Me.configurebutton.UseVisualStyleBackColor = True
         '
         'warmuplabel1
         '
@@ -863,26 +853,6 @@ Partial Class Main
         Me.testtemplabel1.Size = New System.Drawing.Size(18, 20)
         Me.testtemplabel1.TabIndex = 62
         Me.testtemplabel1.Text = "0"
-        '
-        'connectbutton
-        '
-        Me.connectbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.connectbutton.Location = New System.Drawing.Point(752, 136)
-        Me.connectbutton.Name = "connectbutton"
-        Me.connectbutton.Size = New System.Drawing.Size(135, 48)
-        Me.connectbutton.TabIndex = 68
-        Me.connectbutton.Text = "Connect"
-        Me.connectbutton.UseVisualStyleBackColor = True
-        '
-        'startbutton
-        '
-        Me.startbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
-        Me.startbutton.Location = New System.Drawing.Point(752, 213)
-        Me.startbutton.Name = "startbutton"
-        Me.startbutton.Size = New System.Drawing.Size(134, 49)
-        Me.startbutton.TabIndex = 69
-        Me.startbutton.Text = "Start"
-        Me.startbutton.UseVisualStyleBackColor = True
         '
         'Main_Timer
         '
@@ -1571,12 +1541,51 @@ Partial Class Main
         Me.validateRadioButton.Text = "Validate"
         Me.validateRadioButton.UseVisualStyleBackColor = True
         '
+        'btnconnect
+        '
+        Me.btnconnect.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.btnconnect.IconColor = System.Drawing.Color.Black
+        Me.btnconnect.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnconnect.Location = New System.Drawing.Point(733, 111)
+        Me.btnconnect.Name = "btnconnect"
+        Me.btnconnect.Size = New System.Drawing.Size(127, 77)
+        Me.btnconnect.TabIndex = 139
+        Me.btnconnect.Text = "newconnect"
+        Me.btnconnect.UseVisualStyleBackColor = True
+        '
+        'btnstart
+        '
+        Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.btnstart.IconColor = System.Drawing.Color.Black
+        Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnstart.Location = New System.Drawing.Point(733, 207)
+        Me.btnstart.Name = "btnstart"
+        Me.btnstart.Size = New System.Drawing.Size(127, 77)
+        Me.btnstart.TabIndex = 140
+        Me.btnstart.Text = "newstart"
+        Me.btnstart.UseVisualStyleBackColor = True
+        '
+        'btnconfig
+        '
+        Me.btnconfig.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.btnconfig.IconColor = System.Drawing.Color.Black
+        Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnconfig.Location = New System.Drawing.Point(889, 36)
+        Me.btnconfig.Name = "btnconfig"
+        Me.btnconfig.Size = New System.Drawing.Size(127, 77)
+        Me.btnconfig.TabIndex = 141
+        Me.btnconfig.Text = "newconfig"
+        Me.btnconfig.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1457, 707)
+        Me.Controls.Add(Me.btnconfig)
+        Me.Controls.Add(Me.btnstart)
+        Me.Controls.Add(Me.btnconnect)
         Me.Controls.Add(Me.validateRadioButton)
         Me.Controls.Add(Me.calibrateRadioButton)
         Me.Controls.Add(Me.avglabel33)
@@ -1636,8 +1645,6 @@ Partial Class Main
         Me.Controls.Add(Me.antibug2)
         Me.Controls.Add(Me.antibug1)
         Me.Controls.Add(Me.mainclocklbl)
-        Me.Controls.Add(Me.startbutton)
-        Me.Controls.Add(Me.connectbutton)
         Me.Controls.Add(Me.testtemplabel6)
         Me.Controls.Add(Me.testtemplabel5)
         Me.Controls.Add(Me.testtemplabel4)
@@ -1681,7 +1688,6 @@ Partial Class Main
         Me.Controls.Add(Me.warmuptxtbox2)
         Me.Controls.Add(Me.warmuptxtbox1)
         Me.Controls.Add(Me.warmuplabel1)
-        Me.Controls.Add(Me.configurebutton)
         Me.Controls.Add(Me.testlabel6)
         Me.Controls.Add(Me.testlabel5)
         Me.Controls.Add(Me.testlabel4)
@@ -1737,7 +1743,6 @@ Partial Class Main
     Friend WithEvents testlabel4 As Label
     Friend WithEvents testlabel5 As Label
     Friend WithEvents testlabel6 As Label
-    Friend WithEvents configurebutton As Button
     Friend WithEvents warmuplabel1 As Label
     Friend WithEvents warmuptxtbox6 As TextBox
     Friend WithEvents warmuptxtbox5 As TextBox
@@ -1780,8 +1785,6 @@ Partial Class Main
     Friend WithEvents testtemplabel3 As Label
     Friend WithEvents testtemplabel2 As Label
     Friend WithEvents testtemplabel1 As Label
-    Friend WithEvents connectbutton As Button
-    Friend WithEvents startbutton As Button
     Public WithEvents refpulselabel1 As Label
     Friend WithEvents Main_Timer As Timer
     Friend WithEvents mainclocklbl As Label
@@ -1845,4 +1848,7 @@ Partial Class Main
     Friend WithEvents avglabel33 As Label
     Friend WithEvents calibrateRadioButton As RadioButton
     Friend WithEvents validateRadioButton As RadioButton
+    Friend WithEvents btnconnect As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnstart As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnconfig As FontAwesome.Sharp.IconButton
 End Class
