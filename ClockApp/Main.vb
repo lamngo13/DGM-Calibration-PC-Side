@@ -596,6 +596,7 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'here do cool looking stuff
 
         'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
@@ -914,6 +915,14 @@
     End Sub
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
+    End Sub
+
+    Private Sub refpulselabel1_Click(sender As Object, e As EventArgs) Handles refpulselabel1.Click
+
+    End Sub
+
+    Private Sub refpulselabel0_Click(sender As Object, e As EventArgs) Handles refpulselabel0.Click
 
     End Sub
 End Class
