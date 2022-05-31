@@ -161,9 +161,12 @@ Partial Class Main
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -869,10 +872,11 @@ Partial Class Main
         '
         'mainclocklbl
         '
+        Me.mainclocklbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mainclocklbl.AutoSize = True
         Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.mainclocklbl.ForeColor = System.Drawing.SystemColors.Control
-        Me.mainclocklbl.Location = New System.Drawing.Point(785, 371)
+        Me.mainclocklbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.mainclocklbl.Location = New System.Drawing.Point(1333, 54)
         Me.mainclocklbl.Name = "mainclocklbl"
         Me.mainclocklbl.Size = New System.Drawing.Size(57, 20)
         Me.mainclocklbl.TabIndex = 71
@@ -1526,12 +1530,13 @@ Partial Class Main
         '
         'calibrateRadioButton
         '
+        Me.calibrateRadioButton.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.calibrateRadioButton.AutoSize = True
-        Me.calibrateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.calibrateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.calibrateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.calibrateRadioButton.Location = New System.Drawing.Point(947, 561)
+        Me.calibrateRadioButton.Location = New System.Drawing.Point(12, 8)
         Me.calibrateRadioButton.Name = "calibrateRadioButton"
-        Me.calibrateRadioButton.Size = New System.Drawing.Size(90, 24)
+        Me.calibrateRadioButton.Size = New System.Drawing.Size(74, 19)
         Me.calibrateRadioButton.TabIndex = 137
         Me.calibrateRadioButton.TabStop = True
         Me.calibrateRadioButton.Text = "Calibrate"
@@ -1539,12 +1544,13 @@ Partial Class Main
         '
         'validateRadioButton
         '
+        Me.validateRadioButton.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.validateRadioButton.AutoSize = True
-        Me.validateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.validateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.validateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.validateRadioButton.Location = New System.Drawing.Point(947, 535)
+        Me.validateRadioButton.Location = New System.Drawing.Point(98, 8)
         Me.validateRadioButton.Name = "validateRadioButton"
-        Me.validateRadioButton.Size = New System.Drawing.Size(85, 24)
+        Me.validateRadioButton.Size = New System.Drawing.Size(69, 19)
         Me.validateRadioButton.TabIndex = 138
         Me.validateRadioButton.TabStop = True
         Me.validateRadioButton.Text = "Validate"
@@ -1562,7 +1568,7 @@ Partial Class Main
         Me.btnconnect.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconnect.IconSize = 23
         Me.btnconnect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnconnect.Location = New System.Drawing.Point(3, 6)
+        Me.btnconnect.Location = New System.Drawing.Point(3, 3)
         Me.btnconnect.Name = "btnconnect"
         Me.btnconnect.Size = New System.Drawing.Size(158, 40)
         Me.btnconnect.TabIndex = 139
@@ -1580,10 +1586,10 @@ Partial Class Main
         Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.Play
         Me.btnstart.IconColor = System.Drawing.Color.White
         Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnstart.IconSize = 20
-        Me.btnstart.Location = New System.Drawing.Point(197, 6)
+        Me.btnstart.IconSize = 19
+        Me.btnstart.Location = New System.Drawing.Point(201, 3)
         Me.btnstart.Name = "btnstart"
-        Me.btnstart.Size = New System.Drawing.Size(137, 40)
+        Me.btnstart.Size = New System.Drawing.Size(174, 40)
         Me.btnstart.TabIndex = 140
         Me.btnstart.Text = " RUN"
         Me.btnstart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1592,7 +1598,7 @@ Partial Class Main
         '
         'btnconfig
         '
-        Me.btnconfig.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnconfig.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnconfig.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnconfig.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnconfig.ForeColor = System.Drawing.Color.White
@@ -1600,9 +1606,9 @@ Partial Class Main
         Me.btnconfig.IconColor = System.Drawing.Color.White
         Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconfig.IconSize = 18
-        Me.btnconfig.Location = New System.Drawing.Point(1313, 34)
+        Me.btnconfig.Location = New System.Drawing.Point(1331, 985)
         Me.btnconfig.Name = "btnconfig"
-        Me.btnconfig.Size = New System.Drawing.Size(105, 25)
+        Me.btnconfig.Size = New System.Drawing.Size(114, 27)
         Me.btnconfig.TabIndex = 141
         Me.btnconfig.Text = " CONFIGURE"
         Me.btnconfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -1611,14 +1617,15 @@ Partial Class Main
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.Controls.Add(Me.IconButton2)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Controls.Add(Me.btnconfig)
+        Me.Panel1.Controls.Add(Me.mainclocklbl)
         Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1457, 338)
+        Me.Panel1.Size = New System.Drawing.Size(1457, 288)
         Me.Panel1.TabIndex = 142
         '
         'PictureBox1
@@ -1637,11 +1644,11 @@ Partial Class Main
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(3, 39)
+        Me.TextBox1.Location = New System.Drawing.Point(3, 62)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(1454, 38)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "Dry Gas Meter Calibration/Verification"
+        Me.TextBox1.Text = "Dry Gas Meter Calibration/Validation"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'IconButton1
@@ -1651,11 +1658,11 @@ Partial Class Main
         Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton1.ForeColor = System.Drawing.Color.White
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.[Stop]
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
         Me.IconButton1.IconColor = System.Drawing.Color.White
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 18
-        Me.IconButton1.Location = New System.Drawing.Point(374, 6)
+        Me.IconButton1.IconSize = 20
+        Me.IconButton1.Location = New System.Drawing.Point(418, 0)
         Me.IconButton1.Name = "IconButton1"
         Me.IconButton1.Size = New System.Drawing.Size(143, 40)
         Me.IconButton1.TabIndex = 143
@@ -1670,10 +1677,35 @@ Partial Class Main
         Me.Panel2.Controls.Add(Me.btnstart)
         Me.Panel2.Controls.Add(Me.btnconnect)
         Me.Panel2.Controls.Add(Me.IconButton1)
-        Me.Panel2.Location = New System.Drawing.Point(444, 125)
+        Me.Panel2.Controls.Add(Me.Panel3)
+        Me.Panel2.Location = New System.Drawing.Point(451, 124)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(520, 77)
+        Me.Panel2.Size = New System.Drawing.Size(561, 118)
         Me.Panel2.TabIndex = 143
+        '
+        'IconButton2
+        '
+        Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Sync
+        Me.IconButton2.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 22
+        Me.IconButton2.Location = New System.Drawing.Point(1370, 28)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(43, 23)
+        Me.IconButton2.TabIndex = 144
+        Me.IconButton2.UseVisualStyleBackColor = True
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(12, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.calibrateRadioButton)
+        Me.Panel3.Controls.Add(Me.validateRadioButton)
+        Me.Panel3.Location = New System.Drawing.Point(201, 44)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(174, 36)
+        Me.Panel3.TabIndex = 145
         '
         'Main
         '
@@ -1681,9 +1713,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1457, 1025)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.validateRadioButton)
-        Me.Controls.Add(Me.calibrateRadioButton)
+        Me.Controls.Add(Me.btnconfig)
         Me.Controls.Add(Me.avglabel33)
         Me.Controls.Add(Me.avglabel22)
         Me.Controls.Add(Me.avglabel11)
@@ -1740,7 +1770,6 @@ Partial Class Main
         Me.Controls.Add(Me.antibug3)
         Me.Controls.Add(Me.antibug2)
         Me.Controls.Add(Me.antibug1)
-        Me.Controls.Add(Me.mainclocklbl)
         Me.Controls.Add(Me.testtemplabel6)
         Me.Controls.Add(Me.testtemplabel5)
         Me.Controls.Add(Me.testtemplabel4)
@@ -1808,12 +1837,15 @@ Partial Class Main
         Me.Controls.Add(Me.flowratetxtbox2)
         Me.Controls.Add(Me.flowratetxtbox1)
         Me.Controls.Add(Me.antibugbutton)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "Main"
-        Me.Text = "Form2"
+        Me.Text = "DGM"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1956,4 +1988,6 @@ Partial Class Main
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
+    Friend WithEvents Panel3 As Panel
 End Class
