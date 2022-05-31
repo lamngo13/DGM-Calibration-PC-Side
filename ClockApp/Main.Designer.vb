@@ -94,14 +94,6 @@ Partial Class Main
         Me.Main_Timer = New System.Windows.Forms.Timer(Me.components)
         Me.mainclocklbl = New System.Windows.Forms.Label()
         Me.refport = New System.IO.Ports.SerialPort(Me.components)
-        Me.antibug1 = New System.Windows.Forms.Label()
-        Me.antibug2 = New System.Windows.Forms.Label()
-        Me.antibug3 = New System.Windows.Forms.Label()
-        Me.antibug4 = New System.Windows.Forms.Label()
-        Me.antibug5 = New System.Windows.Forms.Label()
-        Me.antibug6 = New System.Windows.Forms.Label()
-        Me.antibug7 = New System.Windows.Forms.Label()
-        Me.antibug8 = New System.Windows.Forms.Label()
         Me.testtimerlabel6 = New System.Windows.Forms.Label()
         Me.testtimerlabel5 = New System.Windows.Forms.Label()
         Me.testtimerlabel4 = New System.Windows.Forms.Label()
@@ -111,8 +103,6 @@ Partial Class Main
         Me.testtimerlabel0 = New System.Windows.Forms.Label()
         Me.teststatuslabel1 = New System.Windows.Forms.Label()
         Me.teststatuslabel2 = New System.Windows.Forms.Label()
-        Me.antibug9 = New System.Windows.Forms.Label()
-        Me.antibug10 = New System.Windows.Forms.Label()
         Me.antibug11 = New System.Windows.Forms.Label()
         Me.xd502port = New System.IO.Ports.SerialPort(Me.components)
         Me.messagetxtbox = New System.Windows.Forms.TextBox()
@@ -144,7 +134,6 @@ Partial Class Main
         Me.endlabel1 = New System.Windows.Forms.Label()
         Me.endlabel2 = New System.Windows.Forms.Label()
         Me.endlabel3 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.avglabel1 = New System.Windows.Forms.Label()
         Me.avglabel2 = New System.Windows.Forms.Label()
         Me.resultLabel1 = New System.Windows.Forms.Label()
@@ -886,94 +875,6 @@ Partial Class Main
         '
         Me.refport.BaudRate = 460800
         '
-        'antibug1
-        '
-        Me.antibug1.AutoSize = True
-        Me.antibug1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug1.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug1.Location = New System.Drawing.Point(1333, 434)
-        Me.antibug1.Name = "antibug1"
-        Me.antibug1.Size = New System.Drawing.Size(71, 20)
-        Me.antibug1.TabIndex = 72
-        Me.antibug1.Text = "antibug1"
-        '
-        'antibug2
-        '
-        Me.antibug2.AutoSize = True
-        Me.antibug2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug2.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug2.Location = New System.Drawing.Point(1333, 463)
-        Me.antibug2.Name = "antibug2"
-        Me.antibug2.Size = New System.Drawing.Size(71, 20)
-        Me.antibug2.TabIndex = 73
-        Me.antibug2.Text = "antibug2"
-        '
-        'antibug3
-        '
-        Me.antibug3.AutoSize = True
-        Me.antibug3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug3.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug3.Location = New System.Drawing.Point(1333, 493)
-        Me.antibug3.Name = "antibug3"
-        Me.antibug3.Size = New System.Drawing.Size(71, 20)
-        Me.antibug3.TabIndex = 74
-        Me.antibug3.Text = "antibug3"
-        '
-        'antibug4
-        '
-        Me.antibug4.AutoSize = True
-        Me.antibug4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug4.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug4.Location = New System.Drawing.Point(1333, 526)
-        Me.antibug4.Name = "antibug4"
-        Me.antibug4.Size = New System.Drawing.Size(71, 20)
-        Me.antibug4.TabIndex = 75
-        Me.antibug4.Text = "antibug4"
-        '
-        'antibug5
-        '
-        Me.antibug5.AutoSize = True
-        Me.antibug5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug5.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug5.Location = New System.Drawing.Point(1333, 558)
-        Me.antibug5.Name = "antibug5"
-        Me.antibug5.Size = New System.Drawing.Size(71, 20)
-        Me.antibug5.TabIndex = 76
-        Me.antibug5.Text = "antibug5"
-        '
-        'antibug6
-        '
-        Me.antibug6.AutoSize = True
-        Me.antibug6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug6.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug6.Location = New System.Drawing.Point(1333, 591)
-        Me.antibug6.Name = "antibug6"
-        Me.antibug6.Size = New System.Drawing.Size(71, 20)
-        Me.antibug6.TabIndex = 77
-        Me.antibug6.Text = "antibug6"
-        '
-        'antibug7
-        '
-        Me.antibug7.AutoSize = True
-        Me.antibug7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug7.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug7.Location = New System.Drawing.Point(1333, 622)
-        Me.antibug7.Name = "antibug7"
-        Me.antibug7.Size = New System.Drawing.Size(71, 20)
-        Me.antibug7.TabIndex = 78
-        Me.antibug7.Text = "antibug7"
-        '
-        'antibug8
-        '
-        Me.antibug8.AutoSize = True
-        Me.antibug8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug8.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug8.Location = New System.Drawing.Point(1333, 652)
-        Me.antibug8.Name = "antibug8"
-        Me.antibug8.Size = New System.Drawing.Size(71, 20)
-        Me.antibug8.TabIndex = 79
-        Me.antibug8.Text = "antibug8"
-        '
         'testtimerlabel6
         '
         Me.testtimerlabel6.AutoSize = True
@@ -1078,28 +979,6 @@ Partial Class Main
         Me.teststatuslabel2.Size = New System.Drawing.Size(98, 20)
         Me.teststatuslabel2.TabIndex = 88
         Me.teststatuslabel2.Text = "Not Running"
-        '
-        'antibug9
-        '
-        Me.antibug9.AutoSize = True
-        Me.antibug9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug9.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug9.Location = New System.Drawing.Point(1333, 687)
-        Me.antibug9.Name = "antibug9"
-        Me.antibug9.Size = New System.Drawing.Size(71, 20)
-        Me.antibug9.TabIndex = 89
-        Me.antibug9.Text = "antibug9"
-        '
-        'antibug10
-        '
-        Me.antibug10.AutoSize = True
-        Me.antibug10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.antibug10.ForeColor = System.Drawing.SystemColors.Control
-        Me.antibug10.Location = New System.Drawing.Point(1333, 718)
-        Me.antibug10.Name = "antibug10"
-        Me.antibug10.Size = New System.Drawing.Size(80, 20)
-        Me.antibug10.TabIndex = 90
-        Me.antibug10.Text = "antibug10"
         '
         'antibug11
         '
@@ -1448,17 +1327,6 @@ Partial Class Main
         Me.endlabel3.TabIndex = 121
         Me.endlabel3.Text = "endlabel3"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.Label7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label7.Location = New System.Drawing.Point(1110, 938)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(275, 20)
-        Me.Label7.TabIndex = 129
-        Me.Label7.Text = "NOT SURE ABT THIS COLUMN TBH"
-        '
         'avglabel1
         '
         Me.avglabel1.AutoSize = True
@@ -1722,7 +1590,6 @@ Partial Class Main
         Me.Controls.Add(Me.resultLabel1)
         Me.Controls.Add(Me.avglabel2)
         Me.Controls.Add(Me.avglabel1)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.endlabel3)
         Me.Controls.Add(Me.endlabel2)
         Me.Controls.Add(Me.endlabel1)
@@ -1753,8 +1620,6 @@ Partial Class Main
         Me.Controls.Add(Me.scalinglabel1)
         Me.Controls.Add(Me.messagetxtbox)
         Me.Controls.Add(Me.antibug11)
-        Me.Controls.Add(Me.antibug10)
-        Me.Controls.Add(Me.antibug9)
         Me.Controls.Add(Me.teststatuslabel2)
         Me.Controls.Add(Me.teststatuslabel1)
         Me.Controls.Add(Me.testtimerlabel6)
@@ -1764,14 +1629,6 @@ Partial Class Main
         Me.Controls.Add(Me.testtimerlabel2)
         Me.Controls.Add(Me.testtimerlabel1)
         Me.Controls.Add(Me.testtimerlabel0)
-        Me.Controls.Add(Me.antibug8)
-        Me.Controls.Add(Me.antibug7)
-        Me.Controls.Add(Me.antibug6)
-        Me.Controls.Add(Me.antibug5)
-        Me.Controls.Add(Me.antibug4)
-        Me.Controls.Add(Me.antibug3)
-        Me.Controls.Add(Me.antibug2)
-        Me.Controls.Add(Me.antibug1)
         Me.Controls.Add(Me.testtemplabel6)
         Me.Controls.Add(Me.testtemplabel5)
         Me.Controls.Add(Me.testtemplabel4)
@@ -1923,14 +1780,6 @@ Partial Class Main
     Friend WithEvents Main_Timer As Timer
     Friend WithEvents mainclocklbl As Label
     Friend WithEvents refport As IO.Ports.SerialPort
-    Friend WithEvents antibug1 As Label
-    Friend WithEvents antibug2 As Label
-    Friend WithEvents antibug3 As Label
-    Friend WithEvents antibug4 As Label
-    Friend WithEvents antibug5 As Label
-    Friend WithEvents antibug6 As Label
-    Friend WithEvents antibug7 As Label
-    Friend WithEvents antibug8 As Label
     Friend WithEvents testtimerlabel6 As Label
     Friend WithEvents testtimerlabel5 As Label
     Friend WithEvents testtimerlabel4 As Label
@@ -1940,8 +1789,6 @@ Partial Class Main
     Friend WithEvents testtimerlabel0 As Label
     Friend WithEvents teststatuslabel1 As Label
     Friend WithEvents teststatuslabel2 As Label
-    Friend WithEvents antibug9 As Label
-    Friend WithEvents antibug10 As Label
     Friend WithEvents antibug11 As Label
     Friend WithEvents xd502port As IO.Ports.SerialPort
     Friend WithEvents messagetxtbox As TextBox
@@ -1973,7 +1820,6 @@ Partial Class Main
     Friend WithEvents endlabel1 As Label
     Friend WithEvents endlabel2 As Label
     Friend WithEvents endlabel3 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents avglabel1 As Label
     Friend WithEvents avglabel2 As Label
     Friend WithEvents resultLabel1 As Label
