@@ -87,7 +87,6 @@
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
-    Dim endtestnum As Integer = 6
 
     Dim bigtimer As Double = 0.0
 
@@ -475,9 +474,6 @@
         End If
 
         'others-----------------------
-        For m As Integer = 1 To endtestnum
-            'resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
-        Next
 
         'If overall test is currently going
         If (testongoing) Then
@@ -872,14 +868,6 @@
             testongoing = True
             duringwarmup = True
             currenttest = 1
-            'assign vals based on user input
-            For startiterator = 1 To 6
-                If (flowratetxtbox(startiterator).Text = "") Then ' find out how many rows are filled, this needs more!!
-                    endtestnum = startiterator
-                    startiterator = 7
-                End If
-                'find something that disables start button!!!
-            Next
         End If
     End Sub
 
