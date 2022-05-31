@@ -1560,13 +1560,13 @@ Partial Class Main
         Me.btnconnect.IconChar = FontAwesome.Sharp.IconChar.Link
         Me.btnconnect.IconColor = System.Drawing.Color.White
         Me.btnconnect.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnconnect.IconSize = 22
+        Me.btnconnect.IconSize = 23
         Me.btnconnect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnconnect.Location = New System.Drawing.Point(3, 18)
+        Me.btnconnect.Location = New System.Drawing.Point(3, 6)
         Me.btnconnect.Name = "btnconnect"
-        Me.btnconnect.Size = New System.Drawing.Size(159, 53)
+        Me.btnconnect.Size = New System.Drawing.Size(158, 40)
         Me.btnconnect.TabIndex = 139
-        Me.btnconnect.Text = "CONNECT"
+        Me.btnconnect.Text = " CONNECT"
         Me.btnconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnconnect.UseVisualStyleBackColor = False
         '
@@ -1580,12 +1580,12 @@ Partial Class Main
         Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.Play
         Me.btnstart.IconColor = System.Drawing.Color.White
         Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnstart.IconSize = 22
-        Me.btnstart.Location = New System.Drawing.Point(197, 18)
+        Me.btnstart.IconSize = 20
+        Me.btnstart.Location = New System.Drawing.Point(197, 6)
         Me.btnstart.Name = "btnstart"
-        Me.btnstart.Size = New System.Drawing.Size(138, 53)
+        Me.btnstart.Size = New System.Drawing.Size(137, 40)
         Me.btnstart.TabIndex = 140
-        Me.btnstart.Text = "RUN"
+        Me.btnstart.Text = " RUN"
         Me.btnstart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnstart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnstart.UseVisualStyleBackColor = False
@@ -1593,15 +1593,20 @@ Partial Class Main
         'btnconfig
         '
         Me.btnconfig.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnconfig.IconChar = FontAwesome.Sharp.IconChar.None
-        Me.btnconfig.IconColor = System.Drawing.Color.Black
+        Me.btnconfig.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnconfig.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnconfig.ForeColor = System.Drawing.Color.White
+        Me.btnconfig.IconChar = FontAwesome.Sharp.IconChar.Wrench
+        Me.btnconfig.IconColor = System.Drawing.Color.White
         Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnconfig.Location = New System.Drawing.Point(1299, 25)
+        Me.btnconfig.IconSize = 18
+        Me.btnconfig.Location = New System.Drawing.Point(1313, 34)
         Me.btnconfig.Name = "btnconfig"
-        Me.btnconfig.Size = New System.Drawing.Size(127, 77)
+        Me.btnconfig.Size = New System.Drawing.Size(105, 25)
         Me.btnconfig.TabIndex = 141
-        Me.btnconfig.Text = "newconfig"
-        Me.btnconfig.UseVisualStyleBackColor = True
+        Me.btnconfig.Text = " CONFIGURE"
+        Me.btnconfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnconfig.UseVisualStyleBackColor = False
         '
         'Panel1
         '
@@ -1630,11 +1635,11 @@ Partial Class Main
         Me.TextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.TextBox1.BackColor = System.Drawing.Color.Black
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(12, 39)
+        Me.TextBox1.Location = New System.Drawing.Point(3, 39)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(1457, 42)
+        Me.TextBox1.Size = New System.Drawing.Size(1454, 38)
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.Text = "Dry Gas Meter Calibration/Verification"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1649,12 +1654,12 @@ Partial Class Main
         Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.[Stop]
         Me.IconButton1.IconColor = System.Drawing.Color.White
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 22
-        Me.IconButton1.Location = New System.Drawing.Point(374, 18)
+        Me.IconButton1.IconSize = 18
+        Me.IconButton1.Location = New System.Drawing.Point(374, 6)
         Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(143, 53)
+        Me.IconButton1.Size = New System.Drawing.Size(143, 40)
         Me.IconButton1.TabIndex = 143
-        Me.IconButton1.Text = "ABORT"
+        Me.IconButton1.Text = " ABORT"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton1.UseVisualStyleBackColor = False
@@ -1665,9 +1670,9 @@ Partial Class Main
         Me.Panel2.Controls.Add(Me.btnstart)
         Me.Panel2.Controls.Add(Me.btnconnect)
         Me.Panel2.Controls.Add(Me.IconButton1)
-        Me.Panel2.Location = New System.Drawing.Point(444, 111)
+        Me.Panel2.Location = New System.Drawing.Point(444, 125)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(520, 100)
+        Me.Panel2.Size = New System.Drawing.Size(520, 77)
         Me.Panel2.TabIndex = 143
         '
         'Main
