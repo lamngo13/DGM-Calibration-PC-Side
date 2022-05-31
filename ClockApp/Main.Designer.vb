@@ -161,10 +161,12 @@ Partial Class Main
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -500,7 +502,7 @@ Partial Class Main
         Me.refpulselabel1.BackColor = System.Drawing.SystemColors.Control
         Me.refpulselabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.refpulselabel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.refpulselabel1.Location = New System.Drawing.Point(269, 697)
+        Me.refpulselabel1.Location = New System.Drawing.Point(72, 80)
         Me.refpulselabel1.Name = "refpulselabel1"
         Me.refpulselabel1.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel1.TabIndex = 35
@@ -1660,12 +1662,21 @@ Partial Class Main
         Me.TextBox1.Text = "Dry Gas Meter Calibration/Validation"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.refpulselabel1)
+        Me.Panel4.Location = New System.Drawing.Point(632, 431)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(332, 180)
+        Me.Panel4.TabIndex = 143
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1457, 1025)
+        Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.btnconfig)
         Me.Controls.Add(Me.avglabel33)
         Me.Controls.Add(Me.avglabel22)
@@ -1753,7 +1764,6 @@ Partial Class Main
         Me.Controls.Add(Me.refpulselabel4)
         Me.Controls.Add(Me.refpulselabel3)
         Me.Controls.Add(Me.refpulselabel2)
-        Me.Controls.Add(Me.refpulselabel1)
         Me.Controls.Add(Me.refpulselabel0)
         Me.Controls.Add(Me.warmuplabel3)
         Me.Controls.Add(Me.warmuplabel2)
@@ -1797,6 +1807,7 @@ Partial Class Main
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1939,4 +1950,5 @@ Partial Class Main
     Friend WithEvents Panel2 As Panel
     Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
 End Class
