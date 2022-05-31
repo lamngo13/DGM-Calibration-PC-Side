@@ -543,6 +543,12 @@
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest), "Cel"), 2)
 
+
+                        'IF IMPERIAL------------------------------------------
+                        If (Gs_UnitType = "imperial") Then
+
+                        End If
+
                     End If
 
                     'check for end condition off of pulses/volume

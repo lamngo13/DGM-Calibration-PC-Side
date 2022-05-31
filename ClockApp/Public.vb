@@ -10,11 +10,12 @@ Module _Public
     Public Gi_inttrimmedcrc As Integer
     Public Gs_tempunits As String = "Celsius"
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Public usrStdTemp As Double = 20 ' 20 degrees celsius
+    Public Gd_usrStdTemp As Double = 20 ' 20 degrees celsius
     Public usrStdPressure As Double = 760 '760 mmHg
     Public Gb_testgo As Boolean = True
     Public Gs_dialogText As String
     Public GS_errorText As String
+    Public Gs_UnitType As String = "metric"
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670
@@ -195,7 +196,7 @@ Module _Public
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
             If (inUnits = "Cel") Then
                 inTemp += 273.15
-                tempusrStdTemp = usrStdTemp + 273.15
+                tempusrStdTemp = Gd_usrStdTemp + 273.15
                 returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
             End If
             'MAYBE WRONG GOTTA CHECK THIS
