@@ -624,6 +624,9 @@
         Me.Width = Gi_Screen_Size_X
         Me.Height = Gi_Screen_Size_Y
 
+        'AZN
+
+
     End Sub
 
 
@@ -945,4 +948,7 @@
         'Gi_Resize_Delay = 2
     End Sub
 
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class

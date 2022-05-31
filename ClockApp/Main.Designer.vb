@@ -23,6 +23,7 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.flowratetxtbox1 = New System.Windows.Forms.TextBox()
         Me.flowratetxtbox2 = New System.Windows.Forms.TextBox()
         Me.flowratetxtbox3 = New System.Windows.Forms.TextBox()
@@ -169,6 +170,7 @@ Partial Class Main
         Me.bdline1 = New System.Windows.Forms.PictureBox()
         Me.bdline2 = New System.Windows.Forms.PictureBox()
         Me.bdline3 = New System.Windows.Forms.PictureBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,12 +198,14 @@ Partial Class Main
         CType(Me.bdline1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bdline2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bdline3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'flowratetxtbox1
         '
-        Me.flowratetxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer))
+        Me.flowratetxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox1.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox1.Location = New System.Drawing.Point(78, 400)
         Me.flowratetxtbox1.Multiline = True
         Me.flowratetxtbox1.Name = "flowratetxtbox1"
@@ -212,8 +216,9 @@ Partial Class Main
         '
         'flowratetxtbox2
         '
-        Me.flowratetxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.flowratetxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox2.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox2.Location = New System.Drawing.Point(78, 440)
         Me.flowratetxtbox2.Multiline = True
         Me.flowratetxtbox2.Name = "flowratetxtbox2"
@@ -224,8 +229,9 @@ Partial Class Main
         '
         'flowratetxtbox3
         '
-        Me.flowratetxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.flowratetxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox3.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox3.Location = New System.Drawing.Point(78, 479)
         Me.flowratetxtbox3.Multiline = True
         Me.flowratetxtbox3.Name = "flowratetxtbox3"
@@ -236,8 +242,9 @@ Partial Class Main
         '
         'flowratetxtbox4
         '
-        Me.flowratetxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.flowratetxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox4.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox4.Location = New System.Drawing.Point(78, 519)
         Me.flowratetxtbox4.Multiline = True
         Me.flowratetxtbox4.Name = "flowratetxtbox4"
@@ -247,8 +254,9 @@ Partial Class Main
         '
         'flowratetxtbox5
         '
-        Me.flowratetxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.flowratetxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox5.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox5.Location = New System.Drawing.Point(78, 559)
         Me.flowratetxtbox5.Multiline = True
         Me.flowratetxtbox5.Name = "flowratetxtbox5"
@@ -258,8 +266,9 @@ Partial Class Main
         '
         'flowratetxtbox6
         '
-        Me.flowratetxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.flowratetxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.flowratetxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.flowratetxtbox6.ForeColor = System.Drawing.Color.White
         Me.flowratetxtbox6.Location = New System.Drawing.Point(78, 599)
         Me.flowratetxtbox6.Multiline = True
         Me.flowratetxtbox6.Name = "flowratetxtbox6"
@@ -271,11 +280,11 @@ Partial Class Main
         '
         Me.flowratelabel2.AutoSize = True
         Me.flowratelabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.flowratelabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.flowratelabel2.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratelabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.flowratelabel2.Location = New System.Drawing.Point(65, 366)
+        Me.flowratelabel2.Location = New System.Drawing.Point(75, 366)
         Me.flowratelabel2.Name = "flowratelabel2"
-        Me.flowratelabel2.Size = New System.Drawing.Size(81, 18)
+        Me.flowratelabel2.Size = New System.Drawing.Size(86, 22)
         Me.flowratelabel2.TabIndex = 8
         Me.flowratelabel2.Text = "Flow Rate*"
         Me.flowratelabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -284,19 +293,20 @@ Partial Class Main
         '
         Me.genlabel1.AutoSize = True
         Me.genlabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.genlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.genlabel1.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.genlabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.genlabel1.Location = New System.Drawing.Point(65, 630)
+        Me.genlabel1.Location = New System.Drawing.Point(65, 633)
         Me.genlabel1.Name = "genlabel1"
-        Me.genlabel1.Size = New System.Drawing.Size(74, 15)
+        Me.genlabel1.Size = New System.Drawing.Size(67, 15)
         Me.genlabel1.TabIndex = 9
         Me.genlabel1.Text = "*leave blank" & Global.Microsoft.VisualBasic.ChrW(13)
         Me.genlabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'endvoltxtbox6
         '
-        Me.endvoltxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.endvoltxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox6.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox6.Location = New System.Drawing.Point(180, 599)
         Me.endvoltxtbox6.Multiline = True
         Me.endvoltxtbox6.Name = "endvoltxtbox6"
@@ -306,8 +316,9 @@ Partial Class Main
         '
         'endvoltxtbox5
         '
-        Me.endvoltxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.endvoltxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox5.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox5.Location = New System.Drawing.Point(180, 559)
         Me.endvoltxtbox5.Multiline = True
         Me.endvoltxtbox5.Name = "endvoltxtbox5"
@@ -317,8 +328,9 @@ Partial Class Main
         '
         'endvoltxtbox4
         '
-        Me.endvoltxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.endvoltxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox4.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox4.Location = New System.Drawing.Point(180, 519)
         Me.endvoltxtbox4.Multiline = True
         Me.endvoltxtbox4.Name = "endvoltxtbox4"
@@ -328,8 +340,9 @@ Partial Class Main
         '
         'endvoltxtbox3
         '
-        Me.endvoltxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.endvoltxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox3.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox3.Location = New System.Drawing.Point(180, 479)
         Me.endvoltxtbox3.Multiline = True
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
@@ -340,8 +353,9 @@ Partial Class Main
         '
         'endvoltxtbox2
         '
-        Me.endvoltxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.endvoltxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox2.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox2.Location = New System.Drawing.Point(180, 440)
         Me.endvoltxtbox2.Multiline = True
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
@@ -352,8 +366,9 @@ Partial Class Main
         '
         'endvoltxtbox1
         '
-        Me.endvoltxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer))
+        Me.endvoltxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.endvoltxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.endvoltxtbox1.ForeColor = System.Drawing.Color.White
         Me.endvoltxtbox1.Location = New System.Drawing.Point(180, 400)
         Me.endvoltxtbox1.Multiline = True
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
@@ -366,11 +381,11 @@ Partial Class Main
         '
         Me.endvollabel2.AutoSize = True
         Me.endvollabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.endvollabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.endvollabel2.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvollabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.endvollabel2.Location = New System.Drawing.Point(191, 349)
+        Me.endvollabel2.Location = New System.Drawing.Point(198, 349)
         Me.endvollabel2.Name = "endvollabel2"
-        Me.endvollabel2.Size = New System.Drawing.Size(34, 18)
+        Me.endvollabel2.Size = New System.Drawing.Size(35, 22)
         Me.endvollabel2.TabIndex = 17
         Me.endvollabel2.Text = "End" & Global.Microsoft.VisualBasic.ChrW(13)
         Me.endvollabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -378,66 +393,72 @@ Partial Class Main
         'testlabel1
         '
         Me.testlabel1.AutoSize = True
-        Me.testlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.testlabel1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel1.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel1.Location = New System.Drawing.Point(37, 401)
         Me.testlabel1.Name = "testlabel1"
-        Me.testlabel1.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel1.Size = New System.Drawing.Size(20, 22)
         Me.testlabel1.TabIndex = 18
         Me.testlabel1.Text = "1"
         '
         'testlabel2
         '
         Me.testlabel2.AutoSize = True
-        Me.testlabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer))
+        Me.testlabel2.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel2.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel2.Location = New System.Drawing.Point(37, 441)
         Me.testlabel2.Name = "testlabel2"
-        Me.testlabel2.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel2.Size = New System.Drawing.Size(20, 22)
         Me.testlabel2.TabIndex = 19
         Me.testlabel2.Text = "2"
         '
         'testlabel3
         '
         Me.testlabel3.AutoSize = True
-        Me.testlabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.testlabel3.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel3.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel3.Location = New System.Drawing.Point(37, 480)
         Me.testlabel3.Name = "testlabel3"
-        Me.testlabel3.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel3.Size = New System.Drawing.Size(20, 22)
         Me.testlabel3.TabIndex = 20
         Me.testlabel3.Text = "3"
         '
         'testlabel4
         '
         Me.testlabel4.AutoSize = True
-        Me.testlabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer))
+        Me.testlabel4.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel4.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel4.Location = New System.Drawing.Point(37, 520)
         Me.testlabel4.Name = "testlabel4"
-        Me.testlabel4.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel4.Size = New System.Drawing.Size(20, 22)
         Me.testlabel4.TabIndex = 21
         Me.testlabel4.Text = "4"
         '
         'testlabel5
         '
         Me.testlabel5.AutoSize = True
-        Me.testlabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.testlabel5.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel5.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel5.Location = New System.Drawing.Point(37, 560)
         Me.testlabel5.Name = "testlabel5"
-        Me.testlabel5.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel5.Size = New System.Drawing.Size(20, 22)
         Me.testlabel5.TabIndex = 22
         Me.testlabel5.Text = "5"
         '
         'testlabel6
         '
         Me.testlabel6.AutoSize = True
-        Me.testlabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.testlabel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(13, Byte), Integer))
+        Me.testlabel6.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testlabel6.ForeColor = System.Drawing.SystemColors.Control
         Me.testlabel6.Location = New System.Drawing.Point(37, 600)
         Me.testlabel6.Name = "testlabel6"
-        Me.testlabel6.Size = New System.Drawing.Size(18, 20)
+        Me.testlabel6.Size = New System.Drawing.Size(20, 22)
         Me.testlabel6.TabIndex = 23
         Me.testlabel6.Text = "6"
         '
@@ -445,19 +466,20 @@ Partial Class Main
         '
         Me.warmuplabel1.AutoSize = True
         Me.warmuplabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.warmuplabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!)
+        Me.warmuplabel1.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuplabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.warmuplabel1.Location = New System.Drawing.Point(286, 634)
+        Me.warmuplabel1.Location = New System.Drawing.Point(286, 635)
         Me.warmuplabel1.Name = "warmuplabel1"
-        Me.warmuplabel1.Size = New System.Drawing.Size(53, 13)
+        Me.warmuplabel1.Size = New System.Drawing.Size(53, 15)
         Me.warmuplabel1.TabIndex = 25
         Me.warmuplabel1.Text = "*Seconds"
         Me.warmuplabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'warmuptxtbox6
         '
-        Me.warmuptxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.warmuptxtbox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox6.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox6.Location = New System.Drawing.Point(290, 599)
         Me.warmuptxtbox6.Multiline = True
         Me.warmuptxtbox6.Name = "warmuptxtbox6"
@@ -467,8 +489,9 @@ Partial Class Main
         '
         'warmuptxtbox5
         '
-        Me.warmuptxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.warmuptxtbox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox5.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox5.Location = New System.Drawing.Point(290, 559)
         Me.warmuptxtbox5.Multiline = True
         Me.warmuptxtbox5.Name = "warmuptxtbox5"
@@ -478,8 +501,9 @@ Partial Class Main
         '
         'warmuptxtbox4
         '
-        Me.warmuptxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.warmuptxtbox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox4.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox4.Location = New System.Drawing.Point(290, 519)
         Me.warmuptxtbox4.Multiline = True
         Me.warmuptxtbox4.Name = "warmuptxtbox4"
@@ -489,8 +513,9 @@ Partial Class Main
         '
         'warmuptxtbox3
         '
-        Me.warmuptxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.warmuptxtbox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox3.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox3.Location = New System.Drawing.Point(290, 479)
         Me.warmuptxtbox3.Multiline = True
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
@@ -501,8 +526,9 @@ Partial Class Main
         '
         'warmuptxtbox2
         '
-        Me.warmuptxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.warmuptxtbox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox2.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox2.Location = New System.Drawing.Point(290, 440)
         Me.warmuptxtbox2.Multiline = True
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
@@ -513,8 +539,9 @@ Partial Class Main
         '
         'warmuptxtbox1
         '
-        Me.warmuptxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(187, Byte), Integer))
+        Me.warmuptxtbox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.warmuptxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.warmuptxtbox1.ForeColor = System.Drawing.Color.White
         Me.warmuptxtbox1.Location = New System.Drawing.Point(290, 400)
         Me.warmuptxtbox1.Multiline = True
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
@@ -527,11 +554,11 @@ Partial Class Main
         '
         Me.refpulselabel0.AutoSize = True
         Me.refpulselabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.refpulselabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.refpulselabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.refpulselabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.refpulselabel0.Location = New System.Drawing.Point(435, 349)
+        Me.refpulselabel0.Location = New System.Drawing.Point(442, 349)
         Me.refpulselabel0.Name = "refpulselabel0"
-        Me.refpulselabel0.Size = New System.Drawing.Size(73, 18)
+        Me.refpulselabel0.Size = New System.Drawing.Size(75, 22)
         Me.refpulselabel0.TabIndex = 34
         Me.refpulselabel0.Text = "Ref Meter"
         Me.refpulselabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -612,11 +639,11 @@ Partial Class Main
         '
         Me.testpulselabel0.AutoSize = True
         Me.testpulselabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.testpulselabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.testpulselabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testpulselabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.testpulselabel0.Location = New System.Drawing.Point(615, 349)
+        Me.testpulselabel0.Location = New System.Drawing.Point(622, 349)
         Me.testpulselabel0.Name = "testpulselabel0"
-        Me.testpulselabel0.Size = New System.Drawing.Size(79, 18)
+        Me.testpulselabel0.Size = New System.Drawing.Size(78, 22)
         Me.testpulselabel0.TabIndex = 41
         Me.testpulselabel0.Text = "Test Meter"
         Me.testpulselabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -697,11 +724,11 @@ Partial Class Main
         '
         Me.reftemplabel0.AutoSize = True
         Me.reftemplabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.reftemplabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.reftemplabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.reftemplabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.reftemplabel0.Location = New System.Drawing.Point(795, 349)
+        Me.reftemplabel0.Location = New System.Drawing.Point(802, 349)
         Me.reftemplabel0.Name = "reftemplabel0"
-        Me.reftemplabel0.Size = New System.Drawing.Size(73, 18)
+        Me.reftemplabel0.Size = New System.Drawing.Size(75, 22)
         Me.reftemplabel0.TabIndex = 54
         Me.reftemplabel0.Text = "Ref Meter" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.reftemplabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -782,11 +809,11 @@ Partial Class Main
         '
         Me.testtemplabel0.AutoSize = True
         Me.testtemplabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.testtemplabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.testtemplabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testtemplabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.testtemplabel0.Location = New System.Drawing.Point(883, 349)
+        Me.testtemplabel0.Location = New System.Drawing.Point(890, 349)
         Me.testtemplabel0.Name = "testtemplabel0"
-        Me.testtemplabel0.Size = New System.Drawing.Size(79, 18)
+        Me.testtemplabel0.Size = New System.Drawing.Size(78, 22)
         Me.testtemplabel0.TabIndex = 61
         Me.testtemplabel0.Text = "Test Meter" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.testtemplabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -871,13 +898,15 @@ Partial Class Main
         '
         Me.mainclocklbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mainclocklbl.AutoSize = True
-        Me.mainclocklbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.mainclocklbl.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mainclocklbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.mainclocklbl.Location = New System.Drawing.Point(769, 77)
+        Me.mainclocklbl.Location = New System.Drawing.Point(47, 44)
+        Me.mainclocklbl.MaximumSize = New System.Drawing.Size(50, 25)
         Me.mainclocklbl.Name = "mainclocklbl"
-        Me.mainclocklbl.Size = New System.Drawing.Size(57, 20)
+        Me.mainclocklbl.Size = New System.Drawing.Size(46, 25)
         Me.mainclocklbl.TabIndex = 71
         Me.mainclocklbl.Text = "Label2"
+        Me.mainclocklbl.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'refport
         '
@@ -959,11 +988,11 @@ Partial Class Main
         '
         Me.testtimerlabel0.AutoSize = True
         Me.testtimerlabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.testtimerlabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.testtimerlabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.testtimerlabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.testtimerlabel0.Location = New System.Drawing.Point(1085, 349)
+        Me.testtimerlabel0.Location = New System.Drawing.Point(1092, 349)
         Me.testtimerlabel0.Name = "testtimerlabel0"
-        Me.testtimerlabel0.Size = New System.Drawing.Size(37, 18)
+        Me.testtimerlabel0.Size = New System.Drawing.Size(34, 22)
         Me.testtimerlabel0.TabIndex = 80
         Me.testtimerlabel0.Text = "Test" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.testtimerlabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -996,9 +1025,10 @@ Partial Class Main
         '
         'messagetxtbox
         '
+        Me.messagetxtbox.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.messagetxtbox.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.messagetxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.messagetxtbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.messagetxtbox.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.messagetxtbox.ForeColor = System.Drawing.Color.White
         Me.messagetxtbox.Location = New System.Drawing.Point(0, 151)
         Me.messagetxtbox.Multiline = True
@@ -1006,19 +1036,18 @@ Partial Class Main
         Me.messagetxtbox.Size = New System.Drawing.Size(1184, 75)
         Me.messagetxtbox.TabIndex = 92
         Me.messagetxtbox.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Welcome to the Apex Instruments Dry Gas Meter Calibration/Validation Tool." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Cli" &
-    "ck the Green RUN button to begin the process (select Calibrate or Validate first" &
-    ")."
+    "ck the Green RUN button to start the process."
         Me.messagetxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'scalinglabel1
         '
         Me.scalinglabel1.AutoSize = True
         Me.scalinglabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.scalinglabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.scalinglabel1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.scalinglabel1.ForeColor = System.Drawing.SystemColors.Control
         Me.scalinglabel1.Location = New System.Drawing.Point(51, 298)
         Me.scalinglabel1.Name = "scalinglabel1"
-        Me.scalinglabel1.Size = New System.Drawing.Size(186, 20)
+        Me.scalinglabel1.Size = New System.Drawing.Size(173, 22)
         Me.scalinglabel1.TabIndex = 93
         Me.scalinglabel1.Text = "Ref Meter Scaling Factor"
         '
@@ -1110,11 +1139,11 @@ Partial Class Main
         '
         Me.pressureLabel0.AutoSize = True
         Me.pressureLabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.pressureLabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.pressureLabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pressureLabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.pressureLabel0.Location = New System.Drawing.Point(979, 366)
+        Me.pressureLabel0.Location = New System.Drawing.Point(986, 366)
         Me.pressureLabel0.Name = "pressureLabel0"
-        Me.pressureLabel0.Size = New System.Drawing.Size(68, 18)
+        Me.pressureLabel0.Size = New System.Drawing.Size(64, 22)
         Me.pressureLabel0.TabIndex = 97
         Me.pressureLabel0.Text = "Pressure"
         Me.pressureLabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1195,11 +1224,11 @@ Partial Class Main
         '
         Me.stdVolLabel0.AutoSize = True
         Me.stdVolLabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.stdVolLabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.stdVolLabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.stdVolLabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.stdVolLabel0.Location = New System.Drawing.Point(533, 349)
+        Me.stdVolLabel0.Location = New System.Drawing.Point(540, 349)
         Me.stdVolLabel0.Name = "stdVolLabel0"
-        Me.stdVolLabel0.Size = New System.Drawing.Size(57, 18)
+        Me.stdVolLabel0.Size = New System.Drawing.Size(57, 22)
         Me.stdVolLabel0.TabIndex = 104
         Me.stdVolLabel0.Text = "Std Ref" & Global.Microsoft.VisualBasic.ChrW(13)
         Me.stdVolLabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1280,11 +1309,11 @@ Partial Class Main
         '
         Me.xdstdvollabel0.AutoSize = True
         Me.xdstdvollabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.xdstdvollabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.xdstdvollabel0.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xdstdvollabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.xdstdvollabel0.Location = New System.Drawing.Point(711, 349)
+        Me.xdstdvollabel0.Location = New System.Drawing.Point(718, 349)
         Me.xdstdvollabel0.Name = "xdstdvollabel0"
-        Me.xdstdvollabel0.Size = New System.Drawing.Size(63, 18)
+        Me.xdstdvollabel0.Size = New System.Drawing.Size(60, 22)
         Me.xdstdvollabel0.TabIndex = 111
         Me.xdstdvollabel0.Text = "Std Test" & Global.Microsoft.VisualBasic.ChrW(13)
         Me.xdstdvollabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1293,11 +1322,11 @@ Partial Class Main
         '
         Me.avglabel1.AutoSize = True
         Me.avglabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.avglabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.avglabel1.ForeColor = System.Drawing.SystemColors.Control
         Me.avglabel1.Location = New System.Drawing.Point(498, 643)
         Me.avglabel1.Name = "avglabel1"
-        Me.avglabel1.Size = New System.Drawing.Size(161, 20)
+        Me.avglabel1.Size = New System.Drawing.Size(147, 22)
         Me.avglabel1.TabIndex = 131
         Me.avglabel1.Text = "Avg Ref Std Volumes"
         '
@@ -1305,11 +1334,11 @@ Partial Class Main
         '
         Me.avglabel2.AutoSize = True
         Me.avglabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.avglabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.avglabel2.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.avglabel2.ForeColor = System.Drawing.SystemColors.Control
         Me.avglabel2.Location = New System.Drawing.Point(766, 643)
         Me.avglabel2.Name = "avglabel2"
-        Me.avglabel2.Size = New System.Drawing.Size(166, 20)
+        Me.avglabel2.Size = New System.Drawing.Size(150, 22)
         Me.avglabel2.TabIndex = 132
         Me.avglabel2.Text = "Avg Test Std Volumes"
         '
@@ -1317,19 +1346,19 @@ Partial Class Main
         '
         Me.resultLabel1.AutoSize = True
         Me.resultLabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.resultLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.resultLabel1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.resultLabel1.ForeColor = System.Drawing.SystemColors.Control
         Me.resultLabel1.Location = New System.Drawing.Point(625, 299)
         Me.resultLabel1.Name = "resultLabel1"
-        Me.resultLabel1.Size = New System.Drawing.Size(190, 20)
+        Me.resultLabel1.Size = New System.Drawing.Size(181, 22)
         Me.resultLabel1.TabIndex = 133
         Me.resultLabel1.Text = "Calculated Scaling Factor"
         '
         'avglabel11
         '
-        Me.avglabel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.avglabel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.avglabel11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.avglabel11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.avglabel11.ForeColor = System.Drawing.Color.White
         Me.avglabel11.Location = New System.Drawing.Point(665, 643)
         Me.avglabel11.Name = "avglabel11"
         Me.avglabel11.Size = New System.Drawing.Size(58, 23)
@@ -1339,9 +1368,9 @@ Partial Class Main
         '
         'avglabel22
         '
-        Me.avglabel22.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.avglabel22.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.avglabel22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.avglabel22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.avglabel22.ForeColor = System.Drawing.Color.White
         Me.avglabel22.Location = New System.Drawing.Point(944, 643)
         Me.avglabel22.Name = "avglabel22"
         Me.avglabel22.Size = New System.Drawing.Size(58, 23)
@@ -1366,16 +1395,17 @@ Partial Class Main
         Me.btnconnect.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnconnect.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.btnconnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnconnect.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnconnect.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnconnect.ForeColor = System.Drawing.Color.White
         Me.btnconnect.IconChar = FontAwesome.Sharp.IconChar.Link
         Me.btnconnect.IconColor = System.Drawing.Color.White
         Me.btnconnect.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconnect.IconSize = 23
         Me.btnconnect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnconnect.Location = New System.Drawing.Point(3, 6)
+        Me.btnconnect.Location = New System.Drawing.Point(16, 19)
+        Me.btnconnect.MaximumSize = New System.Drawing.Size(175, 50)
         Me.btnconnect.Name = "btnconnect"
-        Me.btnconnect.Size = New System.Drawing.Size(158, 31)
+        Me.btnconnect.Size = New System.Drawing.Size(126, 31)
         Me.btnconnect.TabIndex = 139
         Me.btnconnect.Text = " CONNECT"
         Me.btnconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -1386,15 +1416,16 @@ Partial Class Main
         Me.btnstart.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.btnstart.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnstart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnstart.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnstart.ForeColor = System.Drawing.Color.White
         Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.Play
         Me.btnstart.IconColor = System.Drawing.Color.White
         Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnstart.IconSize = 19
-        Me.btnstart.Location = New System.Drawing.Point(201, 6)
+        Me.btnstart.Location = New System.Drawing.Point(214, 19)
+        Me.btnstart.MaximumSize = New System.Drawing.Size(175, 50)
         Me.btnstart.Name = "btnstart"
-        Me.btnstart.Size = New System.Drawing.Size(174, 31)
+        Me.btnstart.Size = New System.Drawing.Size(142, 31)
         Me.btnstart.TabIndex = 140
         Me.btnstart.Text = " RUN"
         Me.btnstart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1403,15 +1434,16 @@ Partial Class Main
         '
         'btnconfig
         '
-        Me.btnconfig.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnconfig.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnconfig.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnconfig.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnconfig.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnconfig.ForeColor = System.Drawing.Color.White
         Me.btnconfig.IconChar = FontAwesome.Sharp.IconChar.Wrench
         Me.btnconfig.IconColor = System.Drawing.Color.White
         Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconfig.IconSize = 18
-        Me.btnconfig.Location = New System.Drawing.Point(148, 656)
+        Me.btnconfig.Location = New System.Drawing.Point(152, 658)
         Me.btnconfig.Name = "btnconfig"
         Me.btnconfig.Size = New System.Drawing.Size(114, 27)
         Me.btnconfig.TabIndex = 141
@@ -1422,13 +1454,12 @@ Partial Class Main
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
-        Me.Panel1.Controls.Add(Me.IconButton2)
-        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Controls.Add(Me.mainclocklbl)
         Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Controls.Add(Me.teststatuslabel1)
         Me.Panel1.Controls.Add(Me.teststatuslabel2)
+        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
@@ -1443,10 +1474,11 @@ Partial Class Main
         Me.IconButton2.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton2.IconSize = 22
-        Me.IconButton2.Location = New System.Drawing.Point(1106, 29)
+        Me.IconButton2.Location = New System.Drawing.Point(60, 15)
         Me.IconButton2.Name = "IconButton2"
         Me.IconButton2.Size = New System.Drawing.Size(43, 23)
         Me.IconButton2.TabIndex = 144
+        Me.IconButton2.TextAlign = System.Drawing.ContentAlignment.TopRight
         Me.IconButton2.UseVisualStyleBackColor = True
         '
         'Panel2
@@ -1465,15 +1497,16 @@ Partial Class Main
         Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
         Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton1.ForeColor = System.Drawing.Color.White
         Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
         Me.IconButton1.IconColor = System.Drawing.Color.White
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton1.IconSize = 20
-        Me.IconButton1.Location = New System.Drawing.Point(418, 3)
+        Me.IconButton1.Location = New System.Drawing.Point(431, 19)
+        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
         Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(143, 31)
+        Me.IconButton1.Size = New System.Drawing.Size(111, 31)
         Me.IconButton1.TabIndex = 143
         Me.IconButton1.Text = " ABORT"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1482,10 +1515,11 @@ Partial Class Main
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.ClockApp.My.Resources.Resources.BrandLogoBlack
-        Me.PictureBox1.Location = New System.Drawing.Point(22, 12)
+        Me.PictureBox1.BackColor = System.Drawing.Color.Black
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(22, 23)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(166, 70)
+        Me.PictureBox1.Size = New System.Drawing.Size(203, 86)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
@@ -1494,20 +1528,20 @@ Partial Class Main
         Me.TextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.TextBox1.BackColor = System.Drawing.Color.Black
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Futura PT Book", 24.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(3, 19)
+        Me.TextBox1.Location = New System.Drawing.Point(3, 26)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(1184, 38)
+        Me.TextBox1.Size = New System.Drawing.Size(1184, 43)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "Dry Gas Meter Calibration/Validation"
+        Me.TextBox1.Text = "Dry Gas Meter Calibration System"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox3.Location = New System.Drawing.Point(695, 232)
+        Me.PictureBox3.Location = New System.Drawing.Point(696, 232)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(166, 42)
         Me.PictureBox3.TabIndex = 144
@@ -1517,11 +1551,11 @@ Partial Class Main
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Futura PT Book", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(744, 241)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 24)
+        Me.Label1.Size = New System.Drawing.Size(70, 28)
         Me.Label1.TabIndex = 145
         Me.Label1.Text = "Results"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1531,7 +1565,7 @@ Partial Class Main
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.PictureBox4.Location = New System.Drawing.Point(22, 250)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(369, 435)
+        Me.PictureBox4.Size = New System.Drawing.Size(369, 440)
         Me.PictureBox4.TabIndex = 146
         Me.PictureBox4.TabStop = False
         '
@@ -1539,7 +1573,7 @@ Partial Class Main
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.PictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox5.Location = New System.Drawing.Point(137, 232)
+        Me.PictureBox5.Location = New System.Drawing.Point(131, 232)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(147, 38)
         Me.PictureBox5.TabIndex = 147
@@ -1549,11 +1583,11 @@ Partial Class Main
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Futura PT Book", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(181, 238)
+        Me.Label3.Location = New System.Drawing.Point(174, 238)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(60, 24)
+        Me.Label3.Size = New System.Drawing.Size(62, 28)
         Me.Label3.TabIndex = 149
         Me.Label3.Text = "Inputs"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1569,7 +1603,7 @@ Partial Class Main
         'PictureBox7
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.PictureBox7.Location = New System.Drawing.Point(613, 287)
+        Me.PictureBox7.Location = New System.Drawing.Point(620, 287)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(319, 43)
         Me.PictureBox7.TabIndex = 151
@@ -1580,7 +1614,7 @@ Partial Class Main
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.PictureBox2.Location = New System.Drawing.Point(407, 250)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(754, 435)
+        Me.PictureBox2.Size = New System.Drawing.Size(754, 440)
         Me.PictureBox2.TabIndex = 143
         Me.PictureBox2.TabStop = False
         '
@@ -1588,11 +1622,11 @@ Partial Class Main
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label2.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(296, 369)
+        Me.Label2.Location = New System.Drawing.Point(303, 369)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 18)
+        Me.Label2.Size = New System.Drawing.Size(51, 22)
         Me.Label2.TabIndex = 152
         Me.Label2.Text = "Time*"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1601,11 +1635,11 @@ Partial Class Main
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!)
+        Me.Label4.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(268, 648)
+        Me.Label4.Location = New System.Drawing.Point(272, 647)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(88, 13)
+        Me.Label4.Size = New System.Drawing.Size(88, 15)
         Me.Label4.TabIndex = 153
         Me.Label4.Text = "(Recommend 15)"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1614,11 +1648,11 @@ Partial Class Main
         '
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label5.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
         Me.Label5.Location = New System.Drawing.Point(74, 645)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(57, 15)
+        Me.Label5.Size = New System.Drawing.Size(49, 15)
         Me.Label5.TabIndex = 154
         Me.Label5.Text = "if unused"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1627,11 +1661,11 @@ Partial Class Main
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label6.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(179, 366)
+        Me.Label6.Location = New System.Drawing.Point(186, 366)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(58, 18)
+        Me.Label6.Size = New System.Drawing.Size(59, 22)
         Me.Label6.TabIndex = 155
         Me.Label6.Text = "Volume"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1640,11 +1674,11 @@ Partial Class Main
         '
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label7.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label7.Location = New System.Drawing.Point(444, 366)
+        Me.Label7.Location = New System.Drawing.Point(451, 366)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 18)
+        Me.Label7.Size = New System.Drawing.Size(59, 22)
         Me.Label7.TabIndex = 156
         Me.Label7.Text = "Volume"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1653,11 +1687,11 @@ Partial Class Main
         '
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label8.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label8.Location = New System.Drawing.Point(534, 366)
+        Me.Label8.Location = New System.Drawing.Point(541, 366)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(58, 18)
+        Me.Label8.Size = New System.Drawing.Size(59, 22)
         Me.Label8.TabIndex = 157
         Me.Label8.Text = "Volume"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1666,11 +1700,11 @@ Partial Class Main
         '
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label9.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label9.Location = New System.Drawing.Point(626, 366)
+        Me.Label9.Location = New System.Drawing.Point(633, 366)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(58, 18)
+        Me.Label9.Size = New System.Drawing.Size(59, 22)
         Me.Label9.TabIndex = 158
         Me.Label9.Text = "Volume"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1679,11 +1713,11 @@ Partial Class Main
         '
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label10.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label10.Location = New System.Drawing.Point(714, 366)
+        Me.Label10.Location = New System.Drawing.Point(721, 366)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(58, 18)
+        Me.Label10.Size = New System.Drawing.Size(59, 22)
         Me.Label10.TabIndex = 159
         Me.Label10.Text = "Volume"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1692,11 +1726,11 @@ Partial Class Main
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label11.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label11.Location = New System.Drawing.Point(811, 366)
+        Me.Label11.Location = New System.Drawing.Point(818, 366)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(46, 18)
+        Me.Label11.Size = New System.Drawing.Size(45, 22)
         Me.Label11.TabIndex = 160
         Me.Label11.Text = "Temp"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1705,11 +1739,11 @@ Partial Class Main
         '
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label12.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label12.Location = New System.Drawing.Point(901, 366)
+        Me.Label12.Location = New System.Drawing.Point(908, 366)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(46, 18)
+        Me.Label12.Size = New System.Drawing.Size(45, 22)
         Me.Label12.TabIndex = 161
         Me.Label12.Text = "Temp"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1718,11 +1752,11 @@ Partial Class Main
         '
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label13.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label13.Location = New System.Drawing.Point(1081, 366)
+        Me.Label13.Location = New System.Drawing.Point(1088, 366)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(46, 18)
+        Me.Label13.Size = New System.Drawing.Size(46, 22)
         Me.Label13.TabIndex = 162
         Me.Label13.Text = "Timer"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1766,9 +1800,9 @@ Partial Class Main
         'bline2
         '
         Me.bline2.BackColor = System.Drawing.Color.Black
-        Me.bline2.Location = New System.Drawing.Point(0, 511)
+        Me.bline2.Location = New System.Drawing.Point(1, 511)
         Me.bline2.Name = "bline2"
-        Me.bline2.Size = New System.Drawing.Size(1181, 41)
+        Me.bline2.Size = New System.Drawing.Size(1183, 41)
         Me.bline2.TabIndex = 167
         Me.bline2.TabStop = False
         '
@@ -1785,11 +1819,11 @@ Partial Class Main
         '
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Label14.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label14.Location = New System.Drawing.Point(284, 352)
+        Me.Label14.Location = New System.Drawing.Point(291, 352)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(69, 18)
+        Me.Label14.Size = New System.Drawing.Size(72, 22)
         Me.Label14.TabIndex = 169
         Me.Label14.Text = "Warmup "
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1824,7 +1858,7 @@ Partial Class Main
         'blline1
         '
         Me.blline1.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(107, Byte), Integer))
-        Me.blline1.Location = New System.Drawing.Point(406, 391)
+        Me.blline1.Location = New System.Drawing.Point(407, 391)
         Me.blline1.Name = "blline1"
         Me.blline1.Size = New System.Drawing.Size(755, 41)
         Me.blline1.TabIndex = 173
@@ -1833,7 +1867,7 @@ Partial Class Main
         'blline2
         '
         Me.blline2.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(107, Byte), Integer))
-        Me.blline2.Location = New System.Drawing.Point(407, 471)
+        Me.blline2.Location = New System.Drawing.Point(407, 472)
         Me.blline2.Name = "blline2"
         Me.blline2.Size = New System.Drawing.Size(755, 41)
         Me.blline2.TabIndex = 174
@@ -1842,7 +1876,7 @@ Partial Class Main
         'blline3
         '
         Me.blline3.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(107, Byte), Integer))
-        Me.blline3.Location = New System.Drawing.Point(407, 551)
+        Me.blline3.Location = New System.Drawing.Point(407, 552)
         Me.blline3.Name = "blline3"
         Me.blline3.Size = New System.Drawing.Size(755, 41)
         Me.blline3.TabIndex = 175
@@ -1878,7 +1912,7 @@ Partial Class Main
         'bdline1
         '
         Me.bdline1.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.bdline1.Location = New System.Drawing.Point(406, 431)
+        Me.bdline1.Location = New System.Drawing.Point(407, 431)
         Me.bdline1.Name = "bdline1"
         Me.bdline1.Size = New System.Drawing.Size(755, 41)
         Me.bdline1.TabIndex = 179
@@ -1887,7 +1921,7 @@ Partial Class Main
         'bdline2
         '
         Me.bdline2.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.bdline2.Location = New System.Drawing.Point(406, 510)
+        Me.bdline2.Location = New System.Drawing.Point(407, 511)
         Me.bdline2.Name = "bdline2"
         Me.bdline2.Size = New System.Drawing.Size(755, 41)
         Me.bdline2.TabIndex = 180
@@ -1896,11 +1930,21 @@ Partial Class Main
         'bdline3
         '
         Me.bdline3.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.bdline3.Location = New System.Drawing.Point(406, 591)
+        Me.bdline3.Location = New System.Drawing.Point(407, 591)
         Me.bdline3.Name = "bdline3"
         Me.bdline3.Size = New System.Drawing.Size(755, 41)
         Me.bdline3.TabIndex = 181
         Me.bdline3.TabStop = False
+        '
+        'Panel3
+        '
+        Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.Controls.Add(Me.IconButton2)
+        Me.Panel3.Controls.Add(Me.mainclocklbl)
+        Me.Panel3.Location = New System.Drawing.Point(1044, 19)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(118, 102)
+        Me.Panel3.TabIndex = 145
         '
         'Main
         '
@@ -1908,6 +1952,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1184, 711)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
@@ -1917,7 +1962,6 @@ Partial Class Main
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.scalinglabel1)
@@ -2018,7 +2062,6 @@ Partial Class Main
         Me.Controls.Add(Me.flowratetxtbox3)
         Me.Controls.Add(Me.flowratetxtbox2)
         Me.Controls.Add(Me.flowratetxtbox1)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox6)
         Me.Controls.Add(Me.PictureBox7)
         Me.Controls.Add(Me.bdline3)
@@ -2041,6 +2084,7 @@ Partial Class Main
         Me.Controls.Add(Me.wline3)
         Me.Controls.Add(Me.wline2)
         Me.Controls.Add(Me.wline1)
+        Me.Controls.Add(Me.Panel1)
         Me.MinimumSize = New System.Drawing.Size(1200, 750)
         Me.Name = "Main"
         Me.Text = "DGM"
@@ -2072,6 +2116,8 @@ Partial Class Main
         CType(Me.bdline1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bdline2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bdline3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2222,4 +2268,5 @@ Partial Class Main
     Friend WithEvents bdline1 As PictureBox
     Friend WithEvents bdline2 As PictureBox
     Friend WithEvents bdline3 As PictureBox
+    Friend WithEvents Panel3 As Panel
 End Class
