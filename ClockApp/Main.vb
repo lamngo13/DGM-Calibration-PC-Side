@@ -628,7 +628,7 @@
 
 
     Sub Get_Registry_Values()
-        Dim sAvailable As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Available", Nothing)  'plan to replace XC502 with DGM_CAL
+        Dim sAvailable As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Available", Nothing)  'plan to replace DGM_CAL with DGM_CAL
 
         If sAvailable = Nothing Then
             'Set default
@@ -637,34 +637,34 @@
             Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
 
 
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Available", True)
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_Comm_Used", Gs_Last_Comm_Used)
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_IP_Used", Gs_Last_IP_Used)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Available", True)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_Comm_Used", Gs_Last_Comm_Used)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_IP_Used", Gs_Last_IP_Used)
 
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_X", Gi_Screen_Size_X)
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Y", Gi_Screen_Size_Y)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Gi_Screen_Size_X)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Gi_Screen_Size_Y)
 
-            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_X", Gi_Screen_Size_LeakTest_X)
-            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_Y", Gi_Screen_Size_LeakTest_Y)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Gi_Screen_Size_LeakTest_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Gi_Screen_Size_LeakTest_Y)
 
-            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_X", Gi_Screen_Size_Cal_X)
-            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_Y", Gi_Screen_Size_Cal_Y)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_X", Gi_Screen_Size_Cal_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_Y", Gi_Screen_Size_Cal_Y)
 
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "WTM_Test_Counts", Gi_WTM_Test_Counts)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "WTM_Test_Counts", Gi_WTM_Test_Counts)
         Else
-            Gs_Last_Comm_Used = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_Comm_Used", Nothing)
-            'TextBox_IP_.Text = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_IP_Used", Nothing)
+            Gs_Last_Comm_Used = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_Comm_Used", Nothing)
+            'TextBox_IP_.Text = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_IP_Used", Nothing)
 
-            Gi_Screen_Size_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_X", Nothing)
-            Gi_Screen_Size_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Y", Nothing)
+            Gi_Screen_Size_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Nothing)
+            Gi_Screen_Size_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Nothing)
 
-            'Gi_Screen_Size_LeakTest_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_X", Nothing)
-            'Gi_Screen_Size_LeakTest_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_Y", Nothing)
+            'Gi_Screen_Size_LeakTest_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Nothing)
+            'Gi_Screen_Size_LeakTest_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Nothing)
 
-            'Gi_Screen_Size_Cal_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_X", Nothing)
-            'Gi_Screen_Size_Cal_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_Y", Nothing)
+            'Gi_Screen_Size_Cal_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_X", Nothing)
+            'Gi_Screen_Size_Cal_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_Y", Nothing)
 
-            'Gi_WTM_Test_Counts = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "WTM_Test_Counts", Nothing)
+            'Gi_WTM_Test_Counts = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "WTM_Test_Counts", Nothing)
 
             If (Gi_Screen_Size_X < SCREEN_SIZE_MIN_X) Then Gi_Screen_Size_X = SCREEN_SIZE_MIN_X
             If (Gi_Screen_Size_Y < SCREEN_SIZE_MIN_Y) Then Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
