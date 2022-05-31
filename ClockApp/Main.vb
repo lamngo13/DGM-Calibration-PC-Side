@@ -597,6 +597,8 @@
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'here do cool looking stuff
+        'AZN highlight lines
+
 
         'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
