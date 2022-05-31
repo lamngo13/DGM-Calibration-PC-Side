@@ -888,4 +888,32 @@
         configure.StartPosition = FormStartPosition.CenterScreen
         configure.ShowDialog()
     End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub avglabel33_Click(sender As Object, e As EventArgs) Handles avglabel33.Click
+
+    End Sub
+
+    Private Sub resultLabel1_Click(sender As Object, e As EventArgs) Handles resultLabel1.Click
+
+    End Sub
+
+    Private Sub messagetxtbox_TextChanged(sender As Object, e As EventArgs) Handles messagetxtbox.TextChanged
+
+    End Sub
+
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
+
+    End Sub
+
+    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
+
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
+    End Sub
 End Class
