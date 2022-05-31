@@ -148,6 +148,8 @@
 
 
 
+
+
     Public Sub goodParseRef()
         Dim zindex As Integer = 1
         Dim tempStr As String = ""
@@ -513,6 +515,10 @@
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
         resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
+
+        ' AZN
+        PictureBox8.BackColor = Color.FromArgb(25, 21, 21, 21)
+
     End Sub
 
     Public Function send_error()
@@ -800,6 +806,11 @@
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+
+    Private Sub PictureBox8_Click(sender As Object, e As EventArgs) Handles PictureBox8.Click
 
     End Sub
 End Class
