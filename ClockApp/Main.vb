@@ -618,7 +618,7 @@
         ErrorForm.StartPosition = FormStartPosition.CenterScreen
         ErrorForm.ShowDialog()
     End Function
-    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
+    Private Sub antibugbutton_Click(sender As Object, e As EventArgs)
         Dim antibug As New antibug
         antibug.StartPosition = FormStartPosition.CenterScreen
         antibug.ShowDialog()
