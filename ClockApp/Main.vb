@@ -1,4 +1,7 @@
 ﻿Public Class Main
+
+    Dim rs As New Resizer 'TODO MORE OF THIS ALSO WRITE TO REGISTRY
+
     Const NUM_OF_ROWS As Integer = 6
 
     Const REF_INPUT_LABEL As Integer = 1
@@ -87,7 +90,6 @@
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
-    Dim endtestnum As Integer = 6
 
     Dim bigtimer As Double = 0.0
 
@@ -262,6 +264,13 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
+
+        ' Just hitching a ride ---------------------
+        If Gb_Update_Screen_Size Then
+            Gb_Update_Screen_Size = False
+            Update_Screen_Size()
+        End If
 
         'diable inputs if test ongoing
         disableButtons()
@@ -475,9 +484,6 @@
         End If
 
         'others-----------------------
-        For m As Integer = 1 To endtestnum
-            'resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
-        Next
 
         'If overall test is currently going
         If (testongoing) Then
@@ -596,9 +602,6 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'here do cool looking stuff
-        'AZN highlight lines
-
 
         'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
@@ -613,6 +616,65 @@
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
         'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
+
+        rs.FindAllControls(Me)
+        Get_Registry_Values()
+
+        rs.ResizeAllLastSaved(Me, Gi_Screen_Size_X, Gi_Screen_Size_Y)
+        Me.Width = Gi_Screen_Size_X
+        Me.Height = Gi_Screen_Size_Y
+
+    End Sub
+
+
+    Sub Get_Registry_Values()
+        Dim sAvailable As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Available", Nothing)  'plan to replace DGM_CAL with DGM_CAL
+
+        If sAvailable = Nothing Then
+            'Set default
+
+            Gi_Screen_Size_X = SCREEN_SIZE_MIN_X
+            Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
+
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Available", True)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_Comm_Used", Gs_Last_Comm_Used)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_IP_Used", Gs_Last_IP_Used)
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Gi_Screen_Size_X)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Gi_Screen_Size_Y)
+
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Gi_Screen_Size_LeakTest_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Gi_Screen_Size_LeakTest_Y)
+
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_X", Gi_Screen_Size_Cal_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_Y", Gi_Screen_Size_Cal_Y)
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "WTM_Test_Counts", Gi_WTM_Test_Counts)
+        Else
+            Gs_Last_Comm_Used = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_Comm_Used", Nothing)
+            'TextBox_IP_.Text = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Last_IP_Used", Nothing)
+
+            Gi_Screen_Size_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Nothing)
+            Gi_Screen_Size_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Nothing)
+
+            'Gi_Screen_Size_LeakTest_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Nothing)
+            'Gi_Screen_Size_LeakTest_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Nothing)
+
+            'Gi_Screen_Size_Cal_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_X", Nothing)
+            'Gi_Screen_Size_Cal_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Cal_Y", Nothing)
+
+            'Gi_WTM_Test_Counts = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "WTM_Test_Counts", Nothing)
+
+            If (Gi_Screen_Size_X < SCREEN_SIZE_MIN_X) Then Gi_Screen_Size_X = SCREEN_SIZE_MIN_X
+            If (Gi_Screen_Size_Y < SCREEN_SIZE_MIN_Y) Then Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
+            'If (Gi_Screen_Size_LeakTest_X < SCREEN_SIZE_LEAKTEST_MIN_X) Then Gi_Screen_Size_LeakTest_X = SCREEN_SIZE_LEAKTEST_MIN_X
+            'If (Gi_Screen_Size_LeakTest_Y < SCREEN_SIZE_LEAKTEST_MIN_Y) Then Gi_Screen_Size_LeakTest_Y = SCREEN_SIZE_LEAKTEST_MIN_Y
+            'If (Gi_Screen_Size_Cal_X < SCREEN_SIZE_CAL_MIN_X) Then Gi_Screen_Size_Cal_X = SCREEN_SIZE_CAL_MIN_X
+            'If (Gi_Screen_Size_Cal_Y < SCREEN_SIZE_CAL_MIN_Y) Then Gi_Screen_Size_Cal_Y = SCREEN_SIZE_CAL_MIN_Y
+
+
+        End If
 
     End Sub
 
@@ -875,14 +937,6 @@
             testongoing = True
             duringwarmup = True
             currenttest = 1
-            'assign vals based on user input
-            For startiterator = 1 To 6
-                If (flowratetxtbox(startiterator).Text = "") Then ' find out how many rows are filled, this needs more!!
-                    endtestnum = startiterator
-                    startiterator = 7
-                End If
-                'find something that disables start button!!!
-            Next
         End If
     End Sub
 
@@ -892,239 +946,21 @@
         configure.ShowDialog()
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Sub Update_Screen_Size()
+        Gi_Screen_Size_X = Me.Width
+        Gi_Screen_Size_Y = Me.Height
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Gi_Screen_Size_X)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Gi_Screen_Size_Y)
+
+        'Do_Round_Buttons()
 
     End Sub
 
-    Private Sub avglabel33_Click(sender As Object, e As EventArgs) Handles avglabel33.Click
 
+    Private Sub Main_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        'If Gb_Allow_Size_Adj = False Then Return
+        rs.ResizeAllControls(Me)
+        'Gi_Resize_Delay = 2
     End Sub
 
-    Private Sub resultLabel1_Click(sender As Object, e As EventArgs) Handles resultLabel1.Click
-
-    End Sub
-
-    Private Sub messagetxtbox_TextChanged(sender As Object, e As EventArgs) Handles messagetxtbox.TextChanged
-
-    End Sub
-
-    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
-
-    End Sub
-
-    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
-
-    End Sub
-
-    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-
-    End Sub
-
-    Private Sub refpulselabel1_Click(sender As Object, e As EventArgs) Handles refpulselabel1.Click
-
-    End Sub
-
-    Private Sub refpulselabel0_Click(sender As Object, e As EventArgs) Handles refpulselabel0.Click
-
-    End Sub
-
-    Private Sub avglabel22_Click(sender As Object, e As EventArgs) Handles avglabel22.Click
-
-    End Sub
-
-    Private Sub avglabel11_Click(sender As Object, e As EventArgs) Handles avglabel11.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel6_Click(sender As Object, e As EventArgs) Handles xdstdvollabel6.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel5_Click(sender As Object, e As EventArgs) Handles xdstdvollabel5.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel4_Click(sender As Object, e As EventArgs) Handles xdstdvollabel4.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel3_Click(sender As Object, e As EventArgs) Handles xdstdvollabel3.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel2_Click(sender As Object, e As EventArgs) Handles xdstdvollabel2.Click
-
-    End Sub
-
-    Private Sub xdstdvollabel1_Click(sender As Object, e As EventArgs) Handles xdstdvollabel1.Click
-
-    End Sub
-
-    Private Sub stdVolLabel6_Click(sender As Object, e As EventArgs) Handles stdVolLabel6.Click
-
-    End Sub
-
-    Private Sub stdVolLabel5_Click(sender As Object, e As EventArgs) Handles stdVolLabel5.Click
-
-    End Sub
-
-    Private Sub stdVolLabel4_Click(sender As Object, e As EventArgs) Handles stdVolLabel4.Click
-
-    End Sub
-
-    Private Sub stdVolLabel3_Click(sender As Object, e As EventArgs) Handles stdVolLabel3.Click
-
-    End Sub
-
-    Private Sub stdVolLabel2_Click(sender As Object, e As EventArgs) Handles stdVolLabel2.Click
-
-    End Sub
-
-    Private Sub stdVolLabel1_Click(sender As Object, e As EventArgs) Handles stdVolLabel1.Click
-
-    End Sub
-
-    Private Sub pressureLabel6_Click(sender As Object, e As EventArgs) Handles pressureLabel6.Click
-
-    End Sub
-
-    Private Sub pressureLabel5_Click(sender As Object, e As EventArgs) Handles pressureLabel5.Click
-
-    End Sub
-
-    Private Sub pressureLabel4_Click(sender As Object, e As EventArgs) Handles pressureLabel4.Click
-
-    End Sub
-
-    Private Sub pressureLabel3_Click(sender As Object, e As EventArgs) Handles pressureLabel3.Click
-
-    End Sub
-
-    Private Sub pressureLabel2_Click(sender As Object, e As EventArgs) Handles pressureLabel2.Click
-
-    End Sub
-
-    Private Sub pressureLabel1_Click(sender As Object, e As EventArgs) Handles pressureLabel1.Click
-
-    End Sub
-
-    Private Sub testtimerlabel6_Click(sender As Object, e As EventArgs) Handles testtimerlabel6.Click
-
-    End Sub
-
-    Private Sub testtimerlabel5_Click(sender As Object, e As EventArgs) Handles testtimerlabel5.Click
-
-    End Sub
-
-    Private Sub testtimerlabel4_Click(sender As Object, e As EventArgs) Handles testtimerlabel4.Click
-
-    End Sub
-
-    Private Sub testtimerlabel3_Click(sender As Object, e As EventArgs) Handles testtimerlabel3.Click
-
-    End Sub
-
-    Private Sub testtimerlabel2_Click(sender As Object, e As EventArgs) Handles testtimerlabel2.Click
-
-    End Sub
-
-    Private Sub testtimerlabel1_Click(sender As Object, e As EventArgs) Handles testtimerlabel1.Click
-
-    End Sub
-
-    Private Sub testtemplabel6_Click(sender As Object, e As EventArgs) Handles testtemplabel6.Click
-
-    End Sub
-
-    Private Sub testtemplabel5_Click(sender As Object, e As EventArgs) Handles testtemplabel5.Click
-
-    End Sub
-
-    Private Sub testtemplabel4_Click(sender As Object, e As EventArgs) Handles testtemplabel4.Click
-
-    End Sub
-
-    Private Sub testtemplabel3_Click(sender As Object, e As EventArgs) Handles testtemplabel3.Click
-
-    End Sub
-
-    Private Sub testtemplabel2_Click(sender As Object, e As EventArgs) Handles testtemplabel2.Click
-
-    End Sub
-
-    Private Sub testtemplabel1_Click(sender As Object, e As EventArgs) Handles testtemplabel1.Click
-
-    End Sub
-
-    Private Sub reftemplabel6_Click(sender As Object, e As EventArgs) Handles reftemplabel6.Click
-
-    End Sub
-
-    Private Sub reftemplabel5_Click(sender As Object, e As EventArgs) Handles reftemplabel5.Click
-
-    End Sub
-
-    Private Sub reftemplabel4_Click(sender As Object, e As EventArgs) Handles reftemplabel4.Click
-
-    End Sub
-
-    Private Sub reftemplabel3_Click(sender As Object, e As EventArgs) Handles reftemplabel3.Click
-
-    End Sub
-
-    Private Sub reftemplabel2_Click(sender As Object, e As EventArgs) Handles reftemplabel2.Click
-
-    End Sub
-
-    Private Sub reftemplabel1_Click(sender As Object, e As EventArgs) Handles reftemplabel1.Click
-
-    End Sub
-
-    Private Sub testpulselabel6_Click(sender As Object, e As EventArgs) Handles testpulselabel6.Click
-
-    End Sub
-
-    Private Sub testpulselabel5_Click(sender As Object, e As EventArgs) Handles testpulselabel5.Click
-
-    End Sub
-
-    Private Sub testpulselabel4_Click(sender As Object, e As EventArgs) Handles testpulselabel4.Click
-
-    End Sub
-
-    Private Sub testpulselabel3_Click(sender As Object, e As EventArgs) Handles testpulselabel3.Click
-
-    End Sub
-
-    Private Sub testpulselabel2_Click(sender As Object, e As EventArgs) Handles testpulselabel2.Click
-
-    End Sub
-
-    Private Sub testpulselabel1_Click(sender As Object, e As EventArgs) Handles testpulselabel1.Click
-
-    End Sub
-
-    Private Sub refpulselabel6_Click(sender As Object, e As EventArgs) Handles refpulselabel6.Click
-
-    End Sub
-
-    Private Sub refpulselabel5_Click(sender As Object, e As EventArgs) Handles refpulselabel5.Click
-
-    End Sub
-
-    Private Sub refpulselabel4_Click(sender As Object, e As EventArgs) Handles refpulselabel4.Click
-
-    End Sub
-
-    Private Sub refpulselabel3_Click(sender As Object, e As EventArgs) Handles refpulselabel3.Click
-
-    End Sub
-
-    Private Sub refpulselabel2_Click(sender As Object, e As EventArgs) Handles refpulselabel2.Click
-
-    End Sub
-
-    Private Sub wline1_Click(sender As Object, e As EventArgs) Handles wline1.Click
-
-    End Sub
 End Class
