@@ -66,12 +66,6 @@ Partial Class Main
         Me.testpulselabel3 = New System.Windows.Forms.Label()
         Me.testpulselabel2 = New System.Windows.Forms.Label()
         Me.testpulselabel1 = New System.Windows.Forms.Label()
-        Me.resTestLabel6 = New System.Windows.Forms.Label()
-        Me.resTestLabel5 = New System.Windows.Forms.Label()
-        Me.resTestLabel4 = New System.Windows.Forms.Label()
-        Me.resTestLabel3 = New System.Windows.Forms.Label()
-        Me.resTestLabel2 = New System.Windows.Forms.Label()
-        Me.resTestLabel1 = New System.Windows.Forms.Label()
         Me.reftemplabel0 = New System.Windows.Forms.Label()
         Me.reftemplabel6 = New System.Windows.Forms.Label()
         Me.reftemplabel5 = New System.Windows.Forms.Label()
@@ -632,78 +626,6 @@ Partial Class Main
         Me.testpulselabel1.TabIndex = 42
         Me.testpulselabel1.Text = "0"
         Me.testpulselabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'resTestLabel6
-        '
-        Me.resTestLabel6.AutoSize = True
-        Me.resTestLabel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel6.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel6.Location = New System.Drawing.Point(493, 895)
-        Me.resTestLabel6.Name = "resTestLabel6"
-        Me.resTestLabel6.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel6.TabIndex = 53
-        Me.resTestLabel6.Text = "Test 6:"
-        '
-        'resTestLabel5
-        '
-        Me.resTestLabel5.AutoSize = True
-        Me.resTestLabel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel5.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel5.Location = New System.Drawing.Point(493, 846)
-        Me.resTestLabel5.Name = "resTestLabel5"
-        Me.resTestLabel5.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel5.TabIndex = 52
-        Me.resTestLabel5.Text = "Test 5:"
-        '
-        'resTestLabel4
-        '
-        Me.resTestLabel4.AutoSize = True
-        Me.resTestLabel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel4.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel4.Location = New System.Drawing.Point(493, 797)
-        Me.resTestLabel4.Name = "resTestLabel4"
-        Me.resTestLabel4.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel4.TabIndex = 51
-        Me.resTestLabel4.Text = "Test 4:"
-        '
-        'resTestLabel3
-        '
-        Me.resTestLabel3.AutoSize = True
-        Me.resTestLabel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel3.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel3.Location = New System.Drawing.Point(493, 747)
-        Me.resTestLabel3.Name = "resTestLabel3"
-        Me.resTestLabel3.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel3.TabIndex = 50
-        Me.resTestLabel3.Text = "Test 3:"
-        '
-        'resTestLabel2
-        '
-        Me.resTestLabel2.AutoSize = True
-        Me.resTestLabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel2.Location = New System.Drawing.Point(493, 699)
-        Me.resTestLabel2.Name = "resTestLabel2"
-        Me.resTestLabel2.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel2.TabIndex = 49
-        Me.resTestLabel2.Text = "Test 2:"
-        '
-        'resTestLabel1
-        '
-        Me.resTestLabel1.AutoSize = True
-        Me.resTestLabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.resTestLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.resTestLabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.resTestLabel1.Location = New System.Drawing.Point(493, 649)
-        Me.resTestLabel1.Name = "resTestLabel1"
-        Me.resTestLabel1.Size = New System.Drawing.Size(57, 20)
-        Me.resTestLabel1.TabIndex = 48
-        Me.resTestLabel1.Text = "Test 1:"
         '
         'reftemplabel0
         '
@@ -1732,12 +1654,6 @@ Partial Class Main
         Me.Controls.Add(Me.reftemplabel2)
         Me.Controls.Add(Me.reftemplabel1)
         Me.Controls.Add(Me.reftemplabel0)
-        Me.Controls.Add(Me.resTestLabel6)
-        Me.Controls.Add(Me.resTestLabel5)
-        Me.Controls.Add(Me.resTestLabel4)
-        Me.Controls.Add(Me.resTestLabel3)
-        Me.Controls.Add(Me.resTestLabel2)
-        Me.Controls.Add(Me.resTestLabel1)
         Me.Controls.Add(Me.testpulselabel6)
         Me.Controls.Add(Me.testpulselabel5)
         Me.Controls.Add(Me.testpulselabel4)
@@ -1847,12 +1763,6 @@ Partial Class Main
     Friend WithEvents testpulselabel3 As Label
     Friend WithEvents testpulselabel2 As Label
     Friend WithEvents testpulselabel1 As Label
-    Friend WithEvents resTestLabel6 As Label
-    Friend WithEvents resTestLabel5 As Label
-    Friend WithEvents resTestLabel4 As Label
-    Friend WithEvents resTestLabel3 As Label
-    Friend WithEvents resTestLabel2 As Label
-    Friend WithEvents resTestLabel1 As Label
     Friend WithEvents reftemplabel0 As Label
     Friend WithEvents reftemplabel6 As Label
     Friend WithEvents reftemplabel5 As Label

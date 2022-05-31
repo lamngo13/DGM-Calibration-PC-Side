@@ -464,7 +464,7 @@
 
         'others-----------------------
         For m As Integer = 1 To endtestnum
-            resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
+            'resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
         Next
 
         'If overall test is currently going
@@ -597,7 +597,7 @@
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
-        resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
+        'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
     End Sub
 
