@@ -122,8 +122,6 @@ Partial Class Main
         Me.avglabel11 = New System.Windows.Forms.Label()
         Me.avglabel22 = New System.Windows.Forms.Label()
         Me.avglabel33 = New System.Windows.Forms.Label()
-        Me.calibrateRadioButton = New System.Windows.Forms.RadioButton()
-        Me.validateRadioButton = New System.Windows.Forms.RadioButton()
         Me.btnconnect = New FontAwesome.Sharp.IconButton()
         Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.btnconfig = New FontAwesome.Sharp.IconButton()
@@ -131,7 +129,6 @@ Partial Class Main
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
@@ -144,7 +141,6 @@ Partial Class Main
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1280,34 +1276,6 @@ Partial Class Main
         Me.avglabel33.Text = "0"
         Me.avglabel33.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'calibrateRadioButton
-        '
-        Me.calibrateRadioButton.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.calibrateRadioButton.AutoSize = True
-        Me.calibrateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.calibrateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.calibrateRadioButton.Location = New System.Drawing.Point(12, 4)
-        Me.calibrateRadioButton.Name = "calibrateRadioButton"
-        Me.calibrateRadioButton.Size = New System.Drawing.Size(74, 19)
-        Me.calibrateRadioButton.TabIndex = 137
-        Me.calibrateRadioButton.TabStop = True
-        Me.calibrateRadioButton.Text = "Calibrate"
-        Me.calibrateRadioButton.UseVisualStyleBackColor = True
-        '
-        'validateRadioButton
-        '
-        Me.validateRadioButton.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.validateRadioButton.AutoSize = True
-        Me.validateRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.validateRadioButton.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.validateRadioButton.Location = New System.Drawing.Point(98, 4)
-        Me.validateRadioButton.Name = "validateRadioButton"
-        Me.validateRadioButton.Size = New System.Drawing.Size(69, 19)
-        Me.validateRadioButton.TabIndex = 138
-        Me.validateRadioButton.TabStop = True
-        Me.validateRadioButton.Text = "Validate"
-        Me.validateRadioButton.UseVisualStyleBackColor = True
-        '
         'btnconnect
         '
         Me.btnconnect.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -1402,7 +1370,6 @@ Partial Class Main
         Me.Panel2.Controls.Add(Me.btnstart)
         Me.Panel2.Controls.Add(Me.btnconnect)
         Me.Panel2.Controls.Add(Me.IconButton1)
-        Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Location = New System.Drawing.Point(319, 63)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(561, 82)
@@ -1427,16 +1394,6 @@ Partial Class Main
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton1.UseVisualStyleBackColor = False
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(12, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.calibrateRadioButton)
-        Me.Panel3.Controls.Add(Me.validateRadioButton)
-        Me.Panel3.Location = New System.Drawing.Point(201, 39)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(174, 28)
-        Me.Panel3.TabIndex = 145
         '
         'PictureBox1
         '
@@ -1653,13 +1610,12 @@ Partial Class Main
         Me.Controls.Add(Me.PictureBox7)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox4)
+        Me.MinimumSize = New System.Drawing.Size(1200, 750)
         Me.Name = "Main"
         Me.Text = "DGM"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1770,8 +1726,6 @@ Partial Class Main
     Friend WithEvents avglabel11 As Label
     Friend WithEvents avglabel22 As Label
     Friend WithEvents avglabel33 As Label
-    Friend WithEvents calibrateRadioButton As RadioButton
-    Friend WithEvents validateRadioButton As RadioButton
     Friend WithEvents btnconnect As FontAwesome.Sharp.IconButton
     Friend WithEvents btnstart As FontAwesome.Sharp.IconButton
     Friend WithEvents btnconfig As FontAwesome.Sharp.IconButton
@@ -1781,7 +1735,6 @@ Partial Class Main
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents Panel2 As Panel
     Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox4 As PictureBox
