@@ -1119,7 +1119,7 @@ Partial Class Main
         'messagetxtbox
         '
         Me.messagetxtbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.messagetxtbox.Location = New System.Drawing.Point(52, 947)
+        Me.messagetxtbox.Location = New System.Drawing.Point(384, 294)
         Me.messagetxtbox.Name = "messagetxtbox"
         Me.messagetxtbox.Size = New System.Drawing.Size(700, 26)
         Me.messagetxtbox.TabIndex = 92
@@ -1625,7 +1625,7 @@ Partial Class Main
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1457, 288)
+        Me.Panel1.Size = New System.Drawing.Size(1457, 272)
         Me.Panel1.TabIndex = 142
         '
         'PictureBox1
@@ -1644,7 +1644,7 @@ Partial Class Main
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(3, 62)
+        Me.TextBox1.Location = New System.Drawing.Point(3, 58)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(1454, 38)
         Me.TextBox1.TabIndex = 1
@@ -1678,7 +1678,7 @@ Partial Class Main
         Me.Panel2.Controls.Add(Me.btnconnect)
         Me.Panel2.Controls.Add(Me.IconButton1)
         Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Location = New System.Drawing.Point(451, 124)
+        Me.Panel2.Location = New System.Drawing.Point(451, 127)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(561, 118)
         Me.Panel2.TabIndex = 143

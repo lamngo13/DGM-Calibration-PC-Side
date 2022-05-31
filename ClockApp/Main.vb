@@ -794,4 +794,8 @@
     Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
 
     End Sub
+
+    Private Sub messagetxtbox_TextChanged(sender As Object, e As EventArgs) Handles messagetxtbox.TextChanged
+
+    End Sub
 End Class
