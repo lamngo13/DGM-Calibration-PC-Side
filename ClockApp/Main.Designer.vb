@@ -117,8 +117,6 @@ Partial Class Main
         Me.xd502port = New System.IO.Ports.SerialPort(Me.components)
         Me.messagetxtbox = New System.Windows.Forms.TextBox()
         Me.scalinglabel1 = New System.Windows.Forms.Label()
-        Me.scalinglabel2 = New System.Windows.Forms.Label()
-        Me.scalinglabel3 = New System.Windows.Forms.Label()
         Me.refscalingtxtbox = New System.Windows.Forms.TextBox()
         Me.pressureLabel6 = New System.Windows.Forms.Label()
         Me.pressureLabel5 = New System.Windows.Forms.Label()
@@ -157,16 +155,16 @@ Partial Class Main
         Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.btnconfig = New FontAwesome.Sharp.IconButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'antibugbutton
@@ -180,47 +178,53 @@ Partial Class Main
         '
         'flowratetxtbox1
         '
+        Me.flowratetxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox1.Location = New System.Drawing.Point(124, 457)
         Me.flowratetxtbox1.Name = "flowratetxtbox1"
-        Me.flowratetxtbox1.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox1.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox1.TabIndex = 1
         Me.flowratetxtbox1.Text = "1111"
         '
         'flowratetxtbox2
         '
+        Me.flowratetxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox2.Location = New System.Drawing.Point(124, 483)
         Me.flowratetxtbox2.Name = "flowratetxtbox2"
-        Me.flowratetxtbox2.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox2.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox2.TabIndex = 2
         Me.flowratetxtbox2.Text = "2222"
         '
         'flowratetxtbox3
         '
+        Me.flowratetxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox3.Location = New System.Drawing.Point(124, 509)
         Me.flowratetxtbox3.Name = "flowratetxtbox3"
-        Me.flowratetxtbox3.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox3.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox3.TabIndex = 3
         Me.flowratetxtbox3.Text = "3333"
         '
         'flowratetxtbox4
         '
+        Me.flowratetxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox4.Location = New System.Drawing.Point(124, 535)
         Me.flowratetxtbox4.Name = "flowratetxtbox4"
-        Me.flowratetxtbox4.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox4.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox4.TabIndex = 4
         '
         'flowratetxtbox5
         '
+        Me.flowratetxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox5.Location = New System.Drawing.Point(124, 561)
         Me.flowratetxtbox5.Name = "flowratetxtbox5"
-        Me.flowratetxtbox5.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox5.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox5.TabIndex = 5
         '
         'flowratetxtbox6
         '
+        Me.flowratetxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratetxtbox6.Location = New System.Drawing.Point(124, 587)
         Me.flowratetxtbox6.Name = "flowratetxtbox6"
-        Me.flowratetxtbox6.Size = New System.Drawing.Size(123, 20)
+        Me.flowratetxtbox6.Size = New System.Drawing.Size(50, 23)
         Me.flowratetxtbox6.TabIndex = 6
         '
         'flowratelabel1
@@ -258,46 +262,52 @@ Partial Class Main
         '
         'endvoltxtbox6
         '
+        Me.endvoltxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox6.Location = New System.Drawing.Point(280, 587)
         Me.endvoltxtbox6.Name = "endvoltxtbox6"
-        Me.endvoltxtbox6.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox6.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox6.TabIndex = 15
         '
         'endvoltxtbox5
         '
+        Me.endvoltxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox5.Location = New System.Drawing.Point(280, 561)
         Me.endvoltxtbox5.Name = "endvoltxtbox5"
-        Me.endvoltxtbox5.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox5.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox5.TabIndex = 14
         '
         'endvoltxtbox4
         '
+        Me.endvoltxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox4.Location = New System.Drawing.Point(280, 535)
         Me.endvoltxtbox4.Name = "endvoltxtbox4"
-        Me.endvoltxtbox4.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox4.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox4.TabIndex = 13
         '
         'endvoltxtbox3
         '
+        Me.endvoltxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox3.Location = New System.Drawing.Point(280, 509)
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
-        Me.endvoltxtbox3.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox3.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox3.TabIndex = 12
         Me.endvoltxtbox3.Text = "10"
         '
         'endvoltxtbox2
         '
+        Me.endvoltxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox2.Location = New System.Drawing.Point(280, 483)
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
-        Me.endvoltxtbox2.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox2.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox2.TabIndex = 11
         Me.endvoltxtbox2.Text = "10"
         '
         'endvoltxtbox1
         '
+        Me.endvoltxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.endvoltxtbox1.Location = New System.Drawing.Point(280, 457)
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
-        Me.endvoltxtbox1.Size = New System.Drawing.Size(123, 20)
+        Me.endvoltxtbox1.Size = New System.Drawing.Size(50, 23)
         Me.endvoltxtbox1.TabIndex = 10
         Me.endvoltxtbox1.Text = "10"
         '
@@ -402,47 +412,53 @@ Partial Class Main
         '
         'warmuptxtbox6
         '
+        Me.warmuptxtbox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox6.Location = New System.Drawing.Point(438, 589)
         Me.warmuptxtbox6.Name = "warmuptxtbox6"
-        Me.warmuptxtbox6.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox6.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox6.TabIndex = 31
         '
         'warmuptxtbox5
         '
+        Me.warmuptxtbox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox5.Location = New System.Drawing.Point(438, 563)
         Me.warmuptxtbox5.Name = "warmuptxtbox5"
-        Me.warmuptxtbox5.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox5.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox5.TabIndex = 30
         '
         'warmuptxtbox4
         '
+        Me.warmuptxtbox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox4.Location = New System.Drawing.Point(438, 537)
         Me.warmuptxtbox4.Name = "warmuptxtbox4"
-        Me.warmuptxtbox4.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox4.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox4.TabIndex = 29
         '
         'warmuptxtbox3
         '
+        Me.warmuptxtbox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox3.Location = New System.Drawing.Point(438, 511)
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
-        Me.warmuptxtbox3.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox3.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox3.TabIndex = 28
         Me.warmuptxtbox3.Text = "30"
         '
         'warmuptxtbox2
         '
         Me.warmuptxtbox2.BackColor = System.Drawing.Color.White
+        Me.warmuptxtbox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox2.Location = New System.Drawing.Point(438, 485)
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
-        Me.warmuptxtbox2.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox2.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox2.TabIndex = 27
         Me.warmuptxtbox2.Text = "30"
         '
         'warmuptxtbox1
         '
+        Me.warmuptxtbox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.warmuptxtbox1.Location = New System.Drawing.Point(438, 459)
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
-        Me.warmuptxtbox1.Size = New System.Drawing.Size(123, 20)
+        Me.warmuptxtbox1.Size = New System.Drawing.Size(50, 23)
         Me.warmuptxtbox1.TabIndex = 26
         Me.warmuptxtbox1.Text = "30"
         '
@@ -1119,9 +1135,10 @@ Partial Class Main
         'messagetxtbox
         '
         Me.messagetxtbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.messagetxtbox.Location = New System.Drawing.Point(384, 294)
+        Me.messagetxtbox.Location = New System.Drawing.Point(384, 306)
+        Me.messagetxtbox.Multiline = True
         Me.messagetxtbox.Name = "messagetxtbox"
-        Me.messagetxtbox.Size = New System.Drawing.Size(700, 26)
+        Me.messagetxtbox.Size = New System.Drawing.Size(700, 47)
         Me.messagetxtbox.TabIndex = 92
         Me.messagetxtbox.Text = "Message: nothing yet!"
         '
@@ -1130,37 +1147,15 @@ Partial Class Main
         Me.scalinglabel1.AutoSize = True
         Me.scalinglabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.scalinglabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.scalinglabel1.Location = New System.Drawing.Point(590, 384)
+        Me.scalinglabel1.Location = New System.Drawing.Point(447, 241)
         Me.scalinglabel1.Name = "scalinglabel1"
-        Me.scalinglabel1.Size = New System.Drawing.Size(127, 20)
+        Me.scalinglabel1.Size = New System.Drawing.Size(278, 20)
         Me.scalinglabel1.TabIndex = 93
-        Me.scalinglabel1.Text = "Enter Reference"
-        '
-        'scalinglabel2
-        '
-        Me.scalinglabel2.AutoSize = True
-        Me.scalinglabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.scalinglabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.scalinglabel2.Location = New System.Drawing.Point(590, 404)
-        Me.scalinglabel2.Name = "scalinglabel2"
-        Me.scalinglabel2.Size = New System.Drawing.Size(106, 20)
-        Me.scalinglabel2.TabIndex = 94
-        Me.scalinglabel2.Text = "Meter Scaling"
-        '
-        'scalinglabel3
-        '
-        Me.scalinglabel3.AutoSize = True
-        Me.scalinglabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.scalinglabel3.ForeColor = System.Drawing.SystemColors.Control
-        Me.scalinglabel3.Location = New System.Drawing.Point(590, 424)
-        Me.scalinglabel3.Name = "scalinglabel3"
-        Me.scalinglabel3.Size = New System.Drawing.Size(54, 20)
-        Me.scalinglabel3.TabIndex = 95
-        Me.scalinglabel3.Text = "factor:"
+        Me.scalinglabel1.Text = "Enter Reference Meter Scaling Factor"
         '
         'refscalingtxtbox
         '
-        Me.refscalingtxtbox.Location = New System.Drawing.Point(594, 459)
+        Me.refscalingtxtbox.Location = New System.Drawing.Point(740, 241)
         Me.refscalingtxtbox.Name = "refscalingtxtbox"
         Me.refscalingtxtbox.Size = New System.Drawing.Size(123, 20)
         Me.refscalingtxtbox.TabIndex = 96
@@ -1568,7 +1563,7 @@ Partial Class Main
         Me.btnconnect.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconnect.IconSize = 23
         Me.btnconnect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnconnect.Location = New System.Drawing.Point(3, 3)
+        Me.btnconnect.Location = New System.Drawing.Point(3, 13)
         Me.btnconnect.Name = "btnconnect"
         Me.btnconnect.Size = New System.Drawing.Size(158, 40)
         Me.btnconnect.TabIndex = 139
@@ -1587,7 +1582,7 @@ Partial Class Main
         Me.btnstart.IconColor = System.Drawing.Color.White
         Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnstart.IconSize = 19
-        Me.btnstart.Location = New System.Drawing.Point(201, 3)
+        Me.btnstart.Location = New System.Drawing.Point(201, 13)
         Me.btnstart.Name = "btnstart"
         Me.btnstart.Size = New System.Drawing.Size(174, 40)
         Me.btnstart.TabIndex = 140
@@ -1625,8 +1620,64 @@ Partial Class Main
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1457, 272)
+        Me.Panel1.Size = New System.Drawing.Size(1457, 219)
         Me.Panel1.TabIndex = 142
+        '
+        'IconButton2
+        '
+        Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Sync
+        Me.IconButton2.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 22
+        Me.IconButton2.Location = New System.Drawing.Point(1370, 28)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(43, 23)
+        Me.IconButton2.TabIndex = 144
+        Me.IconButton2.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Panel2.Controls.Add(Me.btnstart)
+        Me.Panel2.Controls.Add(Me.btnconnect)
+        Me.Panel2.Controls.Add(Me.IconButton1)
+        Me.Panel2.Controls.Add(Me.Panel3)
+        Me.Panel2.Location = New System.Drawing.Point(451, 96)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(561, 97)
+        Me.Panel2.TabIndex = 143
+        '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.White
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 20
+        Me.IconButton1.Location = New System.Drawing.Point(418, 10)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(143, 40)
+        Me.IconButton1.TabIndex = 143
+        Me.IconButton1.Text = " ABORT"
+        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(12, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.calibrateRadioButton)
+        Me.Panel3.Controls.Add(Me.validateRadioButton)
+        Me.Panel3.Location = New System.Drawing.Point(201, 54)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(174, 36)
+        Me.Panel3.TabIndex = 145
         '
         'PictureBox1
         '
@@ -1644,68 +1695,12 @@ Partial Class Main
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(3, 58)
+        Me.TextBox1.Location = New System.Drawing.Point(3, 52)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(1454, 38)
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.Text = "Dry Gas Meter Calibration/Validation"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'IconButton1
-        '
-        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.White
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
-        Me.IconButton1.IconColor = System.Drawing.Color.White
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 20
-        Me.IconButton1.Location = New System.Drawing.Point(418, 0)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(143, 40)
-        Me.IconButton1.TabIndex = 143
-        Me.IconButton1.Text = " ABORT"
-        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton1.UseVisualStyleBackColor = False
-        '
-        'Panel2
-        '
-        Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Panel2.Controls.Add(Me.btnstart)
-        Me.Panel2.Controls.Add(Me.btnconnect)
-        Me.Panel2.Controls.Add(Me.IconButton1)
-        Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Location = New System.Drawing.Point(451, 127)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(561, 118)
-        Me.Panel2.TabIndex = 143
-        '
-        'IconButton2
-        '
-        Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Sync
-        Me.IconButton2.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton2.IconSize = 22
-        Me.IconButton2.Location = New System.Drawing.Point(1370, 28)
-        Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(43, 23)
-        Me.IconButton2.TabIndex = 144
-        Me.IconButton2.UseVisualStyleBackColor = True
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(12, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.calibrateRadioButton)
-        Me.Panel3.Controls.Add(Me.validateRadioButton)
-        Me.Panel3.Location = New System.Drawing.Point(201, 44)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(174, 36)
-        Me.Panel3.TabIndex = 145
         '
         'Main
         '
@@ -1746,8 +1741,6 @@ Partial Class Main
         Me.Controls.Add(Me.pressureLabel1)
         Me.Controls.Add(Me.pressureLabel0)
         Me.Controls.Add(Me.refscalingtxtbox)
-        Me.Controls.Add(Me.scalinglabel3)
-        Me.Controls.Add(Me.scalinglabel2)
         Me.Controls.Add(Me.scalinglabel1)
         Me.Controls.Add(Me.messagetxtbox)
         Me.Controls.Add(Me.antibug11)
@@ -1842,10 +1835,10 @@ Partial Class Main
         Me.Text = "DGM"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1944,8 +1937,6 @@ Partial Class Main
     Friend WithEvents xd502port As IO.Ports.SerialPort
     Friend WithEvents messagetxtbox As TextBox
     Friend WithEvents scalinglabel1 As Label
-    Friend WithEvents scalinglabel2 As Label
-    Friend WithEvents scalinglabel3 As Label
     Friend WithEvents refscalingtxtbox As TextBox
     Friend WithEvents pressureLabel6 As Label
     Friend WithEvents pressureLabel5 As Label
