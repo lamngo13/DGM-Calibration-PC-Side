@@ -1,5 +1,5 @@
 ﻿Public Class Main
-    Const NUM_OF_ROWS As Integer = 5
+    Const NUM_OF_ROWS As Integer = 6
 
     Const REF_INPUT_LABEL As Integer = 1
     Const REF_INPUT_PRESSURE As Integer = 2
@@ -80,6 +80,8 @@
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim endstdrefvols = New Double() {9, 9, 9, 9, 9, 9, 9} ' DOUBLE
 
+    Dim rowused = New Boolean() {False, False, False, False, False, False, False} ' BOOLEANS
+
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
@@ -145,7 +147,7 @@
     Dim rowShouldBeFilled As Boolean = False
     Dim reasonableVals As Boolean = True
 
-
+    Dim numRealTests As Integer
 
 
 
@@ -164,6 +166,39 @@
                 If (zindex = REF_MAX_MEMBERS) Then
                     Exit For
                 End If
+            End If
+        Next
+    End Sub
+
+    Public Sub findRunnableTests()
+        For r As Integer = 1 To NUM_OF_ROWS
+            'reset vals
+            rowused(r) = False
+            Try
+                If ((flowratetxtbox(r).Text <> vbNullString) And CDbl(flowratetxtbox(r).Text) > 0) Then
+                    If ((endvoltxtbox(r).Text <> vbNullString) And CDbl(endvoltxtbox(r).Text) > 0) Then
+                        If ((warmuptxtbox(r).Text <> vbNullString) And CDbl(warmuptxtbox(r).Text) > 0) Then
+                            rowused(r) = True
+                        End If
+                    End If
+                End If
+            Catch ex As Exception
+                rowused(r) = False
+            End Try
+
+        Next
+    End Sub
+
+    Public Sub disableButtons()
+        For q As Integer = 1 To NUM_OF_ROWS
+            If (testongoing) Then
+                flowratetxtbox(q).Enabled = False
+                endvoltxtbox(q).Enabled = False
+                warmuptxtbox(q).Enabled = False
+            Else
+                flowratetxtbox(q).Enabled = True
+                endvoltxtbox(q).Enabled = True
+                warmuptxtbox(q).Enabled = True
             End If
         Next
     End Sub
@@ -228,8 +263,11 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
+        'diable inputs if test ongoing
+        disableButtons()
+
         'validate user input in real time
-        reWhiteInputsExistOnly()
+        'reWhiteInputsExistOnly()
 
         If ((consecBadCRCVals > BAD_INPUT_LIMIT) Or (consecBadCSVals > BAD_INPUT_LIMIT)) Then
             'END TEST OR SOMETHING
@@ -239,132 +277,155 @@
             'how do I reinitialize all values? (all values except config values?? AND usr test vol flow rate values)
             'maybe I could make a reinitialize function
         End If
-        antibug11.Text = CStr(usrrefscalingfactor)
+
+        'antibug11.Text = CStr(usrrefscalingfactor)
         'PARSE REF METER
-        Static ioStr As String = ""
-        ioStr = ""
-        Gs_currstr = ""
-        mainclocklbl.Text = TimeString ' 24 hour time
-        If (refport.IsOpen) Then
 
-            If (refport.ReadBufferSize > 0) Then
-                ioStr += Trim(refport.ReadExisting())
+        Try
+            Static ioStr As String = ""
+            ioStr = ""
+            Gs_currstr = ""
+            mainclocklbl.Text = TimeString ' 24 hour time
+            If (refport.IsOpen) Then
 
-                If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
+                If (refport.ReadBufferSize > 0) Then
+                    ioStr += Trim(refport.ReadExisting())
 
-                    Gs_currstr = ioStr
-                    goodParseRef()
-                    Gs_str = Gs_currstr  ' this is for debugging
-                    Dim tempinstr = Gs_str
+                    If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
-                    'read input crc
-                    Dim startrefcrc As Integer = InStr(tempinstr, "|")
-                    Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
-                    Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
-                    refcrcstr = tcrc
-                    Try
-                        refcrcint = CInt(refcrcstr)
-                    Catch ex As Exception
-                        refcrcint = 1 ' there's no way it will be this, so vals will not update
-                        consecBadCRCVals += 1
-                    End Try
+                        Gs_currstr = ioStr
+                        goodParseRef()
+                        Gs_str = Gs_currstr  ' this is for debugging
+                        Dim tempinstr = Gs_str
+
+                        'read input crc
+                        Dim startrefcrc As Integer = InStr(tempinstr, "|")
+                        Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
+                        Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
+                        refcrcstr = tcrc
+                        Try
+                            refcrcint = CInt(refcrcstr)
+                        Catch ex As Exception
+                            refcrcint = 1 ' there's no way it will be this, so vals will not update
+                            consecBadCRCVals += 1
+                        End Try
 
 
-                    'check ur own local crc calculation
-                    iAccum = &HFFFF
-                    If (tempinstr <> vbNullString) Then
-                        For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
-                            iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
-                        Next ' end of for loop
+                        'check ur own local crc calculation
+                        iAccum = &HFFFF
+                        If (tempinstr <> vbNullString) Then
+                            For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
+                                iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
+                            Next ' end of for loop
+                        End If
+
+                        'only update vals if crc is good
+                        If (iAccum = refcrcint) Then
+                            refUpdateVals()
+                            consecBadCRCVals = 0 ' resets bad counter
+                        End If
+
                     End If
-
-                    'only update vals if crc is good
-                    If (iAccum = refcrcint) Then
-                        refUpdateVals()
-                        consecBadCRCVals = 0 ' resets bad counter
-                    End If
-
                 End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
+
 
 
 
         'debugg
-        antibug11.Text = CStr(xdWarmupVols(currenttest))
-        antibug1.Text = "big timer: " & CStr(bigtimer)
-        antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
-        antibug3.Text = "total pulse count: " + intpulsecount.ToString()
-        antibug4.Text = "current test: " + currenttest.ToString()
-        antibug6.Text = "during warmup: " + duringwarmup.ToString()
-        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
-        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        'antibug11.Text = CStr(xdWarmupVols(currenttest))
+        'antibug1.Text = "big timer: " & CStr(bigtimer)
+        'antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
+        'antibug3.Text = "total pulse count: " + intpulsecount.ToString()
+        'antibug4.Text = "current test: " + currenttest.ToString()
+        'antibug6.Text = "during warmup: " + duringwarmup.ToString()
+        'antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
+        'antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        'antibug1.Text = "row used 0: " + CStr(rowused(0))
+        'antibug2.Text = "row used 1: " + CStr(rowused(1))
+        'antibug3.Text = "row used 2: " + CStr(rowused(2))
+        'antibug4.Text = "row used 3: " + CStr(rowused(3))
+        'antibug5.Text = "row used 4: " + CStr(rowused(4))
+        'antibug6.Text = "row used 5: " + CStr(rowused(5))
+        'antibug7.Text = "row used 6: " + CStr(rowused(6))
         'end debugg, safe to take out in future
 
         ''START PARSING FROM DGM---------------------------------------------
         xdIoStr = ""
         xdCurrStr = ""
-        If (xd502port.IsOpen) Then
-            If (xd502port.ReadBufferSize > 0) Then
-                'read data
-                xdIoStr = xd502port.ReadExisting()
+        Try
+            If (xd502port.IsOpen) Then
+                If (xd502port.ReadBufferSize > 0) Then
+                    'read data
+                    xdIoStr = xd502port.ReadExisting()
 
-                If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
+                    If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
 
-                    xdCurrStr = xdIoStr
-                    goodParseXD()
-                    Dim xdTempInStr = xdCurrStr
+                        xdCurrStr = xdIoStr
+                        goodParseXD()
+                        Dim xdTempInStr = xdCurrStr
 
-                    'read checksum input
-                    Dim lengthBetweenCSandNum As Integer = 6
-                    xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
-                    xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
-                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
-                    Try
-                        xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
-                    Catch ex As Exception
-                        xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
-                        consecBadCSVals += 1
-                    End Try
+                        'read checksum input
+                        Dim lengthBetweenCSandNum As Integer = 6
+                        xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
+                        xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
+                        xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
+                        Try
+                            xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
+                        Catch ex As Exception
+                            xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
+                            consecBadCSVals += 1
+                        End Try
 
 
-                    xdCalculatedCS = 0 ' reset just to be sure
+                        xdCalculatedCS = 0 ' reset just to be sure
 
-                    For j As Integer = 2 To InStr(xdTempInStr, "!")
+                        For j As Integer = 2 To InStr(xdTempInStr, "!")
 
-                        xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
-                        If (xdCalculatedCS > 9999) Then
-                            xdCalculatedCS -= 10000
+                            xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
+                            If (xdCalculatedCS > 9999) Then
+                                xdCalculatedCS -= 10000
+                            End If
+                        Next
+
+                        xdCalculatedCS = 10000 - xdCalculatedCS
+
+                        'update values if good
+                        If (xdCalculatedCS = xdParsedCheckInt) Then
+                            xdUpdateVals()
+                            consecBadCSVals = 0  ' resets bad counter
                         End If
-                    Next
 
-                    xdCalculatedCS = 10000 - xdCalculatedCS
-
-                    'update values if good
-                    If (xdCalculatedCS = xdParsedCheckInt) Then
-                        xdUpdateVals()
-                        consecBadCSVals = 0  ' resets bad counter
                     End If
-
                 End If
-            End If
 
-        End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
 
         'update labels with good values **************************************************
         'ref ------------------
-        refpulselabel(currenttest).Text = CStr(refvols(currenttest))
-        testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
-        reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
-        pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
-        stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
+        Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
+        If (testongoing) Then
+            refpulselabel(currenttest).Text = CStr(refvols(currenttest))
+            testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+            reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+            pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
+            stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
 
 
-        'dgm --------------------------
-        testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
-        testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
-        xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+            'dgm --------------------------
+            testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
+            testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
+            xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+        End If
+
 
         ''test over???????????????????????????
         'to process after test
@@ -373,35 +434,49 @@
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
-            endlabel1.Text = "curr test num: " + CStr(currenttest)
+            'endlabel1.Text = "curr test num: " + CStr(currenttest)
             Dim asdf As String
-            For k As Integer = 1 To currenttest
-                avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text)
-                avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
-                asdf &= stdVolLabel(k).Text + " "
+            'find number of real tests
+            For t As Integer = 1 To NUM_OF_ROWS
+                If (rowused(t) = True) Then
+                    numRealTests += 1
+                End If
+                'numRealTests = t
             Next
-            avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / currenttest), 2)
-            avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / currenttest), 2)
+            'end find number of real tests
+            For k As Integer = 1 To NUM_OF_ROWS
+                If (rowused(k) = True) Then
+                    avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text) 'error here
+                    avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
+                    asdf &= stdVolLabel(k).Text + " "
+                End If
+
+            Next
+            avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / numRealTests), 2)
+            avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / numRealTests), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
             avglabel22.Text = CStr(avgStdTestVolPostTest)
+
+
             'HERE CHANGE TEXT IF VALIDATION OR CALIBRATION**********************
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             If (validateRadioButton.Checked) Then
                 'this is validation
                 resultLabel1.Text = "Percentage Off"
-                avglabel33.Text = CStr(Math.Round(100 * (avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+                avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
             End If
             If (calibrateRadioButton.Checked) Then
                 resultLabel1.Text = "New Scaling Factor for XD:"
                 avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             End If
 
-            endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
-            endlabel3.Text = asdf
+            ' endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
+            'endlabel3.Text = asdf
         End If
 
         'others-----------------------
         For m As Integer = 1 To endtestnum
-            resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
+            'resTestLabel(m).Text = "Flow Rate: " + flowratetxtbox(m).Text
         Next
 
         'If overall test is currently going
@@ -411,7 +486,7 @@
                 teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
 
                 'END TEST IF NO MORE TEST SPECIFIED
-                If (currenttest = endtestnum) Then
+                If (currenttest = 7 Or (currenttest = 6) And (rowused(6) = False)) Then
                     testongoing = False
                     testover = True
                     teststatuslabel2.Text = "Test Over"
@@ -468,7 +543,7 @@
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
-                        If (currenttest = endtestnum - 1) Then
+                        If ((currenttest = 6) And (rowused(6)) = False) Then
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
@@ -478,11 +553,32 @@
                             'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
                             duringwarmup = True
                             currenttest += 1 'goto next test
-                            warmuptimer = 0  'reset warmup timer
-                            Gb_testgo = False
-                            Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
-                            DialogForm.StartPosition = FormStartPosition.CenterScreen
-                            DialogForm.ShowDialog()
+                            While (rowused(currenttest) = False)
+                                If (currenttest = 7) Then
+                                    Exit While
+                                Else
+                                    currenttest += 1
+                                End If
+                                If (currenttest = 7) Then
+                                    Exit While
+                                End If
+                            End While
+                            If (currenttest = 7) Then
+                                testongoing = False
+                                testover = True
+                                teststatuslabel2.Text = "Test Over"
+                            End If
+                            'If (rowused(currenttest) = False) Then
+                            '   currenttest += 1
+                            'End If
+                            If (testongoing) Then
+                                warmuptimer = 0  'reset warmup timer
+                                Gb_testgo = False
+                                Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
+                                DialogForm.StartPosition = FormStartPosition.CenterScreen
+                                DialogForm.ShowDialog()
+                            End If
+
                         End If
 
                     End If
@@ -500,7 +596,7 @@
     End Sub
 
     Private Sub dp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'BRUH MACHINE
+
         'MUST DO THIS TO ACCESS OBJECTS BY INDEX
         flowratetxtbox = ControlArrayUtils.getControlArray(Me, "flowratetxtbox", NUM_OF_ROWS)
         endvoltxtbox = ControlArrayUtils.getControlArray(Me, "endvoltxtbox", NUM_OF_ROWS)
@@ -513,11 +609,7 @@
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
-        resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
-
-
-        ' AZN
-        PictureBox8.BackColor = Color.FromArgb(25, 21, 21, 21)
+        'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
     End Sub
 
@@ -526,7 +618,7 @@
         ErrorForm.StartPosition = FormStartPosition.CenterScreen
         ErrorForm.ShowDialog()
     End Function
-    Private Sub antibugbutton_Click(sender As Object, e As EventArgs) Handles antibugbutton.Click
+    Private Sub antibugbutton_Click(sender As Object, e As EventArgs)
         Dim antibug As New antibug
         antibug.StartPosition = FormStartPosition.CenterScreen
         antibug.ShowDialog()
@@ -602,7 +694,7 @@
             'ref connection
             While (comgo)
                 Try
-                    If (tempcomport > 300) Then
+                    If (tempcomport > 100) Then
                         If (refFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
                             comgo = False
                             '''''''''ask dad 
@@ -624,7 +716,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(100)
+                        Threading.Thread.Sleep(50)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -660,7 +752,7 @@
             'XD connection
             While (xdcomgo)
                 Try
-                    If (tempcomport > 300) Then
+                    If (tempcomport > 100) Then
                         If (xdFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
                             xdcomgo = False
                             ''ASK DAD
@@ -683,7 +775,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(100)
+                        Threading.Thread.Sleep(50)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -716,63 +808,63 @@
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
 
+        findRunnableTests()
+        ''ensure reasonable vals
+        'reasonableVals = True
+        'For p As Integer = 1 To NUM_OF_ROWS
+        '    If (flowratetxtbox(p).Text <> vbNullString) Then
+        '        If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
+        '            reasonableVals = False
+        '            'flowrate is too low, make it red then send error
+        '            flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
+        '            GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+        '            ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        '            ErrorForm.ShowDialog()
+        '        End If
+        '    End If
 
-        'ensure reasonable vals
-        reasonableVals = True
-        For p As Integer = 1 To NUM_OF_ROWS
-            If (flowratetxtbox(p).Text <> vbNullString) Then
-                If ((CDbl(flowratetxtbox(p).Text)) < FLOWRATE_MIN_INPUT_METRIC) Then
-                    reasonableVals = False
-                    'flowrate is too low, make it red then send error
-                    flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
-                    GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
-                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
-                    ErrorForm.ShowDialog()
-                End If
-            End If
+        'Next
 
-        Next
+        ''ensure all rows properly filled out
+        ''rowNumberCheck
+        ''flowratetxtbox
+        ''endvoltxtbox
+        ''warmuptxtbox
+        'rowShouldBeFilled = False
+        'Dim Gold, White
+        'Gold = RGB(255, 215, 0)
+        'White = RGB(255, 255, 255)
+        'For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
 
-        'ensure all rows properly filled out
-        'rowNumberCheck
-        'flowratetxtbox
-        'endvoltxtbox
-        'warmuptxtbox
-        rowShouldBeFilled = False
-        Dim Gold, White
-        Gold = RGB(255, 215, 0)
-        White = RGB(255, 255, 255)
-        For n As Integer = 1 To NUM_OF_ROWS ' THIS CONST IS CONFUSING I NEED TO UPDATE THIS
+        '    'TODO write loop to make background white if was yellow then good vals are passed through
 
-            'TODO write loop to make background white if was yellow then good vals are passed through
+        '    'check to see if any filled in.  If any ARE filled in , then highlight the boxes that aren't filled in
+        '    If (flowratetxtbox(n).Text <> vbNullString Or endvoltxtbox(n).Text <> vbNullString Or warmuptxtbox(n).Text <> vbNullString) Then  'will trigger if any input in the row is filled out
+        '        'check to see if any ohters are finished
+        '        If (flowratetxtbox(n).Text = vbNullString) Then
+        '            flowratetxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
+        '        If (endvoltxtbox(n).Text = vbNullString) Then
+        '            endvoltxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
+        '        If (warmuptxtbox(n).Text = vbNullString) Then
+        '            warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
+        '            rowShouldBeFilled = True
+        '        End If
 
-            'check to see if any filled in.  If any ARE filled in , then highlight the boxes that aren't filled in
-            If (flowratetxtbox(n).Text <> vbNullString Or endvoltxtbox(n).Text <> vbNullString Or warmuptxtbox(n).Text <> vbNullString) Then  'will trigger if any input in the row is filled out
-                'check to see if any ohters are finished
-                If (flowratetxtbox(n).Text = vbNullString) Then
-                    flowratetxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
-                If (endvoltxtbox(n).Text = vbNullString) Then
-                    endvoltxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
-                If (warmuptxtbox(n).Text = vbNullString) Then
-                    warmuptxtbox(n).BackColor = Color.FromArgb(255, 255, 215, 0)
-                    rowShouldBeFilled = True
-                End If
+        '    End If
+        'Next
 
-            End If
-        Next
-
-        If (rowShouldBeFilled) Then
-            'send error message if filled in poorly
-            GS_errorText = "Please Ensure all rows are filled out" + vbCrLf + "If one is todo fix this idk lol"
-            ErrorForm.StartPosition = FormStartPosition.CenterScreen
-            ErrorForm.ShowDialog()
-        End If
-        rowNumberCheck = 0 ' reset this val
-        'ensure validation or calibration is checked
+        'If (rowShouldBeFilled) Then
+        '    'send error message if filled in poorly
+        '    GS_errorText = "Please Ensure all rows are filled out" + vbCrLf + "If one is todo fix this idk lol"
+        '    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+        '    ErrorForm.ShowDialog()
+        'End If
+        'rowNumberCheck = 0 ' reset this val
+        ''ensure validation or calibration is checked
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
@@ -797,7 +889,15 @@
         configure.ShowDialog()
     End Sub
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub avglabel33_Click(sender As Object, e As EventArgs) Handles avglabel33.Click
+
+    End Sub
+
+    Private Sub resultLabel1_Click(sender As Object, e As EventArgs) Handles resultLabel1.Click
 
     End Sub
 
@@ -805,12 +905,15 @@
 
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
 
     End Sub
 
+    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
 
-    Private Sub PictureBox8_Click(sender As Object, e As EventArgs) Handles PictureBox8.Click
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
     End Sub
 End Class
