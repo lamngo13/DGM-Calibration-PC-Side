@@ -1,4 +1,7 @@
 ﻿Public Class Main
+
+    Dim rs As New Resizer 'TODO MORE OF THIS ALSO WRITE TO REGISTRY
+
     Const NUM_OF_ROWS As Integer = 6
 
     Const REF_INPUT_LABEL As Integer = 1
@@ -261,6 +264,13 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
+
+
+        ' Just hitching a ride ---------------------
+        If Gb_Update_Screen_Size Then
+            Gb_Update_Screen_Size = False
+            Update_Screen_Size()
+        End If
 
         'diable inputs if test ongoing
         disableButtons()
@@ -607,6 +617,65 @@
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
         'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
+        rs.FindAllControls(Me)
+        Get_Registry_Values()
+
+        rs.ResizeAllLastSaved(Me, Gi_Screen_Size_X, Gi_Screen_Size_Y)
+        Me.Width = Gi_Screen_Size_X
+        Me.Height = Gi_Screen_Size_Y
+
+    End Sub
+
+
+    Sub Get_Registry_Values()
+        Dim sAvailable As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Available", Nothing)  'plan to replace XC502 with DGM_CAL
+
+        If sAvailable = Nothing Then
+            'Set default
+
+            Gi_Screen_Size_X = SCREEN_SIZE_MIN_X
+            Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
+
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Available", True)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_Comm_Used", Gs_Last_Comm_Used)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_IP_Used", Gs_Last_IP_Used)
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_X", Gi_Screen_Size_X)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Y", Gi_Screen_Size_Y)
+
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_X", Gi_Screen_Size_LeakTest_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_Y", Gi_Screen_Size_LeakTest_Y)
+
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_X", Gi_Screen_Size_Cal_X)
+            'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_Y", Gi_Screen_Size_Cal_Y)
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "WTM_Test_Counts", Gi_WTM_Test_Counts)
+        Else
+            Gs_Last_Comm_Used = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_Comm_Used", Nothing)
+            'TextBox_IP_.Text = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Last_IP_Used", Nothing)
+
+            Gi_Screen_Size_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_X", Nothing)
+            Gi_Screen_Size_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Y", Nothing)
+
+            'Gi_Screen_Size_LeakTest_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_X", Nothing)
+            'Gi_Screen_Size_LeakTest_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_LeakTest_Y", Nothing)
+
+            'Gi_Screen_Size_Cal_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_X", Nothing)
+            'Gi_Screen_Size_Cal_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "Screen_Size_Cal_Y", Nothing)
+
+            'Gi_WTM_Test_Counts = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\XC502", "WTM_Test_Counts", Nothing)
+
+            If (Gi_Screen_Size_X < SCREEN_SIZE_MIN_X) Then Gi_Screen_Size_X = SCREEN_SIZE_MIN_X
+            If (Gi_Screen_Size_Y < SCREEN_SIZE_MIN_Y) Then Gi_Screen_Size_Y = SCREEN_SIZE_MIN_Y
+            'If (Gi_Screen_Size_LeakTest_X < SCREEN_SIZE_LEAKTEST_MIN_X) Then Gi_Screen_Size_LeakTest_X = SCREEN_SIZE_LEAKTEST_MIN_X
+            'If (Gi_Screen_Size_LeakTest_Y < SCREEN_SIZE_LEAKTEST_MIN_Y) Then Gi_Screen_Size_LeakTest_Y = SCREEN_SIZE_LEAKTEST_MIN_Y
+            'If (Gi_Screen_Size_Cal_X < SCREEN_SIZE_CAL_MIN_X) Then Gi_Screen_Size_Cal_X = SCREEN_SIZE_CAL_MIN_X
+            'If (Gi_Screen_Size_Cal_Y < SCREEN_SIZE_CAL_MIN_Y) Then Gi_Screen_Size_Cal_Y = SCREEN_SIZE_CAL_MIN_Y
+
+
+        End If
+
     End Sub
 
     Public Function send_error()
@@ -877,31 +946,21 @@
         configure.ShowDialog()
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Sub Update_Screen_Size()
+        Gi_Screen_Size_X = Me.Width
+        Gi_Screen_Size_Y = Me.Height
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Gi_Screen_Size_X)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Gi_Screen_Size_Y)
+
+        'Do_Round_Buttons()
 
     End Sub
 
-    Private Sub avglabel33_Click(sender As Object, e As EventArgs) Handles avglabel33.Click
 
+    Private Sub Main_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        'If Gb_Allow_Size_Adj = False Then Return
+        rs.ResizeAllControls(Me)
+        'Gi_Resize_Delay = 2
     End Sub
 
-    Private Sub resultLabel1_Click(sender As Object, e As EventArgs) Handles resultLabel1.Click
-
-    End Sub
-
-    Private Sub messagetxtbox_TextChanged(sender As Object, e As EventArgs) Handles messagetxtbox.TextChanged
-
-    End Sub
-
-    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
-
-    End Sub
-
-    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
-
-    End Sub
-
-    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-
-    End Sub
 End Class
