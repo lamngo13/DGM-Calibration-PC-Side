@@ -147,6 +147,8 @@
     Dim rowShouldBeFilled As Boolean = False
     Dim reasonableVals As Boolean = True
 
+    Dim numRealTests As Integer
+
 
 
 
@@ -327,14 +329,21 @@
 
 
         'debugg
-        antibug11.Text = CStr(xdWarmupVols(currenttest))
-        antibug1.Text = "big timer: " & CStr(bigtimer)
-        antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
-        antibug3.Text = "total pulse count: " + intpulsecount.ToString()
-        antibug4.Text = "current test: " + currenttest.ToString()
-        antibug6.Text = "during warmup: " + duringwarmup.ToString()
-        antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
-        antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        'antibug11.Text = CStr(xdWarmupVols(currenttest))
+        'antibug1.Text = "big timer: " & CStr(bigtimer)
+        'antibug2.Text = "curr test timer: " + testtimers(currenttest).ToString()
+        'antibug3.Text = "total pulse count: " + intpulsecount.ToString()
+        'antibug4.Text = "current test: " + currenttest.ToString()
+        'antibug6.Text = "during warmup: " + duringwarmup.ToString()
+        'antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
+        'antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
+        antibug1.Text = "row used 0: " + CStr(rowused(0))
+        antibug2.Text = "row used 1: " + CStr(rowused(1))
+        antibug3.Text = "row used 2: " + CStr(rowused(2))
+        antibug4.Text = "row used 3: " + CStr(rowused(3))
+        antibug5.Text = "row used 4: " + CStr(rowused(4))
+        antibug6.Text = "row used 5: " + CStr(rowused(5))
+        antibug7.Text = "row used 6: " + CStr(rowused(6))
         'end debugg, safe to take out in future
 
         ''START PARSING FROM DGM---------------------------------------------
@@ -390,17 +399,21 @@
 
         'update labels with good values **************************************************
         'ref ------------------
-        refpulselabel(currenttest).Text = CStr(refvols(currenttest))
-        testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
-        reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
-        pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
-        stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
+        Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
+        If (testongoing) Then
+            refpulselabel(currenttest).Text = CStr(refvols(currenttest))
+            testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+            reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+            pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
+            stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
 
 
-        'dgm --------------------------
-        testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
-        testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
-        xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+            'dgm --------------------------
+            testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
+            testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
+            xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+        End If
+
 
         ''test over???????????????????????????
         'to process after test
@@ -411,16 +424,30 @@
             numtests = currenttest - 1
             endlabel1.Text = "curr test num: " + CStr(currenttest)
             Dim asdf As String
-            For k As Integer = 1 To currenttest
-                avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text)
-                avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
-                asdf &= stdVolLabel(k).Text + " "
+            'find number of real tests
+            For t As Integer = 1 To NUM_OF_ROWS
+                If (rowused(t) = True) Then
+                    numRealTests += 1
+                End If
+                'numRealTests = t
             Next
-            avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / currenttest), 2)
-            avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / currenttest), 2)
+            'end find number of real tests
+            For k As Integer = 1 To NUM_OF_ROWS
+                If (rowused(k) = True) Then
+                    avgStdRefVolPostTest += CDbl(stdVolLabel(k).Text) 'error here
+                    avgStdTestVolPostTest += CDbl(xdstdvollabel(k).Text)
+                    asdf &= stdVolLabel(k).Text + " "
+                End If
+
+            Next
+            avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / numRealTests), 2)
+            avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / numRealTests), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
             avglabel22.Text = CStr(avgStdTestVolPostTest)
+
+
             'HERE CHANGE TEXT IF VALIDATION OR CALIBRATION**********************
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             If (validateRadioButton.Checked) Then
                 'this is validation
                 resultLabel1.Text = "Percentage Off"
@@ -447,7 +474,7 @@
                 teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
 
                 'END TEST IF NO MORE TEST SPECIFIED
-                If (currenttest = endtestnum) Then
+                If (currenttest = 7 Or (currenttest = 6) And (rowused(6) = False)) Then
                     testongoing = False
                     testover = True
                     teststatuslabel2.Text = "Test Over"
@@ -504,7 +531,7 @@
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
-                        If (currenttest = endtestnum - 1) Then
+                        If ((currenttest = 6) And (rowused(6)) = False) Then
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
@@ -514,11 +541,32 @@
                             'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
                             duringwarmup = True
                             currenttest += 1 'goto next test
-                            warmuptimer = 0  'reset warmup timer
-                            Gb_testgo = False
-                            Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
-                            DialogForm.StartPosition = FormStartPosition.CenterScreen
-                            DialogForm.ShowDialog()
+                            While (rowused(currenttest) = False)
+                                If (currenttest = 7) Then
+                                    Exit While
+                                Else
+                                    currenttest += 1
+                                End If
+                                If (currenttest = 7) Then
+                                    Exit While
+                                End If
+                            End While
+                            If (currenttest = 7) Then
+                                testongoing = False
+                                testover = True
+                                teststatuslabel2.Text = "Test Over"
+                            End If
+                            'If (rowused(currenttest) = False) Then
+                            '   currenttest += 1
+                            'End If
+                            If (testongoing) Then
+                                warmuptimer = 0  'reset warmup timer
+                                Gb_testgo = False
+                                Gs_dialogText = "Change Flow Rate to " + CStr(flowratetxtbox(currenttest).Text) + " then press Continue Test"
+                                DialogForm.StartPosition = FormStartPosition.CenterScreen
+                                DialogForm.ShowDialog()
+                            End If
+
                         End If
 
                     End If
@@ -634,7 +682,7 @@
             'ref connection
             While (comgo)
                 Try
-                    If (tempcomport > 300) Then
+                    If (tempcomport > 100) Then
                         If (refFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
                             comgo = False
                             '''''''''ask dad 
@@ -656,7 +704,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(100)
+                        Threading.Thread.Sleep(50)
                         If (giveup > 5) Then
                             zgo = False
                         End If
@@ -692,7 +740,7 @@
             'XD connection
             While (xdcomgo)
                 Try
-                    If (tempcomport > 300) Then
+                    If (tempcomport > 100) Then
                         If (xdFailedConnectionCounter > BAD_CONNECTION_LIMIT) Then
                             xdcomgo = False
                             ''ASK DAD
@@ -715,7 +763,7 @@
                         End If
                         'give up will end the while loop if the com port goes a long time without transmitting anything
                         giveup += 1
-                        Threading.Thread.Sleep(100)
+                        Threading.Thread.Sleep(50)
                         If (giveup > 5) Then
                             zgo = False
                         End If
