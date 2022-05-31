@@ -15,7 +15,6 @@ Module _Public
     Public Gb_testgo As Boolean = True
     Public Gs_dialogText As String
     Public GS_errorText As String
-    Public Gs_UnitType As String = "Celsius"
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670
