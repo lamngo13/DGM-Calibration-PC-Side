@@ -277,7 +277,7 @@
             'how do I reinitialize all values? (all values except config values?? AND usr test vol flow rate values)
             'maybe I could make a reinitialize function
         End If
-        antibug11.Text = CStr(usrrefscalingfactor)
+        'antibug11.Text = CStr(usrrefscalingfactor)
         'PARSE REF METER
         Static ioStr As String = ""
         ioStr = ""
@@ -337,13 +337,13 @@
         'antibug6.Text = "during warmup: " + duringwarmup.ToString()
         'antibug5.Text = "curr test pulses: " + testpulses(currenttest).ToString()
         'antibug7.Text = "current warmup pulses: " + warmuppulses(currenttest).ToString()
-        antibug1.Text = "row used 0: " + CStr(rowused(0))
-        antibug2.Text = "row used 1: " + CStr(rowused(1))
-        antibug3.Text = "row used 2: " + CStr(rowused(2))
-        antibug4.Text = "row used 3: " + CStr(rowused(3))
-        antibug5.Text = "row used 4: " + CStr(rowused(4))
-        antibug6.Text = "row used 5: " + CStr(rowused(5))
-        antibug7.Text = "row used 6: " + CStr(rowused(6))
+        'antibug1.Text = "row used 0: " + CStr(rowused(0))
+        'antibug2.Text = "row used 1: " + CStr(rowused(1))
+        'antibug3.Text = "row used 2: " + CStr(rowused(2))
+        'antibug4.Text = "row used 3: " + CStr(rowused(3))
+        'antibug5.Text = "row used 4: " + CStr(rowused(4))
+        'antibug6.Text = "row used 5: " + CStr(rowused(5))
+        'antibug7.Text = "row used 6: " + CStr(rowused(6))
         'end debugg, safe to take out in future
 
         ''START PARSING FROM DGM---------------------------------------------
