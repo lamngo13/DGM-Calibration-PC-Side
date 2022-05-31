@@ -117,9 +117,6 @@ Partial Class Main
         Me.xdstdvollabel2 = New System.Windows.Forms.Label()
         Me.xdstdvollabel1 = New System.Windows.Forms.Label()
         Me.xdstdvollabel0 = New System.Windows.Forms.Label()
-        Me.endlabel1 = New System.Windows.Forms.Label()
-        Me.endlabel2 = New System.Windows.Forms.Label()
-        Me.endlabel3 = New System.Windows.Forms.Label()
         Me.avglabel1 = New System.Windows.Forms.Label()
         Me.avglabel2 = New System.Windows.Forms.Label()
         Me.resultLabel1 = New System.Windows.Forms.Label()
@@ -284,7 +281,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(60, 26)
         Me.endvoltxtbox3.TabIndex = 12
-        Me.endvoltxtbox3.Text = "10"
+        Me.endvoltxtbox3.Text = "4"
         Me.endvoltxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox2
@@ -294,7 +291,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(60, 26)
         Me.endvoltxtbox2.TabIndex = 11
-        Me.endvoltxtbox2.Text = "10"
+        Me.endvoltxtbox2.Text = "4"
         Me.endvoltxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox1
@@ -304,7 +301,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(60, 26)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "10"
+        Me.endvoltxtbox1.Text = "4"
         Me.endvoltxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvollabel2
@@ -433,7 +430,7 @@ Partial Class Main
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
         Me.warmuptxtbox3.Size = New System.Drawing.Size(60, 26)
         Me.warmuptxtbox3.TabIndex = 28
-        Me.warmuptxtbox3.Text = "30"
+        Me.warmuptxtbox3.Text = "1"
         Me.warmuptxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox2
@@ -444,7 +441,7 @@ Partial Class Main
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(60, 26)
         Me.warmuptxtbox2.TabIndex = 27
-        Me.warmuptxtbox2.Text = "30"
+        Me.warmuptxtbox2.Text = "1"
         Me.warmuptxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox1
@@ -454,7 +451,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(60, 26)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "30"
+        Me.warmuptxtbox1.Text = "1"
         Me.warmuptxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'refpulselabel0
@@ -479,7 +476,7 @@ Partial Class Main
         Me.refpulselabel1.Name = "refpulselabel1"
         Me.refpulselabel1.Size = New System.Drawing.Size(53, 20)
         Me.refpulselabel1.TabIndex = 35
-        Me.refpulselabel1.Text = "100.1"
+        Me.refpulselabel1.Text = "0"
         Me.refpulselabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'refpulselabel2
@@ -907,7 +904,7 @@ Partial Class Main
         Me.teststatuslabel1.AutoSize = True
         Me.teststatuslabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.teststatuslabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.teststatuslabel1.Location = New System.Drawing.Point(609, 1069)
+        Me.teststatuslabel1.Location = New System.Drawing.Point(1289, 263)
         Me.teststatuslabel1.Name = "teststatuslabel1"
         Me.teststatuslabel1.Size = New System.Drawing.Size(95, 20)
         Me.teststatuslabel1.TabIndex = 87
@@ -918,7 +915,7 @@ Partial Class Main
         Me.teststatuslabel2.AutoSize = True
         Me.teststatuslabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.teststatuslabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.teststatuslabel2.Location = New System.Drawing.Point(619, 1100)
+        Me.teststatuslabel2.Location = New System.Drawing.Point(1299, 294)
         Me.teststatuslabel2.Name = "teststatuslabel2"
         Me.teststatuslabel2.Size = New System.Drawing.Size(98, 20)
         Me.teststatuslabel2.TabIndex = 88
@@ -1221,39 +1218,6 @@ Partial Class Main
         Me.xdstdvollabel0.Text = "Std Test" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Volume"
         Me.xdstdvollabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'endlabel1
-        '
-        Me.endlabel1.AutoSize = True
-        Me.endlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.endlabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel1.Location = New System.Drawing.Point(249, 1066)
-        Me.endlabel1.Name = "endlabel1"
-        Me.endlabel1.Size = New System.Drawing.Size(78, 20)
-        Me.endlabel1.TabIndex = 119
-        Me.endlabel1.Text = "endlabel1"
-        '
-        'endlabel2
-        '
-        Me.endlabel2.AutoSize = True
-        Me.endlabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.endlabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel2.Location = New System.Drawing.Point(249, 1100)
-        Me.endlabel2.Name = "endlabel2"
-        Me.endlabel2.Size = New System.Drawing.Size(78, 20)
-        Me.endlabel2.TabIndex = 120
-        Me.endlabel2.Text = "endlabel2"
-        '
-        'endlabel3
-        '
-        Me.endlabel3.AutoSize = True
-        Me.endlabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.endlabel3.ForeColor = System.Drawing.SystemColors.Control
-        Me.endlabel3.Location = New System.Drawing.Point(249, 1128)
-        Me.endlabel3.Name = "endlabel3"
-        Me.endlabel3.Size = New System.Drawing.Size(78, 20)
-        Me.endlabel3.TabIndex = 121
-        Me.endlabel3.Text = "endlabel3"
-        '
         'avglabel1
         '
         Me.avglabel1.AutoSize = True
@@ -1404,7 +1368,7 @@ Partial Class Main
         Me.btnconfig.IconColor = System.Drawing.Color.White
         Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconfig.IconSize = 18
-        Me.btnconfig.Location = New System.Drawing.Point(213, 990)
+        Me.btnconfig.Location = New System.Drawing.Point(209, 983)
         Me.btnconfig.Name = "btnconfig"
         Me.btnconfig.Size = New System.Drawing.Size(114, 27)
         Me.btnconfig.TabIndex = 141
@@ -1592,7 +1556,7 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1457, 1361)
+        Me.ClientSize = New System.Drawing.Size(1457, 1133)
         Me.Controls.Add(Me.scalinglabel1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.PictureBox5)
@@ -1605,9 +1569,6 @@ Partial Class Main
         Me.Controls.Add(Me.resultLabel1)
         Me.Controls.Add(Me.avglabel2)
         Me.Controls.Add(Me.avglabel1)
-        Me.Controls.Add(Me.endlabel3)
-        Me.Controls.Add(Me.endlabel2)
-        Me.Controls.Add(Me.endlabel1)
         Me.Controls.Add(Me.xdstdvollabel6)
         Me.Controls.Add(Me.xdstdvollabel5)
         Me.Controls.Add(Me.xdstdvollabel4)
@@ -1815,9 +1776,6 @@ Partial Class Main
     Friend WithEvents xdstdvollabel2 As Label
     Friend WithEvents xdstdvollabel1 As Label
     Friend WithEvents xdstdvollabel0 As Label
-    Friend WithEvents endlabel1 As Label
-    Friend WithEvents endlabel2 As Label
-    Friend WithEvents endlabel3 As Label
     Friend WithEvents avglabel1 As Label
     Friend WithEvents avglabel2 As Label
     Friend WithEvents resultLabel1 As Label

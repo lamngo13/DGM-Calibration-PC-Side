@@ -277,54 +277,61 @@
             'how do I reinitialize all values? (all values except config values?? AND usr test vol flow rate values)
             'maybe I could make a reinitialize function
         End If
+
         'antibug11.Text = CStr(usrrefscalingfactor)
         'PARSE REF METER
-        Static ioStr As String = ""
-        ioStr = ""
-        Gs_currstr = ""
-        mainclocklbl.Text = TimeString ' 24 hour time
-        If (refport.IsOpen) Then
 
-            If (refport.ReadBufferSize > 0) Then
-                ioStr += Trim(refport.ReadExisting())
+        Try
+            Static ioStr As String = ""
+            ioStr = ""
+            Gs_currstr = ""
+            mainclocklbl.Text = TimeString ' 24 hour time
+            If (refport.IsOpen) Then
 
-                If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
+                If (refport.ReadBufferSize > 0) Then
+                    ioStr += Trim(refport.ReadExisting())
 
-                    Gs_currstr = ioStr
-                    goodParseRef()
-                    Gs_str = Gs_currstr  ' this is for debugging
-                    Dim tempinstr = Gs_str
+                    If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
-                    'read input crc
-                    Dim startrefcrc As Integer = InStr(tempinstr, "|")
-                    Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
-                    Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
-                    refcrcstr = tcrc
-                    Try
-                        refcrcint = CInt(refcrcstr)
-                    Catch ex As Exception
-                        refcrcint = 1 ' there's no way it will be this, so vals will not update
-                        consecBadCRCVals += 1
-                    End Try
+                        Gs_currstr = ioStr
+                        goodParseRef()
+                        Gs_str = Gs_currstr  ' this is for debugging
+                        Dim tempinstr = Gs_str
+
+                        'read input crc
+                        Dim startrefcrc As Integer = InStr(tempinstr, "|")
+                        Dim endrefcrc As Integer = InStr(startrefcrc, tempinstr, ",")
+                        Dim tcrc As String = Mid(tempinstr, startrefcrc + 1, endrefcrc - startrefcrc)
+                        refcrcstr = tcrc
+                        Try
+                            refcrcint = CInt(refcrcstr)
+                        Catch ex As Exception
+                            refcrcint = 1 ' there's no way it will be this, so vals will not update
+                            consecBadCRCVals += 1
+                        End Try
 
 
-                    'check ur own local crc calculation
-                    iAccum = &HFFFF
-                    If (tempinstr <> vbNullString) Then
-                        For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
-                            iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
-                        Next ' end of for loop
+                        'check ur own local crc calculation
+                        iAccum = &HFFFF
+                        If (tempinstr <> vbNullString) Then
+                            For i As Integer = 0 To (startrefcrc - 2) '(InStr(tempinstr, Gs_inputchecksum) - 1)
+                                iAccum = (((iAccum And &HFF) << 8) Xor (crc_table(((iAccum >> 8) Xor Asc(tempinstr(i))) And &HFF)))
+                            Next ' end of for loop
+                        End If
+
+                        'only update vals if crc is good
+                        If (iAccum = refcrcint) Then
+                            refUpdateVals()
+                            consecBadCRCVals = 0 ' resets bad counter
+                        End If
+
                     End If
-
-                    'only update vals if crc is good
-                    If (iAccum = refcrcint) Then
-                        refUpdateVals()
-                        consecBadCRCVals = 0 ' resets bad counter
-                    End If
-
                 End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
+
 
 
 
@@ -349,52 +356,57 @@
         ''START PARSING FROM DGM---------------------------------------------
         xdIoStr = ""
         xdCurrStr = ""
-        If (xd502port.IsOpen) Then
-            If (xd502port.ReadBufferSize > 0) Then
-                'read data
-                xdIoStr = xd502port.ReadExisting()
+        Try
+            If (xd502port.IsOpen) Then
+                If (xd502port.ReadBufferSize > 0) Then
+                    'read data
+                    xdIoStr = xd502port.ReadExisting()
 
-                If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
+                    If (InStr(xdIoStr, Chr(10)) And xdIoStr <> "" And xdIoStr.Length > 15) Then
 
-                    xdCurrStr = xdIoStr
-                    goodParseXD()
-                    Dim xdTempInStr = xdCurrStr
+                        xdCurrStr = xdIoStr
+                        goodParseXD()
+                        Dim xdTempInStr = xdCurrStr
 
-                    'read checksum input
-                    Dim lengthBetweenCSandNum As Integer = 6
-                    xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
-                    xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
-                    xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
-                    Try
-                        xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
-                    Catch ex As Exception
-                        xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
-                        consecBadCSVals += 1
-                    End Try
+                        'read checksum input
+                        Dim lengthBetweenCSandNum As Integer = 6
+                        xdStartCheck = (InStr(xdTempInStr, "!CS:, ")) + lengthBetweenCSandNum
+                        xdEndCheck = InStr(xdStartCheck, xdTempInStr, ",")
+                        xdParsedCheckStr = Mid(xdTempInStr, xdStartCheck, xdEndCheck - xdStartCheck)
+                        Try
+                            xdParsedCheckInt = CInt(xdParsedCheckStr)  ' to do handle if string not int
+                        Catch ex As Exception
+                            xdParsedCheckInt = 1 'there's no way this will be valid, so vals will not update
+                            consecBadCSVals += 1
+                        End Try
 
 
-                    xdCalculatedCS = 0 ' reset just to be sure
+                        xdCalculatedCS = 0 ' reset just to be sure
 
-                    For j As Integer = 2 To InStr(xdTempInStr, "!")
+                        For j As Integer = 2 To InStr(xdTempInStr, "!")
 
-                        xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
-                        If (xdCalculatedCS > 9999) Then
-                            xdCalculatedCS -= 10000
+                            xdCalculatedCS += Asc(Mid(xdTempInStr, j, 1))
+                            If (xdCalculatedCS > 9999) Then
+                                xdCalculatedCS -= 10000
+                            End If
+                        Next
+
+                        xdCalculatedCS = 10000 - xdCalculatedCS
+
+                        'update values if good
+                        If (xdCalculatedCS = xdParsedCheckInt) Then
+                            xdUpdateVals()
+                            consecBadCSVals = 0  ' resets bad counter
                         End If
-                    Next
 
-                    xdCalculatedCS = 10000 - xdCalculatedCS
-
-                    'update values if good
-                    If (xdCalculatedCS = xdParsedCheckInt) Then
-                        xdUpdateVals()
-                        consecBadCSVals = 0  ' resets bad counter
                     End If
-
                 End If
-            End If
 
-        End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
 
         'update labels with good values **************************************************
@@ -422,7 +434,7 @@
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
-            endlabel1.Text = "curr test num: " + CStr(currenttest)
+            'endlabel1.Text = "curr test num: " + CStr(currenttest)
             Dim asdf As String
             'find number of real tests
             For t As Integer = 1 To NUM_OF_ROWS
@@ -451,15 +463,15 @@
             If (validateRadioButton.Checked) Then
                 'this is validation
                 resultLabel1.Text = "Percentage Off"
-                avglabel33.Text = CStr(Math.Round(100 * (avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+                avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
             End If
             If (calibrateRadioButton.Checked) Then
                 resultLabel1.Text = "New Scaling Factor for XD:"
                 avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             End If
 
-            endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
-            endlabel3.Text = asdf
+            ' endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
+            'endlabel3.Text = asdf
         End If
 
         'others-----------------------
