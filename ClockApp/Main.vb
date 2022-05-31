@@ -469,15 +469,15 @@
 
             'HERE CHANGE TEXT IF VALIDATION OR CALIBRATION**********************
             avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
-            'If (validateRadioButton.Checked) Then
-            'this is validation
-            'resultLabel1.Text = "Percentage Off"
-            'avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
-            'End If
-            '   If (calibrateRadioButton.Checked) Then
-            '  resultLabel1.Text = "New Scaling Factor for XD:"
-            ' avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
-            ' End If
+            If (validateRadioButton.Checked) Then
+                'this is validation
+                resultLabel1.Text = "Percentage Off"
+                avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
+            End If
+            If (calibrateRadioButton.Checked) Then
+                resultLabel1.Text = "New Scaling Factor for XD:"
+                avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            End If
 
             ' endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
             'endlabel3.Text = asdf
@@ -717,6 +717,24 @@
         Gb_testgo = True
     End Sub
 
+    Private Sub calibrateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles calibrateRadioButton.CheckedChanged
+        If (calibrateRadioButton.Checked = True) Then
+            Gs_dialogText = "Change the scaling factor of the XD-502 to 1" & vbCrLf & " (Utility tab > Calibrations > Scaling Factor)" & "This process will determine the new scaling factor."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
+
+    Private Sub validateRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles validateRadioButton.CheckedChanged
+
+        If (validateRadioButton.Checked = True) Then
+            Gs_dialogText = "Enter the values for testing, and run the test as normal." & vbCrLf & "This process will determine whether the DGM of the XD-502 is within acceptable limits."
+            DialogForm.StartPosition = FormStartPosition.CenterScreen
+            DialogForm.ShowDialog()
+        End If
+
+    End Sub
 
     Public Sub reInitValsBcBadConnection()
         'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
