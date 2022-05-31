@@ -927,4 +927,204 @@
     Private Sub refpulselabel0_Click(sender As Object, e As EventArgs) Handles refpulselabel0.Click
 
     End Sub
+
+    Private Sub avglabel22_Click(sender As Object, e As EventArgs) Handles avglabel22.Click
+
+    End Sub
+
+    Private Sub avglabel11_Click(sender As Object, e As EventArgs) Handles avglabel11.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel6_Click(sender As Object, e As EventArgs) Handles xdstdvollabel6.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel5_Click(sender As Object, e As EventArgs) Handles xdstdvollabel5.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel4_Click(sender As Object, e As EventArgs) Handles xdstdvollabel4.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel3_Click(sender As Object, e As EventArgs) Handles xdstdvollabel3.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel2_Click(sender As Object, e As EventArgs) Handles xdstdvollabel2.Click
+
+    End Sub
+
+    Private Sub xdstdvollabel1_Click(sender As Object, e As EventArgs) Handles xdstdvollabel1.Click
+
+    End Sub
+
+    Private Sub stdVolLabel6_Click(sender As Object, e As EventArgs) Handles stdVolLabel6.Click
+
+    End Sub
+
+    Private Sub stdVolLabel5_Click(sender As Object, e As EventArgs) Handles stdVolLabel5.Click
+
+    End Sub
+
+    Private Sub stdVolLabel4_Click(sender As Object, e As EventArgs) Handles stdVolLabel4.Click
+
+    End Sub
+
+    Private Sub stdVolLabel3_Click(sender As Object, e As EventArgs) Handles stdVolLabel3.Click
+
+    End Sub
+
+    Private Sub stdVolLabel2_Click(sender As Object, e As EventArgs) Handles stdVolLabel2.Click
+
+    End Sub
+
+    Private Sub stdVolLabel1_Click(sender As Object, e As EventArgs) Handles stdVolLabel1.Click
+
+    End Sub
+
+    Private Sub pressureLabel6_Click(sender As Object, e As EventArgs) Handles pressureLabel6.Click
+
+    End Sub
+
+    Private Sub pressureLabel5_Click(sender As Object, e As EventArgs) Handles pressureLabel5.Click
+
+    End Sub
+
+    Private Sub pressureLabel4_Click(sender As Object, e As EventArgs) Handles pressureLabel4.Click
+
+    End Sub
+
+    Private Sub pressureLabel3_Click(sender As Object, e As EventArgs) Handles pressureLabel3.Click
+
+    End Sub
+
+    Private Sub pressureLabel2_Click(sender As Object, e As EventArgs) Handles pressureLabel2.Click
+
+    End Sub
+
+    Private Sub pressureLabel1_Click(sender As Object, e As EventArgs) Handles pressureLabel1.Click
+
+    End Sub
+
+    Private Sub testtimerlabel6_Click(sender As Object, e As EventArgs) Handles testtimerlabel6.Click
+
+    End Sub
+
+    Private Sub testtimerlabel5_Click(sender As Object, e As EventArgs) Handles testtimerlabel5.Click
+
+    End Sub
+
+    Private Sub testtimerlabel4_Click(sender As Object, e As EventArgs) Handles testtimerlabel4.Click
+
+    End Sub
+
+    Private Sub testtimerlabel3_Click(sender As Object, e As EventArgs) Handles testtimerlabel3.Click
+
+    End Sub
+
+    Private Sub testtimerlabel2_Click(sender As Object, e As EventArgs) Handles testtimerlabel2.Click
+
+    End Sub
+
+    Private Sub testtimerlabel1_Click(sender As Object, e As EventArgs) Handles testtimerlabel1.Click
+
+    End Sub
+
+    Private Sub testtemplabel6_Click(sender As Object, e As EventArgs) Handles testtemplabel6.Click
+
+    End Sub
+
+    Private Sub testtemplabel5_Click(sender As Object, e As EventArgs) Handles testtemplabel5.Click
+
+    End Sub
+
+    Private Sub testtemplabel4_Click(sender As Object, e As EventArgs) Handles testtemplabel4.Click
+
+    End Sub
+
+    Private Sub testtemplabel3_Click(sender As Object, e As EventArgs) Handles testtemplabel3.Click
+
+    End Sub
+
+    Private Sub testtemplabel2_Click(sender As Object, e As EventArgs) Handles testtemplabel2.Click
+
+    End Sub
+
+    Private Sub testtemplabel1_Click(sender As Object, e As EventArgs) Handles testtemplabel1.Click
+
+    End Sub
+
+    Private Sub reftemplabel6_Click(sender As Object, e As EventArgs) Handles reftemplabel6.Click
+
+    End Sub
+
+    Private Sub reftemplabel5_Click(sender As Object, e As EventArgs) Handles reftemplabel5.Click
+
+    End Sub
+
+    Private Sub reftemplabel4_Click(sender As Object, e As EventArgs) Handles reftemplabel4.Click
+
+    End Sub
+
+    Private Sub reftemplabel3_Click(sender As Object, e As EventArgs) Handles reftemplabel3.Click
+
+    End Sub
+
+    Private Sub reftemplabel2_Click(sender As Object, e As EventArgs) Handles reftemplabel2.Click
+
+    End Sub
+
+    Private Sub reftemplabel1_Click(sender As Object, e As EventArgs) Handles reftemplabel1.Click
+
+    End Sub
+
+    Private Sub testpulselabel6_Click(sender As Object, e As EventArgs) Handles testpulselabel6.Click
+
+    End Sub
+
+    Private Sub testpulselabel5_Click(sender As Object, e As EventArgs) Handles testpulselabel5.Click
+
+    End Sub
+
+    Private Sub testpulselabel4_Click(sender As Object, e As EventArgs) Handles testpulselabel4.Click
+
+    End Sub
+
+    Private Sub testpulselabel3_Click(sender As Object, e As EventArgs) Handles testpulselabel3.Click
+
+    End Sub
+
+    Private Sub testpulselabel2_Click(sender As Object, e As EventArgs) Handles testpulselabel2.Click
+
+    End Sub
+
+    Private Sub testpulselabel1_Click(sender As Object, e As EventArgs) Handles testpulselabel1.Click
+
+    End Sub
+
+    Private Sub refpulselabel6_Click(sender As Object, e As EventArgs) Handles refpulselabel6.Click
+
+    End Sub
+
+    Private Sub refpulselabel5_Click(sender As Object, e As EventArgs) Handles refpulselabel5.Click
+
+    End Sub
+
+    Private Sub refpulselabel4_Click(sender As Object, e As EventArgs) Handles refpulselabel4.Click
+
+    End Sub
+
+    Private Sub refpulselabel3_Click(sender As Object, e As EventArgs) Handles refpulselabel3.Click
+
+    End Sub
+
+    Private Sub refpulselabel2_Click(sender As Object, e As EventArgs) Handles refpulselabel2.Click
+
+    End Sub
+
+    Private Sub wline1_Click(sender As Object, e As EventArgs) Handles wline1.Click
+
+    End Sub
 End Class
