@@ -244,6 +244,7 @@ Partial Class Main
         Me.flowratetxtbox4.Name = "flowratetxtbox4"
         Me.flowratetxtbox4.Size = New System.Drawing.Size(58, 23)
         Me.flowratetxtbox4.TabIndex = 4
+        Me.flowratetxtbox4.Text = "0.0"
         Me.flowratetxtbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'flowratetxtbox5
@@ -256,6 +257,7 @@ Partial Class Main
         Me.flowratetxtbox5.Name = "flowratetxtbox5"
         Me.flowratetxtbox5.Size = New System.Drawing.Size(58, 23)
         Me.flowratetxtbox5.TabIndex = 5
+        Me.flowratetxtbox5.Text = "0.0"
         Me.flowratetxtbox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'flowratetxtbox6
@@ -268,6 +270,7 @@ Partial Class Main
         Me.flowratetxtbox6.Name = "flowratetxtbox6"
         Me.flowratetxtbox6.Size = New System.Drawing.Size(58, 23)
         Me.flowratetxtbox6.TabIndex = 6
+        Me.flowratetxtbox6.Text = "0.0"
         Me.flowratetxtbox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'flowratelabel2
@@ -306,6 +309,7 @@ Partial Class Main
         Me.endvoltxtbox6.Name = "endvoltxtbox6"
         Me.endvoltxtbox6.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox6.TabIndex = 15
+        Me.endvoltxtbox6.Text = "0.0"
         Me.endvoltxtbox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox5
@@ -318,6 +322,7 @@ Partial Class Main
         Me.endvoltxtbox5.Name = "endvoltxtbox5"
         Me.endvoltxtbox5.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox5.TabIndex = 14
+        Me.endvoltxtbox5.Text = "0.0"
         Me.endvoltxtbox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox4
@@ -330,6 +335,7 @@ Partial Class Main
         Me.endvoltxtbox4.Name = "endvoltxtbox4"
         Me.endvoltxtbox4.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox4.TabIndex = 13
+        Me.endvoltxtbox4.Text = "0.0"
         Me.endvoltxtbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox3
@@ -479,6 +485,7 @@ Partial Class Main
         Me.warmuptxtbox6.Name = "warmuptxtbox6"
         Me.warmuptxtbox6.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox6.TabIndex = 31
+        Me.warmuptxtbox6.Text = "0.0"
         Me.warmuptxtbox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox5
@@ -491,6 +498,7 @@ Partial Class Main
         Me.warmuptxtbox5.Name = "warmuptxtbox5"
         Me.warmuptxtbox5.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox5.TabIndex = 30
+        Me.warmuptxtbox5.Text = "0.0"
         Me.warmuptxtbox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox4
@@ -503,6 +511,7 @@ Partial Class Main
         Me.warmuptxtbox4.Name = "warmuptxtbox4"
         Me.warmuptxtbox4.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox4.TabIndex = 29
+        Me.warmuptxtbox4.Text = "0.0"
         Me.warmuptxtbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox3
@@ -1921,7 +1930,7 @@ Partial Class Main
         '
         'percenterrorreallbl
         '
-        Me.percenterrorreallbl.BackColor = System.Drawing.SystemColors.Control
+        Me.percenterrorreallbl.BackColor = System.Drawing.Color.White
         Me.percenterrorreallbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.percenterrorreallbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.percenterrorreallbl.Location = New System.Drawing.Point(857, 230)

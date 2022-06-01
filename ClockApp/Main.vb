@@ -194,6 +194,7 @@
     Dim fooendvol As Double = 0.0
     Dim foowarmup As Double = 0.0
     Dim shouldendonlynum As Boolean = False
+    Dim percentoffnew As Double
 
 
 
@@ -605,6 +606,15 @@
             '''''''''''''''''avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
             percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4)) & "%"
+            'check if passed
+            percentoffnew = (percenterrorreallbl.Text).Replace("%", "")
+            percentoffnew = CDbl(percentoffnew)
+            If ((percentoffnew < 5) And percentoffnew > -5) Then
+                'change new label to test passed
+                percenterrorreallbl.BackColor = Color.FromArgb(255, 0, 255, 0) ' GREEN
+            Else
+                percenterrorreallbl.BackColor = Color.FromArgb(255, 255, 0, 0) ' RED
+            End If
             'avglabel33.Visible = True
             'percenterrorreallbl.Visible = True
             avglabel1.Visible = True
