@@ -1277,24 +1277,26 @@ Partial Class Main
         Me.avglabel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.avglabel11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.avglabel11.ForeColor = System.Drawing.Color.White
-        Me.avglabel11.Location = New System.Drawing.Point(630, 575)
+        Me.avglabel11.Location = New System.Drawing.Point(647, 575)
         Me.avglabel11.Name = "avglabel11"
         Me.avglabel11.Size = New System.Drawing.Size(58, 23)
         Me.avglabel11.TabIndex = 134
         Me.avglabel11.Text = "0"
         Me.avglabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.avglabel11.Visible = False
         '
         'avglabel22
         '
         Me.avglabel22.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.avglabel22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.avglabel22.ForeColor = System.Drawing.Color.White
-        Me.avglabel22.Location = New System.Drawing.Point(857, 575)
+        Me.avglabel22.Location = New System.Drawing.Point(882, 575)
         Me.avglabel22.Name = "avglabel22"
         Me.avglabel22.Size = New System.Drawing.Size(58, 23)
         Me.avglabel22.TabIndex = 135
         Me.avglabel22.Text = "0"
         Me.avglabel22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.avglabel22.Visible = False
         '
         'avglabel33
         '

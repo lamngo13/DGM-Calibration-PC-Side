@@ -623,6 +623,8 @@
             'percenterrorreallbl.Visible = True
             avglabel1.Visible = True
             avglabel2.Visible = True
+            avglabel11.Visible = True
+            avglabel22.Visible = True
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
         End If
