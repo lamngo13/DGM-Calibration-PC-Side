@@ -196,16 +196,31 @@
 
 
     'AZN mouseover colors
+    Private Sub btnconfig_MouseHover(sender As Object, e As EventArgs) Handles btnconfig.MouseHover
+        btnconfig.BackColor = ColorTranslator.FromHtml("#585858")
+    End Sub
+    Private Sub btnconfig_MouseLeave(sender As Object, e As EventArgs) Handles btnconfig.MouseLeave
+        btnconfig.BackColor = ColorTranslator.FromHtml("#2a2a2a")
+
+    End Sub
+
+    Private Sub btncert_MouseHover(sender As Object, e As EventArgs) Handles btncert.MouseHover
+        btncert.BackColor = ColorTranslator.FromHtml("#2f5d6b")
+
+    End Sub
+    Private Sub btncert_MouseLeave(sender As Object, e As EventArgs) Handles btncert.MouseLeave
+        btncert.BackColor = ColorTranslator.FromHtml("#0a576d")
+
+    End Sub
+
     Private Sub btnstart_MouseHover(sender As Object, e As EventArgs) Handles btnstart.MouseHover
         btnstart.BackColor = ColorTranslator.FromHtml("#1a691e")
 
     End Sub
-    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave
+    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave, btncert.MouseLeave
         btnstart.BackColor = ColorTranslator.FromHtml("#114413")
 
     End Sub
-
-
 
     Private Sub btnabort_MouseHover(sender As Object, e As EventArgs) Handles btnabort.MouseHover
         btnabort.BackColor = ColorTranslator.FromHtml("#a22a20")
@@ -216,12 +231,11 @@
 
     End Sub
 
-
-
     Private Sub btnconnect_MouseHover(sender As Object, e As EventArgs) Handles btnconnect.MouseHover
         btnconnect.BackColor = ColorTranslator.FromHtml("#0e7a99")
 
     End Sub
+
     Private Sub btnconnect_MouseLeave(sender As Object, e As EventArgs) Handles btnconnect.MouseLeave
         btnconnect.BackColor = ColorTranslator.FromHtml("#0a596f")
 
@@ -549,7 +563,7 @@
                         '    End If
 
                     End If
-                    End If
+                End If
 
             End If
         Catch ex As Exception
@@ -1309,7 +1323,7 @@
         Tx_2_Console("C", "4")
     End Sub
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles btnCert.Click
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles btncert.Click
         Dim certification As New Certification
 
         certification.StartPosition = FormStartPosition.CenterScreen
@@ -1317,6 +1331,10 @@
     End Sub
 
     Private Sub IconButton3_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
     End Sub
 End Class
