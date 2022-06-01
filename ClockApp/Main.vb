@@ -332,12 +332,12 @@
 
         'update label units based on unit type
         If (Gs_UnitType = "met") Then
-            Label7.Text = "Volume" + vbCrLf + "(Litres)"
-            Label8.Text = "Volume" + vbCrLf + "(Litres)"
-            Label9.Text = "Volume" + vbCrLf + "(Litres)"
-            Label10.Text = "Volume" + vbCrLf + "(Litres)"
-            Label11.Text = "Temp" + vbCrLf + "(Celsius)"
-            Label12.Text = "Temp" + vbCrLf + "(Celsius)"
+            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(Celsius)"
+            Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(Celsius)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
         Else
             If (Gs_UnitType = "imp") Then
@@ -757,7 +757,7 @@
                                 End While
                             End If
 
-                            If (currenttest = 7) Then
+                            If (currenttest >= 7) Then
                                 'THE TEST IS OVER **********************************
                                 testongoing = False
                                 testover = True
@@ -1302,4 +1302,5 @@
         'Public Sub Tx_2_Console(sCommand As String, sValue As String)
         Tx_2_Console("C", "4")
     End Sub
+
 End Class
