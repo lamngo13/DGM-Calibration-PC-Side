@@ -90,6 +90,7 @@
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+    Dim hypotheticaltestxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
 
 
     'FILE STUFF
@@ -580,6 +581,14 @@
                     'SAVE INIT VALS HERE *******************************
                     If (Not thisTestSavedInits(currenttest)) Then
                         thisTestSavedInits(currenttest) = True
+                        filTestTime(currenttest) = bigtimer
+                        'filOrrifice??
+                        'uutpulsefinal
+                        'uutpulsetotal
+                        filuutInitTemp(currenttest) = testxdtemp(currenttest)
+                        filOutletInitTemp(currenttest) = testreftemp(currenttest)
+                        'pressure?
+
                         'save init vals
                     End If
 
@@ -645,6 +654,11 @@
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
                         'SAVE FINAL VALS HERE*****************
+                        If (Not thisTestSavedFinals(currenttest)) Then
+                            'FINAL VALS HERE
+                            thisTestSavedFinals(currenttest) = True
+                        End If
+
                         If ((currenttest = 6) And (rowused(6)) = False) Then
                             testongoing = False
                             testover = True
@@ -1071,6 +1085,11 @@
 
         printable &= "foo"
         printable &= "bruh"
+        For cc As Integer = 1 To NUM_OF_ROWS
+            If (rowused(currenttest)) Then
+                printable &= "Test " + CStr(cc) + ","
+            End If
+        Next
         stream_writer.Write(printable)
 
         stream_writer.Close()
