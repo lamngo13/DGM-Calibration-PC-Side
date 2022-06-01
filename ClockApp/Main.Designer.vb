@@ -165,7 +165,7 @@ Partial Class Main
         Me.bdline1 = New System.Windows.Forms.PictureBox()
         Me.bdline2 = New System.Windows.Forms.PictureBox()
         Me.bdline3 = New System.Windows.Forms.PictureBox()
-        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1881,25 +1881,24 @@ Partial Class Main
         Me.bdline3.TabIndex = 181
         Me.bdline3.TabStop = False
         '
-        'IconButton3
+        'IconButton1
         '
-        Me.IconButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.IconButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
-        Me.IconButton3.Enabled = False
-        Me.IconButton3.FlatAppearance.BorderSize = 0
-        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.InfoCircle
-        Me.IconButton3.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton3.IconSize = 22
-        Me.IconButton3.Location = New System.Drawing.Point(182, 682)
-        Me.IconButton3.Name = "IconButton3"
-        Me.IconButton3.Size = New System.Drawing.Size(43, 23)
-        Me.IconButton3.TabIndex = 145
-        Me.IconButton3.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton3.UseVisualStyleBackColor = False
+        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.White
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Wrench
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 18
+        Me.IconButton1.Location = New System.Drawing.Point(198, 635)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(114, 27)
+        Me.IconButton1.TabIndex = 182
+        Me.IconButton1.Text = " CONFIGURE"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
         '
         'Main
         '
@@ -1907,9 +1906,9 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label14)
-        Me.Controls.Add(Me.IconButton3)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
@@ -2208,5 +2207,5 @@ Partial Class Main
     Friend WithEvents bdline2 As PictureBox
     Friend WithEvents bdline3 As PictureBox
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

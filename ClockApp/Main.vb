@@ -1033,4 +1033,17 @@ Public Class Main
     Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
 
     End Sub
+
+    Private Sub IconButton3_Click(sender As Object, e As EventArgs)
+        Dim x As New Configure
+        x.StartPosition = FormStartPosition.CenterScreen
+        x.ShowDialog()
+    End Sub
+
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim certification As New Certification
+
+        certification.StartPosition = FormStartPosition.CenterScreen
+        certification.ShowDialog()
+    End Sub
 End Class
