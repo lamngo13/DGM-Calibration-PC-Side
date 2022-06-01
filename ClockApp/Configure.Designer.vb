@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Configure
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Configure
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.configconfirmbutton = New System.Windows.Forms.Button()
         Me.configlabel1 = New System.Windows.Forms.Label()
@@ -29,7 +29,6 @@ Partial Class Configure
         Me.celsiusradiobutton = New System.Windows.Forms.RadioButton()
         Me.fahrenheitradiobutton = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.usrcorrectionfactortxtbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'configconfirmbutton
@@ -75,12 +74,12 @@ Partial Class Configure
         Me.celsiusradiobutton.AutoSize = True
         Me.celsiusradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.celsiusradiobutton.ForeColor = System.Drawing.SystemColors.Control
-        Me.celsiusradiobutton.Location = New System.Drawing.Point(240, 166)
+        Me.celsiusradiobutton.Location = New System.Drawing.Point(178, 170)
         Me.celsiusradiobutton.Name = "celsiusradiobutton"
-        Me.celsiusradiobutton.Size = New System.Drawing.Size(78, 24)
+        Me.celsiusradiobutton.Size = New System.Drawing.Size(70, 24)
         Me.celsiusradiobutton.TabIndex = 4
         Me.celsiusradiobutton.TabStop = True
-        Me.celsiusradiobutton.Text = "Celsius"
+        Me.celsiusradiobutton.Text = "Metric"
         Me.celsiusradiobutton.UseVisualStyleBackColor = True
         '
         'fahrenheitradiobutton
@@ -88,12 +87,12 @@ Partial Class Configure
         Me.fahrenheitradiobutton.AutoSize = True
         Me.fahrenheitradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.fahrenheitradiobutton.ForeColor = System.Drawing.SystemColors.Control
-        Me.fahrenheitradiobutton.Location = New System.Drawing.Point(324, 166)
+        Me.fahrenheitradiobutton.Location = New System.Drawing.Point(262, 170)
         Me.fahrenheitradiobutton.Name = "fahrenheitradiobutton"
-        Me.fahrenheitradiobutton.Size = New System.Drawing.Size(104, 24)
+        Me.fahrenheitradiobutton.Size = New System.Drawing.Size(83, 24)
         Me.fahrenheitradiobutton.TabIndex = 5
         Me.fahrenheitradiobutton.TabStop = True
-        Me.fahrenheitradiobutton.Text = "Fahrenheit"
+        Me.fahrenheitradiobutton.Text = "Imperial"
         Me.fahrenheitradiobutton.UseVisualStyleBackColor = True
         '
         'Label1
@@ -101,18 +100,11 @@ Partial Class Configure
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(12, 267)
+        Me.Label1.Location = New System.Drawing.Point(12, 170)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(225, 20)
+        Me.Label1.Size = New System.Drawing.Size(155, 20)
         Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Enter (??) Correction Factor:"
-        '
-        'usrcorrectionfactortxtbox
-        '
-        Me.usrcorrectionfactortxtbox.Location = New System.Drawing.Point(239, 269)
-        Me.usrcorrectionfactortxtbox.Name = "usrcorrectionfactortxtbox"
-        Me.usrcorrectionfactortxtbox.Size = New System.Drawing.Size(157, 20)
-        Me.usrcorrectionfactortxtbox.TabIndex = 8
+        Me.Label1.Text = "Enter Unit System: "
         '
         'Configure
         '
@@ -120,7 +112,6 @@ Partial Class Configure
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.usrcorrectionfactortxtbox)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.fahrenheitradiobutton)
         Me.Controls.Add(Me.celsiusradiobutton)
@@ -142,5 +133,4 @@ Partial Class Configure
     Friend WithEvents celsiusradiobutton As RadioButton
     Friend WithEvents fahrenheitradiobutton As RadioButton
     Friend WithEvents Label1 As Label
-    Friend WithEvents usrcorrectionfactortxtbox As TextBox
 End Class

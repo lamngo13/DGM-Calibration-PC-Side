@@ -119,6 +119,8 @@
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
 
+    Dim didItPass As Boolean
+
     'END FILE STUFF
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
@@ -612,8 +614,10 @@
             If ((percentoffnew < 5) And percentoffnew > -5) Then
                 'change new label to test passed
                 percenterrorreallbl.BackColor = Color.FromArgb(255, 0, 255, 0) ' GREEN
+                didItPass = True
             Else
                 percenterrorreallbl.BackColor = Color.FromArgb(255, 255, 0, 0) ' RED
+                didItPass = False
             End If
             'avglabel33.Visible = True
             'percenterrorreallbl.Visible = True
