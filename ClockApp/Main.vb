@@ -733,8 +733,8 @@
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
-                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 2)
-                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 2)
+                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 3)
+                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 3)
 
 
                     'IF IMPERIAL------------------------------------------
@@ -747,8 +747,8 @@
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
-                        filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 2)
-                        filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 2)
+                        filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
+                        filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
                     End If
 
 
@@ -1266,7 +1266,7 @@
                 'scaling factor for xd (given)
                 'std vol for xd
                 'flow rate for xd
-                printable &= "UUT Flow Rate: " + CStr(Math.Round(filuutFlowRate(cc), 2)) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
+                printable &= "UUT Flow Rate: " + CStr((filuutFlowRate(cc))) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
                 'y value
                 'variation
                 'delta h
