@@ -702,7 +702,10 @@
 
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
+                    If ((currenttest = 2) And warmuptimer > 3.0) Then
+                        Dim bruh2 As Integer = 5
 
+                    End If
                     'ref stuff ------------------
                     testtimers(currenttest) += 0.1
                     testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
