@@ -287,6 +287,16 @@
             Label11.Text = "Temp" + vbCrLf + "(Celsius)"
             Label12.Text = "Temp" + vbCrLf + "(Celsius)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
+        Else
+            If (Gs_UnitType = "imp") Then
+                Label7.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label8.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label9.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label10.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label11.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                Label12.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
+            End If
         End If
 
         'validate user input in real time
