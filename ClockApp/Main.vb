@@ -689,11 +689,16 @@
 
                 'increment warmup timer(s)
                 If (duringwarmup) Then
+                    If ((currenttest = 2) And warmuptimer > 3.0) Then
+                        Dim bruh2 As Integer = 5
+                    End If
                     warmuptimer += 0.1
                     warmuptimer = Math.Round(warmuptimer, 2)
                     warmuptimes(currenttest) += 0.1
                     warmuppulses(currenttest) = intpulsecount
                     xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
+                    Dim bruh3 As Integer = intpulsecount
+                    Dim bruh4 As Double = xdWarmupVols(currenttest)
                     'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
                     'If (Gs_UnitType = "imp") Then
                     'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
@@ -702,10 +707,7 @@
 
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
-                    If ((currenttest = 2) And warmuptimer > 3.0) Then
-                        Dim bruh2 As Integer = 5
 
-                    End If
                     'ref stuff ------------------
                     testtimers(currenttest) += 0.1
                     testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
@@ -1236,7 +1238,7 @@
         For cc As Integer = 1 To NUM_OF_ROWS
             If (rowused(cc)) Then
                 printable &= "Test " + CStr(cc) + ", "
-                printable &= CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
+                printable &= "Intial" + CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
                 printable &= CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
                 printable &= CStr(Math.Round(filuutPulseTotal(cc), 0)) + ", "
             End If
@@ -1373,11 +1375,11 @@
 
     Private Sub requestCalibration()
         'Public Sub Tx_2_Console(sCommand As String, sValue As String)
-        Tx_2_Console("C", "4")
+        Tx_2_Console("C", "2")
     End Sub
 
     Private Sub requestRaw()
-        Tx_2_Console("V", "4")
+        Tx_2_Console("V", "2")
     End Sub
 
 End Class
