@@ -10,7 +10,11 @@
             Else
                 Try
                     Gd_usrStdTemp = CDbl(usrstdtemptxtbox.Text)
+                    'save Gs_unittype to registry
+                    My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Unit_Type", Gs_UnitType)
+                    My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Usr_std_temp", Gd_usrStdTemp)
                     Me.Close()
+
                 Catch ex As Exception
                     GS_errorText = "enter a number"
                     ErrorForm.ShowDialog()
@@ -26,7 +30,7 @@
     Private Sub fahrenheitradiobutton_CheckedChanged(sender As Object, e As EventArgs) Handles fahrenheitradiobutton.CheckedChanged
         If (fahrenheitradiobutton.Checked = True) Then
             Gs_tempunits = "Fahrenheit"
-            Gs_UnitType = "imperial"
+            Gs_UnitType = "imp"
         End If
 
 
@@ -35,7 +39,7 @@
     Private Sub celsiusradiobutton_CheckedChanged(sender As Object, e As EventArgs) Handles celsiusradiobutton.CheckedChanged
         If (celsiusradiobutton.Checked = True) Then
             Gs_tempunits = "Celsius"
-            Gs_UnitType = "metric"
+            Gs_UnitType = "met"
         End If
 
     End Sub

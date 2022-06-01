@@ -10,12 +10,12 @@ Module _Public
     Public Gi_inttrimmedcrc As Integer
     Public Gs_tempunits As String = "Celsius"
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Public Gd_usrStdTemp As Double = 20 ' 20 degrees celsius
-    Public usrStdPressure As Double = 760 '760 mmHg
+    Public Gd_usrStdTemp As Double
+    Public usrStdPressure As Double = 760 '760 mmHg  'THIS SHOULD NEVER CHANGE
     Public Gb_testgo As Boolean = True
     Public Gs_dialogText As String
     Public GS_errorText As String
-    Public Gs_UnitType As String = "metric"
+    Public Gs_UnitType As String
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670
