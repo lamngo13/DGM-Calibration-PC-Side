@@ -736,7 +736,7 @@
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
                     filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 3)
                     filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 3)
-                    filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 0)
+                    filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
 
 
                     'IF IMPERIAL------------------------------------------
@@ -751,7 +751,7 @@
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                         filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
                         filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
-                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 0)
+                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH litres to cu ft
                     End If
 
 
