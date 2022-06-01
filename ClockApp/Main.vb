@@ -649,20 +649,7 @@
                 If (Gb_testgo) Then
                     bigtimer += 0.1
                     bigtimer = Math.Round(bigtimer, 2)
-
-                    'SAVE INIT VALS HERE *******************************
-                    If (Not thisTestSavedInits(currenttest)) Then
-                        thisTestSavedInits(currenttest) = True
-                        filTestTime(currenttest) = bigtimer
-                        'filOrrifice??
-                        'uutpulsefinal
-                        'uutpulsetotal
-                        filuutInitTemp(currenttest) = testxdtemp(currenttest)
-                        filOutletInitTemp(currenttest) = testreftemp(currenttest)
-                        'pressure?
-
-                        'save init vals
-                    End If
+                End If
 
                     'check for end of warmup
                     If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
@@ -720,6 +707,19 @@
                         End If
 
 
+                    'HERE IS WHERE I DO INIT VALS FOR CERTIFICATION****************************************
+                    'SAVE INIT VALS HERE *******************************
+                    If (Not thisTestSavedInits(currenttest)) Then
+                        thisTestSavedInits(currenttest) = True
+                        filTestTime(currenttest) = bigtimer
+                        'filOrrifice??
+                        'uutpulsefinal
+                        'uutpulsetotal
+                        filuutInitTemp(currenttest) = testxdtemp(currenttest)
+                        filOutletInitTemp(currenttest) = testreftemp(currenttest)
+                        'pressure?
+
+                        'save init vals
                     End If
 
                     'check for end condition off of pulses/volume
