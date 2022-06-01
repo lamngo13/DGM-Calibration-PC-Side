@@ -1229,11 +1229,11 @@
     Private Sub writeToFile(ByVal sFileName As String)
         Dim stream_writer As IO.StreamWriter
         Dim printable As String = ""
-
+        'MACHINEOFBRUH"
         stream_writer = New IO.StreamWriter(sFileName)
         'FILEWRITER
-        printable &= "foo"
-        printable &= "bruh"
+        'printable &= "foo"
+        'printable &= "bruh"
         'runtime, uutinitpulses, uufinalpulses, uuttotalpulses
         For cc As Integer = 1 To NUM_OF_ROWS
             If (rowused(cc)) Then
@@ -1250,6 +1250,7 @@
                 printable &= "Ref Total Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
                 printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
                 printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
+                printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
             End If
         Next
         stream_writer.Write(printable)
