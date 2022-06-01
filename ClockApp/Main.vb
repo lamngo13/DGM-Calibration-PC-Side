@@ -19,6 +19,10 @@
     Const ENDVOL_MAX_INPUT_METRIC As Double = 1
     Const WARMUP_MIN_INPUT As Double = 1
     Const WARMUP_MAX_INPUT As Double = 800
+    Const XD_STRING_TYPE As Integer = 4
+    Const INBOUND_STRING_TYPE_ACTUAL As String = "A"
+    Const INBOUND_STRING_TYPE_CALIBRATION As String = "C"
+
 
     Dim xdGivenScaling As Double
 
@@ -175,6 +179,13 @@
 
     Dim debugAbort As Boolean = False
 
+    Dim xdthisinputtype As String = ""
+
+    'for a private sub
+    Dim fooflowrate As Double = 0.0
+    Dim fooendvol As Double = 0.0
+    Dim foowarmup As Double = 0.0
+
 
 
 
@@ -292,6 +303,7 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
+        ''''''''''' onlyNumsInInput()
 
         ' Just hitching a ride ---------------------
         If Gb_Update_Screen_Size Then
@@ -460,14 +472,23 @@
 
                         xdCalculatedCS = 10000 - xdCalculatedCS
 
+                        'DETERIMNE IF TYPE A OR TYPE C
+                        'xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
+                        Try
+                            xdthisinputtype = Trim(s_xd_in(XD_STRING_TYPE))
+                            ' If () Then
+                        Catch ex As Exception
+
+                        End Try
+
                         'update values if good
                         If (xdCalculatedCS = xdParsedCheckInt) Then
-                            xdUpdateVals()
-                            consecBadCSVals = 0  ' resets bad counter
-                        End If
+                                xdUpdateVals()
+                                consecBadCSVals = 0  ' resets bad counter
+                            End If
 
+                        End If
                     End If
-                End If
 
             End If
         Catch ex As Exception
@@ -1149,5 +1170,30 @@
             sFileName = SaveFileDialog1.FileName
             writeToFile(sFileName)
         End If
+    End Sub
+
+    Private Sub onlyNumsInInput()
+        Dim shouldend As Boolean = False
+        fooflowrate = 0.0
+        fooendvol = 0.0
+        foowarmup = 0.0
+        If (Not shouldend) Then
+            For dd As Integer = 1 To NUM_OF_ROWS
+                Try
+                    fooflowrate = CDbl(flowratetxtbox(dd).Text)
+                    fooendvol = CDbl(endvoltxtbox(dd).Text)
+                    foowarmup = CDbl(warmuptxtbox(dd).Text)
+                Catch ex As Exception
+                    shouldend = True
+                    'send error form
+                    GS_errorText = "Only Use Number in Input"
+                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+                    ErrorForm.ShowDialog()
+                    'Return
+                End Try
+            Next
+        End If
+
+
     End Sub
 End Class
