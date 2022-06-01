@@ -1309,10 +1309,14 @@
         Tx_2_Console("C", "4")
     End Sub
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles btnCert.Click
         Dim certification As New Certification
 
         certification.StartPosition = FormStartPosition.CenterScreen
         certification.ShowDialog()
+    End Sub
+
+    Private Sub IconButton3_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class
