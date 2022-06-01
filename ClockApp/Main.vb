@@ -25,7 +25,7 @@
     Const sBLOCK_START As String = ChrW(1)
     Const BLOCK_MARKER_CS As String = Chr(31)
     Const FIND_SF As Integer = 19
-    Const CAL_PULSE_COUNT As Integer = 16
+    Const CAL_PULSE_COUNT As Integer = 16 + 1
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
@@ -123,6 +123,7 @@
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
     Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim oldCurrTest As Integer = 1
 
     Dim didItPass As Boolean
 
@@ -170,6 +171,7 @@
     Dim zrefinputreftemp As String
     Dim zrefinputambhum As String
     Dim weNeedPulseCountxd As Boolean = False
+    Dim xdpulseholder As Integer = 0
 
     Dim xdWarmUpPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim xdInPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -337,6 +339,10 @@
         If (Not havesScalingFactor) Then
             requestCalibration()
             'loop this !
+        End If
+
+        If (weNeedPulseCountxd) Then
+            requestCalibration()
         End If
 
         'update label units based on unit type
@@ -512,16 +518,24 @@
                                         'scan for the scaling factor
                                         xdGivenScaling = s_xd_in(FIND_SF)
                                         havesScalingFactor = True
-                                        If (weNeedPulseCountxd) Then
-                                            Dim bruh68 As Integer = s_xd_in(CAL_PULSE_COUNT)
-                                            filuutPulseFinal(currenttest) = s_xd_in(CAL_PULSE_COUNT)
-                                            weNeedPulseCountxd = False
-                                        End If
+
 
                                     Catch ex As Exception
 
                                     End Try
+                                Else
+                                    If (xdthisinputtype = "R") Then
+                                        If (weNeedPulseCountxd) Then
+                                            xdpulseholder = s_xd_in(CAL_PULSE_COUNT)
+                                            Dim bruh66 = currenttest
+                                            Dim bruh1 = xdCurrStr
+                                            filuutPulseFinal(oldCurrTest) = s_xd_in(CAL_PULSE_COUNT)
+                                            If (Not xdpulseholder = 0) Then
+                                                weNeedPulseCountxd = False
+                                            End If
 
+                                        End If
+                                    End If
                                 End If
                             End If
                         Catch ex As Exception
@@ -734,7 +748,8 @@
                         'filOrrifice??
                         'filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         Dim bruh37 As Double = xdWarmupVols(currenttest)
-                        filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        'filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        filuutPulseInit(currenttest) = 0
                         'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)
@@ -749,20 +764,35 @@
                     'check for end condition off of pulses/volume
                     'go to next test
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                        'WRITE TO XD
+                        If (Not filuutPulseFinal(currenttest) = 0) Then
+                            weNeedPulseCountxd = False
+                        Else
+                            weNeedPulseCountxd = True
+                        End If
+                        If (weNeedPulseCountxd) Then
+                            requestRaw()
+                            oldCurrTest = currenttest
+                        End If
+
+
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
                         'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
                         filTestTime(currenttest) = testtimers(currenttest)
                         filuutFinalTemp(currenttest) = testxdtemp(currenttest)
                         filOutlsetFinalTemp = testreftemp(currenttest)
-                        filrefFinalVol(currenttest) = refvols(currenttest)
-                        filrefTotalVol(currenttest) = refvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor)
+                        'filrefFinalVol(currenttest) = xdpulseholder
+                        'filrefTotalVol(currenttest) = xdpulseholder
+                        If (Not xdpulseholder = 0) Then
+                            xdpulseholder = 0
+                        End If
                         filrefStdFinalVol(currenttest) = stdrefvols(currenttest)
                         filrefStdTotalVol(currenttest) = stdrefvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor) ' IDK ABT THIS
 
-                        filuutPulseFinal(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling) + (testxdvol(currenttest) / xdGivenScaling), 2)  'init pulses idk tho
+                        'filuutPulseFinal(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling) + (testxdvol(currenttest) / xdGivenScaling), 2)  'init pulses idk tho
                         'TODO CONVERT THIS TO INT??????
-                        filuutPulseTotal(currenttest) = filuutPulseFinal(currenttest)
+                        'filuutPulseTotal(currenttest) = filuutPulseFinal(currenttest)
                         'filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         'STANDARDDIZED VALS FOR UUT
                         If (Not thisTestSavedFinals(currenttest)) Then
@@ -1341,6 +1371,10 @@
     Private Sub requestCalibration()
         'Public Sub Tx_2_Console(sCommand As String, sValue As String)
         Tx_2_Console("C", "4")
+    End Sub
+
+    Private Sub requestRaw()
+        Tx_2_Console("V", "4")
     End Sub
 
 End Class
