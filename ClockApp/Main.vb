@@ -964,4 +964,25 @@
         'Gi_Resize_Delay = 2
     End Sub
 
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Dim sFileName As String
+
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+            sFileName = SaveFileDialog1.FileName
+            writeToFile(sFileName)
+        End If
+
+    End Sub
+
+    Private Sub writeToFile(ByVal sFileName As String)
+        Dim stream_writer As IO.StreamWriter
+
+        stream_writer = New IO.StreamWriter(sFileName)
+
+        stream_writer.Write("foo")
+
+        stream_writer.Close()
+    End Sub
+
+
 End Class

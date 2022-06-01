@@ -139,6 +139,7 @@ Partial Class Main
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1743,4 +1744,5 @@ Partial Class Main
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class
