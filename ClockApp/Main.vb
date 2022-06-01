@@ -478,8 +478,9 @@
             '    resultLabel1.Text = "New Scaling Factor for XD:"
             '    avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             'End If
-            resultLabel1.Text = "Percentage Off"
-            avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
+            resultLabel1.Text = "Calculated Scaling Factor: "
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
         End If
@@ -519,6 +520,9 @@
                         warmuppulses(currenttest) = intpulsecount
                         xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
                         'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
+                        'If (Gs_UnitType = "imp") Then
+                        'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
+                        'End If
                     End If
 
                     'USE VALS FROM INPUT **********************************************************
@@ -534,7 +538,7 @@
                         refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
                         'SOME ABSOLUTE CRAZINESS
                         '''testreftemp(currenttest) = testxdtemp(currenttest)
-                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest), "Cel"), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                         'xd stuff --------------------
                         testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
@@ -542,15 +546,20 @@
                         '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                         'AGAIN, THIS MAKES IT CELSIUS
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
-                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest), "Cel"), 2)
+                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
 
 
                         'IF IMPERIAL------------------------------------------
-                        If (Gs_UnitType = "imperial") Then
-                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)
-                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)
+                        If (Gs_UnitType = "imp") Then
+                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
+                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
+                            pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
+                            refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
+                            testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                            stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
+                            testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         End If
-                        'TODO MORE OF THIS
+
 
                     End If
 

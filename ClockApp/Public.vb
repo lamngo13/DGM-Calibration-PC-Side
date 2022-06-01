@@ -190,17 +190,24 @@ Module _Public
             Return returnable
         End Function
 
-        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double, inUnits As String) As Double
+        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
             Dim returnable As Double = invol
             Dim tempusrStdTemp
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
-            If (inUnits = "Cel") Then
+            If (Gs_UnitType = "met") Then
                 inTemp += 273.15
                 tempusrStdTemp = Gd_usrStdTemp + 273.15
                 returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
+            Else
+                If (Gs_UnitType = "imp") Then
+                    'convert to celsius then kelvin for temp
+                    inTemp = (conversions.convertFarToCel(inTemp)) + 273.15
+                    tempusrStdTemp = (conversions.convertFarToCel(tempusrStdTemp)) + 273.15
+                    inPressure *= 25.4   'convert inchesHg to mmHg
+                    returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
+                End If
             End If
-            'MAYBE WRONG GOTTA CHECK THIS
-            'returnable = (invol * (usrStdTemp / inTemp) * (usrStdPressure / inPressure))
+
             Return returnable
 
         End Function
