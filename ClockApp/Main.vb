@@ -7,40 +7,7 @@ Imports PdfSharp.Pdf
 
 Public Class Main
 
-    Sub Main()
-        ' Create a new PDF document
-        Dim document As PdfDocument = New PdfDocument
-        document.Info.Title = "Created with PDFsharp"
 
-        ' Create an empty page
-        Dim page As PdfPage = document.AddPage
-
-        ' Get an XGraphics object for drawing
-        Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
-
-        ' Draw crossing lines
-        Dim pen As XPen = New XPen(XColor.FromArgb(255, 0, 0))
-        gfx.DrawLine(pen, New XPoint(0, 0), New XPoint(page.Width.Point, page.Height.Point))
-        gfx.DrawLine(pen, New XPoint(page.Width.Point, 0), New XPoint(0, page.Height.Point))
-
-        ' Draw an ellipse
-        gfx.DrawEllipse(pen, 3 * page.Width.Point / 10, 3 * page.Height.Point / 10, 2 * page.Width.Point / 5, 2 * page.Height.Point / 5)
-
-        ' Create a font
-        Dim font As XFont = New XFont("Verdana", 20, XFontStyle.Bold)
-
-        ' Draw the text
-        gfx.DrawString("Hello, World!", font, XBrushes.Black,
-    New XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.Center)
-
-        ' Save the document...
-        Dim filename As String = "HelloWorld.pdf"
-        document.Save(filename)
-
-        ' ...and start a viewer.
-        Process.Start(filename)
-
-    End Sub
     Dim rs As New Resizer 'TODO MORE OF THIS ALSO WRITE TO REGISTRY
 
     Const NUM_OF_ROWS As Integer = 6
@@ -193,6 +160,72 @@ Public Class Main
     Dim numRealTests As Integer
 
 
+    'AZN mouseover colors
+    Private Sub btnstart_MouseHover(sender As Object, e As EventArgs) Handles btnstart.MouseHover
+        btnstart.BackColor = ColorTranslator.FromHtml("#1a691e")
+
+    End Sub
+    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave
+        btnstart.BackColor = ColorTranslator.FromHtml("#114413")
+
+    End Sub
+
+
+
+    Private Sub btnabort_MouseHover(sender As Object, e As EventArgs) Handles btnabort.MouseHover
+        btnabort.BackColor = ColorTranslator.FromHtml("#a22a20")
+
+    End Sub
+    Private Sub btnabort_MouseLeave(sender As Object, e As EventArgs) Handles btnabort.MouseLeave
+        btnabort.BackColor = ColorTranslator.FromHtml("#731e17")
+
+    End Sub
+
+
+
+    Private Sub btnconnect_MouseHover(sender As Object, e As EventArgs) Handles btnconnect.MouseHover
+        btnconnect.BackColor = ColorTranslator.FromHtml("#0e7a99")
+
+    End Sub
+    Private Sub btnconnect_MouseLeave(sender As Object, e As EventArgs) Handles btnconnect.MouseLeave
+        btnconnect.BackColor = ColorTranslator.FromHtml("#0a596f")
+
+    End Sub
+
+    Sub makePDF()
+        ' Create a new PDF document
+        Dim document As PdfDocument = New PdfDocument
+        document.Info.Title = "Created with PDFsharp"
+
+        ' Create an empty page
+        Dim page As PdfPage = document.AddPage
+
+        ' Get an XGraphics object for drawing
+        Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
+
+        ' Draw crossing lines
+        Dim pen As XPen = New XPen(XColor.FromArgb(255, 0, 0))
+        gfx.DrawLine(pen, New XPoint(0, 0), New XPoint(page.Width.Point, page.Height.Point))
+        gfx.DrawLine(pen, New XPoint(page.Width.Point, 0), New XPoint(0, page.Height.Point))
+
+        ' Draw an ellipse
+        gfx.DrawEllipse(pen, 3 * page.Width.Point / 10, 3 * page.Height.Point / 10, 2 * page.Width.Point / 5, 2 * page.Height.Point / 5)
+
+        ' Create a font
+        Dim font As XFont = New XFont("Verdana", 20, XFontStyle.Bold)
+
+        ' Draw the text
+        gfx.DrawString("Hello, World!", font, XBrushes.Black,
+    New XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.Center)
+
+        ' Save the document...
+        Dim filename As String = "HelloWorld.pdf"
+        document.Save(filename)
+
+        ' ...and start a viewer.
+        Process.Start(filename)
+
+    End Sub
 
 
     Public Sub goodParseRef()
@@ -665,7 +698,7 @@ Public Class Main
         Me.Width = Gi_Screen_Size_X
         Me.Height = Gi_Screen_Size_Y
 
-        'AZN
+
 
 
     End Sub
@@ -994,6 +1027,10 @@ Public Class Main
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Main()
+        makePDF()
+    End Sub
+
+    Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
+
     End Sub
 End Class

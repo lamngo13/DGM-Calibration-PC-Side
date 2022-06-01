@@ -127,11 +127,12 @@ Partial Class Main
         Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.btnconfig = New FontAwesome.Sharp.IconButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.btnabort = New FontAwesome.Sharp.IconButton()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -164,9 +165,9 @@ Partial Class Main
         Me.bdline1 = New System.Windows.Forms.PictureBox()
         Me.bdline2 = New System.Windows.Forms.PictureBox()
         Me.bdline3 = New System.Windows.Forms.PictureBox()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.IconButton3 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,7 +188,6 @@ Partial Class Main
         CType(Me.bdline1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bdline2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bdline3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'flowratetxtbox1
@@ -1381,7 +1381,7 @@ Partial Class Main
         'btnconnect
         '
         Me.btnconnect.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnconnect.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.btnconnect.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(111, Byte), Integer))
         Me.btnconnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnconnect.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnconnect.ForeColor = System.Drawing.Color.White
@@ -1402,7 +1402,7 @@ Partial Class Main
         'btnstart
         '
         Me.btnstart.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(19, Byte), Integer))
         Me.btnstart.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnstart.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnstart.ForeColor = System.Drawing.Color.White
@@ -1454,6 +1454,15 @@ Partial Class Main
         Me.Panel1.Size = New System.Drawing.Size(1064, 135)
         Me.Panel1.TabIndex = 142
         '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Controls.Add(Me.mainclocklbl)
+        Me.FlowLayoutPanel1.Controls.Add(Me.IconButton2)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(927, 23)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(102, 43)
+        Me.FlowLayoutPanel1.TabIndex = 146
+        '
         'IconButton2
         '
         Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1498,32 +1507,32 @@ Partial Class Main
         Me.Panel2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel2.Controls.Add(Me.btnstart)
         Me.Panel2.Controls.Add(Me.btnconnect)
-        Me.Panel2.Controls.Add(Me.IconButton1)
+        Me.Panel2.Controls.Add(Me.btnabort)
         Me.Panel2.Location = New System.Drawing.Point(259, 63)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(561, 82)
         Me.Panel2.TabIndex = 143
         '
-        'IconButton1
+        'btnabort
         '
-        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton1.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.White
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
-        Me.IconButton1.IconColor = System.Drawing.Color.White
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 20
-        Me.IconButton1.Location = New System.Drawing.Point(397, 19)
-        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(102, 31)
-        Me.IconButton1.TabIndex = 143
-        Me.IconButton1.Text = "ABORT"
-        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton1.UseVisualStyleBackColor = False
+        Me.btnabort.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnabort.BackColor = System.Drawing.Color.FromArgb(CType(CType(115, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.btnabort.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnabort.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnabort.ForeColor = System.Drawing.Color.White
+        Me.btnabort.IconChar = FontAwesome.Sharp.IconChar.Ban
+        Me.btnabort.IconColor = System.Drawing.Color.White
+        Me.btnabort.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnabort.IconSize = 20
+        Me.btnabort.Location = New System.Drawing.Point(397, 19)
+        Me.btnabort.MaximumSize = New System.Drawing.Size(175, 50)
+        Me.btnabort.Name = "btnabort"
+        Me.btnabort.Size = New System.Drawing.Size(102, 31)
+        Me.btnabort.TabIndex = 143
+        Me.btnabort.Text = "ABORT"
+        Me.btnabort.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnabort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnabort.UseVisualStyleBackColor = False
         '
         'PictureBox3
         '
@@ -1872,15 +1881,6 @@ Partial Class Main
         Me.bdline3.TabIndex = 181
         Me.bdline3.TabStop = False
         '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Controls.Add(Me.mainclocklbl)
-        Me.FlowLayoutPanel1.Controls.Add(Me.IconButton2)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(927, 23)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(102, 43)
-        Me.FlowLayoutPanel1.TabIndex = 146
-        '
         'IconButton3
         '
         Me.IconButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -2041,6 +2041,8 @@ Partial Class Main
         Me.Text = "DGM"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2061,8 +2063,6 @@ Partial Class Main
         CType(Me.bdline1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bdline2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bdline3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.FlowLayoutPanel1.ResumeLayout(False)
-        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2172,7 +2172,7 @@ Partial Class Main
     Friend WithEvents Panel1 As Panel
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnabort As FontAwesome.Sharp.IconButton
     Friend WithEvents Panel2 As Panel
     Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
     Friend WithEvents PictureBox3 As PictureBox
