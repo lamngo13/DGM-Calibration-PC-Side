@@ -166,6 +166,10 @@ Partial Class Main
         Me.bdline3 = New System.Windows.Forms.PictureBox()
         Me.IconButton3 = New FontAwesome.Sharp.IconButton()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.percenterrorwordlbl = New System.Windows.Forms.Label()
+        Me.percenterrorreallbl = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.toFileButton = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1336,7 +1340,7 @@ Partial Class Main
         Me.resultLabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.resultLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.resultLabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.resultLabel1.Location = New System.Drawing.Point(552, 231)
+        Me.resultLabel1.Location = New System.Drawing.Point(385, 230)
         Me.resultLabel1.Name = "resultLabel1"
         Me.resultLabel1.Size = New System.Drawing.Size(201, 20)
         Me.resultLabel1.TabIndex = 133
@@ -1371,7 +1375,7 @@ Partial Class Main
         Me.avglabel33.BackColor = System.Drawing.SystemColors.Control
         Me.avglabel33.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.avglabel33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.avglabel33.Location = New System.Drawing.Point(748, 230)
+        Me.avglabel33.Location = New System.Drawing.Point(596, 230)
         Me.avglabel33.Name = "avglabel33"
         Me.avglabel33.Size = New System.Drawing.Size(94, 20)
         Me.avglabel33.TabIndex = 136
@@ -1600,7 +1604,7 @@ Partial Class Main
         'PictureBox7
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.PictureBox7.Location = New System.Drawing.Point(525, 219)
+        Me.PictureBox7.Location = New System.Drawing.Point(368, 223)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(345, 43)
         Me.PictureBox7.TabIndex = 151
@@ -1900,12 +1904,60 @@ Partial Class Main
         Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton3.UseVisualStyleBackColor = False
         '
+        'percenterrorwordlbl
+        '
+        Me.percenterrorwordlbl.AutoSize = True
+        Me.percenterrorwordlbl.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.percenterrorwordlbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.percenterrorwordlbl.ForeColor = System.Drawing.SystemColors.Control
+        Me.percenterrorwordlbl.Location = New System.Drawing.Point(741, 230)
+        Me.percenterrorwordlbl.Name = "percenterrorwordlbl"
+        Me.percenterrorwordlbl.Size = New System.Drawing.Size(110, 20)
+        Me.percenterrorwordlbl.TabIndex = 182
+        Me.percenterrorwordlbl.Text = "Percent Error"
+        '
+        'percenterrorreallbl
+        '
+        Me.percenterrorreallbl.BackColor = System.Drawing.SystemColors.Control
+        Me.percenterrorreallbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.percenterrorreallbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.percenterrorreallbl.Location = New System.Drawing.Point(857, 230)
+        Me.percenterrorreallbl.Name = "percenterrorreallbl"
+        Me.percenterrorreallbl.Size = New System.Drawing.Size(94, 20)
+        Me.percenterrorreallbl.TabIndex = 183
+        Me.percenterrorreallbl.Text = "123456789"
+        Me.percenterrorreallbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.Label15.Location = New System.Drawing.Point(990, 642)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(43, 13)
+        Me.Label15.TabIndex = 184
+        Me.Label15.Text = "220531"
+        '
+        'toFileButton
+        '
+        Me.toFileButton.Location = New System.Drawing.Point(803, 141)
+        Me.toFileButton.Name = "toFileButton"
+        Me.toFileButton.Size = New System.Drawing.Size(229, 32)
+        Me.toFileButton.TabIndex = 185
+        Me.toFileButton.Text = "Save Raw To File"
+        Me.toFileButton.UseVisualStyleBackColor = True
+        Me.toFileButton.Visible = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.toFileButton)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.percenterrorreallbl)
+        Me.Controls.Add(Me.percenterrorwordlbl)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.IconButton3)
@@ -2208,4 +2260,8 @@ Partial Class Main
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents percenterrorwordlbl As Label
+    Friend WithEvents percenterrorreallbl As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents toFileButton As Button
 End Class
