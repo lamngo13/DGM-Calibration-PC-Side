@@ -129,6 +129,10 @@
     Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim oldCurrTest As Integer = 1
     Dim filuutcalcedpulses = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filVarY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim forPreciseRefVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim forPreciseXdVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim didItPass As Boolean
 
@@ -741,6 +745,14 @@
                     'Dim bruh100 = testtimers(currenttest)
                     'Dim bruh101 = filrefflowrate(currenttest)
                     'End If
+                    forPreciseRefVols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    forPreciseRefVols(currenttest) = Math.Round(conversions.standardize(forPreciseRefVols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 4)
+                    forPreciseXdVols(currenttest) = (xdInputVol - xdWarmupVols(currenttest))
+                    forPreciseXdVols(currenttest) = Math.Round(conversions.standardize(forPreciseXdVols(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 4)
+                    'FIND Y AND CAL
+                    'YYYYYYYYYYYYYYY
+                    filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4)
+                    filY(currenttest) = Math.Round(filVarY(currenttest) - 1, 4)
 
                     filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
 
@@ -1279,10 +1291,14 @@
                 'flow rate for xd
                 printable &= "UUT Flow Rate: " + CStr((filuutFlowRate(cc))) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
                 'y value
-                'printable &= "Y Value: " + 
+                printable &= "Y Value: " + CStr(filVarY(cc)) + ", "
                 'variation
+                printable &= "Y Variation: " + CStr(filY(cc)) + ", "
                 'delta h
                 'delta h @
+
+                'todo change all to crlf
+                printable &= vbCrLf
             End If
         Next
         stream_writer.Write(printable)
