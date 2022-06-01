@@ -100,6 +100,7 @@
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
     Dim hypotheticaltestxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+    Dim avghypotheticalxd As Double = 0.0
 
 
     'FILE STUFF
@@ -577,6 +578,12 @@
                 End If
 
             Next
+            'get hypothetical
+            For ee As Integer = 1 To NUM_OF_ROWS
+                avghypotheticalxd += CDbl(xdstdvollabel(ee).Text) / xdGivenScaling
+            Next
+            'get avg
+            avghypotheticalxd /= numRealTests
             avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / numRealTests), 2)
             avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / numRealTests), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
@@ -594,8 +601,10 @@
             '    resultLabel1.Text = "New Scaling Factor for XD:"
             '    avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             'End If
+            'HERE!!!!!!!!!!!!!!!!!!!!!!
             resultLabel1.Text = "Calculated Scaling Factor: "
-            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            '''''''''''''''''avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
             percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4)) & "%"
             'avglabel33.Visible = True
             'percenterrorreallbl.Visible = True
@@ -682,6 +691,7 @@
                         'AGAIN, THIS MAKES IT CELSIUS
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                        hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
 
 
                         'IF IMPERIAL------------------------------------------
@@ -693,6 +703,7 @@
                             testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
                             stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                             testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                            hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
                         End If
 
 
