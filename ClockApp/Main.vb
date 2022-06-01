@@ -195,6 +195,37 @@
     Dim foowarmup As Double = 0.0
 
 
+    'AZN mouseover colors
+    Private Sub btnstart_MouseHover(sender As Object, e As EventArgs) Handles btnstart.MouseHover
+        btnstart.BackColor = ColorTranslator.FromHtml("#1a691e")
+
+    End Sub
+    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave
+        btnstart.BackColor = ColorTranslator.FromHtml("#114413")
+
+    End Sub
+
+
+
+    Private Sub btnabort_MouseHover(sender As Object, e As EventArgs) Handles btnabort.MouseHover
+        btnabort.BackColor = ColorTranslator.FromHtml("#a22a20")
+
+    End Sub
+    Private Sub btnabort_MouseLeave(sender As Object, e As EventArgs) Handles btnabort.MouseLeave
+        btnabort.BackColor = ColorTranslator.FromHtml("#731e17")
+
+    End Sub
+
+
+
+    Private Sub btnconnect_MouseHover(sender As Object, e As EventArgs) Handles btnconnect.MouseHover
+        btnconnect.BackColor = ColorTranslator.FromHtml("#0e7a99")
+
+    End Sub
+    Private Sub btnconnect_MouseLeave(sender As Object, e As EventArgs) Handles btnconnect.MouseLeave
+        btnconnect.BackColor = ColorTranslator.FromHtml("#0a596f")
+
+    End Sub
 
 
     Public Sub goodParseRef()
@@ -1276,5 +1307,12 @@
     Private Sub requestCalibration()
         'Public Sub Tx_2_Console(sCommand As String, sValue As String)
         Tx_2_Console("C", "4")
+    End Sub
+
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim certification As New Certification
+
+        certification.StartPosition = FormStartPosition.CenterScreen
+        certification.ShowDialog()
     End Sub
 End Class

@@ -171,6 +171,7 @@ Partial Class Main
         Me.Label15 = New System.Windows.Forms.Label()
         Me.toFileButton = New System.Windows.Forms.Button()
         Me.bigtimerlabel = New System.Windows.Forms.Label()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1962,12 +1963,32 @@ Partial Class Main
         Me.bigtimerlabel.TabIndex = 186
         Me.bigtimerlabel.Text = "Overall: "
         '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.White
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Wrench
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 18
+        Me.IconButton1.Location = New System.Drawing.Point(251, 635)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(114, 27)
+        Me.IconButton1.TabIndex = 187
+        Me.IconButton1.Text = " CONFIGURE"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.bigtimerlabel)
         Me.Controls.Add(Me.toFileButton)
         Me.Controls.Add(Me.Label15)
@@ -2280,4 +2301,5 @@ Partial Class Main
     Friend WithEvents Label15 As Label
     Friend WithEvents toFileButton As Button
     Friend WithEvents bigtimerlabel As Label
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class
