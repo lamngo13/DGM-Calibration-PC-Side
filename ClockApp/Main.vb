@@ -106,6 +106,7 @@
 
 
     'FILE STUFF
+    Dim newY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -836,6 +837,8 @@
                         End If
 
                         If ((currenttest = 6) And (rowused(6)) = False) Then
+                            'new Y
+                            newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
