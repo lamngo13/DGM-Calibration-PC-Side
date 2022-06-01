@@ -636,7 +636,7 @@
         'others-----------------------
 
         'If overall test is currently going
-        If (testongoing) Then
+        If (testongoing And Gb_testgo) Then
             messagetxtbox.Text = "TEST ONGOING"
             If (Gb_testgo) Then
                 'ensure correct string:
@@ -657,59 +657,59 @@
                     bigtimer = Math.Round(bigtimer, 2)
                 End If
 
-                    'check for end of warmup
-                    If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
-                        duringwarmup = False
-                    End If
+                'check for end of warmup
+                If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
+                    duringwarmup = False
+                End If
 
-                    'increment warmup timer(s)
-                    If (duringwarmup) Then
-                        warmuptimer += 0.1
-                        warmuptimer = Math.Round(warmuptimer, 2)
-                        warmuptimes(currenttest) += 0.1
-                        warmuppulses(currenttest) = intpulsecount
-                        xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
-                        'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
-                        'If (Gs_UnitType = "imp") Then
-                        'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
-                        'End If
-                    End If
+                'increment warmup timer(s)
+                If (duringwarmup) Then
+                    warmuptimer += 0.1
+                    warmuptimer = Math.Round(warmuptimer, 2)
+                    warmuptimes(currenttest) += 0.1
+                    warmuppulses(currenttest) = intpulsecount
+                    xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
+                    'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
+                    'If (Gs_UnitType = "imp") Then
+                    'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
+                    'End If
+                End If
 
-                    'USE VALS FROM INPUT **********************************************************
-                    If (Not duringwarmup) Then
+                'USE VALS FROM INPUT **********************************************************
+                If (Not duringwarmup) Then
 
-                        'ref stuff ------------------
-                        testtimers(currenttest) += 0.1
-                        testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
-                        testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                        refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
-                        testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
-                        pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
-                        refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
-                        'SOME ABSOLUTE CRAZINESS
-                        '''testreftemp(currenttest) = testxdtemp(currenttest)
-                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+                    'ref stuff ------------------
+                    testtimers(currenttest) += 0.1
+                    testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
+                    testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                    refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
+                    pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
+                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
+                    'SOME ABSOLUTE CRAZINESS
+                    '''testreftemp(currenttest) = testxdtemp(currenttest)
+                    stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
-                        'xd stuff --------------------
-                        testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
-                        ' If (units = celsius)
-                        '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
-                        'AGAIN, THIS MAKES IT CELSIUS
-                        testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
+                    'xd stuff --------------------
+                    testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
+                    ' If (units = celsius)
+                    '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
+                    'AGAIN, THIS MAKES IT CELSIUS
+                    testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
+                    testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                    hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
+
+
+                    'IF IMPERIAL------------------------------------------
+                    If (Gs_UnitType = "imp") Then
+                        testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
+                        testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
+                        pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
+                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
+                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                        hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
-
-
-                        'IF IMPERIAL------------------------------------------
-                        If (Gs_UnitType = "imp") Then
-                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
-                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
-                            pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                            refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
-                            testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
-                            stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
-                            testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                        hypotheticaltestxdstdvol(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)
+                        hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                     End If
 
 
@@ -1185,9 +1185,13 @@
 
         printable &= "foo"
         printable &= "bruh"
+        'runtime, uutinitpulses, uufinalpulses, uuttotalpulses
         For cc As Integer = 1 To NUM_OF_ROWS
-            If (rowused(currenttest)) Then
-                printable &= "Test " + CStr(cc) + ","
+            If (rowused(cc)) Then
+                printable &= "Test " + CStr(cc) + ", "
+                printable &= CStr(filuutPulseInit(cc)) + ", "
+                printable &= CStr(filuutPulseFinal(cc)) + ", "
+                printable &= CStr(filuutPulseTotal(cc)) + ", "
             End If
         Next
         stream_writer.Write(printable)

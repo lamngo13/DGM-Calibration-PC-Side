@@ -342,7 +342,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox3.TabIndex = 12
-        Me.endvoltxtbox3.Text = "4"
+        Me.endvoltxtbox3.Text = "1"
         Me.endvoltxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox2
@@ -355,7 +355,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox2.TabIndex = 11
-        Me.endvoltxtbox2.Text = "4"
+        Me.endvoltxtbox2.Text = "1"
         Me.endvoltxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox1
@@ -368,7 +368,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "4"
+        Me.endvoltxtbox1.Text = "1"
         Me.endvoltxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvollabel2
