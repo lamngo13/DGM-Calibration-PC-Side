@@ -197,6 +197,9 @@
     Public Sub disableButtons()
         For q As Integer = 1 To NUM_OF_ROWS
             If (testongoing) Then
+                flowratetxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
+                endvoltxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
+                warmuptxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
                 flowratetxtbox(q).Enabled = False
                 endvoltxtbox(q).Enabled = False
                 warmuptxtbox(q).Enabled = False
@@ -298,6 +301,16 @@
                 pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
             End If
         End If
+
+        'make inputs visible even when running
+        'For bb As Integer = 1 To NUM_OF_ROWS
+        '    If (flowratetxtbox1.Enabled = False) Then
+        '        flowratetxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '        endvoltxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '        warmuptxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '    End If
+
+        'Next
 
         'validate user input in real time
         'reWhiteInputsExistOnly()
@@ -511,7 +524,11 @@
             'End If
             resultLabel1.Text = "Calculated Scaling Factor: "
             avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
-            percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
+            percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4)) & "%"
+            'avglabel33.Visible = True
+            'percenterrorreallbl.Visible = True
+            avglabel1.Visible = True
+            avglabel2.Visible = True
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
         End If
@@ -1019,10 +1036,13 @@
 
     Private Sub writeToFile(ByVal sFileName As String)
         Dim stream_writer As IO.StreamWriter
+        Dim printable As String = ""
 
         stream_writer = New IO.StreamWriter(sFileName)
 
-        stream_writer.Write("foo")
+        printable &= "foo"
+        printable &= "bruh"
+        stream_writer.Write(printable)
 
         stream_writer.Close()
     End Sub

@@ -1321,6 +1321,7 @@ Partial Class Main
         Me.avglabel1.Size = New System.Drawing.Size(168, 20)
         Me.avglabel1.TabIndex = 131
         Me.avglabel1.Text = "Avg Ref Std Volumes"
+        Me.avglabel1.Visible = False
         '
         'avglabel2
         '
@@ -1333,6 +1334,7 @@ Partial Class Main
         Me.avglabel2.Size = New System.Drawing.Size(175, 20)
         Me.avglabel2.TabIndex = 132
         Me.avglabel2.Text = "Avg Test Std Volumes"
+        Me.avglabel2.Visible = False
         '
         'resultLabel1
         '
@@ -1639,7 +1641,7 @@ Partial Class Main
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(234, 579)
+        Me.Label4.Location = New System.Drawing.Point(230, 583)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(104, 15)
         Me.Label4.TabIndex = 153
@@ -1652,7 +1654,7 @@ Partial Class Main
         Me.Label5.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(91, 577)
+        Me.Label5.Location = New System.Drawing.Point(89, 580)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(57, 15)
         Me.Label5.TabIndex = 154
