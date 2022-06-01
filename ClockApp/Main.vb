@@ -20,6 +20,7 @@
     Const WARMUP_MIN_INPUT As Double = 1
     Const WARMUP_MAX_INPUT As Double = 800
 
+    Dim xdGivenScaling As Double
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -89,6 +90,25 @@
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+
+
+    'FILE STUFF
+    Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim filuutPulseTotal = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim filuutInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filuutFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    'meter pressure?
+    Dim filrefInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOutletInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
+    Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
+
+    'END FILE STUFF
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
 
@@ -464,6 +484,7 @@
         'update labels with good values **************************************************
         'ref ------------------
         Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
+        bigtimerlabel.Text = "Overall Time: " + CStr(bigtimer)
         If (testongoing) Then
             refpulselabel(currenttest).Text = CStr(refvols(currenttest))
             testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
@@ -556,6 +577,12 @@
                     bigtimer += 0.1
                     bigtimer = Math.Round(bigtimer, 2)
 
+                    'SAVE INIT VALS HERE *******************************
+                    If (Not thisTestSavedInits(currenttest)) Then
+                        thisTestSavedInits(currenttest) = True
+                        'save init vals
+                    End If
+
                     'check for end of warmup
                     If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
                         duringwarmup = False
@@ -617,6 +644,7 @@
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
+                        'SAVE FINAL VALS HERE*****************
                         If ((currenttest = 6) And (rowused(6)) = False) Then
                             testongoing = False
                             testover = True
@@ -998,6 +1026,7 @@
             testongoing = True
             duringwarmup = True
             currenttest = 1
+            'save inputs to registry HERE
         End If
     End Sub
 

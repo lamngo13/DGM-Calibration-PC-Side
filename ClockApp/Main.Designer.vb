@@ -170,6 +170,7 @@ Partial Class Main
         Me.percenterrorreallbl = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.toFileButton = New System.Windows.Forms.Button()
+        Me.bigtimerlabel = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1950,12 +1951,24 @@ Partial Class Main
         Me.toFileButton.UseVisualStyleBackColor = True
         Me.toFileButton.Visible = False
         '
+        'bigtimerlabel
+        '
+        Me.bigtimerlabel.AutoSize = True
+        Me.bigtimerlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.bigtimerlabel.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.bigtimerlabel.Location = New System.Drawing.Point(288, 141)
+        Me.bigtimerlabel.Name = "bigtimerlabel"
+        Me.bigtimerlabel.Size = New System.Drawing.Size(62, 18)
+        Me.bigtimerlabel.TabIndex = 186
+        Me.bigtimerlabel.Text = "Overall: "
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.bigtimerlabel)
         Me.Controls.Add(Me.toFileButton)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.percenterrorreallbl)
@@ -2266,4 +2279,5 @@ Partial Class Main
     Friend WithEvents percenterrorreallbl As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents toFileButton As Button
+    Friend WithEvents bigtimerlabel As Label
 End Class
