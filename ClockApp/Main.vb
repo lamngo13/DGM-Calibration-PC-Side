@@ -711,6 +711,7 @@
                     'SAVE INIT VALS HERE *******************************
                     If (Not thisTestSavedInits(currenttest)) Then
                         thisTestSavedInits(currenttest) = True
+                        'now this will only execute once per test
                         filTestTime(currenttest) = bigtimer
                         'filOrrifice??
                         'uutpulsefinal
@@ -743,16 +744,19 @@
                             'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
                             duringwarmup = True
                             currenttest += 1 'goto next test
-                            While (rowused(currenttest) = False)
-                                If (currenttest = 7) Then
-                                    Exit While
-                                Else
-                                    currenttest += 1
-                                End If
-                                If (currenttest = 7) Then
-                                    Exit While
-                                End If
-                            End While
+                            If (Not currenttest = 7) Then
+                                While (rowused(currenttest) = False)
+                                    If (currenttest = 7) Then
+                                        Exit While
+                                    Else
+                                        currenttest += 1
+                                    End If
+                                    If (currenttest = 7) Then
+                                        Exit While
+                                    End If
+                                End While
+                            End If
+
                             If (currenttest = 7) Then
                                 'THE TEST IS OVER **********************************
                                 testongoing = False
