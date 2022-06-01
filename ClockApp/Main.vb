@@ -589,9 +589,11 @@
                                 End If
                             End While
                             If (currenttest = 7) Then
+                                'THE TEST IS OVER **********************************
                                 testongoing = False
                                 testover = True
                                 teststatuslabel2.Text = "Test Over"
+                                messagetxtbox.Text = "TEST OVER"
                             End If
                             'If (rowused(currenttest) = False) Then
                             '   currenttest += 1
@@ -993,5 +995,12 @@
         stream_writer.Close()
     End Sub
 
-
+    Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
+        Get_Registry_Values()
+        testongoing = False
+        testover = False
+        duringwarmup = True
+        'TODO RESET ALL VALS AND STUFF
+        'Me.Close()
+    End Sub
 End Class
