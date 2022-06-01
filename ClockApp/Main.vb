@@ -1,12 +1,4 @@
-﻿
-Imports PdfSharp
-Imports PdfSharp.Drawing
-Imports PdfSharp.Pdf
-
-
-
-Public Class Main
-
+﻿Public Class Main
 
     Dim rs As New Resizer 'TODO MORE OF THIS ALSO WRITE TO REGISTRY
 
@@ -27,7 +19,17 @@ Public Class Main
     Const ENDVOL_MAX_INPUT_METRIC As Double = 1
     Const WARMUP_MIN_INPUT As Double = 1
     Const WARMUP_MAX_INPUT As Double = 800
+    Const XD_STRING_TYPE As Integer = 4
+    Const INBOUND_STRING_TYPE_ACTUAL As String = "A"
+    Const INBOUND_STRING_TYPE_CALIBRATION As String = "C"
+    Const sBLOCK_START As String = ChrW(1)
+    Const BLOCK_MARKER_CS As String = Chr(31)
+    Const FIND_SF As Integer = 19
 
+    '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
+
+
+    Dim xdGivenScaling As Double
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -79,23 +81,45 @@ Public Class Main
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
-    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
+
+    Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
+    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim xdWarmupVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-    Dim endstdrefvols = New Double() {9, 9, 9, 9, 9, 9, 9} ' DOUBLE
+    Dim endstdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim rowused = New Boolean() {False, False, False, False, False, False, False} ' BOOLEANS
 
     Dim testxdtemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdvol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+    Dim hypotheticaltestxdstdvol = New Double() {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+    Dim avghypotheticalxd As Double = 0.0
+
+
+    'FILE STUFF
+    Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim filuutPulseTotal = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim filuutInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filuutFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    'meter pressure?
+    Dim filrefInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOutletInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
+    Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
+
+    'END FILE STUFF
     Dim currenttest As Integer = 1
     Dim duringwarmup As Boolean = False
 
@@ -126,6 +150,8 @@ Public Class Main
     Dim avgStdRefVolPostTest As Double
     Dim avgStdTestVolPostTest As Double
     Dim processingDone As Boolean = False
+    Dim havesScalingFactor As Boolean = False
+    Dim givenxdScaling As Double = 0.0
 
 
 
@@ -159,73 +185,16 @@ Public Class Main
 
     Dim numRealTests As Integer
 
+    Dim debugAbort As Boolean = False
 
-    'AZN mouseover colors
-    Private Sub btnstart_MouseHover(sender As Object, e As EventArgs) Handles btnstart.MouseHover
-        btnstart.BackColor = ColorTranslator.FromHtml("#1a691e")
+    Dim xdthisinputtype As String = ""
 
-    End Sub
-    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave
-        btnstart.BackColor = ColorTranslator.FromHtml("#114413")
-
-    End Sub
+    'for a private sub
+    Dim fooflowrate As Double = 0.0
+    Dim fooendvol As Double = 0.0
+    Dim foowarmup As Double = 0.0
 
 
-
-    Private Sub btnabort_MouseHover(sender As Object, e As EventArgs) Handles btnabort.MouseHover
-        btnabort.BackColor = ColorTranslator.FromHtml("#a22a20")
-
-    End Sub
-    Private Sub btnabort_MouseLeave(sender As Object, e As EventArgs) Handles btnabort.MouseLeave
-        btnabort.BackColor = ColorTranslator.FromHtml("#731e17")
-
-    End Sub
-
-
-
-    Private Sub btnconnect_MouseHover(sender As Object, e As EventArgs) Handles btnconnect.MouseHover
-        btnconnect.BackColor = ColorTranslator.FromHtml("#0e7a99")
-
-    End Sub
-    Private Sub btnconnect_MouseLeave(sender As Object, e As EventArgs) Handles btnconnect.MouseLeave
-        btnconnect.BackColor = ColorTranslator.FromHtml("#0a596f")
-
-    End Sub
-
-    Sub makePDF()
-        ' Create a new PDF document
-        Dim document As PdfDocument = New PdfDocument
-        document.Info.Title = "Created with PDFsharp"
-
-        ' Create an empty page
-        Dim page As PdfPage = document.AddPage
-
-        ' Get an XGraphics object for drawing
-        Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
-
-        ' Draw crossing lines
-        Dim pen As XPen = New XPen(XColor.FromArgb(255, 0, 0))
-        gfx.DrawLine(pen, New XPoint(0, 0), New XPoint(page.Width.Point, page.Height.Point))
-        gfx.DrawLine(pen, New XPoint(page.Width.Point, 0), New XPoint(0, page.Height.Point))
-
-        ' Draw an ellipse
-        gfx.DrawEllipse(pen, 3 * page.Width.Point / 10, 3 * page.Height.Point / 10, 2 * page.Width.Point / 5, 2 * page.Height.Point / 5)
-
-        ' Create a font
-        Dim font As XFont = New XFont("Verdana", 20, XFontStyle.Bold)
-
-        ' Draw the text
-        gfx.DrawString("Hello, World!", font, XBrushes.Black,
-    New XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.Center)
-
-        ' Save the document...
-        Dim filename As String = "HelloWorld.pdf"
-        document.Save(filename)
-
-        ' ...and start a viewer.
-        Process.Start(filename)
-
-    End Sub
 
 
     Public Sub goodParseRef()
@@ -268,6 +237,9 @@ Public Class Main
     Public Sub disableButtons()
         For q As Integer = 1 To NUM_OF_ROWS
             If (testongoing) Then
+                flowratetxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
+                endvoltxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
+                warmuptxtbox(q).BackColor = Color.FromArgb(255, 0, 0, 0)
                 flowratetxtbox(q).Enabled = False
                 endvoltxtbox(q).Enabled = False
                 warmuptxtbox(q).Enabled = False
@@ -339,6 +311,7 @@ Public Class Main
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
+        ''''''''''' onlyNumsInInput()
 
         ' Just hitching a ride ---------------------
         If Gb_Update_Screen_Size Then
@@ -348,6 +321,43 @@ Public Class Main
 
         'diable inputs if test ongoing
         disableButtons()
+
+        'check to see if we have scaling factor
+        If (Not havesScalingFactor) Then
+            requestCalibration()
+            'loop this !
+        End If
+
+        'update label units based on unit type
+        If (Gs_UnitType = "met") Then
+            Label7.Text = "Volume" + vbCrLf + "(Litres)"
+            Label8.Text = "Volume" + vbCrLf + "(Litres)"
+            Label9.Text = "Volume" + vbCrLf + "(Litres)"
+            Label10.Text = "Volume" + vbCrLf + "(Litres)"
+            Label11.Text = "Temp" + vbCrLf + "(Celsius)"
+            Label12.Text = "Temp" + vbCrLf + "(Celsius)"
+            pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
+        Else
+            If (Gs_UnitType = "imp") Then
+                Label7.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label8.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label9.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label10.Text = "Volume" + vbCrLf + "(Cubic Feet)"
+                Label11.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                Label12.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
+            End If
+        End If
+
+        'make inputs visible even when running
+        'For bb As Integer = 1 To NUM_OF_ROWS
+        '    If (flowratetxtbox1.Enabled = False) Then
+        '        flowratetxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '        endvoltxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '        warmuptxtbox(bb).ForeColor = Color.FromArgb(255, 255, 255, 255)
+        '    End If
+
+        'Next
 
         'validate user input in real time
         'reWhiteInputsExistOnly()
@@ -476,14 +486,39 @@ Public Class Main
 
                         xdCalculatedCS = 10000 - xdCalculatedCS
 
+                        'DETERIMNE IF TYPE A OR TYPE C
+                        'xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
+                        Try
+                            xdthisinputtype = Trim(s_xd_in(XD_STRING_TYPE))
+                            If (xdthisinputtype = "A") Then
+                                If (xdCalculatedCS = xdParsedCheckInt) Then
+                                    xdUpdateVals()
+                                    consecBadCSVals = 0  ' resets bad counter
+                                End If
+                            Else
+                                If (xdthisinputtype = "C") Then
+                                    Try
+                                        'scan for the scaling factor
+                                        xdGivenScaling = s_xd_in(FIND_SF)
+                                        havesScalingFactor = True
+                                    Catch ex As Exception
+
+                                    End Try
+
+                                End If
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+
                         'update values if good
-                        If (xdCalculatedCS = xdParsedCheckInt) Then
-                            xdUpdateVals()
-                            consecBadCSVals = 0  ' resets bad counter
-                        End If
+                        'If (xdCalculatedCS = xdParsedCheckInt) Then
+                        '        xdUpdateVals()
+                        '        consecBadCSVals = 0  ' resets bad counter
+                        '    End If
 
                     End If
-                End If
+                    End If
 
             End If
         Catch ex As Exception
@@ -491,10 +526,17 @@ Public Class Main
         End Try
 
 
-
+        'If (debugAbort) Then
+        '    Dim bruhmachine As Integer = 9
+        '    findRunnableTests()
+        '    testongoing = True
+        '    duringwarmup = True
+        '    currenttest = 1
+        'End If
         'update labels with good values **************************************************
         'ref ------------------
         Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
+        bigtimerlabel.Text = "Overall Time: " + CStr(bigtimer)
         If (testongoing) Then
             refpulselabel(currenttest).Text = CStr(refvols(currenttest))
             testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
@@ -514,6 +556,7 @@ Public Class Main
         'to process after test
         If (testover And Not processingDone) Then
             processingDone = True
+            toFileButton.Visible = True
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
@@ -535,6 +578,12 @@ Public Class Main
                 End If
 
             Next
+            'get hypothetical
+            For ee As Integer = 1 To NUM_OF_ROWS
+                avghypotheticalxd += CDbl(xdstdvollabel(ee).Text) / xdGivenScaling
+            Next
+            'get avg
+            avghypotheticalxd /= numRealTests
             avgStdRefVolPostTest = Math.Round((avgStdRefVolPostTest / numRealTests), 2)
             avgStdTestVolPostTest = Math.Round((avgStdTestVolPostTest / numRealTests), 2)
             avglabel11.Text = CStr(avgStdRefVolPostTest)
@@ -542,25 +591,34 @@ Public Class Main
 
 
             'HERE CHANGE TEXT IF VALIDATION OR CALIBRATION**********************
-            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             'If (validateRadioButton.Checked) Then
-            'this is validation
-            'resultLabel1.Text = "Percentage Off"
-            'avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
+            '    'this is validation
+            '    resultLabel1.Text = "Percentage Off"
+            '    avglabel33.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4))
             'End If
-            '   If (calibrateRadioButton.Checked) Then
-            '  resultLabel1.Text = "New Scaling Factor for XD:"
-            ' avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
-            ' End If
-
-            ' endlabel2.Text = "avg std ref vol: " + CStr(avgStdRefVolPostTest)
-            'endlabel3.Text = asdf
+            'If (calibrateRadioButton.Checked) Then
+            '    resultLabel1.Text = "New Scaling Factor for XD:"
+            '    avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            'End If
+            'HERE!!!!!!!!!!!!!!!!!!!!!!
+            resultLabel1.Text = "Calculated Scaling Factor: "
+            '''''''''''''''''avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
+            percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4)) & "%"
+            'avglabel33.Visible = True
+            'percenterrorreallbl.Visible = True
+            avglabel1.Visible = True
+            avglabel2.Visible = True
+            'resultLabel1.Text = "New Scaling Factor for XD:"
+            'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
         End If
 
         'others-----------------------
 
         'If overall test is currently going
         If (testongoing) Then
+            messagetxtbox.Text = "TEST ONGOING"
             If (Gb_testgo) Then
                 'ensure correct string:
                 teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
@@ -579,6 +637,20 @@ Public Class Main
                     bigtimer += 0.1
                     bigtimer = Math.Round(bigtimer, 2)
 
+                    'SAVE INIT VALS HERE *******************************
+                    If (Not thisTestSavedInits(currenttest)) Then
+                        thisTestSavedInits(currenttest) = True
+                        filTestTime(currenttest) = bigtimer
+                        'filOrrifice??
+                        'uutpulsefinal
+                        'uutpulsetotal
+                        filuutInitTemp(currenttest) = testxdtemp(currenttest)
+                        filOutletInitTemp(currenttest) = testreftemp(currenttest)
+                        'pressure?
+
+                        'save init vals
+                    End If
+
                     'check for end of warmup
                     If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
                         duringwarmup = False
@@ -591,6 +663,10 @@ Public Class Main
                         warmuptimes(currenttest) += 0.1
                         warmuppulses(currenttest) = intpulsecount
                         xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
+                        'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
+                        'If (Gs_UnitType = "imp") Then
+                        'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
+                        'End If
                     End If
 
                     'USE VALS FROM INPUT **********************************************************
@@ -606,7 +682,7 @@ Public Class Main
                         refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
                         'SOME ABSOLUTE CRAZINESS
                         '''testreftemp(currenttest) = testxdtemp(currenttest)
-                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest), "Cel"), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
 
                         'xd stuff --------------------
                         testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
@@ -614,7 +690,22 @@ Public Class Main
                         '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                         'AGAIN, THIS MAKES IT CELSIUS
                         testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
-                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest), "Cel"), 2)
+                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                        hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
+
+
+                        'IF IMPERIAL------------------------------------------
+                        If (Gs_UnitType = "imp") Then
+                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
+                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
+                            pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
+                            refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
+                            testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                            stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
+                            testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                            hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
+                        End If
+
 
                     End If
 
@@ -623,6 +714,12 @@ Public Class Main
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
+                        'SAVE FINAL VALS HERE*****************
+                        If (Not thisTestSavedFinals(currenttest)) Then
+                            'FINAL VALS HERE
+                            thisTestSavedFinals(currenttest) = True
+                        End If
+
                         If ((currenttest = 6) And (rowused(6)) = False) Then
                             testongoing = False
                             testover = True
@@ -644,9 +741,11 @@ Public Class Main
                                 End If
                             End While
                             If (currenttest = 7) Then
+                                'THE TEST IS OVER **********************************
                                 testongoing = False
                                 testover = True
                                 teststatuslabel2.Text = "Test Over"
+                                messagetxtbox.Text = "TEST OVER"
                             End If
                             'If (rowused(currenttest) = False) Then
                             '   currenttest += 1
@@ -698,9 +797,6 @@ Public Class Main
         Me.Width = Gi_Screen_Size_X
         Me.Height = Gi_Screen_Size_Y
 
-
-
-
     End Sub
 
 
@@ -721,6 +817,13 @@ Public Class Main
             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Gi_Screen_Size_X)
             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Gi_Screen_Size_Y)
 
+            'SET THE VALS OF unit type and usr std temp
+            'and then write
+            Gd_usrStdTemp = 20
+            Gs_UnitType = "met"
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Unit_Type", Gs_UnitType)
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Usr_std_temp", Gd_usrStdTemp)
+
             'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Gi_Screen_Size_LeakTest_X)
             'My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Gi_Screen_Size_LeakTest_Y)
 
@@ -734,6 +837,9 @@ Public Class Main
 
             Gi_Screen_Size_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_X", Nothing)
             Gi_Screen_Size_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_Y", Nothing)
+
+            Gs_UnitType = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Unit_Type", Nothing)
+            Gd_usrStdTemp = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Usr_std_temp", Nothing)
 
             'Gi_Screen_Size_LeakTest_X = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_X", Nothing)
             'Gi_Screen_Size_LeakTest_Y = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Screen_Size_LeakTest_Y", Nothing)
@@ -793,7 +899,6 @@ Public Class Main
     Private Sub continueButton_Click(sender As Object, e As EventArgs)
         Gb_testgo = True
     End Sub
-
 
     Public Sub reInitValsBcBadConnection()
         'reset nearly all values? EXCEPT THOSE OF USER INPUT AND USER CONFIG STUFF
@@ -996,6 +1101,7 @@ Public Class Main
             testongoing = True
             duringwarmup = True
             currenttest = 1
+            'save inputs to registry HERE
         End If
     End Sub
 
@@ -1022,28 +1128,153 @@ Public Class Main
         'Gi_Resize_Delay = 2
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Dim sFileName As String
+
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+            sFileName = SaveFileDialog1.FileName
+            writeToFile(sFileName)
+        End If
 
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        makePDF()
+    Private Sub writeToFile(ByVal sFileName As String)
+        Dim stream_writer As IO.StreamWriter
+        Dim printable As String = ""
+
+        stream_writer = New IO.StreamWriter(sFileName)
+
+        printable &= "foo"
+        printable &= "bruh"
+        For cc As Integer = 1 To NUM_OF_ROWS
+            If (rowused(currenttest)) Then
+                printable &= "Test " + CStr(cc) + ","
+            End If
+        Next
+        stream_writer.Write(printable)
+
+        stream_writer.Close()
+    End Sub
+
+    Private Sub resetOutput()
+        testtimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
+        testwarmups = {0, 0, 0, 0, 0, 0, 0}
+        warmuppulses = {0, 0, 0, 0, 0, 0, 0}
+        xdWarmupVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testreftemp = {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
+        refvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        pressureArr = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        stdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        endstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdtemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+        currenttest = 1
+        testongoing = False
+        testover = False
+        duringwarmup = True
+        Gb_testgo = True
+        debugAbort = True
+        warmuptimer = 0
+
+        For aa As Integer = 1 To NUM_OF_ROWS
+            'ref-------------------------
+            refpulselabel(aa).Text = 0
+            testtimerlabel(aa).Text = 0
+            reftemplabel(aa).Text = 0
+            pressureLabel(aa).Text = 0
+            stdVolLabel(aa).Text = 0
+
+
+            'dgm --------------------------
+            testtemplabel(aa).Text = 0
+            testpulselabel(aa).Text = 0
+            xdstdvollabel(aa).Text = 0
+        Next
+
     End Sub
 
     Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
+        resetOutput() 'this is putting me at the wrong currNum
+        Get_Registry_Values()
+
+
+        'TODO RESET ALL VALS AND STUFF
+        'Me.Close()
+    End Sub
+
+    Private Sub toFileButton_Click(sender As Object, e As EventArgs) Handles toFileButton.Click
+        Dim sFileName As String
+
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+            sFileName = SaveFileDialog1.FileName
+            writeToFile(sFileName)
+        End If
+    End Sub
+
+    Private Sub onlyNumsInInput()
+        Dim shouldend As Boolean = False
+        fooflowrate = 0.0
+        fooendvol = 0.0
+        foowarmup = 0.0
+        If (Not shouldend) Then
+            For dd As Integer = 1 To NUM_OF_ROWS
+                Try
+                    fooflowrate = CDbl(flowratetxtbox(dd).Text)
+                    fooendvol = CDbl(endvoltxtbox(dd).Text)
+                    foowarmup = CDbl(warmuptxtbox(dd).Text)
+                Catch ex As Exception
+                    shouldend = True
+                    'send error form
+                    GS_errorText = "Only Use Number in Input"
+                    ErrorForm.StartPosition = FormStartPosition.CenterScreen
+                    ErrorForm.ShowDialog()
+                    'Return
+                End Try
+            Next
+        End If
+
 
     End Sub
 
-    Private Sub IconButton3_Click(sender As Object, e As EventArgs)
-        Dim x As New Configure
-        x.StartPosition = FormStartPosition.CenterScreen
-        x.ShowDialog()
+    Public Sub Tx_2_Console(sCommand As String, sValue As String)
+        Dim sTemp As String
+        Dim sCS As String
+        Dim iCS As Integer
+        Dim i As Integer
+        sTemp = sCommand & sValue & " "
+        iCS = 0
+        For i = 1 To Len(sTemp)
+
+            iCS += Asc(Mid(sTemp, i, 1))
+
+        Next
+        While iCS > 9999
+
+            iCS -= 10000
+
+        End While
+        sCS = CStr(iCS)
+        While Len(sCS) < 4
+
+            sCS = "0" & sCS
+
+        End While
+
+        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
+        'Gs_TXed = sTemp
+        'Gi_Tx_Elapse = 0
+        'Gs_TX_Debug = sTemp
+        Try
+            xd502port.Write(sTemp)
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Dim certification As New Certification
-
-        certification.StartPosition = FormStartPosition.CenterScreen
-        certification.ShowDialog()
+    Private Sub requestCalibration()
+        'Public Sub Tx_2_Console(sCommand As String, sValue As String)
+        Tx_2_Console("C", "4")
     End Sub
 End Class

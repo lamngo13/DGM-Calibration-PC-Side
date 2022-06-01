@@ -10,12 +10,12 @@ Module _Public
     Public Gi_inttrimmedcrc As Integer
     Public Gs_tempunits As String = "Celsius"
     Public testpulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Public usrStdTemp As Double = 20 ' 20 degrees celsius
-    Public usrStdPressure As Double = 760 '760 mmHg
+    Public Gd_usrStdTemp As Double
+    Public usrStdPressure As Double = 760 '760 mmHg  'THIS SHOULD NEVER CHANGE
     Public Gb_testgo As Boolean = True
     Public Gs_dialogText As String
     Public GS_errorText As String
-    Public Gs_UnitType As String = "Celsius"
+    Public Gs_UnitType As String
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670
@@ -190,17 +190,24 @@ Module _Public
             Return returnable
         End Function
 
-        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double, inUnits As String) As Double
+        Public Shared Function standardize(invol As Double, inTemp As Double, inPressure As Double) As Double
             Dim returnable As Double = invol
             Dim tempusrStdTemp
             'Volume * (stdtemp/measuredtemp) * (measuredpressure/stdpressure)
-            If (inUnits = "Cel") Then
+            If (Gs_UnitType = "met") Then
                 inTemp += 273.15
-                tempusrStdTemp = usrStdTemp + 273.15
+                tempusrStdTemp = Gd_usrStdTemp + 273.15
                 returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
+            Else
+                If (Gs_UnitType = "imp") Then
+                    'convert to celsius then kelvin for temp
+                    inTemp = (conversions.convertFarToCel(inTemp)) + 273.15
+                    tempusrStdTemp = (conversions.convertFarToCel(tempusrStdTemp)) + 273.15
+                    inPressure *= 25.4   'convert inchesHg to mmHg
+                    returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
+                End If
             End If
-            'MAYBE WRONG GOTTA CHECK THIS
-            'returnable = (invol * (usrStdTemp / inTemp) * (usrStdPressure / inPressure))
+
             Return returnable
 
         End Function

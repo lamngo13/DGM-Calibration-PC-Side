@@ -28,7 +28,6 @@ Partial Class Configure
         Me.usrstdtemptxtbox = New System.Windows.Forms.TextBox()
         Me.celsiusradiobutton = New System.Windows.Forms.RadioButton()
         Me.fahrenheitradiobutton = New System.Windows.Forms.RadioButton()
-        Me.kelvinradiobutton = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.usrcorrectionfactortxtbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
@@ -76,7 +75,7 @@ Partial Class Configure
         Me.celsiusradiobutton.AutoSize = True
         Me.celsiusradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.celsiusradiobutton.ForeColor = System.Drawing.SystemColors.Control
-        Me.celsiusradiobutton.Location = New System.Drawing.Point(428, 34)
+        Me.celsiusradiobutton.Location = New System.Drawing.Point(240, 166)
         Me.celsiusradiobutton.Name = "celsiusradiobutton"
         Me.celsiusradiobutton.Size = New System.Drawing.Size(78, 24)
         Me.celsiusradiobutton.TabIndex = 4
@@ -89,7 +88,7 @@ Partial Class Configure
         Me.fahrenheitradiobutton.AutoSize = True
         Me.fahrenheitradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.fahrenheitradiobutton.ForeColor = System.Drawing.SystemColors.Control
-        Me.fahrenheitradiobutton.Location = New System.Drawing.Point(512, 34)
+        Me.fahrenheitradiobutton.Location = New System.Drawing.Point(324, 166)
         Me.fahrenheitradiobutton.Name = "fahrenheitradiobutton"
         Me.fahrenheitradiobutton.Size = New System.Drawing.Size(104, 24)
         Me.fahrenheitradiobutton.TabIndex = 5
@@ -97,25 +96,12 @@ Partial Class Configure
         Me.fahrenheitradiobutton.Text = "Fahrenheit"
         Me.fahrenheitradiobutton.UseVisualStyleBackColor = True
         '
-        'kelvinradiobutton
-        '
-        Me.kelvinradiobutton.AutoSize = True
-        Me.kelvinradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.kelvinradiobutton.ForeColor = System.Drawing.SystemColors.Control
-        Me.kelvinradiobutton.Location = New System.Drawing.Point(622, 34)
-        Me.kelvinradiobutton.Name = "kelvinradiobutton"
-        Me.kelvinradiobutton.Size = New System.Drawing.Size(68, 24)
-        Me.kelvinradiobutton.TabIndex = 6
-        Me.kelvinradiobutton.TabStop = True
-        Me.kelvinradiobutton.Text = "Kelvin"
-        Me.kelvinradiobutton.UseVisualStyleBackColor = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(12, 96)
+        Me.Label1.Location = New System.Drawing.Point(12, 267)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(225, 20)
         Me.Label1.TabIndex = 7
@@ -123,7 +109,7 @@ Partial Class Configure
         '
         'usrcorrectionfactortxtbox
         '
-        Me.usrcorrectionfactortxtbox.Location = New System.Drawing.Point(239, 98)
+        Me.usrcorrectionfactortxtbox.Location = New System.Drawing.Point(239, 269)
         Me.usrcorrectionfactortxtbox.Name = "usrcorrectionfactortxtbox"
         Me.usrcorrectionfactortxtbox.Size = New System.Drawing.Size(157, 20)
         Me.usrcorrectionfactortxtbox.TabIndex = 8
@@ -136,7 +122,6 @@ Partial Class Configure
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.usrcorrectionfactortxtbox)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.kelvinradiobutton)
         Me.Controls.Add(Me.fahrenheitradiobutton)
         Me.Controls.Add(Me.celsiusradiobutton)
         Me.Controls.Add(Me.usrstdtemptxtbox)
@@ -156,7 +141,6 @@ Partial Class Configure
     Friend WithEvents usrstdtemptxtbox As TextBox
     Friend WithEvents celsiusradiobutton As RadioButton
     Friend WithEvents fahrenheitradiobutton As RadioButton
-    Friend WithEvents kelvinradiobutton As RadioButton
     Friend WithEvents Label1 As Label
     Friend WithEvents usrcorrectionfactortxtbox As TextBox
 End Class
