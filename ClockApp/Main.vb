@@ -29,7 +29,7 @@
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
 
-    Dim xdGivenScaling As Double
+    Dim xdGivenScaling As Double = 0.0
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -118,6 +118,7 @@
     Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
+    Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim didItPass As Boolean
 
@@ -153,7 +154,7 @@
     Dim avgStdTestVolPostTest As Double
     Dim processingDone As Boolean = False
     Dim havesScalingFactor As Boolean = False
-    Dim givenxdScaling As Double = 0.0
+    'Dim givenxdScaling As Double = 0.0
 
 
 
@@ -705,18 +706,20 @@
                             testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
                             stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                             testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                            hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
-                        End If
+                        hypotheticaltestxdstdvol(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)
+                    End If
 
 
                     'HERE IS WHERE I DO INIT VALS FOR CERTIFICATION****************************************
                     'SAVE INIT VALS HERE *******************************
                     If (Not thisTestSavedInits(currenttest)) Then
+                        'xdGivenScaling
                         thisTestSavedInits(currenttest) = True
                         'now this will only execute once per test
                         filTestTime(currenttest) = bigtimer
                         'filOrrifice??
-                        'uutpulsefinal
+                        filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)
                         filOutletInitTemp(currenttest) = testreftemp(currenttest)
@@ -730,7 +733,10 @@
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
-                        'SAVE FINAL VALS HERE*****************
+                        'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
+                        filuutPulseFinal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)   'init pulses idk tho
+                        'TODO CONVERT THIS TO INT??????
+                        filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         If (Not thisTestSavedFinals(currenttest)) Then
                             'FINAL VALS HERE
                             thisTestSavedFinals(currenttest) = True
