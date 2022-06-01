@@ -734,8 +734,14 @@
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
-                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 3)
-                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 3)
+                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) * 60 / testtimers(currenttest)), 3)
+                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) * 60 / testtimers(currenttest)), 3)
+                    '  If (testtimers(currenttest) >= 30) Then
+                    ' Dim bruh99 = stdrefvols(currenttest)
+                    'Dim bruh100 = testtimers(currenttest)
+                    'Dim bruh101 = filrefflowrate(currenttest)
+                    'End If
+
                     filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
 
 
@@ -1273,6 +1279,7 @@
                 'flow rate for xd
                 printable &= "UUT Flow Rate: " + CStr((filuutFlowRate(cc))) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
                 'y value
+                'printable &= "Y Value: " + 
                 'variation
                 'delta h
                 'delta h @
