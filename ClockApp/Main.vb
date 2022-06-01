@@ -110,6 +110,9 @@
     Dim filuutPulseTotal = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim filuutInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     'meter pressure?
     Dim filrefInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filrefFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -716,13 +719,15 @@
                         'xdGivenScaling
                         thisTestSavedInits(currenttest) = True
                         'now this will only execute once per test
-                        filTestTime(currenttest) = bigtimer
+
                         'filOrrifice??
                         filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)
                         filOutletInitTemp(currenttest) = testreftemp(currenttest)
+                        filrefInitVol(currenttest) = refvols(currenttest)
+                        filrefStdInitVol(currenttest) = stdrefvols(currenttest)
                         'pressure?
 
                         'save init vals
@@ -734,9 +739,18 @@
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
                         'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
+                        filTestTime(currenttest) = testtimers(currenttest)
+                        filuutFinalTemp(currenttest) = testxdtemp(currenttest)
+                        filOutlsetFinalTemp = testreftemp(currenttest)
+                        filrefFinalVol(currenttest) = refvols(currenttest)
+                        filrefTotalVol(currenttest) = refvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor)
+                        filrefStdFinalVol(currenttest) = stdrefvols(currenttest)
+                        filrefStdTotalVol(currenttest) = stdrefvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor) ' IDK ABT THIS
+
                         filuutPulseFinal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)   'init pulses idk tho
                         'TODO CONVERT THIS TO INT??????
                         filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        'STANDARDDIZED VALS FOR UUT
                         If (Not thisTestSavedFinals(currenttest)) Then
                             'FINAL VALS HERE
                             thisTestSavedFinals(currenttest) = True
