@@ -8,7 +8,14 @@
                 GS_errorText = "enter a standard temp"
                 ErrorForm.ShowDialog()
             Else
-                Me.Close()
+                Try
+                    Gd_usrStdTemp = CDbl(usrstdtemptxtbox.Text)
+                    Me.Close()
+                Catch ex As Exception
+                    GS_errorText = "enter a number"
+                    ErrorForm.ShowDialog()
+                End Try
+                'Me.Close()
             End If
         End If
         '    Me.Close()
@@ -36,10 +43,6 @@
     Private Sub Configure_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ErrorForm As New ErrorForm
         ErrorForm.StartPosition = FormStartPosition.CenterScreen
-        ErrorForm.ShowDialog()
     End Sub
 
-    Private Sub usrstdtemptxtbox_TextChanged(sender As Object, e As EventArgs) Handles usrstdtemptxtbox.TextChanged
-        Gd_usrStdTemp = CDbl(usrstdtemptxtbox.Text)
-    End Sub
 End Class
