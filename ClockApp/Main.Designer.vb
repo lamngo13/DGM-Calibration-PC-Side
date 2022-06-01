@@ -1379,7 +1379,7 @@ Partial Class Main
         Me.avglabel33.Name = "avglabel33"
         Me.avglabel33.Size = New System.Drawing.Size(94, 20)
         Me.avglabel33.TabIndex = 136
-        Me.avglabel33.Text = "123456789"
+        Me.avglabel33.Text = "0"
         Me.avglabel33.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btnconnect
@@ -1925,7 +1925,7 @@ Partial Class Main
         Me.percenterrorreallbl.Name = "percenterrorreallbl"
         Me.percenterrorreallbl.Size = New System.Drawing.Size(94, 20)
         Me.percenterrorreallbl.TabIndex = 183
-        Me.percenterrorreallbl.Text = "123456789"
+        Me.percenterrorreallbl.Text = "0"
         Me.percenterrorreallbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label15

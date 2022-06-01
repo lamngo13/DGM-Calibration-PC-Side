@@ -449,6 +449,7 @@
         'to process after test
         If (testover And Not processingDone) Then
             processingDone = True
+            toFileButton.Visible = True
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
@@ -498,6 +499,7 @@
 
         'If overall test is currently going
         If (testongoing) Then
+            messagetxtbox.Text = "TEST ONGOING"
             If (Gb_testgo) Then
                 'ensure correct string:
                 teststatuslabel2.Text = "Running Test: " + CStr(currenttest)
