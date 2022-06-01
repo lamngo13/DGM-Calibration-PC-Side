@@ -152,6 +152,8 @@
 
     Dim numRealTests As Integer
 
+    Dim debugAbort As Boolean = False
+
 
 
 
@@ -418,7 +420,13 @@
         End Try
 
 
-
+        'If (debugAbort) Then
+        '    Dim bruhmachine As Integer = 9
+        '    findRunnableTests()
+        '    testongoing = True
+        '    duringwarmup = True
+        '    currenttest = 1
+        'End If
         'update labels with good values **************************************************
         'ref ------------------
         Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
@@ -1013,6 +1021,9 @@
         testongoing = False
         testover = False
         duringwarmup = True
+        Gb_testgo = True
+        debugAbort = True
+        warmuptimer = 0
 
         For aa As Integer = 1 To NUM_OF_ROWS
             'ref-------------------------
