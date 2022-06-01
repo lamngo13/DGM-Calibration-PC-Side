@@ -22,6 +22,11 @@
     Const XD_STRING_TYPE As Integer = 4
     Const INBOUND_STRING_TYPE_ACTUAL As String = "A"
     Const INBOUND_STRING_TYPE_CALIBRATION As String = "C"
+    Const sBLOCK_START As String = ChrW(1)
+    Const BLOCK_MARKER_CS As String = Chr(31)
+    Const FIND_SF As Integer = 19
+
+    '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
 
     Dim xdGivenScaling As Double
@@ -144,6 +149,8 @@
     Dim avgStdRefVolPostTest As Double
     Dim avgStdTestVolPostTest As Double
     Dim processingDone As Boolean = False
+    Dim havesScalingFactor As Boolean = False
+    Dim givenxdScaling As Double = 0.0
 
 
 
@@ -314,6 +321,12 @@
         'diable inputs if test ongoing
         disableButtons()
 
+        'check to see if we have scaling factor
+        If (Not havesScalingFactor) Then
+            requestCalibration()
+            'loop this !
+        End If
+
         'update label units based on unit type
         If (Gs_UnitType = "met") Then
             Label7.Text = "Volume" + vbCrLf + "(Litres)"
@@ -476,18 +489,34 @@
                         'xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
                         Try
                             xdthisinputtype = Trim(s_xd_in(XD_STRING_TYPE))
-                            ' If () Then
+                            If (xdthisinputtype = "A") Then
+                                If (xdCalculatedCS = xdParsedCheckInt) Then
+                                    xdUpdateVals()
+                                    consecBadCSVals = 0  ' resets bad counter
+                                End If
+                            Else
+                                If (xdthisinputtype = "C") Then
+                                    Try
+                                        'scan for the scaling factor
+                                        xdGivenScaling = s_xd_in(FIND_SF)
+                                        havesScalingFactor = True
+                                    Catch ex As Exception
+
+                                    End Try
+
+                                End If
+                            End If
                         Catch ex As Exception
 
                         End Try
 
                         'update values if good
-                        If (xdCalculatedCS = xdParsedCheckInt) Then
-                                xdUpdateVals()
-                                consecBadCSVals = 0  ' resets bad counter
-                            End If
+                        'If (xdCalculatedCS = xdParsedCheckInt) Then
+                        '        xdUpdateVals()
+                        '        consecBadCSVals = 0  ' resets bad counter
+                        '    End If
 
-                        End If
+                    End If
                     End If
 
             End If
@@ -1195,5 +1224,46 @@
         End If
 
 
+    End Sub
+
+    Public Sub Tx_2_Console(sCommand As String, sValue As String)
+        Dim sTemp As String
+        Dim sCS As String
+        Dim iCS As Integer
+        Dim i As Integer
+        sTemp = sCommand & sValue & " "
+        iCS = 0
+        For i = 1 To Len(sTemp)
+
+            iCS += Asc(Mid(sTemp, i, 1))
+
+        Next
+        While iCS > 9999
+
+            iCS -= 10000
+
+        End While
+        sCS = CStr(iCS)
+        While Len(sCS) < 4
+
+            sCS = "0" & sCS
+
+        End While
+
+        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
+        'Gs_TXed = sTemp
+        'Gi_Tx_Elapse = 0
+        'Gs_TX_Debug = sTemp
+        Try
+            xd502port.Write(sTemp)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub requestCalibration()
+        'Public Sub Tx_2_Console(sCommand As String, sValue As String)
+        Tx_2_Console("C", "4")
     End Sub
 End Class
