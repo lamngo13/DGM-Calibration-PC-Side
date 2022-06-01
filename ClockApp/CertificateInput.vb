@@ -52,10 +52,38 @@ Public Class Certification
     End Sub
 
     Private Sub Certification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'AZN grab values from main screen
         foo.Text = Main.flowratetxtbox1.Text
+
+        ' gave compile error
+        '  For o As Integer = 1 To 6
+        'flowratetxtbox(o).Text = Main.flowratetxtbox(o).Text   
+        'Next
+
+        flowratetxtbox2.Text = Main.flowratetxtbox2.Text
+        endvoltxtbox2.Text = Main.endvoltxtbox2.Text
+        endvoltxtbox2.Text = Main.endvoltxtbox2.Text
+        warmuptxtbox2.Text = Main.warmuptxtbox2.Text
+        stdVolLabel2.Text = Main.stdVolLabel2.Text
+        testpulselabel2.Text = Main.testpulselabel2.Text
+        refpulselabel2.Text = Main.refpulselabel2.Text
+        reftemplabel2.Text = Main.reftemplabel2.Text
+        testtemplabel2.Text = Main.testtemplabel2.Text
+        pressureLabel2.Text = Main.pressureLabel2.Text
+        testtimerlabel2.Text = Main.testtimerlabel2.Text
+
+
+
+
+
+
     End Sub
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
         makePDF()
+    End Sub
+
+    Private Sub foo_TextChanged(sender As Object, e As EventArgs) Handles foo.TextChanged
+
     End Sub
 End Class
