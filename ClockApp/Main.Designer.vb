@@ -51,28 +51,24 @@ Partial Class Main
         Me.warmuptxtbox3 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox2 = New System.Windows.Forms.TextBox()
         Me.warmuptxtbox1 = New System.Windows.Forms.TextBox()
-        Me.refpulselabel0 = New System.Windows.Forms.Label()
         Me.refpulselabel1 = New System.Windows.Forms.Label()
         Me.refpulselabel2 = New System.Windows.Forms.Label()
         Me.refpulselabel3 = New System.Windows.Forms.Label()
         Me.refpulselabel4 = New System.Windows.Forms.Label()
         Me.refpulselabel5 = New System.Windows.Forms.Label()
         Me.refpulselabel6 = New System.Windows.Forms.Label()
-        Me.testpulselabel0 = New System.Windows.Forms.Label()
         Me.testpulselabel6 = New System.Windows.Forms.Label()
         Me.testpulselabel5 = New System.Windows.Forms.Label()
         Me.testpulselabel4 = New System.Windows.Forms.Label()
         Me.testpulselabel3 = New System.Windows.Forms.Label()
         Me.testpulselabel2 = New System.Windows.Forms.Label()
         Me.testpulselabel1 = New System.Windows.Forms.Label()
-        Me.reftemplabel0 = New System.Windows.Forms.Label()
         Me.reftemplabel6 = New System.Windows.Forms.Label()
         Me.reftemplabel5 = New System.Windows.Forms.Label()
         Me.reftemplabel4 = New System.Windows.Forms.Label()
         Me.reftemplabel3 = New System.Windows.Forms.Label()
         Me.reftemplabel2 = New System.Windows.Forms.Label()
         Me.reftemplabel1 = New System.Windows.Forms.Label()
-        Me.testtemplabel0 = New System.Windows.Forms.Label()
         Me.testtemplabel6 = New System.Windows.Forms.Label()
         Me.testtemplabel5 = New System.Windows.Forms.Label()
         Me.testtemplabel4 = New System.Windows.Forms.Label()
@@ -108,14 +104,12 @@ Partial Class Main
         Me.stdVolLabel3 = New System.Windows.Forms.Label()
         Me.stdVolLabel2 = New System.Windows.Forms.Label()
         Me.stdVolLabel1 = New System.Windows.Forms.Label()
-        Me.stdVolLabel0 = New System.Windows.Forms.Label()
         Me.xdstdvollabel6 = New System.Windows.Forms.Label()
         Me.xdstdvollabel5 = New System.Windows.Forms.Label()
         Me.xdstdvollabel4 = New System.Windows.Forms.Label()
         Me.xdstdvollabel3 = New System.Windows.Forms.Label()
         Me.xdstdvollabel2 = New System.Windows.Forms.Label()
         Me.xdstdvollabel1 = New System.Windows.Forms.Label()
-        Me.xdstdvollabel0 = New System.Windows.Forms.Label()
         Me.avglabel1 = New System.Windows.Forms.Label()
         Me.avglabel2 = New System.Windows.Forms.Label()
         Me.resultLabel1 = New System.Windows.Forms.Label()
@@ -553,18 +547,6 @@ Partial Class Main
         Me.warmuptxtbox1.Text = "1"
         Me.warmuptxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'refpulselabel0
-        '
-        Me.refpulselabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.refpulselabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.refpulselabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.refpulselabel0.Location = New System.Drawing.Point(371, 189)
-        Me.refpulselabel0.Name = "refpulselabel0"
-        Me.refpulselabel0.Size = New System.Drawing.Size(70, 17)
-        Me.refpulselabel0.TabIndex = 34
-        Me.refpulselabel0.Text = "Ref Meter"
-        Me.refpulselabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'refpulselabel1
         '
         Me.refpulselabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(107, Byte), Integer))
@@ -636,18 +618,6 @@ Partial Class Main
         Me.refpulselabel6.TabIndex = 40
         Me.refpulselabel6.Text = "0"
         Me.refpulselabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'testpulselabel0
-        '
-        Me.testpulselabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.testpulselabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.testpulselabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.testpulselabel0.Location = New System.Drawing.Point(524, 189)
-        Me.testpulselabel0.Name = "testpulselabel0"
-        Me.testpulselabel0.Size = New System.Drawing.Size(76, 17)
-        Me.testpulselabel0.TabIndex = 41
-        Me.testpulselabel0.Text = "Test Meter"
-        Me.testpulselabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'testpulselabel6
         '
@@ -721,19 +691,6 @@ Partial Class Main
         Me.testpulselabel1.Text = "0"
         Me.testpulselabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'reftemplabel0
-        '
-        Me.reftemplabel0.AutoSize = True
-        Me.reftemplabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.reftemplabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.reftemplabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.reftemplabel0.Location = New System.Drawing.Point(881, 189)
-        Me.reftemplabel0.Name = "reftemplabel0"
-        Me.reftemplabel0.Size = New System.Drawing.Size(70, 17)
-        Me.reftemplabel0.TabIndex = 54
-        Me.reftemplabel0.Text = "Ref Meter" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.reftemplabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'reftemplabel6
         '
         Me.reftemplabel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer))
@@ -805,19 +762,6 @@ Partial Class Main
         Me.reftemplabel1.TabIndex = 55
         Me.reftemplabel1.Text = "0"
         Me.reftemplabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'testtemplabel0
-        '
-        Me.testtemplabel0.AutoSize = True
-        Me.testtemplabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.testtemplabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.testtemplabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.testtemplabel0.Location = New System.Drawing.Point(955, 189)
-        Me.testtemplabel0.Name = "testtemplabel0"
-        Me.testtemplabel0.Size = New System.Drawing.Size(76, 17)
-        Me.testtemplabel0.TabIndex = 61
-        Me.testtemplabel0.Text = "Test Meter" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.testtemplabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'testtemplabel6
         '
@@ -1139,12 +1083,12 @@ Partial Class Main
         Me.pressureLabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.pressureLabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pressureLabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.pressureLabel0.Location = New System.Drawing.Point(886, 276)
+        Me.pressureLabel0.Location = New System.Drawing.Point(890, 270)
         Me.pressureLabel0.Name = "pressureLabel0"
-        Me.pressureLabel0.Size = New System.Drawing.Size(65, 17)
+        Me.pressureLabel0.Size = New System.Drawing.Size(80, 53)
         Me.pressureLabel0.TabIndex = 97
         Me.pressureLabel0.Text = "Pressure"
-        Me.pressureLabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.pressureLabel0.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'stdVolLabel6
         '
@@ -1218,18 +1162,6 @@ Partial Class Main
         Me.stdVolLabel1.Text = "0"
         Me.stdVolLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'stdVolLabel0
-        '
-        Me.stdVolLabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.stdVolLabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.stdVolLabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.stdVolLabel0.Location = New System.Drawing.Point(463, 189)
-        Me.stdVolLabel0.Name = "stdVolLabel0"
-        Me.stdVolLabel0.Size = New System.Drawing.Size(55, 17)
-        Me.stdVolLabel0.TabIndex = 104
-        Me.stdVolLabel0.Text = "Std Ref" & Global.Microsoft.VisualBasic.ChrW(13)
-        Me.stdVolLabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'xdstdvollabel6
         '
         Me.xdstdvollabel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer))
@@ -1301,18 +1233,6 @@ Partial Class Main
         Me.xdstdvollabel1.TabIndex = 112
         Me.xdstdvollabel1.Text = "0"
         Me.xdstdvollabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'xdstdvollabel0
-        '
-        Me.xdstdvollabel0.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.xdstdvollabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.xdstdvollabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.xdstdvollabel0.Location = New System.Drawing.Point(815, 189)
-        Me.xdstdvollabel0.Name = "xdstdvollabel0"
-        Me.xdstdvollabel0.Size = New System.Drawing.Size(61, 17)
-        Me.xdstdvollabel0.TabIndex = 111
-        Me.xdstdvollabel0.Text = "Std Test" & Global.Microsoft.VisualBasic.ChrW(13)
-        Me.xdstdvollabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'avglabel1
         '
@@ -1745,7 +1665,7 @@ Partial Class Main
         Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label12.Location = New System.Drawing.Point(806, 265)
+        Me.Label12.Location = New System.Drawing.Point(804, 272)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(80, 53)
         Me.Label12.TabIndex = 161
@@ -2001,14 +1921,12 @@ Partial Class Main
         Me.Controls.Add(Me.xdstdvollabel3)
         Me.Controls.Add(Me.xdstdvollabel2)
         Me.Controls.Add(Me.xdstdvollabel1)
-        Me.Controls.Add(Me.xdstdvollabel0)
         Me.Controls.Add(Me.stdVolLabel6)
         Me.Controls.Add(Me.stdVolLabel5)
         Me.Controls.Add(Me.stdVolLabel4)
         Me.Controls.Add(Me.stdVolLabel3)
         Me.Controls.Add(Me.stdVolLabel2)
         Me.Controls.Add(Me.stdVolLabel1)
-        Me.Controls.Add(Me.stdVolLabel0)
         Me.Controls.Add(Me.pressureLabel6)
         Me.Controls.Add(Me.pressureLabel5)
         Me.Controls.Add(Me.pressureLabel4)
@@ -2031,28 +1949,24 @@ Partial Class Main
         Me.Controls.Add(Me.testtemplabel3)
         Me.Controls.Add(Me.testtemplabel2)
         Me.Controls.Add(Me.testtemplabel1)
-        Me.Controls.Add(Me.testtemplabel0)
         Me.Controls.Add(Me.reftemplabel6)
         Me.Controls.Add(Me.reftemplabel5)
         Me.Controls.Add(Me.reftemplabel4)
         Me.Controls.Add(Me.reftemplabel3)
         Me.Controls.Add(Me.reftemplabel2)
         Me.Controls.Add(Me.reftemplabel1)
-        Me.Controls.Add(Me.reftemplabel0)
         Me.Controls.Add(Me.testpulselabel6)
         Me.Controls.Add(Me.testpulselabel5)
         Me.Controls.Add(Me.testpulselabel4)
         Me.Controls.Add(Me.testpulselabel3)
         Me.Controls.Add(Me.testpulselabel2)
         Me.Controls.Add(Me.testpulselabel1)
-        Me.Controls.Add(Me.testpulselabel0)
         Me.Controls.Add(Me.refpulselabel6)
         Me.Controls.Add(Me.refpulselabel5)
         Me.Controls.Add(Me.refpulselabel4)
         Me.Controls.Add(Me.refpulselabel3)
         Me.Controls.Add(Me.refpulselabel2)
         Me.Controls.Add(Me.refpulselabel1)
-        Me.Controls.Add(Me.refpulselabel0)
         Me.Controls.Add(Me.warmuptxtbox6)
         Me.Controls.Add(Me.warmuptxtbox5)
         Me.Controls.Add(Me.warmuptxtbox4)
@@ -2157,27 +2071,23 @@ Partial Class Main
     Friend WithEvents warmuptxtbox3 As TextBox
     Friend WithEvents warmuptxtbox2 As TextBox
     Friend WithEvents warmuptxtbox1 As TextBox
-    Friend WithEvents refpulselabel0 As Label
     Friend WithEvents refpulselabel2 As Label
     Friend WithEvents refpulselabel3 As Label
     Friend WithEvents refpulselabel4 As Label
     Friend WithEvents refpulselabel5 As Label
     Friend WithEvents refpulselabel6 As Label
-    Friend WithEvents testpulselabel0 As Label
     Friend WithEvents testpulselabel6 As Label
     Friend WithEvents testpulselabel5 As Label
     Friend WithEvents testpulselabel4 As Label
     Friend WithEvents testpulselabel3 As Label
     Friend WithEvents testpulselabel2 As Label
     Friend WithEvents testpulselabel1 As Label
-    Friend WithEvents reftemplabel0 As Label
     Friend WithEvents reftemplabel6 As Label
     Friend WithEvents reftemplabel5 As Label
     Friend WithEvents reftemplabel4 As Label
     Friend WithEvents reftemplabel3 As Label
     Friend WithEvents reftemplabel2 As Label
     Friend WithEvents reftemplabel1 As Label
-    Friend WithEvents testtemplabel0 As Label
     Friend WithEvents testtemplabel6 As Label
     Friend WithEvents testtemplabel5 As Label
     Friend WithEvents testtemplabel4 As Label
@@ -2214,14 +2124,12 @@ Partial Class Main
     Friend WithEvents stdVolLabel3 As Label
     Friend WithEvents stdVolLabel2 As Label
     Public WithEvents stdVolLabel1 As Label
-    Friend WithEvents stdVolLabel0 As Label
     Friend WithEvents xdstdvollabel6 As Label
     Friend WithEvents xdstdvollabel5 As Label
     Friend WithEvents xdstdvollabel4 As Label
     Friend WithEvents xdstdvollabel3 As Label
     Friend WithEvents xdstdvollabel2 As Label
     Friend WithEvents xdstdvollabel1 As Label
-    Friend WithEvents xdstdvollabel0 As Label
     Friend WithEvents avglabel1 As Label
     Friend WithEvents avglabel2 As Label
     Friend WithEvents resultLabel1 As Label

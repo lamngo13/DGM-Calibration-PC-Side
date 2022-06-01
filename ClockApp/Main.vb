@@ -336,17 +336,17 @@
             Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
             Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
             Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(Celsius)"
-            Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(Celsius)"
+            Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
+            Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
         Else
             If (Gs_UnitType = "imp") Then
-                Label7.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label8.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label9.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label10.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label11.Text = "Temp" + vbCrLf + "(Fahrenheit)"
-                Label12.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                Label7.Text = "Volume" + vbCrLf + "(Cu Ft.)"
+                Label8.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
+                Label9.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
+                Label10.Text = "Volume" + vbCrLf + "(Cu. Ft)"
+                Label11.Text = "Temp" + vbCrLf + "(°F)"
+                Label12.Text = "Temp" + vbCrLf + "(°F)"
                 pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
             End If
         End If
