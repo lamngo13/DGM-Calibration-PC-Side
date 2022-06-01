@@ -46,3 +46,9 @@ C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.vbproj.CopyCompl
 C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.exe
 C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.xml
 C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\obj\Debug\ClockApp.pdb
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\PdfSharp.Charting.dll
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\PdfSharp.dll
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\PdfSharp.xml
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\PdfSharp.Charting.xml
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\de\PdfSharp.resources.dll
+C:\apex\DGM\DGM-Calibration-PC-Side\ClockApp\bin\Debug\de\PdfSharp.Charting.resources.dll
