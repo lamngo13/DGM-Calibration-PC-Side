@@ -71,17 +71,18 @@
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
-    Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
-    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuptimes = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim testusrflowrate = New Integer() {0, 0, 0, 0, 0, 0, 0}
+
+    Dim testtimers = New Double() {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
+    Dim testwarmups = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim warmuppulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim xdWarmupVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim testreftemp = New Double() {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-    Dim endstdrefvols = New Double() {9, 9, 9, 9, 9, 9, 9} ' DOUBLE
+    Dim endstdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim rowused = New Boolean() {False, False, False, False, False, False, False} ' BOOLEANS
 
@@ -995,11 +996,46 @@
         stream_writer.Close()
     End Sub
 
-    Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
-        Get_Registry_Values()
+    Private Sub resetOutput()
+        testtimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
+        testwarmups = {0, 0, 0, 0, 0, 0, 0}
+        warmuppulses = {0, 0, 0, 0, 0, 0, 0}
+        xdWarmupVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testreftemp = {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
+        refvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        pressureArr = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        stdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        endstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdtemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        testxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+        currenttest = 1
         testongoing = False
         testover = False
         duringwarmup = True
+
+        For aa As Integer = 1 To NUM_OF_ROWS
+            'ref-------------------------
+            refpulselabel(aa).Text = 0
+            testtimerlabel(aa).Text = 0
+            reftemplabel(aa).Text = 0
+            pressureLabel(aa).Text = 0
+            stdVolLabel(aa).Text = 0
+
+
+            'dgm --------------------------
+            testtemplabel(aa).Text = 0
+            testpulselabel(aa).Text = 0
+            xdstdvollabel(aa).Text = 0
+        Next
+
+    End Sub
+
+    Private Sub btnabort_Click(sender As Object, e As EventArgs) Handles btnabort.Click
+        resetOutput() 'this is putting me at the wrong currNum
+        Get_Registry_Values()
+
+
         'TODO RESET ALL VALS AND STUFF
         'Me.Close()
     End Sub
