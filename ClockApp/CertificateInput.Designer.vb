@@ -72,7 +72,6 @@ Partial Class Certification
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtCertTech = New System.Windows.Forms.TextBox()
         Me.btnstart = New FontAwesome.Sharp.IconButton()
-        Me.foo = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
@@ -188,7 +187,6 @@ Partial Class Certification
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.teststatuslabel1)
         Me.Panel1.Controls.Add(Me.teststatuslabel2)
-        Me.Panel1.Controls.Add(Me.foo)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.txtCertTech)
         Me.Panel1.Controls.Add(Me.btnstart)
@@ -785,13 +783,6 @@ Partial Class Certification
         Me.btnstart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnstart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnstart.UseVisualStyleBackColor = False
-        '
-        'foo
-        '
-        Me.foo.Location = New System.Drawing.Point(720, 12)
-        Me.foo.Name = "foo"
-        Me.foo.Size = New System.Drawing.Size(100, 20)
-        Me.foo.TabIndex = 192
         '
         'Label15
         '
@@ -2212,7 +2203,6 @@ Partial Class Certification
     Friend WithEvents Label14 As Label
     Friend WithEvents txtCertTech As TextBox
     Friend WithEvents btnstart As FontAwesome.Sharp.IconButton
-    Friend WithEvents foo As TextBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label24 As Label
     Friend WithEvents Label25 As Label

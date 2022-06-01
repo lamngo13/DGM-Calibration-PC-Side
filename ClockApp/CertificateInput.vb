@@ -6,9 +6,11 @@ Public Class Certification
 
     Const NUM_OF_ROWS As Integer = 6
     Sub makePDF()
+        'AZN
+
         ' Create a new PDF document
         Dim document As PdfDocument = New PdfDocument
-        document.Info.Title = "Created with PDFsharp"
+        document.Info.Title = "Apex Instruments Certificate of Calibration"
 
         ' Create an empty page
         Dim page As PdfPage = document.AddPage
@@ -16,22 +18,14 @@ Public Class Certification
         ' Get an XGraphics object for drawing
         Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
 
-        ' Draw crossing lines
-        Dim pen As XPen = New XPen(XColor.FromArgb(255, 0, 0))
-        gfx.DrawLine(pen, New XPoint(0, 0), New XPoint(page.Width.Point, page.Height.Point))
-        gfx.DrawLine(pen, New XPoint(page.Width.Point, 0), New XPoint(0, page.Height.Point))
-
-        ' Draw an ellipse
-        gfx.DrawEllipse(pen, 3 * page.Width.Point / 10, 3 * page.Height.Point / 10, 2 * page.Width.Point / 5, 2 * page.Height.Point / 5)
-
         ' Create a font
-        Dim font As XFont = New XFont("Verdana", 20, XFontStyle.Bold)
+        Dim font As XFont = New XFont("Futura PT", 20, XFontStyle.Bold)
 
         ' Draw the text
 
 
-        gfx.DrawString("Hello, World!", font, XBrushes.Black,
-    New XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.Center)
+        gfx.DrawString("Dry Gas Meter Certificate of Calibration", font, XBrushes.Black,
+    50, 50, XStringFormats.Center)
 
         Dim str As String
         str = txtCertUUTModel.Text
@@ -91,7 +85,6 @@ Public Class Certification
             endvoltxtbox(o).Text = strArray(o)
         Next
 
-
         strArray(1) = Main.warmuptxtbox1.Text
         strArray(2) = Main.warmuptxtbox2.Text
         strArray(3) = Main.warmuptxtbox3.Text
@@ -102,7 +95,6 @@ Public Class Certification
         For o As Integer = 1 To NUM_OF_ROWS
             warmuptxtbox(o).Text = strArray(o)
         Next
-
 
         strArray(1) = Main.refpulselabel1.Text
         strArray(2) = Main.refpulselabel2.Text
@@ -115,7 +107,6 @@ Public Class Certification
             refpulselabel(o).Text = strArray(o)
         Next
 
-
         strArray(1) = Main.testpulselabel1.Text
         strArray(2) = Main.testpulselabel2.Text
         strArray(3) = Main.testpulselabel3.Text
@@ -126,7 +117,6 @@ Public Class Certification
         For o As Integer = 1 To NUM_OF_ROWS
             testpulselabel(o).Text = strArray(o)
         Next
-
 
         strArray(1) = Main.reftemplabel1.Text
         strArray(2) = Main.reftemplabel2.Text
@@ -139,7 +129,6 @@ Public Class Certification
             reftemplabel(o).Text = strArray(o)
         Next
 
-
         strArray(1) = Main.testtimerlabel1.Text
         strArray(2) = Main.testtimerlabel2.Text
         strArray(3) = Main.testtimerlabel3.Text
@@ -150,7 +139,6 @@ Public Class Certification
         For o As Integer = 1 To NUM_OF_ROWS
             testtimerlabel(o).Text = strArray(o)
         Next
-
 
         strArray(1) = Main.testtemplabel1.Text
         strArray(2) = Main.testtemplabel2.Text
@@ -196,17 +184,13 @@ Public Class Certification
             xdstdvollabel(o).Text = strArray(o)
         Next
 
-
-
-
-
     End Sub
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
         makePDF()
     End Sub
 
-    Private Sub foo_TextChanged(sender As Object, e As EventArgs) Handles foo.TextChanged
+    Private Sub foo_TextChanged(sender As Object, e As EventArgs) 
 
     End Sub
 End Class
