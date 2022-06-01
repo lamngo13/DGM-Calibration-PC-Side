@@ -721,7 +721,9 @@
                         'now this will only execute once per test
 
                         'filOrrifice??
-                        filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        'filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        Dim bruh37 As Double = xdWarmupVols(currenttest)
+                        filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) * xdGivenScaling), 2)   'init pulses idk tho
                         'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)

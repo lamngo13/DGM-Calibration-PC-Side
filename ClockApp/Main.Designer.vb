@@ -212,7 +212,7 @@ Partial Class Main
         Me.flowratetxtbox2.Name = "flowratetxtbox2"
         Me.flowratetxtbox2.Size = New System.Drawing.Size(58, 23)
         Me.flowratetxtbox2.TabIndex = 2
-        Me.flowratetxtbox2.Text = "2222"
+        Me.flowratetxtbox2.Text = "0.0"
         Me.flowratetxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'flowratetxtbox3
@@ -225,7 +225,7 @@ Partial Class Main
         Me.flowratetxtbox3.Name = "flowratetxtbox3"
         Me.flowratetxtbox3.Size = New System.Drawing.Size(58, 23)
         Me.flowratetxtbox3.TabIndex = 3
-        Me.flowratetxtbox3.Text = "3333"
+        Me.flowratetxtbox3.Text = "0.0"
         Me.flowratetxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'flowratetxtbox4
@@ -342,7 +342,7 @@ Partial Class Main
         Me.endvoltxtbox3.Name = "endvoltxtbox3"
         Me.endvoltxtbox3.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox3.TabIndex = 12
-        Me.endvoltxtbox3.Text = "1"
+        Me.endvoltxtbox3.Text = "0.0"
         Me.endvoltxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox2
@@ -355,7 +355,7 @@ Partial Class Main
         Me.endvoltxtbox2.Name = "endvoltxtbox2"
         Me.endvoltxtbox2.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox2.TabIndex = 11
-        Me.endvoltxtbox2.Text = "1"
+        Me.endvoltxtbox2.Text = "0.0"
         Me.endvoltxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvoltxtbox1
@@ -518,7 +518,7 @@ Partial Class Main
         Me.warmuptxtbox3.Name = "warmuptxtbox3"
         Me.warmuptxtbox3.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox3.TabIndex = 28
-        Me.warmuptxtbox3.Text = "1"
+        Me.warmuptxtbox3.Text = "0.0"
         Me.warmuptxtbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox2
@@ -531,7 +531,7 @@ Partial Class Main
         Me.warmuptxtbox2.Name = "warmuptxtbox2"
         Me.warmuptxtbox2.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox2.TabIndex = 27
-        Me.warmuptxtbox2.Text = "1"
+        Me.warmuptxtbox2.Text = "0.0"
         Me.warmuptxtbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'warmuptxtbox1
