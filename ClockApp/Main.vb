@@ -128,6 +128,7 @@
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
     Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim oldCurrTest As Integer = 1
+    Dim filuutcalcedpulses = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim didItPass As Boolean
 
@@ -735,6 +736,7 @@
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
                     filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 3)
                     filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 3)
+                    filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 0)
 
 
                     'IF IMPERIAL------------------------------------------
@@ -749,6 +751,7 @@
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                         filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
                         filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
+                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 0)
                     End If
 
 
@@ -1262,9 +1265,11 @@
                 printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
                 printable &= "Ref Std Flow Rate: " + CStr(filrefflowrate(cc)) + ", "
                 'Dim bruha As String = xdCurrStr
-                'calculated pulse counts for xd
-                'scaling factor for xd (given)
+                printable &= "UUT Totalizer: " + CStr(filuutcalcedpulses(cc)) + ", " 'calculated pulse counts for xd
+                'scaling factor for WHOMST? XD I ASSUME bruh
+                printable &= "Scaling Factor: " + CStr(xdGivenScaling) + ", "
                 'std vol for xd
+                printable &= "UUT?? Std Volume: " + CStr(testxdstdvol(cc)) + ", "
                 'flow rate for xd
                 printable &= "UUT Flow Rate: " + CStr((filuutFlowRate(cc))) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
                 'y value
