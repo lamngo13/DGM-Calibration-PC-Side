@@ -342,7 +342,7 @@
         End If
 
         If (weNeedPulseCountxd) Then
-            requestCalibration()
+            requestRaw()
         End If
 
         'update label units based on unit type
