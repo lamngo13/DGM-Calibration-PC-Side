@@ -278,6 +278,17 @@
         'diable inputs if test ongoing
         disableButtons()
 
+        'update label units based on unit type
+        If (Gs_UnitType = "met") Then
+            Label7.Text = "Volume" + vbCrLf + "(Litres)"
+            Label8.Text = "Volume" + vbCrLf + "(Litres)"
+            Label9.Text = "Volume" + vbCrLf + "(Litres)"
+            Label10.Text = "Volume" + vbCrLf + "(Litres)"
+            Label11.Text = "Temp" + vbCrLf + "(Celsius)"
+            Label12.Text = "Temp" + vbCrLf + "(Celsius)"
+            pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
+        End If
+
         'validate user input in real time
         'reWhiteInputsExistOnly()
 
@@ -1051,5 +1062,14 @@
 
         'TODO RESET ALL VALS AND STUFF
         'Me.Close()
+    End Sub
+
+    Private Sub toFileButton_Click(sender As Object, e As EventArgs) Handles toFileButton.Click
+        Dim sFileName As String
+
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+            sFileName = SaveFileDialog1.FileName
+            writeToFile(sFileName)
+        End If
     End Sub
 End Class
