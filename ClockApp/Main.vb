@@ -121,6 +121,7 @@
     Dim filrefTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutletInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefflowrate = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim xdflowrate As Double = 0.0
     Dim filuutFlowRate = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
@@ -302,7 +303,6 @@
         xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
-        xdflowrate = CDbl(s_xd_in(XD_FLOW_RATE_INPUT))
         Dim bruh4 As Double = filuutFlowRate(currenttest)
     End Sub
 
@@ -733,7 +733,8 @@
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
-                    filuutFlowRate(currenttest) = Math.Round(xdflowrate, 2)
+                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) / testtimers(currenttest)), 2)
+                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) / testtimers(currenttest)), 2)
 
 
                     'IF IMPERIAL------------------------------------------
@@ -747,6 +748,7 @@
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                         filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 2)
+                        filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 2)
                     End If
 
 
@@ -1258,7 +1260,7 @@
                 printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
                 printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
                 printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
-                'REF STD FLOW RATE
+                printable &= "Ref Std Flow Rate: " + CStr(filrefflowrate(cc)) + ", "
                 'Dim bruha As String = xdCurrStr
                 'calculated pulse counts for xd
                 'scaling factor for xd (given)
