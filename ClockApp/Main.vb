@@ -193,6 +193,7 @@
     Dim fooflowrate As Double = 0.0
     Dim fooendvol As Double = 0.0
     Dim foowarmup As Double = 0.0
+    Dim shouldendonlynum As Boolean = False
 
 
 
@@ -310,8 +311,6 @@
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
-
-        ''''''''''' onlyNumsInInput()
 
         ' Just hitching a ride ---------------------
         If Gb_Update_Screen_Size Then
@@ -518,7 +517,7 @@
                         '    End If
 
                     End If
-                    End If
+                End If
 
             End If
         Catch ex As Exception
@@ -1097,7 +1096,7 @@
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
-        If (refportgood And xdportgood And (Not rowShouldBeFilled) And reasonableVals) Then
+        If (refportgood And xdportgood And (Not rowShouldBeFilled) And reasonableVals And onlyNumsInInput()) Then
             testongoing = True
             duringwarmup = True
             currenttest = 1
@@ -1212,19 +1211,19 @@
         End If
     End Sub
 
-    Private Sub onlyNumsInInput()
-        Dim shouldend As Boolean = False
+    Private Function onlyNumsInInput() As Boolean
         fooflowrate = 0.0
         fooendvol = 0.0
         foowarmup = 0.0
-        If (Not shouldend) Then
+        If (Not shouldendonlynum) Then
             For dd As Integer = 1 To NUM_OF_ROWS
                 Try
                     fooflowrate = CDbl(flowratetxtbox(dd).Text)
                     fooendvol = CDbl(endvoltxtbox(dd).Text)
                     foowarmup = CDbl(warmuptxtbox(dd).Text)
                 Catch ex As Exception
-                    shouldend = True
+                    dd += NUM_OF_ROWS
+                    shouldendonlynum = True
                     'send error form
                     GS_errorText = "Only Use Number in Input"
                     ErrorForm.StartPosition = FormStartPosition.CenterScreen
@@ -1232,10 +1231,18 @@
                     'Return
                 End Try
             Next
+            If (shouldendonlynum) Then
+                shouldendonlynum = False
+                Return False
+            Else
+                shouldendonlynum = False
+                Return True
+            End If
+
         End If
 
 
-    End Sub
+    End Function
 
     Public Sub Tx_2_Console(sCommand As String, sValue As String)
         Dim sTemp As String
