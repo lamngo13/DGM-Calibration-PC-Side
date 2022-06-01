@@ -29,6 +29,8 @@ Partial Class Configure
         Me.celsiusradiobutton = New System.Windows.Forms.RadioButton()
         Me.fahrenheitradiobutton = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.restoredefaultsbutton = New System.Windows.Forms.Button()
+        Me.defaultlabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'configconfirmbutton
@@ -89,10 +91,10 @@ Partial Class Configure
         Me.fahrenheitradiobutton.ForeColor = System.Drawing.SystemColors.Control
         Me.fahrenheitradiobutton.Location = New System.Drawing.Point(262, 170)
         Me.fahrenheitradiobutton.Name = "fahrenheitradiobutton"
-        Me.fahrenheitradiobutton.Size = New System.Drawing.Size(83, 24)
+        Me.fahrenheitradiobutton.Size = New System.Drawing.Size(247, 24)
         Me.fahrenheitradiobutton.TabIndex = 5
         Me.fahrenheitradiobutton.TabStop = True
-        Me.fahrenheitradiobutton.Text = "Imperial"
+        Me.fahrenheitradiobutton.Text = "Imperial (If you use Fahrenheit)"
         Me.fahrenheitradiobutton.UseVisualStyleBackColor = True
         '
         'Label1
@@ -106,12 +108,35 @@ Partial Class Configure
         Me.Label1.TabIndex = 7
         Me.Label1.Text = "Enter Unit System: "
         '
+        'restoredefaultsbutton
+        '
+        Me.restoredefaultsbutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.restoredefaultsbutton.Location = New System.Drawing.Point(12, 366)
+        Me.restoredefaultsbutton.Name = "restoredefaultsbutton"
+        Me.restoredefaultsbutton.Size = New System.Drawing.Size(118, 59)
+        Me.restoredefaultsbutton.TabIndex = 8
+        Me.restoredefaultsbutton.Text = "Restore Defaults"
+        Me.restoredefaultsbutton.UseVisualStyleBackColor = True
+        '
+        'defaultlabel
+        '
+        Me.defaultlabel.AutoSize = True
+        Me.defaultlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.defaultlabel.ForeColor = System.Drawing.SystemColors.Control
+        Me.defaultlabel.Location = New System.Drawing.Point(154, 366)
+        Me.defaultlabel.Name = "defaultlabel"
+        Me.defaultlabel.Size = New System.Drawing.Size(344, 20)
+        Me.defaultlabel.TabIndex = 9
+        Me.defaultlabel.Text = "Default Settings: 20 degrees celsius (metric)"
+        '
         'Configure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.defaultlabel)
+        Me.Controls.Add(Me.restoredefaultsbutton)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.fahrenheitradiobutton)
         Me.Controls.Add(Me.celsiusradiobutton)
@@ -133,4 +158,6 @@ Partial Class Configure
     Friend WithEvents celsiusradiobutton As RadioButton
     Friend WithEvents fahrenheitradiobutton As RadioButton
     Friend WithEvents Label1 As Label
+    Friend WithEvents restoredefaultsbutton As Button
+    Friend WithEvents defaultlabel As Label
 End Class
