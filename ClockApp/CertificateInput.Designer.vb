@@ -71,7 +71,6 @@ Partial Class Certification
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtCertTech = New System.Windows.Forms.TextBox()
-        Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
@@ -170,6 +169,7 @@ Partial Class Certification
         Me.testlabel3 = New System.Windows.Forms.Label()
         Me.testlabel2 = New System.Windows.Forms.Label()
         Me.testlabel1 = New System.Windows.Forms.Label()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gbline3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,13 +183,13 @@ Partial Class Certification
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.Controls.Add(Me.IconButton1)
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.teststatuslabel1)
         Me.Panel1.Controls.Add(Me.teststatuslabel2)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.txtCertTech)
-        Me.Panel1.Controls.Add(Me.btnstart)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
@@ -254,8 +254,8 @@ Partial Class Certification
         Me.messagetxtbox.Name = "messagetxtbox"
         Me.messagetxtbox.Size = New System.Drawing.Size(1064, 61)
         Me.messagetxtbox.TabIndex = 144
-        Me.messagetxtbox.Text = "Please Enter the calibration information, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "then click the green PRINT PDF button" &
-    " to print the certificate."
+        Me.messagetxtbox.Text = "Please Enter the calibration information, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "then click the green SAVE DATA button" &
+    " to save to file."
         Me.messagetxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'lblModel
@@ -762,27 +762,6 @@ Partial Class Certification
         Me.txtCertTech.Size = New System.Drawing.Size(124, 23)
         Me.txtCertTech.TabIndex = 190
         Me.txtCertTech.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'btnstart
-        '
-        Me.btnstart.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(19, Byte), Integer))
-        Me.btnstart.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnstart.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnstart.ForeColor = System.Drawing.Color.White
-        Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.Print
-        Me.btnstart.IconColor = System.Drawing.Color.White
-        Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnstart.IconSize = 19
-        Me.btnstart.Location = New System.Drawing.Point(840, 95)
-        Me.btnstart.MaximumSize = New System.Drawing.Size(175, 50)
-        Me.btnstart.Name = "btnstart"
-        Me.btnstart.Size = New System.Drawing.Size(115, 23)
-        Me.btnstart.TabIndex = 191
-        Me.btnstart.Text = "PRINT PDF"
-        Me.btnstart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnstart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnstart.UseVisualStyleBackColor = False
         '
         'Label15
         '
@@ -1989,6 +1968,28 @@ Partial Class Certification
         Me.testlabel1.TabIndex = 300
         Me.testlabel1.Text = "1"
         '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(19, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.White
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Save
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 16
+        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.IconButton1.Location = New System.Drawing.Point(882, 38)
+        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(91, 23)
+        Me.IconButton1.TabIndex = 192
+        Me.IconButton1.Text = "SAVE DATA"
+        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
         'Certification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2202,7 +2203,6 @@ Partial Class Certification
     Friend WithEvents Label23 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents txtCertTech As TextBox
-    Friend WithEvents btnstart As FontAwesome.Sharp.IconButton
     Friend WithEvents Label15 As Label
     Friend WithEvents Label24 As Label
     Friend WithEvents Label25 As Label
@@ -2301,4 +2301,5 @@ Partial Class Certification
     Friend WithEvents testlabel3 As Label
     Friend WithEvents testlabel2 As Label
     Friend WithEvents testlabel1 As Label
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

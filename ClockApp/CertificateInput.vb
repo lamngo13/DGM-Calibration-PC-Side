@@ -5,41 +5,6 @@ Imports PdfSharp.Pdf
 Public Class Certification
 
     Const NUM_OF_ROWS As Integer = 6
-    Sub makePDF()
-        'AZN
-
-        ' Create a new PDF document
-        Dim document As PdfDocument = New PdfDocument
-        document.Info.Title = "Apex Instruments Certificate of Calibration"
-
-        ' Create an empty page
-        Dim page As PdfPage = document.AddPage
-
-        ' Get an XGraphics object for drawing
-        Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
-
-        ' Create a font
-        Dim font As XFont = New XFont("Futura PT", 20, XFontStyle.Bold)
-
-        ' Draw the text
-
-
-        gfx.DrawString("Dry Gas Meter Certificate of Calibration", font, XBrushes.Black,
-    50, 50, XStringFormats.Center)
-
-        Dim str As String
-        str = txtCertUUTModel.Text
-        gfx.DrawString(str, font, XBrushes.Black,
-            New XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.Center)
-
-        ' Save the document...
-        Dim filename As String = "HelloWorld.pdf"
-        document.Save(filename)
-
-        ' ...and start a viewer.
-        Process.Start(filename)
-
-    End Sub
 
 
     Private Sub flowratetxtbox6_TextChanged(sender As Object, e As EventArgs) Handles txtCertUUTModel.TextChanged
@@ -186,11 +151,5 @@ Public Class Certification
 
     End Sub
 
-    Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
-        makePDF()
-    End Sub
 
-    Private Sub foo_TextChanged(sender As Object, e As EventArgs) 
-
-    End Sub
 End Class
