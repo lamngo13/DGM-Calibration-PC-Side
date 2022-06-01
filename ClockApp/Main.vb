@@ -26,6 +26,7 @@
     Const BLOCK_MARKER_CS As String = Chr(31)
     Const FIND_SF As Integer = 19
     Const CAL_PULSE_COUNT As Integer = 16 + 1
+    Const XD_FLOW_RATE_INPUT As Integer = 30 + 1
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
@@ -120,6 +121,8 @@
     Dim filrefTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutletInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim xdflowrate As Double = 0.0
+    Dim filuutFlowRate = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
     Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
@@ -299,6 +302,8 @@
         xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
+        xdflowrate = CDbl(s_xd_in(XD_FLOW_RATE_INPUT))
+        Dim bruh4 As Double = filuutFlowRate(currenttest)
     End Sub
 
     Public Sub reWhiteInputsExistOnly()
@@ -728,6 +733,7 @@
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
+                    filuutFlowRate(currenttest) = Math.Round(xdflowrate, 2)
 
 
                     'IF IMPERIAL------------------------------------------
@@ -740,6 +746,7 @@
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
+                        filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 2)
                     End If
 
 
@@ -1251,6 +1258,7 @@
                 printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
                 printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
                 printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
+                printable &= "UUT Flow Rate: " + CStr(Math.Round(filuutFlowRate(cc), 2)) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
             End If
         Next
         stream_writer.Write(printable)
