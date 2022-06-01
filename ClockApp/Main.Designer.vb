@@ -165,6 +165,7 @@ Partial Class Main
         Me.bdline2 = New System.Windows.Forms.PictureBox()
         Me.bdline3 = New System.Windows.Forms.PictureBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -270,7 +271,7 @@ Partial Class Main
         Me.flowratelabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.flowratelabel2.Font = New System.Drawing.Font("Futura PT Book", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.flowratelabel2.ForeColor = System.Drawing.SystemColors.Control
-        Me.flowratelabel2.Location = New System.Drawing.Point(85, 298)
+        Me.flowratelabel2.Location = New System.Drawing.Point(88, 298)
         Me.flowratelabel2.Name = "flowratelabel2"
         Me.flowratelabel2.Size = New System.Drawing.Size(69, 18)
         Me.flowratelabel2.TabIndex = 8
@@ -283,7 +284,7 @@ Partial Class Main
         Me.genlabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.genlabel1.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.genlabel1.ForeColor = System.Drawing.SystemColors.Control
-        Me.genlabel1.Location = New System.Drawing.Point(75, 565)
+        Me.genlabel1.Location = New System.Drawing.Point(82, 565)
         Me.genlabel1.Name = "genlabel1"
         Me.genlabel1.Size = New System.Drawing.Size(67, 15)
         Me.genlabel1.TabIndex = 9
@@ -884,7 +885,6 @@ Partial Class Main
         '
         'mainclocklbl
         '
-        Me.mainclocklbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mainclocklbl.AutoSize = True
         Me.mainclocklbl.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mainclocklbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
@@ -894,7 +894,7 @@ Partial Class Main
         Me.mainclocklbl.Size = New System.Drawing.Size(46, 25)
         Me.mainclocklbl.TabIndex = 71
         Me.mainclocklbl.Text = "Label2"
-        Me.mainclocklbl.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.mainclocklbl.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'refport
         '
@@ -1017,7 +1017,7 @@ Partial Class Main
         Me.messagetxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.messagetxtbox.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.messagetxtbox.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.messagetxtbox.ForeColor = System.Drawing.Color.White
+        Me.messagetxtbox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.messagetxtbox.Location = New System.Drawing.Point(0, 668)
         Me.messagetxtbox.Multiline = True
         Me.messagetxtbox.Name = "messagetxtbox"
@@ -1383,7 +1383,7 @@ Partial Class Main
         Me.btnconnect.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnconnect.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.btnconnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnconnect.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnconnect.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnconnect.ForeColor = System.Drawing.Color.White
         Me.btnconnect.IconChar = FontAwesome.Sharp.IconChar.Link
         Me.btnconnect.IconColor = System.Drawing.Color.White
@@ -1404,7 +1404,7 @@ Partial Class Main
         Me.btnstart.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnstart.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.btnstart.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnstart.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnstart.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnstart.ForeColor = System.Drawing.Color.White
         Me.btnstart.IconChar = FontAwesome.Sharp.IconChar.Play
         Me.btnstart.IconColor = System.Drawing.Color.White
@@ -1509,7 +1509,7 @@ Partial Class Main
         Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(162, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(32, Byte), Integer))
         Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton1.Font = New System.Drawing.Font("Futura PT Book", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.Font = New System.Drawing.Font("Futura PT Book", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton1.ForeColor = System.Drawing.Color.White
         Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Ban
         Me.IconButton1.IconColor = System.Drawing.Color.White
@@ -1640,7 +1640,7 @@ Partial Class Main
         Me.Label5.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.Label5.Font = New System.Drawing.Font("Futura PT Book", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(84, 577)
+        Me.Label5.Location = New System.Drawing.Point(91, 577)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 15)
         Me.Label5.TabIndex = 154
@@ -1874,13 +1874,32 @@ Partial Class Main
         '
         'FlowLayoutPanel1
         '
-        Me.FlowLayoutPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.Controls.Add(Me.mainclocklbl)
         Me.FlowLayoutPanel1.Controls.Add(Me.IconButton2)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(927, 23)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(102, 100)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(102, 43)
         Me.FlowLayoutPanel1.TabIndex = 146
+        '
+        'IconButton3
+        '
+        Me.IconButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.IconButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.IconButton3.Enabled = False
+        Me.IconButton3.FlatAppearance.BorderSize = 0
+        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.InfoCircle
+        Me.IconButton3.IconColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton3.IconSize = 22
+        Me.IconButton3.Location = New System.Drawing.Point(182, 682)
+        Me.IconButton3.Name = "IconButton3"
+        Me.IconButton3.Size = New System.Drawing.Size(43, 23)
+        Me.IconButton3.TabIndex = 145
+        Me.IconButton3.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton3.UseVisualStyleBackColor = False
         '
         'Main
         '
@@ -1890,6 +1909,7 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(1064, 729)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.IconButton3)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
@@ -2188,4 +2208,5 @@ Partial Class Main
     Friend WithEvents bdline2 As PictureBox
     Friend WithEvents bdline3 As PictureBox
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
 End Class
