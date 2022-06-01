@@ -786,7 +786,7 @@
                         'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
                         filTestTime(currenttest) = testtimers(currenttest)
                         filuutFinalTemp(currenttest) = testxdtemp(currenttest)
-                        filOutlsetFinalTemp = testreftemp(currenttest)
+                        filOutlsetFinalTemp(currenttest) = testreftemp(currenttest)
                         'filrefFinalVol(currenttest) = xdpulseholder
                         'filrefTotalVol(currenttest) = xdpulseholder
                         If (Not xdpulseholder = 0) Then
@@ -1248,6 +1248,8 @@
                 printable &= "Ref Initial Volume: 0, "
                 printable &= "Ref Final Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
                 printable &= "Ref Total Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
+                printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
+                printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
             End If
         Next
         stream_writer.Write(printable)
