@@ -1244,7 +1244,10 @@
                 printable &= "UUT Total pulses: " + CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
                 printable &= "UUT Initial Temperature: " + CStr(Math.Round(filuutInitTemp(cc), 2)) + ", "
                 printable &= "UUT Final Temperature: " + CStr(Math.Round(filuutFinalTemp(cc), 2)) + ", "
-                printable &= "Pressure: " + CStr(Math.Round(pressureLabel(cc), 2)) + ", "
+                printable &= "Pressure: " + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + ", "
+                printable &= "Ref Initial Volume: 0, "
+                printable &= "Ref Final Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
+                printable &= "Ref Total Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
             End If
         Next
         stream_writer.Write(printable)
