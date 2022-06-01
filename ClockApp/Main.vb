@@ -25,6 +25,7 @@
     Const sBLOCK_START As String = ChrW(1)
     Const BLOCK_MARKER_CS As String = Chr(31)
     Const FIND_SF As Integer = 19
+    Const CAL_PULSE_COUNT As Integer = 16
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
@@ -168,6 +169,10 @@
     Dim zrefinputambtemp As String
     Dim zrefinputreftemp As String
     Dim zrefinputambhum As String
+    Dim weNeedPulseCountxd As Boolean = False
+
+    Dim xdWarmUpPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim xdInPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
 
     Const XD_MAX_MEMBERS = 500
     Dim s_xd_in(XD_MAX_MEMBERS) As String
@@ -507,6 +512,12 @@
                                         'scan for the scaling factor
                                         xdGivenScaling = s_xd_in(FIND_SF)
                                         havesScalingFactor = True
+                                        If (weNeedPulseCountxd) Then
+                                            Dim bruh68 As Integer = s_xd_in(CAL_PULSE_COUNT)
+                                            filuutPulseFinal(currenttest) = s_xd_in(CAL_PULSE_COUNT)
+                                            weNeedPulseCountxd = False
+                                        End If
+
                                     Catch ex As Exception
 
                                     End Try
@@ -723,7 +734,7 @@
                         'filOrrifice??
                         'filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         Dim bruh37 As Double = xdWarmupVols(currenttest)
-                        filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) * xdGivenScaling), 2)   'init pulses idk tho
+                        filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)
@@ -749,9 +760,10 @@
                         filrefStdFinalVol(currenttest) = stdrefvols(currenttest)
                         filrefStdTotalVol(currenttest) = stdrefvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor) ' IDK ABT THIS
 
-                        filuutPulseFinal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)   'init pulses idk tho
+                        filuutPulseFinal(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling) + (testxdvol(currenttest) / xdGivenScaling), 2)  'init pulses idk tho
                         'TODO CONVERT THIS TO INT??????
-                        filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        filuutPulseTotal(currenttest) = filuutPulseFinal(currenttest)
+                        'filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
                         'STANDARDDIZED VALS FOR UUT
                         If (Not thisTestSavedFinals(currenttest)) Then
                             'FINAL VALS HERE
@@ -1184,16 +1196,16 @@
         Dim printable As String = ""
 
         stream_writer = New IO.StreamWriter(sFileName)
-
+        'FILEWRITER
         printable &= "foo"
         printable &= "bruh"
         'runtime, uutinitpulses, uufinalpulses, uuttotalpulses
         For cc As Integer = 1 To NUM_OF_ROWS
             If (rowused(cc)) Then
                 printable &= "Test " + CStr(cc) + ", "
-                printable &= CStr(filuutPulseInit(cc)) + ", "
-                printable &= CStr(filuutPulseFinal(cc)) + ", "
-                printable &= CStr(filuutPulseTotal(cc)) + ", "
+                printable &= CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
+                printable &= CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
+                printable &= CStr(Math.Round(filuutPulseTotal(cc), 0)) + ", "
             End If
         Next
         stream_writer.Write(printable)
