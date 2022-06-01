@@ -518,6 +518,7 @@
                         warmuptimes(currenttest) += 0.1
                         warmuppulses(currenttest) = intpulsecount
                         xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
+                        'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
                     End If
 
                     'USE VALS FROM INPUT **********************************************************
@@ -546,8 +547,10 @@
 
                         'IF IMPERIAL------------------------------------------
                         If (Gs_UnitType = "imperial") Then
-
+                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)
+                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)
                         End If
+                        'TODO MORE OF THIS
 
                     End If
 
