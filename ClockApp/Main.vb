@@ -1238,9 +1238,13 @@
         For cc As Integer = 1 To NUM_OF_ROWS
             If (rowused(cc)) Then
                 printable &= "Test " + CStr(cc) + ", "
-                printable &= "Intial" + CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
-                printable &= CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
-                printable &= CStr(Math.Round(filuutPulseTotal(cc), 0)) + ", "
+                printable &= "Runtime: " + CStr(testtimerlabel(cc).Text) + ", "
+                printable &= "UUT Initial Pulses: " + CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
+                printable &= "UUT Final pulses: " + CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
+                printable &= "UUT Total pulses: " + CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
+                printable &= "UUT Initial Temperature: " + CStr(Math.Round(filuutInitTemp(cc), 2)) + ", "
+                printable &= "UUT Final Temperature: " + CStr(Math.Round(filuutFinalTemp(cc), 2)) + ", "
+                printable &= "Pressure: " + CStr(Math.Round(pressureLabel(cc), 2)) + ", "
             End If
         Next
         stream_writer.Write(printable)
