@@ -60,22 +60,22 @@ Public Class Certification
         'flowratetxtbox(o).Text = Main.flowratetxtbox(o).Text   
         'Next
 
-        flowratetxtbox2.Text = Main.flowratetxtbox2.Text
-        endvoltxtbox2.Text = Main.endvoltxtbox2.Text
-        endvoltxtbox2.Text = Main.endvoltxtbox2.Text
-        warmuptxtbox2.Text = Main.warmuptxtbox2.Text
-        stdVolLabel2.Text = Main.stdVolLabel2.Text
-        testpulselabel2.Text = Main.testpulselabel2.Text
-        refpulselabel2.Text = Main.refpulselabel2.Text
-        reftemplabel2.Text = Main.reftemplabel2.Text
-        testtemplabel2.Text = Main.testtemplabel2.Text
-        pressureLabel2.Text = Main.pressureLabel2.Text
-        testtimerlabel2.Text = Main.testtimerlabel2.Text
+        Dim strArray(6) As String
+        ', endvoltxtbox(6) As String, warmuptxtbox(6) As String, refpulselabel(6) As String, stdVolLabel(6) As String, testpulselabel(6) As String, xdstdvollabel(6) As String, reftemplabel(6) As String, testtemplabel(6) As String, pressureLabel(6) As String,
+        'testtimerlabel(6) As String
 
+        strArray(1) = Main.flowratetxtbox1.Text
+        strArray(2) = Main.flowratetxtbox2.Text
+        strArray(3) = Main.flowratetxtbox3.Text
+        strArray(4) = Main.flowratetxtbox4.Text
+        strArray(5) = Main.flowratetxtbox5.Text
+        strArray(6) = Main.flowratetxtbox6.Text
 
+        flowratetxtbox1.Text = strArray(1)
 
-
-
+        ' For o As Integer = 1 To 6
+        'flowratetxtbox(o).Text = Main.flowratetxtbox(o).Text
+        '
 
     End Sub
 
