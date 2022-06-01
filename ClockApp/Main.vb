@@ -26,7 +26,7 @@
     Const BLOCK_MARKER_CS As String = Chr(31)
     Const FIND_SF As Integer = 19
     Const CAL_PULSE_COUNT As Integer = 16 + 1
-    Const XD_FLOW_RATE_INPUT As Integer = 30 + 1
+    Const XD_FLOW_RATE_INPUT As Integer = 30
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
@@ -563,7 +563,7 @@
 
 
         'If (debugAbort) Then
-        '    Dim bruhmachine As Integer = 9
+        '    Dim bruhbruh As Integer = 9
         '    findRunnableTests()
         '    testongoing = True
         '    duringwarmup = True
@@ -1258,7 +1258,17 @@
                 printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
                 printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
                 printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
+                'REF STD FLOW RATE
+                'Dim bruha As String = xdCurrStr
+                'calculated pulse counts for xd
+                'scaling factor for xd (given)
+                'std vol for xd
+                'flow rate for xd
                 printable &= "UUT Flow Rate: " + CStr(Math.Round(filuutFlowRate(cc), 2)) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
+                'y value
+                'variation
+                'delta h
+                'delta h @
             End If
         Next
         stream_writer.Write(printable)
