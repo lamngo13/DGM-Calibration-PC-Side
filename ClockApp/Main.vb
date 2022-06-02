@@ -27,6 +27,8 @@
     Const FIND_SF As Integer = 19
     Const CAL_PULSE_COUNT As Integer = 16 + 1
     Const XD_FLOW_RATE_INPUT As Integer = 30
+    Const XL_START_INDEX_ONE = 16
+    Const XL_START_INDEX_TWO = 27
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
@@ -1274,7 +1276,11 @@
         'printable &= "foo"
         'printable &= "bruh"
         'runtime, uutinitpulses, uufinalpulses, uuttotalpulses
+        Gs_ForXL = ""
+        Dim position As Integer = 15
+
         For cc As Integer = 1 To NUM_OF_ROWS
+            position = 15 + cc
             If (rowused(cc)) Then
                 printable &= "Test " + CStr(cc) + ", "
                 printable &= "Runtime: " + CStr(testtimerlabel(cc).Text) + ", "
@@ -1308,9 +1314,24 @@
 
                 'todo change all to crlf
                 printable &= vbCrLf
+
+                'for XL
+                Gs_ForXL &= "B" + CStr(position) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "D" + CStr(position) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(position) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "F" + CStr(position) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "G" + CStr(position) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "H" + CStr(position) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "J" + CStr(position) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
+                'skip L
+                Gs_ForXL &= "K" + CStr(position) + "~" + "0" + vbCrLf
+                Gs_ForXL &= "L" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "M" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "N" + CStr(position) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
+                Gs_ForXL &= "O" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
             End If
         Next
-        stream_writer.Write(printable)
+        stream_writer.Write(Gs_ForXL)
 
         stream_writer.Close()
     End Sub
