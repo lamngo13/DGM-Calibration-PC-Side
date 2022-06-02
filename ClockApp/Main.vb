@@ -1323,7 +1323,7 @@
                 Gs_ForXL &= "G" + CStr(position) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
                 Gs_ForXL &= "H" + CStr(position) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
                 Gs_ForXL &= "J" + CStr(position) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
-                'skip L
+                'skip something????
                 Gs_ForXL &= "K" + CStr(position) + "~" + "0" + vbCrLf
                 Gs_ForXL &= "L" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
                 Gs_ForXL &= "M" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
@@ -1338,7 +1338,8 @@
                 Gs_ForXL &= "F" + CStr(position) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
                 Gs_ForXL &= "G" + CStr(position) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
                 Gs_ForXL &= "H" + CStr(position) + "~" + CStr(filVarY(cc)) + vbCrLf
-                Gs_ForXL &= "I" + CStr(position) + "~" + CStr(filY(cc)) + vbCrLf
+                'SKIP I
+                Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filY(cc)) + vbCrLf
                 'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
                 'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
 
@@ -1403,10 +1404,12 @@
     Private Sub toFileButton_Click(sender As Object, e As EventArgs) Handles toFileButton.Click
         Dim sFileName As String
 
-        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
-            sFileName = SaveFileDialog1.FileName
-            writeToFile(sFileName)
-        End If
+        'If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+        '    sFileName = SaveFileDialog1.FileName
+
+        '    writeToFile(sFileName)
+        'End If
+        writeToFile("certificate.txt")
     End Sub
 
     Private Function onlyNumsInInput() As Boolean
