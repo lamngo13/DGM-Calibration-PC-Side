@@ -46,7 +46,6 @@ Partial Class Certification
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtInitialGamma = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtCertAltitude = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -56,11 +55,9 @@ Partial Class Certification
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtCertBarPressure = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.txtCertK = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtCertStdPress = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.txtCertStdTemp = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.txtCertGamma = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -171,6 +168,9 @@ Partial Class Certification
         Me.testlabel2 = New System.Windows.Forms.Label()
         Me.testlabel1 = New System.Windows.Forms.Label()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gbline3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,7 +212,7 @@ Partial Class Certification
         Me.IconButton1.Location = New System.Drawing.Point(882, 38)
         Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
         Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(119, 49)
+        Me.IconButton1.Size = New System.Drawing.Size(119, 28)
         Me.IconButton1.TabIndex = 192
         Me.IconButton1.Text = "SAVE DATA"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -328,7 +328,6 @@ Partial Class Certification
         Me.txtCertUUTModel.Name = "txtCertUUTModel"
         Me.txtCertUUTModel.Size = New System.Drawing.Size(58, 23)
         Me.txtCertUUTModel.TabIndex = 146
-        Me.txtCertUUTModel.Text = "1"
         Me.txtCertUUTModel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
@@ -373,7 +372,7 @@ Partial Class Certification
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(836, 164)
+        Me.Label4.Location = New System.Drawing.Point(845, 138)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(183, 22)
         Me.Label4.TabIndex = 150
@@ -474,18 +473,6 @@ Partial Class Certification
         Me.Label8.Size = New System.Drawing.Size(98, 18)
         Me.Label8.TabIndex = 157
         Me.Label8.Text = "Initial Gamma"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(441, 329)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(58, 23)
-        Me.TextBox1.TabIndex = 168
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label9
         '
@@ -595,18 +582,6 @@ Partial Class Certification
         Me.Label13.TabIndex = 159
         Me.Label13.Text = "Barometric Pressure (Hg)"
         '
-        'txtCertK
-        '
-        Me.txtCertK.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
-        Me.txtCertK.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCertK.ForeColor = System.Drawing.Color.White
-        Me.txtCertK.Location = New System.Drawing.Point(687, 269)
-        Me.txtCertK.Multiline = True
-        Me.txtCertK.Name = "txtCertK"
-        Me.txtCertK.Size = New System.Drawing.Size(58, 23)
-        Me.txtCertK.TabIndex = 174
-        Me.txtCertK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'Label16
         '
         Me.Label16.AutoSize = True
@@ -642,18 +617,6 @@ Partial Class Certification
         Me.Label17.Size = New System.Drawing.Size(106, 18)
         Me.Label17.TabIndex = 171
         Me.Label17.Text = "Std Press (Hg)"
-        '
-        'txtCertStdTemp
-        '
-        Me.txtCertStdTemp.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
-        Me.txtCertStdTemp.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCertStdTemp.ForeColor = System.Drawing.Color.White
-        Me.txtCertStdTemp.Location = New System.Drawing.Point(687, 209)
-        Me.txtCertStdTemp.Multiline = True
-        Me.txtCertStdTemp.Name = "txtCertStdTemp"
-        Me.txtCertStdTemp.Size = New System.Drawing.Size(58, 23)
-        Me.txtCertStdTemp.TabIndex = 170
-        Me.txtCertStdTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label18
         '
@@ -720,7 +683,7 @@ Partial Class Certification
         Me.txtCertTherm.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.txtCertTherm.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCertTherm.ForeColor = System.Drawing.Color.White
-        Me.txtCertTherm.Location = New System.Drawing.Point(954, 269)
+        Me.txtCertTherm.Location = New System.Drawing.Point(954, 267)
         Me.txtCertTherm.Multiline = True
         Me.txtCertTherm.Name = "txtCertTherm"
         Me.txtCertTherm.Size = New System.Drawing.Size(58, 23)
@@ -733,7 +696,7 @@ Partial Class Certification
         Me.Label21.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label21.Location = New System.Drawing.Point(825, 271)
+        Me.Label21.Location = New System.Drawing.Point(825, 269)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(139, 18)
         Me.Label21.TabIndex = 183
@@ -744,7 +707,7 @@ Partial Class Certification
         Me.txtCertDueDate.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.txtCertDueDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCertDueDate.ForeColor = System.Drawing.Color.White
-        Me.txtCertDueDate.Location = New System.Drawing.Point(954, 239)
+        Me.txtCertDueDate.Location = New System.Drawing.Point(954, 237)
         Me.txtCertDueDate.Multiline = True
         Me.txtCertDueDate.Name = "txtCertDueDate"
         Me.txtCertDueDate.Size = New System.Drawing.Size(58, 23)
@@ -757,7 +720,7 @@ Partial Class Certification
         Me.Label22.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label22.Location = New System.Drawing.Point(825, 241)
+        Me.Label22.Location = New System.Drawing.Point(825, 239)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(137, 18)
         Me.Label22.TabIndex = 181
@@ -768,7 +731,7 @@ Partial Class Certification
         Me.txtWTMModel.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
         Me.txtWTMModel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtWTMModel.ForeColor = System.Drawing.Color.White
-        Me.txtWTMModel.Location = New System.Drawing.Point(954, 209)
+        Me.txtWTMModel.Location = New System.Drawing.Point(954, 207)
         Me.txtWTMModel.Multiline = True
         Me.txtWTMModel.Name = "txtWTMModel"
         Me.txtWTMModel.Size = New System.Drawing.Size(58, 23)
@@ -781,7 +744,7 @@ Partial Class Certification
         Me.Label23.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label23.Location = New System.Drawing.Point(825, 211)
+        Me.Label23.Location = New System.Drawing.Point(825, 209)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(90, 18)
         Me.Label23.TabIndex = 179
@@ -1992,12 +1955,54 @@ Partial Class Certification
         Me.testlabel1.TabIndex = 300
         Me.testlabel1.Text = "1"
         '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Label33.Enabled = False
+        Me.Label33.Font = New System.Drawing.Font("Futura PT Book", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label33.Location = New System.Drawing.Point(437, 333)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(78, 19)
+        Me.Label33.TabIndex = 306
+        Me.Label33.Text = "(calculated)"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Label34.Enabled = False
+        Me.Label34.Font = New System.Drawing.Font("Futura PT Book", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label34.Location = New System.Drawing.Point(684, 209)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(96, 19)
+        Me.Label34.TabIndex = 307
+        Me.Label34.Text = "(from program)"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Label35.Enabled = False
+        Me.Label35.Font = New System.Drawing.Font("Futura PT Book", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label35.Location = New System.Drawing.Point(684, 273)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(78, 19)
+        Me.Label35.TabIndex = 308
+        Me.Label35.Text = "(calculated)"
+        '
         'Certification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.Label35)
+        Me.Controls.Add(Me.Label34)
+        Me.Controls.Add(Me.Label33)
         Me.Controls.Add(Me.testlabel6)
         Me.Controls.Add(Me.testlabel5)
         Me.Controls.Add(Me.testlabel4)
@@ -2105,13 +2110,10 @@ Partial Class Certification
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.txtWTMModel)
         Me.Controls.Add(Me.Label23)
-        Me.Controls.Add(Me.txtCertK)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.txtCertStdPress)
         Me.Controls.Add(Me.Label17)
-        Me.Controls.Add(Me.txtCertStdTemp)
         Me.Controls.Add(Me.Label18)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtCertAltitude)
         Me.Controls.Add(Me.Label10)
@@ -2177,7 +2179,6 @@ Partial Class Certification
     Friend WithEvents Label7 As Label
     Friend WithEvents txtInitialGamma As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents txtCertAltitude As TextBox
     Friend WithEvents Label10 As Label
@@ -2187,11 +2188,9 @@ Partial Class Certification
     Friend WithEvents Label12 As Label
     Friend WithEvents txtCertBarPressure As TextBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents txtCertK As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents txtCertStdPress As TextBox
     Friend WithEvents Label17 As Label
-    Friend WithEvents txtCertStdTemp As TextBox
     Friend WithEvents Label18 As Label
     Friend WithEvents txtCertGamma As TextBox
     Friend WithEvents Label19 As Label
@@ -2305,4 +2304,7 @@ Partial Class Certification
     Friend WithEvents testlabel1 As Label
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label35 As Label
 End Class

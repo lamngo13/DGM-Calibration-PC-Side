@@ -153,6 +153,34 @@ Public Class Certification
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+
+        ' Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+
+        ' array is 9 by 2, start 0 so declare as 8 by 1
+        Dim certInfo(,) As String = New String(15, 1) {
+            {"c6", txtCertUUTModel.Text},
+            {"c7", txtCertUUTSerial.Text},
+            {"c8", txtCertDGMModel.Text},
+            {"c9", txtCertDGMSerial.Text},
+            {"c10", txtInitialGamma.Text},
+            {"f6", txtCertBarPressure.Text},
+            {"f7", txtCertAmbTemp.Text},
+            {"f8", txtCertHumidity.Text},
+            {"f9", txtCertAltitude.Text},
+            {"j7", "760"},
+            {"m6", txtWTMModel.Text},
+            {"m7", txtCertDueDate.Text},
+            {"m8", txtCertTherm.Text},
+            {"o6", txtCertSerial.Text},
+            {"o7", txtCertGamma.Text},
+            {"c37", txtCertTech.Text}
+        }
+
+
+        For n As Integer = 0 To 15
+            Gs_ForXL &= certInfo(n, 0) + "~" + certInfo(n, 1) + vbCrLf
+        Next
+        'MsgBox(Gs_ForXL)
         Dim sFileName As String
         If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
             sFileName = SaveFileDialog1.FileName
@@ -161,10 +189,10 @@ Public Class Certification
             'MACHINEOFBRUH"
             stream_writer = New System.IO.StreamWriter(sFileName)
 
-            Dim fileContents As String = Gs_ForXL
+            'Dim fileContents As String = Gs_ForXL
 
 
-            stream_writer.Write(fileContents)
+            stream_writer.Write(Gs_ForXL)
 
             stream_writer.Close()
             Gs_dialogText = "File saved successfully."
@@ -172,6 +200,10 @@ Public Class Certification
             dialogForm.ShowDialog()
         End If
 
+
+    End Sub
+
+    Private Sub Label33_Click(sender As Object, e As EventArgs) Handles Label33.Click
 
     End Sub
 End Class
