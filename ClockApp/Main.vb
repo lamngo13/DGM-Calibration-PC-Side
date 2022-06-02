@@ -362,10 +362,10 @@
 
         'update label units based on unit type
         If (Gs_UnitType = "met") Then
-            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
             Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
@@ -411,6 +411,7 @@
             ioStr = ""
             Gs_currstr = ""
             mainclocklbl.Text = TimeString ' 24 hour time
+            newmainclock.Text = TimeString
             If (refport.IsOpen) Then
 
                 If (refport.ReadBufferSize > 0) Then
@@ -775,14 +776,14 @@
                         testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
                         testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
                         pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
-                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet
+                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'Liters to cubic feet
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                         filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
                         filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
-                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH litres to cu ft
+                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH Liters to cu ft
                     End If
 
 
@@ -1184,7 +1185,7 @@
         '            reasonableVals = False
         '            'flowrate is too low, make it red then send error
         '            flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
-        '            GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+        '            GS_errorText = "FlowRate must be greater than 1.0 Liters todo imperial"
         '            ErrorForm.StartPosition = FormStartPosition.CenterScreen
         '            ErrorForm.ShowDialog()
         '        End If
