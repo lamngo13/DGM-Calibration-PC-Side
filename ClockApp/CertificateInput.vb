@@ -151,5 +151,23 @@ Public Class Certification
 
     End Sub
 
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim sFileName As String
+        If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
+            sFileName = SaveFileDialog1.FileName
+            Dim stream_writer As System.IO.StreamWriter
+            Dim printable As String = ""
+            'MACHINEOFBRUH"
+            stream_writer = New System.IO.StreamWriter(sFileName)
 
+            Dim fileContents As String = Gs_ForXL & "test"
+
+
+            stream_writer.Write(fileContents)
+
+            stream_writer.Close()
+        End If
+
+
+    End Sub
 End Class

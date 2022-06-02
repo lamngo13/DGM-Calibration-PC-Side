@@ -24,10 +24,13 @@ Partial Class Certification
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Certification))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.teststatuslabel1 = New System.Windows.Forms.Label()
         Me.teststatuslabel2 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtCertTech = New System.Windows.Forms.TextBox()
         Me.messagetxtbox = New System.Windows.Forms.TextBox()
         Me.lblModel = New System.Windows.Forms.Label()
         Me.txtCertUUTModel = New System.Windows.Forms.TextBox()
@@ -69,8 +72,6 @@ Partial Class Certification
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtWTMModel = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtCertTech = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
@@ -169,7 +170,7 @@ Partial Class Certification
         Me.testlabel3 = New System.Windows.Forms.Label()
         Me.testlabel2 = New System.Windows.Forms.Label()
         Me.testlabel1 = New System.Windows.Forms.Label()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gbline3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,6 +196,28 @@ Partial Class Certification
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1064, 135)
         Me.Panel1.TabIndex = 143
+        '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(19, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.White
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Save
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 16
+        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.IconButton1.Location = New System.Drawing.Point(882, 38)
+        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(91, 23)
+        Me.IconButton1.TabIndex = 192
+        Me.IconButton1.Text = "SAVE DATA"
+        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
         '
         'PictureBox2
         '
@@ -241,6 +264,30 @@ Partial Class Certification
         Me.teststatuslabel2.Size = New System.Drawing.Size(98, 20)
         Me.teststatuslabel2.TabIndex = 88
         Me.teststatuslabel2.Text = "Not Running"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Label14.Font = New System.Drawing.Font("Futura PT Book", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label14.Location = New System.Drawing.Point(427, 109)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(82, 23)
+        Me.Label14.TabIndex = 189
+        Me.Label14.Text = "Technician"
+        '
+        'txtCertTech
+        '
+        Me.txtCertTech.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
+        Me.txtCertTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCertTech.ForeColor = System.Drawing.Color.White
+        Me.txtCertTech.Location = New System.Drawing.Point(549, 109)
+        Me.txtCertTech.Multiline = True
+        Me.txtCertTech.Name = "txtCertTech"
+        Me.txtCertTech.Size = New System.Drawing.Size(124, 23)
+        Me.txtCertTech.TabIndex = 190
+        Me.txtCertTech.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'messagetxtbox
         '
@@ -738,30 +785,6 @@ Partial Class Certification
         Me.Label23.Size = New System.Drawing.Size(84, 19)
         Me.Label23.TabIndex = 179
         Me.Label23.Text = "WTM Model"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.Label14.Font = New System.Drawing.Font("Futura PT Book", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label14.Location = New System.Drawing.Point(427, 109)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(82, 23)
-        Me.Label14.TabIndex = 189
-        Me.Label14.Text = "Technician"
-        '
-        'txtCertTech
-        '
-        Me.txtCertTech.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(102, Byte), Integer))
-        Me.txtCertTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCertTech.ForeColor = System.Drawing.Color.White
-        Me.txtCertTech.Location = New System.Drawing.Point(549, 109)
-        Me.txtCertTech.Multiline = True
-        Me.txtCertTech.Name = "txtCertTech"
-        Me.txtCertTech.Size = New System.Drawing.Size(124, 23)
-        Me.txtCertTech.TabIndex = 190
-        Me.txtCertTech.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label15
         '
@@ -1968,28 +1991,6 @@ Partial Class Certification
         Me.testlabel1.TabIndex = 300
         Me.testlabel1.Text = "1"
         '
-        'IconButton1
-        '
-        Me.IconButton1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(19, Byte), Integer))
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.IconButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.White
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Save
-        Me.IconButton1.IconColor = System.Drawing.Color.White
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 16
-        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.IconButton1.Location = New System.Drawing.Point(882, 38)
-        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(91, 23)
-        Me.IconButton1.TabIndex = 192
-        Me.IconButton1.Text = "SAVE DATA"
-        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton1.UseVisualStyleBackColor = False
-        '
         'Certification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2302,4 +2303,5 @@ Partial Class Certification
     Friend WithEvents testlabel2 As Label
     Friend WithEvents testlabel1 As Label
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class
