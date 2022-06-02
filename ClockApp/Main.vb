@@ -196,6 +196,7 @@
 
     Dim DialogForm As New DialogUsr
     Dim ErrorForm As New ErrorForm
+    Dim certForm As New Certification
 
     Dim consecBadCSVals As Integer = 0
     Dim consecBadCRCVals As Integer = 0
@@ -1490,4 +1491,8 @@
         Tx_2_Console("V", "2")
     End Sub
 
+    Private Sub btncert_Click(sender As Object, e As EventArgs) Handles btncert.Click
+        certForm.StartPosition = FormStartPosition.CenterScreen
+        certForm.ShowDialog()
+    End Sub
 End Class

@@ -47,9 +47,18 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>A-Favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=5.15.4.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.Sharp.5.15.4\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -85,6 +94,12 @@
     </Compile>
     <Compile Include="antibug.Designer.vb">
       <DependentUpon>antibug.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CertificateInput.Designer.vb">
+      <DependentUpon>CertificateInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CertificateInput.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Configure.Designer.vb">
@@ -132,6 +147,9 @@
     <EmbeddedResource Include="antibug.resx">
       <DependentUpon>antibug.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CertificateInput.resx">
+      <DependentUpon>CertificateInput.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configure.resx">
       <DependentUpon>Configure.vb</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BrandLogoBlack.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="A-Favicon.ico" />
+    <Content Include="BrandLogoWhite.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
