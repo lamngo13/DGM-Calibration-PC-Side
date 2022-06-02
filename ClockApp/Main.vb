@@ -109,6 +109,7 @@
 
     'FILE STUFF
     Dim newY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim experimentY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -361,10 +362,10 @@
 
         'update label units based on unit type
         If (Gs_UnitType = "met") Then
-            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
-            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
             Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
@@ -410,6 +411,7 @@
             ioStr = ""
             Gs_currstr = ""
             mainclocklbl.Text = TimeString ' 24 hour time
+            newmainclock.Text = TimeString
             If (refport.IsOpen) Then
 
                 If (refport.ReadBufferSize > 0) Then
@@ -602,7 +604,7 @@
         'to process after test
         If (testover And Not processingDone) Then
             processingDone = True
-            toFileButton.Visible = True
+            ''''''''''''toFileButton.Visible = True
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
@@ -671,6 +673,11 @@
             avglabel22.Visible = True
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            'OPTIMUS PRIME
+
+            'MORE TEST OVER STUFF
+            btncert.BackColor = Color.FromArgb(255, 50, 220, 50) 'not too bright green
+            genUpdateForXL()
         End If
 
         'others-----------------------
@@ -687,6 +694,8 @@
                     testongoing = False
                     testover = True
                     teststatuslabel2.Text = "Test Over"
+                    'HERE UPDATE GS
+
                 End If
             End If
 
@@ -767,14 +776,14 @@
                         testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
                         testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
                         pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
-                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet
+                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'Liters to cubic feet
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                         hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
                         filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
                         filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
-                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH litres to cu ft
+                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH Liters to cu ft
                     End If
 
 
@@ -1176,7 +1185,7 @@
         '            reasonableVals = False
         '            'flowrate is too low, make it red then send error
         '            flowratetxtbox(p).BackColor = Color.FromArgb(255, 255, 0, 0)
-        '            GS_errorText = "FlowRate must be greater than 1.0 Litres todo imperial"
+        '            GS_errorText = "FlowRate must be greater than 1.0 Liters todo imperial"
         '            ErrorForm.StartPosition = FormStartPosition.CenterScreen
         '            ErrorForm.ShowDialog()
         '        End If
@@ -1494,5 +1503,58 @@
     Private Sub btncert_Click(sender As Object, e As EventArgs) Handles btncert.Click
         certForm.StartPosition = FormStartPosition.CenterScreen
         certForm.ShowDialog()
+    End Sub
+
+    Private Sub genUpdateForXL()
+        Dim zposition As Integer = 15
+        updateExpY()
+        Gs_ForXL = ""
+        For cc As Integer = 1 To NUM_OF_ROWS
+            zposition = 15 + cc
+            If (rowused(cc)) Then
+
+
+                'for XL
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
+                'skip something????
+                Gs_ForXL &= "K" + CStr(zposition) + "~" + "0" + vbCrLf
+                Gs_ForXL &= "L" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "M" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "N" + CStr(zposition) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
+                Gs_ForXL &= "O" + CStr(zposition) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'go to bottom stuff
+                zposition += 12
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "C" + CStr(zposition) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(xdGivenScaling) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(filVarY(cc)) + vbCrLf
+                'SKIP I
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
+                '**********SOMEWHERE HERE TRY experimentY(cc)******************
+
+                'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+
+                'misc stuff
+                'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
+            End If
+        Next
+
+    End Sub
+
+    Private Sub updateExpY()
+        For zz As Integer = 1 To NUM_OF_ROWS
+            experimentY(zz) = newY(zz) / xdGivenScaling * (Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
+            experimentY(zz) = Math.Round(experimentY(zz), 4)
+        Next
     End Sub
 End Class
