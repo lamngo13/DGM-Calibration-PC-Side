@@ -109,6 +109,7 @@
 
     'FILE STUFF
     Dim newY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim experimentY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -602,7 +603,7 @@
         'to process after test
         If (testover And Not processingDone) Then
             processingDone = True
-            toFileButton.Visible = True
+            ''''''''''''toFileButton.Visible = True
             'process the vals lmao like average them and move them to a spreadsheet
             'hasCalculatedAfterTest boolean that will go to true after we process everything
             numtests = currenttest - 1
@@ -671,6 +672,11 @@
             avglabel22.Visible = True
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
+            'OPTIMUS PRIME
+
+            'MORE TEST OVER STUFF
+            btncert.BackColor = Color.FromArgb(255, 50, 220, 50) 'not too bright green
+            genUpdateForXL()
         End If
 
         'others-----------------------
@@ -687,6 +693,8 @@
                     testongoing = False
                     testover = True
                     teststatuslabel2.Text = "Test Over"
+                    'HERE UPDATE GS
+
                 End If
             End If
 
@@ -1494,5 +1502,58 @@
     Private Sub btncert_Click(sender As Object, e As EventArgs) Handles btncert.Click
         certForm.StartPosition = FormStartPosition.CenterScreen
         certForm.ShowDialog()
+    End Sub
+
+    Private Sub genUpdateForXL()
+        Dim zposition As Integer = 15
+        updateExpY()
+        Gs_ForXL = ""
+        For cc As Integer = 1 To NUM_OF_ROWS
+            zposition = 15 + cc
+            If (rowused(cc)) Then
+
+
+                'for XL
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
+                'skip something????
+                Gs_ForXL &= "K" + CStr(zposition) + "~" + "0" + vbCrLf
+                Gs_ForXL &= "L" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "M" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "N" + CStr(zposition) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
+                Gs_ForXL &= "O" + CStr(zposition) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'go to bottom stuff
+                zposition += 12
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "C" + CStr(zposition) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(xdGivenScaling) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(filVarY(cc)) + vbCrLf
+                'SKIP I
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
+                '**********SOMEWHERE HERE TRY experimentY(cc)******************
+
+                'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+
+                'misc stuff
+                'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
+            End If
+        Next
+
+    End Sub
+
+    Private Sub updateExpY()
+        For zz As Integer = 1 To NUM_OF_ROWS
+            experimentY(zz) = newY(zz) / xdGivenScaling * (Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
+            experimentY(zz) = Math.Round(experimentY(zz), 4)
+        Next
     End Sub
 End Class
