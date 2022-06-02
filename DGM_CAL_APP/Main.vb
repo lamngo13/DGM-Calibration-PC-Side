@@ -1576,7 +1576,7 @@
         Gs_ForXL &= "J6~" + CStr(kelvinusrstdtemp) + vbCrLf
 
         'TODO GIVE UPDATED SCALING FACTOR
-        'Gs_ForXL &= "CELL" + CStr(Math.Round(CDbl(avglabel33.Text), 7)) + vbCrLf
+        Gs_ForXL &= "O35~" + CStr(Math.Round(CDbl(avglabel33.Text), 7)) + vbCrLf
     End Sub
 
     Private Sub updateExpY()
