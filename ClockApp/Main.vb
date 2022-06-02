@@ -1517,45 +1517,52 @@
         Gs_ForXL &= "Time: " + CStr(newmainclock.Text) + vbCrLf
         For cc As Integer = 1 To NUM_OF_ROWS
             zposition = 15 + cc
-        If (rowused(cc)) Then
+            If (rowused(cc)) Then
 
 
-            'for XL
-            Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
-            Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
-            Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
-            Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
-            Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
-            Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
-            Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
-            'skip something????
-            Gs_ForXL &= "K" + CStr(zposition) + "~" + "0" + vbCrLf
-            Gs_ForXL &= "L" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
-            Gs_ForXL &= "M" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
-            Gs_ForXL &= "N" + CStr(zposition) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
-            Gs_ForXL &= "O" + CStr(zposition) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
-            'go to bottom stuff
-            zposition += 12
-            Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
-            Gs_ForXL &= "C" + CStr(zposition) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
-            Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
-            Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(xdGivenScaling) + vbCrLf
-            Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
-            Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
-            Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(filVarY(cc)) + vbCrLf
-            'SKIP I
-            Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
-            '**********SOMEWHERE HERE TRY experimentY(cc)******************
-            Gs_ForXL &= "TESTY: " + CStr(experimentY(cc)) + vbCrLf
+                'for XL
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
+                'skip something????
+                Gs_ForXL &= "K" + CStr(zposition) + "~" + "0" + vbCrLf
+                Gs_ForXL &= "L" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "M" + CStr(zposition) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "N" + CStr(zposition) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
+                Gs_ForXL &= "O" + CStr(zposition) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'go to bottom stuff
+                zposition += 12
+                Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "C" + CStr(zposition) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
+                Gs_ForXL &= "D" + CStr(zposition) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(zposition) + "~" + CStr(xdGivenScaling) + vbCrLf
+                Gs_ForXL &= "F" + CStr(zposition) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
+                Gs_ForXL &= "G" + CStr(zposition) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
+                Gs_ForXL &= "H" + CStr(zposition) + "~" + CStr(filVarY(cc)) + vbCrLf
+                'SKIP I
+                Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
+                '**********SOMEWHERE HERE TRY experimentY(cc)******************
+                Gs_ForXL &= "TESTY: " + CStr(experimentY(cc)) + vbCrLf
 
-            'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
-            'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
 
-            'misc stuff
-            'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
-        End If
+
+            End If
         Next
+        'misc stuff
+        'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
+        If ((CDbl(percenterrorreallbl.Text) < 5.0) And (CDbl(percenterrorreallbl.Text) > -5.0)) Then
+            'test passes
+            Gs_ForXL &= "O" + CStr(31) + "~" + "PASS" + vbCrLf
+        Else
+            Gs_ForXL &= "O" + CStr(31) + "~" + "FAIL" + vbCrLf
 
+        End If
     End Sub
 
     Private Sub updateExpY()
