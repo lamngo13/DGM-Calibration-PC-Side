@@ -212,7 +212,7 @@ Partial Class Certification
         Me.IconButton1.Location = New System.Drawing.Point(882, 38)
         Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
         Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(119, 49)
+        Me.IconButton1.Size = New System.Drawing.Size(119, 28)
         Me.IconButton1.TabIndex = 192
         Me.IconButton1.Text = "SAVE DATA"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -327,7 +327,6 @@ Partial Class Certification
         Me.txtCertUUTModel.Name = "txtCertUUTModel"
         Me.txtCertUUTModel.Size = New System.Drawing.Size(58, 23)
         Me.txtCertUUTModel.TabIndex = 146
-        Me.txtCertUUTModel.Text = "1"
         Me.txtCertUUTModel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
@@ -388,7 +387,6 @@ Partial Class Certification
         Me.txtCertUUTSerial.Name = "txtCertUUTSerial"
         Me.txtCertUUTSerial.Size = New System.Drawing.Size(58, 23)
         Me.txtCertUUTSerial.TabIndex = 152
-        Me.txtCertUUTSerial.Text = "2"
         Me.txtCertUUTSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
@@ -413,7 +411,6 @@ Partial Class Certification
         Me.txtCertDGMSerial.Name = "txtCertDGMSerial"
         Me.txtCertDGMSerial.Size = New System.Drawing.Size(58, 23)
         Me.txtCertDGMSerial.TabIndex = 156
-        Me.txtCertDGMSerial.Text = "4"
         Me.txtCertDGMSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label6
@@ -438,7 +435,6 @@ Partial Class Certification
         Me.txtCertDGMModel.Name = "txtCertDGMModel"
         Me.txtCertDGMModel.Size = New System.Drawing.Size(58, 23)
         Me.txtCertDGMModel.TabIndex = 154
-        Me.txtCertDGMModel.Text = "3"
         Me.txtCertDGMModel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label7
@@ -463,7 +459,6 @@ Partial Class Certification
         Me.txtInitialGamma.Name = "txtInitialGamma"
         Me.txtInitialGamma.Size = New System.Drawing.Size(58, 23)
         Me.txtInitialGamma.TabIndex = 158
-        Me.txtInitialGamma.Text = "5"
         Me.txtInitialGamma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label8
@@ -500,7 +495,6 @@ Partial Class Certification
         Me.txtCertAltitude.Name = "txtCertAltitude"
         Me.txtCertAltitude.Size = New System.Drawing.Size(58, 23)
         Me.txtCertAltitude.TabIndex = 166
-        Me.txtCertAltitude.Text = "9"
         Me.txtCertAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label10
@@ -525,7 +519,6 @@ Partial Class Certification
         Me.txtCertHumidity.Name = "txtCertHumidity"
         Me.txtCertHumidity.Size = New System.Drawing.Size(58, 23)
         Me.txtCertHumidity.TabIndex = 164
-        Me.txtCertHumidity.Text = "8"
         Me.txtCertHumidity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label11
@@ -550,7 +543,6 @@ Partial Class Certification
         Me.txtCertAmbTemp.Name = "txtCertAmbTemp"
         Me.txtCertAmbTemp.Size = New System.Drawing.Size(58, 23)
         Me.txtCertAmbTemp.TabIndex = 162
-        Me.txtCertAmbTemp.Text = "7"
         Me.txtCertAmbTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label12
@@ -575,7 +567,6 @@ Partial Class Certification
         Me.txtCertBarPressure.Name = "txtCertBarPressure"
         Me.txtCertBarPressure.Size = New System.Drawing.Size(58, 23)
         Me.txtCertBarPressure.TabIndex = 160
-        Me.txtCertBarPressure.Text = "6"
         Me.txtCertBarPressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label13
@@ -612,7 +603,6 @@ Partial Class Certification
         Me.txtCertStdPress.Name = "txtCertStdPress"
         Me.txtCertStdPress.Size = New System.Drawing.Size(58, 23)
         Me.txtCertStdPress.TabIndex = 172
-        Me.txtCertStdPress.Text = "760"
         Me.txtCertStdPress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label17
@@ -649,7 +639,6 @@ Partial Class Certification
         Me.txtCertGamma.Name = "txtCertGamma"
         Me.txtCertGamma.Size = New System.Drawing.Size(58, 23)
         Me.txtCertGamma.TabIndex = 188
-        Me.txtCertGamma.Text = "18"
         Me.txtCertGamma.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label19
@@ -674,7 +663,6 @@ Partial Class Certification
         Me.txtCertSerial.Name = "txtCertSerial"
         Me.txtCertSerial.Size = New System.Drawing.Size(58, 23)
         Me.txtCertSerial.TabIndex = 186
-        Me.txtCertSerial.Text = "17"
         Me.txtCertSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label20
@@ -699,7 +687,6 @@ Partial Class Certification
         Me.txtCertTherm.Name = "txtCertTherm"
         Me.txtCertTherm.Size = New System.Drawing.Size(58, 23)
         Me.txtCertTherm.TabIndex = 184
-        Me.txtCertTherm.Text = "16"
         Me.txtCertTherm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label21
@@ -724,7 +711,6 @@ Partial Class Certification
         Me.txtCertDueDate.Name = "txtCertDueDate"
         Me.txtCertDueDate.Size = New System.Drawing.Size(58, 23)
         Me.txtCertDueDate.TabIndex = 182
-        Me.txtCertDueDate.Text = "15"
         Me.txtCertDueDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label22
@@ -749,7 +735,6 @@ Partial Class Certification
         Me.txtWTMModel.Name = "txtWTMModel"
         Me.txtWTMModel.Size = New System.Drawing.Size(58, 23)
         Me.txtWTMModel.TabIndex = 180
-        Me.txtWTMModel.Text = "14"
         Me.txtWTMModel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label23

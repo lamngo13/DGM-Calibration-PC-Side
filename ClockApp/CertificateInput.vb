@@ -157,7 +157,7 @@ Public Class Certification
         ' Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
 
         ' array is 9 by 2, start 0 so declare as 8 by 1
-        Dim certInfo(,) As String = New String(14, 1) {
+        Dim certInfo(,) As String = New String(15, 1) {
             {"c6", txtCertUUTModel.Text},
             {"c7", txtCertUUTSerial.Text},
             {"c8", txtCertDGMModel.Text},
@@ -172,11 +172,12 @@ Public Class Certification
             {"m7", txtCertDueDate.Text},
             {"m8", txtCertTherm.Text},
             {"o6", txtCertSerial.Text},
-            {"o7", txtCertGamma.Text}
+            {"o7", txtCertGamma.Text},
+            {"c37", txtCertTech.Text}
         }
 
 
-        For n As Integer = 0 To 14
+        For n As Integer = 0 To 15
             Gs_ForXL &= certInfo(n, 0) + "~" + certInfo(n, 1) + vbCrLf
         Next
         'MsgBox(Gs_ForXL)
