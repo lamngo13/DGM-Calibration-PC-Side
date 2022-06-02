@@ -34,6 +34,7 @@
 
 
     Dim xdGivenScaling As Double = 0.0
+    Dim kelvinusrstdtemp As Double = 0.0
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -1563,6 +1564,16 @@
             Gs_ForXL &= "O" + CStr(31) + "~" + "FAIL" + vbCrLf
 
         End If
+
+        If (Gs_UnitType = "met") Then
+            kelvinusrstdtemp = Gd_usrStdTemp + 273.15
+        Else
+            If (Gs_UnitType = "imp") Then
+                kelvinusrstdtemp = conversions.convertFarToCel(Gd_usrStdTemp) + 273.15
+            End If
+        End If
+        kelvinusrstdtemp = Math.Round(kelvinusrstdtemp, 2)
+        Gs_ForXL &= "J6~" + CStr(kelvinusrstdtemp) + vbCrLf
     End Sub
 
     Private Sub updateExpY()
