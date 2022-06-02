@@ -161,7 +161,7 @@ Public Class Certification
             'MACHINEOFBRUH"
             stream_writer = New System.IO.StreamWriter(sFileName)
 
-            Dim fileContents As String = Gs_ForXL & "test"
+            Dim fileContents As String = Gs_ForXL
 
 
             stream_writer.Write(fileContents)

@@ -1514,8 +1514,8 @@
         Dim zposition As Integer = 15
         updateExpY()
         Gs_ForXL = ""
-        Gs_ForXL &= "Date: " + Today + vbCrLf
-        Gs_ForXL &= "Time: " + CStr(newmainclock.Text) + vbCrLf
+        'Gs_ForXL &= "Date: " + Today + vbCrLf
+        'Gs_ForXL &= "Time: " + CStr(newmainclock.Text) + vbCrLf
         For cc As Integer = 1 To NUM_OF_ROWS
             zposition = 15 + cc
             If (rowused(cc)) Then
@@ -1547,7 +1547,7 @@
                 'SKIP I
                 Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
                 '**********SOMEWHERE HERE TRY experimentY(cc)******************
-                Gs_ForXL &= "TESTY: " + CStr(experimentY(cc)) + vbCrLf
+                '''''''''''Gs_ForXL &= "TESTY: " + CStr(experimentY(cc)) + vbCrLf
 
                 'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
                 'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
@@ -1574,6 +1574,9 @@
         End If
         kelvinusrstdtemp = Math.Round(kelvinusrstdtemp, 2)
         Gs_ForXL &= "J6~" + CStr(kelvinusrstdtemp) + vbCrLf
+
+        'TODO GIVE UPDATED SCALING FACTOR
+        'Gs_ForXL &= "CELL" + CStr(Math.Round(CDbl(avglabel33.Text), 7)) + vbCrLf
     End Sub
 
     Private Sub updateExpY()
