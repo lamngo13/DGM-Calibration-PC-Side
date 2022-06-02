@@ -859,6 +859,7 @@ Partial Class Main
         Me.mainclocklbl.TabIndex = 71
         Me.mainclocklbl.Text = "Label2"
         Me.mainclocklbl.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.mainclocklbl.Visible = False
         '
         'refport
         '

@@ -5,6 +5,7 @@ Imports PdfSharp.Pdf
 Public Class Certification
 
     Const NUM_OF_ROWS As Integer = 6
+    Dim dialogForm As New DialogUsr
 
 
     Private Sub flowratetxtbox6_TextChanged(sender As Object, e As EventArgs) Handles txtCertUUTModel.TextChanged
@@ -178,6 +179,9 @@ Public Class Certification
             stream_writer.Write(fileContents)
 
             stream_writer.Close()
+            Gs_dialogText = "File saved successfully."
+            dialogForm.StartPosition = FormStartPosition.CenterScreen
+            dialogForm.ShowDialog()
         End If
 
 

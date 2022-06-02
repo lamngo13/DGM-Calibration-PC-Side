@@ -34,6 +34,7 @@
 
 
     Dim xdGivenScaling As Double = 0.0
+    Dim kelvinusrstdtemp As Double = 0.0
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -82,6 +83,9 @@
     Dim numtests As Integer
 
     Dim finaldiabox As Boolean = False
+
+    Dim thisDate As Date
+
 
     'Dim testpulses = New Integer() {0, 0, 0, 0, 0, 0}
     Dim testendvolume = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -353,7 +357,7 @@
         'check to see if we have scaling factor
         If (Not havesScalingFactor) Then
             requestCalibration()
-            'loop this !
+            'loop this ????
         End If
 
         If (weNeedPulseCountxd) Then
@@ -1506,9 +1510,12 @@
     End Sub
 
     Private Sub genUpdateForXL()
+        thisDate = Today
         Dim zposition As Integer = 15
         updateExpY()
         Gs_ForXL = ""
+        Gs_ForXL &= "Date: " + Today + vbCrLf
+        Gs_ForXL &= "Time: " + CStr(newmainclock.Text) + vbCrLf
         For cc As Integer = 1 To NUM_OF_ROWS
             zposition = 15 + cc
             If (rowused(cc)) Then
@@ -1540,15 +1547,33 @@
                 'SKIP I
                 Gs_ForXL &= "J" + CStr(zposition) + "~" + CStr(filY(cc)) + vbCrLf
                 '**********SOMEWHERE HERE TRY experimentY(cc)******************
+                Gs_ForXL &= "TESTY: " + CStr(experimentY(cc)) + vbCrLf
 
                 'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
                 'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
 
-                'misc stuff
-                'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
+
             End If
         Next
+        'misc stuff
+        'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
+        If ((CDbl(percenterrorreallbl.Text.Replace("%", "")) < 5.0) And (CDbl(percenterrorreallbl.Text.Replace("%", "")) > -5.0)) Then
+            'test passes
+            Gs_ForXL &= "O" + CStr(31) + "~" + "PASS" + vbCrLf
+        Else
+            Gs_ForXL &= "O" + CStr(31) + "~" + "FAIL" + vbCrLf
 
+        End If
+
+        If (Gs_UnitType = "met") Then
+            kelvinusrstdtemp = Gd_usrStdTemp + 273.15
+        Else
+            If (Gs_UnitType = "imp") Then
+                kelvinusrstdtemp = conversions.convertFarToCel(Gd_usrStdTemp) + 273.15
+            End If
+        End If
+        kelvinusrstdtemp = Math.Round(kelvinusrstdtemp, 2)
+        Gs_ForXL &= "J6~" + CStr(kelvinusrstdtemp) + vbCrLf
     End Sub
 
     Private Sub updateExpY()
