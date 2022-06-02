@@ -1329,6 +1329,23 @@
                 Gs_ForXL &= "M" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
                 Gs_ForXL &= "N" + CStr(position) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
                 Gs_ForXL &= "O" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'go to bottom stuff
+                position += 12
+                Gs_ForXL &= "B" + CStr(position) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "C" + CStr(position) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
+                Gs_ForXL &= "D" + CStr(position) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(position) + "~" + CStr(xdGivenScaling) + vbCrLf
+                Gs_ForXL &= "F" + CStr(position) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
+                Gs_ForXL &= "G" + CStr(position) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
+                Gs_ForXL &= "H" + CStr(position) + "~" + CStr(filVarY(cc)) + vbCrLf
+                Gs_ForXL &= "I" + CStr(position) + "~" + CStr(filY(cc)) + vbCrLf
+                'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+
+                'misc stuff
+                'todo: scaling factor avg (E34), correction factor (Y) average (H(34), 
+
+
             End If
         Next
         stream_writer.Write(Gs_ForXL)
