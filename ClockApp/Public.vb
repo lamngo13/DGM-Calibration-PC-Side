@@ -16,6 +16,7 @@ Module _Public
     Public Gs_dialogText As String
     Public GS_errorText As String
     Public Gs_UnitType As String
+    Public Gs_ForXL
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670
@@ -74,6 +75,7 @@ Module _Public
     Public stdVolLabel() As Label
     Public xdstdvollabel() As Label
     Public resTestLabel() As Label
+    Public ydifflabel() As Label
 
     Public Gi_BL_Debug As Integer = 0
 

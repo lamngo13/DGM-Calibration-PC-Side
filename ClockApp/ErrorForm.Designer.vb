@@ -31,7 +31,7 @@ Partial Class ErrorForm
         Me.errormsglabel.AutoSize = True
         Me.errormsglabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!)
         Me.errormsglabel.ForeColor = System.Drawing.Color.DarkRed
-        Me.errormsglabel.Location = New System.Drawing.Point(88, 58)
+        Me.errormsglabel.Location = New System.Drawing.Point(104, 143)
         Me.errormsglabel.Name = "errormsglabel"
         Me.errormsglabel.Size = New System.Drawing.Size(64, 22)
         Me.errormsglabel.TabIndex = 0

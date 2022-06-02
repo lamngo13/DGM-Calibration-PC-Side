@@ -49,4 +49,11 @@
         ErrorForm.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
+    Private Sub restoredefaultsbutton_Click(sender As Object, e As EventArgs) Handles restoredefaultsbutton.Click
+        Gs_UnitType = "met"
+        Gd_usrStdTemp = 20
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Unit_Type", Gs_UnitType)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Usr_std_temp", Gd_usrStdTemp)
+        Me.Close()
+    End Sub
 End Class

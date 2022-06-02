@@ -25,11 +25,15 @@
     Const sBLOCK_START As String = ChrW(1)
     Const BLOCK_MARKER_CS As String = Chr(31)
     Const FIND_SF As Integer = 19
+    Const CAL_PULSE_COUNT As Integer = 16 + 1
+    Const XD_FLOW_RATE_INPUT As Integer = 30
+    Const XL_START_INDEX_ONE = 16
+    Const XL_START_INDEX_TWO = 27
 
     '        sTemp = sBLOCK_START & sTemp & BLOCK_MARKER_CS & sCS & vbCrLf
 
 
-    Dim xdGivenScaling As Double
+    Dim xdGivenScaling As Double = 0.0
 
     Dim zDGM As String = "notyet"
     Dim Gs_str As String = "foo"
@@ -104,20 +108,36 @@
 
 
     'FILE STUFF
+    Dim newY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filTestTime = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOrrifice = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutPulseFinal = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim filuutPulseTotal = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim filuutInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filuutFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefStdTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     'meter pressure?
     Dim filrefInitVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filrefFinalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filrefTotalVol = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutletInitTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim filOutlsetFinalTemp = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filrefflowrate = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim xdflowrate As Double = 0.0
+    Dim filuutFlowRate = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim thisTestSavedInits = New Boolean() {False, False, False, False, False, False, False}
     Dim thisTestSavedFinals = New Boolean() {False, False, False, False, False, False, False}
+    Dim filuutPulseInit = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim oldCurrTest As Integer = 1
+    Dim filuutcalcedpulses = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim filVarY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim forPreciseRefVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim forPreciseXdVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
+    Dim didItPass As Boolean
 
     'END FILE STUFF
     Dim currenttest As Integer = 1
@@ -151,7 +171,7 @@
     Dim avgStdTestVolPostTest As Double
     Dim processingDone As Boolean = False
     Dim havesScalingFactor As Boolean = False
-    Dim givenxdScaling As Double = 0.0
+    'Dim givenxdScaling As Double = 0.0
 
 
 
@@ -162,6 +182,11 @@
     Dim zrefinputambtemp As String
     Dim zrefinputreftemp As String
     Dim zrefinputambhum As String
+    Dim weNeedPulseCountxd As Boolean = False
+    Dim xdpulseholder As Integer = 0
+
+    Dim xdWarmUpPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
+    Dim xdInPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
 
     Const XD_MAX_MEMBERS = 500
     Dim s_xd_in(XD_MAX_MEMBERS) As String
@@ -193,53 +218,10 @@
     Dim fooflowrate As Double = 0.0
     Dim fooendvol As Double = 0.0
     Dim foowarmup As Double = 0.0
+    Dim shouldendonlynum As Boolean = False
+    Dim percentoffnew As Double
 
 
-    'AZN mouseover colors
-    Private Sub btnconfig_MouseHover(sender As Object, e As EventArgs) Handles btnconfig.MouseHover
-        btnconfig.BackColor = ColorTranslator.FromHtml("#585858")
-    End Sub
-    Private Sub btnconfig_MouseLeave(sender As Object, e As EventArgs) Handles btnconfig.MouseLeave
-        btnconfig.BackColor = ColorTranslator.FromHtml("#2a2a2a")
-
-    End Sub
-
-    Private Sub btncert_MouseHover(sender As Object, e As EventArgs) Handles btncert.MouseHover
-        btncert.BackColor = ColorTranslator.FromHtml("#2f5d6b")
-
-    End Sub
-    Private Sub btncert_MouseLeave(sender As Object, e As EventArgs) Handles btncert.MouseLeave
-        btncert.BackColor = ColorTranslator.FromHtml("#0a576d")
-
-    End Sub
-
-    Private Sub btnstart_MouseHover(sender As Object, e As EventArgs) Handles btnstart.MouseHover
-        btnstart.BackColor = ColorTranslator.FromHtml("#1a691e")
-
-    End Sub
-    Private Sub btnstart_MouseLeave(sender As Object, e As EventArgs) Handles btnstart.MouseLeave, btncert.MouseLeave
-        btnstart.BackColor = ColorTranslator.FromHtml("#114413")
-
-    End Sub
-
-    Private Sub btnabort_MouseHover(sender As Object, e As EventArgs) Handles btnabort.MouseHover
-        btnabort.BackColor = ColorTranslator.FromHtml("#a22a20")
-
-    End Sub
-    Private Sub btnabort_MouseLeave(sender As Object, e As EventArgs) Handles btnabort.MouseLeave
-        btnabort.BackColor = ColorTranslator.FromHtml("#731e17")
-
-    End Sub
-
-    Private Sub btnconnect_MouseHover(sender As Object, e As EventArgs) Handles btnconnect.MouseHover
-        btnconnect.BackColor = ColorTranslator.FromHtml("#0e7a99")
-
-    End Sub
-
-    Private Sub btnconnect_MouseLeave(sender As Object, e As EventArgs) Handles btnconnect.MouseLeave
-        btnconnect.BackColor = ColorTranslator.FromHtml("#0a596f")
-
-    End Sub
 
 
     Public Sub goodParseRef()
@@ -329,6 +311,7 @@
         xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
+        Dim bruh4 As Double = filuutFlowRate(currenttest)
     End Sub
 
     Public Sub reWhiteInputsExistOnly()
@@ -356,8 +339,6 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
-        ''''''''''' onlyNumsInInput()
-
         ' Just hitching a ride ---------------------
         If Gb_Update_Screen_Size Then
             Gb_Update_Screen_Size = False
@@ -373,23 +354,27 @@
             'loop this !
         End If
 
+        If (weNeedPulseCountxd) Then
+            requestRaw()
+        End If
+
         'update label units based on unit type
         If (Gs_UnitType = "met") Then
-            Label7.Text = "Volume" + vbCrLf + "(Litres)"
-            Label8.Text = "Volume" + vbCrLf + "(Litres)"
-            Label9.Text = "Volume" + vbCrLf + "(Litres)"
-            Label10.Text = "Volume" + vbCrLf + "(Litres)"
-            Label11.Text = "Temp" + vbCrLf + "(Celsius)"
-            Label12.Text = "Temp" + vbCrLf + "(Celsius)"
+            Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Litres)"
+            Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
+            Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
         Else
             If (Gs_UnitType = "imp") Then
-                Label7.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label8.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label9.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label10.Text = "Volume" + vbCrLf + "(Cubic Feet)"
-                Label11.Text = "Temp" + vbCrLf + "(Fahrenheit)"
-                Label12.Text = "Temp" + vbCrLf + "(Fahrenheit)"
+                Label7.Text = "Volume" + vbCrLf + "(Cu Ft.)"
+                Label8.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
+                Label9.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
+                Label10.Text = "Volume" + vbCrLf + "(Cu. Ft)"
+                Label11.Text = "Temp" + vbCrLf + "(°F)"
+                Label12.Text = "Temp" + vbCrLf + "(°F)"
                 pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
             End If
         End If
@@ -546,10 +531,24 @@
                                         'scan for the scaling factor
                                         xdGivenScaling = s_xd_in(FIND_SF)
                                         havesScalingFactor = True
+
+
                                     Catch ex As Exception
 
                                     End Try
+                                Else
+                                    If (xdthisinputtype = "R") Then
+                                        If (weNeedPulseCountxd) Then
+                                            xdpulseholder = s_xd_in(CAL_PULSE_COUNT)
+                                            Dim bruh66 = currenttest
+                                            Dim bruh1 = xdCurrStr
+                                            filuutPulseFinal(oldCurrTest) = s_xd_in(CAL_PULSE_COUNT)
+                                            If (Not xdpulseholder = 0) Then
+                                                weNeedPulseCountxd = False
+                                            End If
 
+                                        End If
+                                    End If
                                 End If
                             End If
                         Catch ex As Exception
@@ -572,7 +571,7 @@
 
 
         'If (debugAbort) Then
-        '    Dim bruhmachine As Integer = 9
+        '    Dim bruhbruh As Integer = 9
         '    findRunnableTests()
         '    testongoing = True
         '    duringwarmup = True
@@ -594,6 +593,7 @@
             testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
             testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
             xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+            ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
         End If
 
 
@@ -651,10 +651,23 @@
             '''''''''''''''''avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
             avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avghypotheticalxd), 7))
             percenterrorreallbl.Text = CStr(Math.Round(100 - (100 * (avgStdRefVolPostTest / avgStdTestVolPostTest)), 4)) & "%"
+            'check if passed
+            percentoffnew = (percenterrorreallbl.Text).Replace("%", "")
+            percentoffnew = CDbl(percentoffnew)
+            If ((percentoffnew < 5) And percentoffnew > -5) Then
+                'change new label to test passed
+                percenterrorreallbl.BackColor = Color.FromArgb(255, 0, 255, 0) ' GREEN
+                didItPass = True
+            Else
+                percenterrorreallbl.BackColor = Color.FromArgb(255, 255, 0, 0) ' RED
+                didItPass = False
+            End If
             'avglabel33.Visible = True
             'percenterrorreallbl.Visible = True
             avglabel1.Visible = True
             avglabel2.Visible = True
+            avglabel11.Visible = True
+            avglabel22.Visible = True
             'resultLabel1.Text = "New Scaling Factor for XD:"
             'avglabel33.Text = CStr(Math.Round((avgStdRefVolPostTest / avgStdTestVolPostTest), 4))
         End If
@@ -662,7 +675,7 @@
         'others-----------------------
 
         'If overall test is currently going
-        If (testongoing) Then
+        If (testongoing And Gb_testgo) Then
             messagetxtbox.Text = "TEST ONGOING"
             If (Gb_testgo) Then
                 'ensure correct string:
@@ -681,91 +694,158 @@
                 If (Gb_testgo) Then
                     bigtimer += 0.1
                     bigtimer = Math.Round(bigtimer, 2)
+                End If
 
+                'check for end of warmup
+                If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
+                    duringwarmup = False
+                End If
+
+                'increment warmup timer(s)
+                If (duringwarmup) Then
+                    If ((currenttest = 2) And warmuptimer > 3.0) Then
+                        Dim bruh2 As Integer = 5
+                    End If
+                    warmuptimer += 0.1
+                    warmuptimer = Math.Round(warmuptimer, 2)
+                    warmuptimes(currenttest) += 0.1
+                    warmuppulses(currenttest) = intpulsecount
+                    xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
+                    Dim bruh3 As Integer = intpulsecount
+                    Dim bruh4 As Double = xdWarmupVols(currenttest)
+                    'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
+                    'If (Gs_UnitType = "imp") Then
+                    'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
+                    'End If
+                End If
+
+                'USE VALS FROM INPUT **********************************************************
+                If (Not duringwarmup) Then
+
+                    'ref stuff ------------------
+                    testtimers(currenttest) += 0.1
+                    testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
+                    testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                    refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
+                    pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
+                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
+                    'SOME ABSOLUTE CRAZINESS
+                    '''testreftemp(currenttest) = testxdtemp(currenttest)
+                    stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
+
+                    'xd stuff --------------------
+                    testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
+                    ' If (units = celsius)
+                    '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
+                    'AGAIN, THIS MAKES IT CELSIUS
+                    testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
+                    testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                    hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
+                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) * 60 / testtimers(currenttest)), 3)
+                    filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) * 60 / testtimers(currenttest)), 3)
+                    '  If (testtimers(currenttest) >= 30) Then
+                    ' Dim bruh99 = stdrefvols(currenttest)
+                    'Dim bruh100 = testtimers(currenttest)
+                    'Dim bruh101 = filrefflowrate(currenttest)
+                    'End If
+                    forPreciseRefVols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    forPreciseRefVols(currenttest) = Math.Round(conversions.standardize(forPreciseRefVols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 4)
+                    forPreciseXdVols(currenttest) = (xdInputVol - xdWarmupVols(currenttest))
+                    forPreciseXdVols(currenttest) = Math.Round(conversions.standardize(forPreciseXdVols(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 4)
+                    'FIND Y AND CAL
+                    'YYYYYYYYYYYYYYY
+                    filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4)
+                    filY(currenttest) = Math.Round(filVarY(currenttest) - 1, 4)
+
+                    filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
+
+
+                    'IF IMPERIAL------------------------------------------
+                    If (Gs_UnitType = "imp") Then
+                        testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
+                        testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
+                        pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
+                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
+                        testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
+                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
+                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
+                        hypotheticaltestxdstdvol(currenttest) = Math.Round((testxdstdvol(currenttest) / xdGivenScaling), 2)
+                        filuutFlowRate(currenttest) = Math.Round((filuutFlowRate(currenttest) / 28.317), 3)
+                        filrefflowrate(currenttest) = Math.Round((filrefflowrate(currenttest) / 28.317), 3)
+                        filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling / 28.317), 0) ' THIS CONVERSION WEIRD !!!!$#%@QLK#$FSDLKH litres to cu ft
+                    End If
+
+
+                    'HERE IS WHERE I DO INIT VALS FOR CERTIFICATION****************************************
                     'SAVE INIT VALS HERE *******************************
                     If (Not thisTestSavedInits(currenttest)) Then
+                        'xdGivenScaling
                         thisTestSavedInits(currenttest) = True
-                        filTestTime(currenttest) = bigtimer
+                        'now this will only execute once per test
+
                         'filOrrifice??
-                        'uutpulsefinal
+                        'filuutPulseInit(currenttest) = Math.Round((hypotheticaltestxdstdvol(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        Dim bruh37 As Double = xdWarmupVols(currenttest)
+                        'filuutPulseInit(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        filuutPulseInit(currenttest) = 0
+                        'TODO CONVERT THIS TO INT???
                         'uutpulsetotal
                         filuutInitTemp(currenttest) = testxdtemp(currenttest)
                         filOutletInitTemp(currenttest) = testreftemp(currenttest)
+                        filrefInitVol(currenttest) = refvols(currenttest)
+                        filrefStdInitVol(currenttest) = stdrefvols(currenttest)
                         'pressure?
 
+                        'Y stuff???
+                        'new Y
+                        newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)
+                        ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
+                        Dim bruhz As Double = newY(currenttest)
                         'save init vals
-                    End If
-
-                    'check for end of warmup
-                    If (warmuptimer > Val(warmuptxtbox(currenttest).Text)) Then
-                        duringwarmup = False
-                    End If
-
-                    'increment warmup timer(s)
-                    If (duringwarmup) Then
-                        warmuptimer += 0.1
-                        warmuptimer = Math.Round(warmuptimer, 2)
-                        warmuptimes(currenttest) += 0.1
-                        warmuppulses(currenttest) = intpulsecount
-                        xdWarmupVols(currenttest) = Math.Round(xdInputVol, 2)
-                        'CONVERT TO IMPERIAL!!!!!!!!!!!************************************!*!*!*!*!*!*!*!*
-                        'If (Gs_UnitType = "imp") Then
-                        'xdWarmupVols(currenttest) = Math.Round((xdWarmupVols(currenttest) / 28.317), 2) ' gotta test this *********************FIX THIS WE GOTTA MINUS THE WARMUP!!!!!!!!
-                        'End If
-                    End If
-
-                    'USE VALS FROM INPUT **********************************************************
-                    If (Not duringwarmup) Then
-
-                        'ref stuff ------------------
-                        testtimers(currenttest) += 0.1
-                        testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
-                        testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                        refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
-                        testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
-                        pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
-                        refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
-                        'SOME ABSOLUTE CRAZINESS
-                        '''testreftemp(currenttest) = testxdtemp(currenttest)
-                        stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
-
-                        'xd stuff --------------------
-                        testxdtemp(currenttest) = Math.Round(xdInputTemp, 2) 'COMES IN AS FARENHEIT, I WILL DEFAULT CONVERT TO CELSIUS
-                        ' If (units = celsius)
-                        '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
-                        'AGAIN, THIS MAKES IT CELSIUS
-                        testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
-                        testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                        hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
-
-
-                        'IF IMPERIAL------------------------------------------
-                        If (Gs_UnitType = "imp") Then
-                            testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
-                            testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
-                            pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                            refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'litres to cubic feet
-                            testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'litres to cubic feet
-                            stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
-                            testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                            hypotheticaltestxdstdvol(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling)
-                        End If
-
-
                     End If
 
                     'check for end condition off of pulses/volume
                     'go to next test
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                        'WRITE TO XD
+                        If (Not filuutPulseFinal(currenttest) = 0) Then
+                            weNeedPulseCountxd = False
+                        Else
+                            weNeedPulseCountxd = True
+                        End If
+                        If (weNeedPulseCountxd) Then
+                            requestRaw()
+                            oldCurrTest = currenttest
+                        End If
+
+
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
-                        'SAVE FINAL VALS HERE*****************
+                        'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
+                        filTestTime(currenttest) = testtimers(currenttest)
+                        filuutFinalTemp(currenttest) = testxdtemp(currenttest)
+                        filOutlsetFinalTemp(currenttest) = testreftemp(currenttest)
+                        'filrefFinalVol(currenttest) = xdpulseholder
+                        'filrefTotalVol(currenttest) = xdpulseholder
+                        If (Not xdpulseholder = 0) Then
+                            xdpulseholder = 0
+                        End If
+                        filrefStdFinalVol(currenttest) = stdrefvols(currenttest)
+                        filrefStdTotalVol(currenttest) = stdrefvols(currenttest) + (warmuppulses(currenttest) * usrrefscalingfactor) ' IDK ABT THIS
+
+                        'filuutPulseFinal(currenttest) = Math.Round((xdWarmupVols(currenttest) / xdGivenScaling) + (testxdvol(currenttest) / xdGivenScaling), 2)  'init pulses idk tho
+                        'TODO CONVERT THIS TO INT??????
+                        'filuutPulseTotal(currenttest) = filuutPulseFinal(currenttest)
+                        'filuutPulseTotal(currenttest) = Math.Round(hypotheticaltestxdstdvol(currenttest) / xdGivenScaling) + Math.Round((xdWarmupVols(currenttest) / xdGivenScaling), 2)   'init pulses idk tho
+                        'STANDARDDIZED VALS FOR UUT
                         If (Not thisTestSavedFinals(currenttest)) Then
                             'FINAL VALS HERE
                             thisTestSavedFinals(currenttest) = True
                         End If
 
                         If ((currenttest = 6) And (rowused(6)) = False) Then
+
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
@@ -775,17 +855,20 @@
                             'PAUSE CURRENT TEST AND PROMPT USER TO CONTINUE
                             duringwarmup = True
                             currenttest += 1 'goto next test
-                            While (rowused(currenttest) = False)
-                                If (currenttest = 7) Then
-                                    Exit While
-                                Else
-                                    currenttest += 1
-                                End If
-                                If (currenttest = 7) Then
-                                    Exit While
-                                End If
-                            End While
-                            If (currenttest = 7) Then
+                            If (Not currenttest = 7) Then
+                                While (rowused(currenttest) = False)
+                                    If (currenttest = 7) Then
+                                        Exit While
+                                    Else
+                                        currenttest += 1
+                                    End If
+                                    If (currenttest = 7) Then
+                                        Exit While
+                                    End If
+                                End While
+                            End If
+
+                            If (currenttest >= 7) Then
                                 'THE TEST IS OVER **********************************
                                 testongoing = False
                                 testover = True
@@ -833,6 +916,7 @@
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
+        ydifflabel = ControlArrayUtils.getControlArray(Me, "ydifflabel", NUM_OF_ROWS)
         'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
         rs.FindAllControls(Me)
@@ -1142,7 +1226,7 @@
 
 
         ''MAKE THIS CONDITIONAL ON OTHER STUFF
-        If (refportgood And xdportgood And (Not rowShouldBeFilled) And reasonableVals) Then
+        If (refportgood And xdportgood And (Not rowShouldBeFilled) And reasonableVals And onlyNumsInInput()) Then
             testongoing = True
             duringwarmup = True
             currenttest = 1
@@ -1186,17 +1270,85 @@
     Private Sub writeToFile(ByVal sFileName As String)
         Dim stream_writer As IO.StreamWriter
         Dim printable As String = ""
-
+        'MACHINEOFBRUH"
         stream_writer = New IO.StreamWriter(sFileName)
+        'FILEWRITER
+        'printable &= "foo"
+        'printable &= "bruh"
+        'runtime, uutinitpulses, uufinalpulses, uuttotalpulses
+        Gs_ForXL = ""
+        Dim position As Integer = 15
 
-        printable &= "foo"
-        printable &= "bruh"
         For cc As Integer = 1 To NUM_OF_ROWS
-            If (rowused(currenttest)) Then
-                printable &= "Test " + CStr(cc) + ","
+            position = 15 + cc
+            If (rowused(cc)) Then
+                printable &= "Test " + CStr(cc) + ", "
+                printable &= "Runtime: " + CStr(testtimerlabel(cc).Text) + ", "
+                printable &= "UUT Initial Pulses: " + CStr(Math.Round(filuutPulseInit(cc), 0)) + ", "
+                printable &= "UUT Final pulses: " + CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
+                printable &= "UUT Total pulses: " + CStr(Math.Round(filuutPulseFinal(cc), 0)) + ", "
+                printable &= "UUT Initial Temperature: " + CStr(Math.Round(filuutInitTemp(cc), 2)) + ", "
+                printable &= "UUT Final Temperature: " + CStr(Math.Round(filuutFinalTemp(cc), 2)) + ", "
+                printable &= "Pressure: " + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + ", "
+                printable &= "Ref Initial Volume: 0, "
+                printable &= "Ref Final Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
+                printable &= "Ref Total Volume: " + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + ", "
+                printable &= "Outlet Initial Temp: " + CStr(filOutletInitTemp(cc)) + ", "
+                printable &= "Outlet Final Temp: " + CStr(filOutlsetFinalTemp(cc)) + ", "
+                printable &= "Ref Std Volume: " + CStr(stdVolLabel(cc).Text) + ", "
+                printable &= "Ref Std Flow Rate: " + CStr(filrefflowrate(cc)) + ", "
+                'Dim bruha As String = xdCurrStr
+                printable &= "UUT Totalizer: " + CStr(filuutcalcedpulses(cc)) + ", " 'calculated pulse counts for xd
+                'scaling factor for WHOMST? XD I ASSUME bruh
+                printable &= "Scaling Factor: " + CStr(xdGivenScaling) + ", "
+                'std vol for xd
+                printable &= "UUT?? Std Volume: " + CStr(testxdstdvol(cc)) + ", "
+                'flow rate for xd
+                printable &= "UUT Flow Rate: " + CStr((filuutFlowRate(cc))) + ", "    'TODO PUT THIS SOMEWHERE ELSE ALSO THIS NOT WORKING!!
+                'y value
+                printable &= "Y Value: " + CStr(filVarY(cc)) + ", "
+                'variation
+                printable &= "Y Variation: " + CStr(filY(cc)) + ", "
+                'delta h
+                'delta h @
+
+                'todo change all to crlf
+                printable &= vbCrLf
+
+                'for XL
+                Gs_ForXL &= "B" + CStr(position) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "D" + CStr(position) + "~" + CStr(Math.Round(filuutPulseInit(cc), 0)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(position) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "F" + CStr(position) + "~" + CStr(Math.Round(filuutPulseFinal(cc))) + vbCrLf
+                Gs_ForXL &= "G" + CStr(position) + "~" + CStr(Math.Round(filuutInitTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "H" + CStr(position) + "~" + CStr(Math.Round(filuutFinalTemp(cc), 2)) + vbCrLf
+                Gs_ForXL &= "J" + CStr(position) + "~" + CStr(Math.Round(CDbl(pressureLabel(cc).Text), 2)) + vbCrLf
+                'skip L
+                Gs_ForXL &= "K" + CStr(position) + "~" + "0" + vbCrLf
+                Gs_ForXL &= "L" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "M" + CStr(position) + "~" + CStr(Math.Round(CDbl(refpulselabel(cc).Text), 2)) + vbCrLf
+                Gs_ForXL &= "N" + CStr(position) + "~" + CStr(filOutletInitTemp(cc)) + vbCrLf
+                Gs_ForXL &= "O" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'go to bottom stuff
+                position += 12
+                Gs_ForXL &= "B" + CStr(position) + "~" + CStr(stdVolLabel(cc).Text) + vbCrLf
+                Gs_ForXL &= "C" + CStr(position) + "~" + CStr(filrefflowrate(cc)) + vbCrLf
+                Gs_ForXL &= "D" + CStr(position) + "~" + CStr(filuutcalcedpulses(cc)) + vbCrLf
+                Gs_ForXL &= "E" + CStr(position) + "~" + CStr(xdGivenScaling) + vbCrLf
+                Gs_ForXL &= "F" + CStr(position) + "~" + CStr(testxdstdvol(cc)) + vbCrLf
+                Gs_ForXL &= "G" + CStr(position) + "~" + CStr((filuutFlowRate(cc))) + vbCrLf
+                Gs_ForXL &= "H" + CStr(position) + "~" + CStr(filVarY(cc)) + vbCrLf
+                Gs_ForXL &= "I" + CStr(position) + "~" + CStr(filY(cc)) + vbCrLf
+                'Gs_ForXL &= "J" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+                'Gs_ForXL &= "K" + CStr(position) + "~" + CStr(filOutlsetFinalTemp(cc)) + vbCrLf
+
+                'misc stuff
+                'todo: scaling factor avg (E34), correction factor (Y) average (H(34), 
+
+
             End If
         Next
-        stream_writer.Write(printable)
+        stream_writer.Write(Gs_ForXL)
 
         stream_writer.Close()
     End Sub
@@ -1257,19 +1409,19 @@
         End If
     End Sub
 
-    Private Sub onlyNumsInInput()
-        Dim shouldend As Boolean = False
+    Private Function onlyNumsInInput() As Boolean
         fooflowrate = 0.0
         fooendvol = 0.0
         foowarmup = 0.0
-        If (Not shouldend) Then
+        If (Not shouldendonlynum) Then
             For dd As Integer = 1 To NUM_OF_ROWS
                 Try
                     fooflowrate = CDbl(flowratetxtbox(dd).Text)
                     fooendvol = CDbl(endvoltxtbox(dd).Text)
                     foowarmup = CDbl(warmuptxtbox(dd).Text)
                 Catch ex As Exception
-                    shouldend = True
+                    dd += NUM_OF_ROWS
+                    shouldendonlynum = True
                     'send error form
                     GS_errorText = "Only Use Number in Input"
                     ErrorForm.StartPosition = FormStartPosition.CenterScreen
@@ -1277,10 +1429,18 @@
                     'Return
                 End Try
             Next
+            If (shouldendonlynum) Then
+                shouldendonlynum = False
+                Return False
+            Else
+                shouldendonlynum = False
+                Return True
+            End If
+
         End If
 
 
-    End Sub
+    End Function
 
     Public Sub Tx_2_Console(sCommand As String, sValue As String)
         Dim sTemp As String
@@ -1320,21 +1480,11 @@
 
     Private Sub requestCalibration()
         'Public Sub Tx_2_Console(sCommand As String, sValue As String)
-        Tx_2_Console("C", "4")
+        Tx_2_Console("C", "2")
     End Sub
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles btncert.Click
-        Dim certification As New Certification
-
-        certification.StartPosition = FormStartPosition.CenterScreen
-        certification.ShowDialog()
+    Private Sub requestRaw()
+        Tx_2_Console("V", "2")
     End Sub
 
-    Private Sub IconButton3_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
 End Class
