@@ -74,6 +74,7 @@ Module _Public
     Public stdVolLabel() As Label
     Public xdstdvollabel() As Label
     Public resTestLabel() As Label
+    Public ydifflabel() As Label
 
     Public Gi_BL_Debug As Integer = 0
 

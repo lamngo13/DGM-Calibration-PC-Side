@@ -591,6 +591,7 @@
             testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
             testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
             xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+            ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
         End If
 
 
@@ -794,6 +795,11 @@
                         filrefStdInitVol(currenttest) = stdrefvols(currenttest)
                         'pressure?
 
+                        'Y stuff???
+                        'new Y
+                        newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)
+                        ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
+                        Dim bruhz As Double = newY(currenttest)
                         'save init vals
                     End If
 
@@ -837,8 +843,7 @@
                         End If
 
                         If ((currenttest = 6) And (rowused(6)) = False) Then
-                            'new Y
-                            newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)
+
                             testongoing = False
                             testover = True
                             teststatuslabel2.Text = "Test Over"
@@ -909,6 +914,7 @@
         pressureLabel = ControlArrayUtils.getControlArray(Me, "pressureLabel", NUM_OF_ROWS)
         stdVolLabel = ControlArrayUtils.getControlArray(Me, "stdVolLabel", NUM_OF_ROWS)
         xdstdvollabel = ControlArrayUtils.getControlArray(Me, "xdstdvollabel", NUM_OF_ROWS)
+        ydifflabel = ControlArrayUtils.getControlArray(Me, "ydifflabel", NUM_OF_ROWS)
         'resTestLabel = ControlArrayUtils.getControlArray(Me, "resTestLabel", NUM_OF_ROWS)
 
         rs.FindAllControls(Me)
