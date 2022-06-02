@@ -1556,7 +1556,7 @@
         Next
         'misc stuff
         'todo: scaling factor avg (E34), correction factor (Y) average (H(34),
-        If ((CDbl(percenterrorreallbl.Text) < 5.0) And (CDbl(percenterrorreallbl.Text) > -5.0)) Then
+        If ((CDbl(percenterrorreallbl.Text.Replace("%", "")) < 5.0) And (CDbl(percenterrorreallbl.Text.Replace("%", "")) > -5.0)) Then
             'test passes
             Gs_ForXL &= "O" + CStr(31) + "~" + "PASS" + vbCrLf
         Else
