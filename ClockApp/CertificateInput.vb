@@ -152,6 +152,18 @@ Public Class Certification
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+
+        ' Gs_ForXL &= "B" + CStr(zposition) + "~" + CStr(testtimerlabel(cc).Text) + vbCrLf
+
+        ' array is 9 by 2, start 0 so declare as 8 by 1
+        Dim certInfo(,) As String = New String(8, 1) {
+            {"c6", txtCertUUTModel.Text}, {"c7", txtCertUUTSerial.Text}, {"c8", txtCertDGMModel.Text}, {"c9", txtCertDGMSerial.Text},
+            {"f6", txtCertBarPressure.Text}, {"f7", txtCertAmbTemp.Text}, {"f8", txtCertHumidity.Text}, {"f9", txtCertAltitude.Text}, {"f10", txtCertBarPressure.Text}}
+
+        For n As Integer = 0 To 8
+            Gs_ForXL &= certInfo(n, 0) + "~" + certInfo(n, 1) + vbCrLf
+        Next
+        MsgBox(Gs_ForXL)
         Dim sFileName As String
         If (SaveFileDialog1.ShowDialog() = DialogResult.OK) Then
             sFileName = SaveFileDialog1.FileName
@@ -168,6 +180,10 @@ Public Class Certification
             stream_writer.Close()
         End If
 
+
+    End Sub
+
+    Private Sub Label33_Click(sender As Object, e As EventArgs) Handles Label33.Click
 
     End Sub
 End Class
