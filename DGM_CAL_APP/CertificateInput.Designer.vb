@@ -238,6 +238,7 @@ Partial Class Certification
         Me.TextBox2.ForeColor = System.Drawing.Color.White
         Me.TextBox2.Location = New System.Drawing.Point(3, 49)
         Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(1061, 38)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = "Certificate of Calibration"
