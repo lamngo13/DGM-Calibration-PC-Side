@@ -119,14 +119,15 @@ Partial Class Main
         Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.btnconfig = New FontAwesome.Sharp.IconButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.newmainclock = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
-        Me.bigtimerlabel = New System.Windows.Forms.Label()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnabort = New FontAwesome.Sharp.IconButton()
+        Me.bigtimerlabel = New System.Windows.Forms.Label()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -173,7 +174,6 @@ Partial Class Main
         Me.ydifflabel4 = New System.Windows.Forms.Label()
         Me.ydifflabel5 = New System.Windows.Forms.Label()
         Me.ydifflabel6 = New System.Windows.Forms.Label()
-        Me.newmainclock = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1390,6 +1390,16 @@ Partial Class Main
         Me.Panel1.Size = New System.Drawing.Size(1064, 135)
         Me.Panel1.TabIndex = 142
         '
+        'newmainclock
+        '
+        Me.newmainclock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        Me.newmainclock.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.newmainclock.Location = New System.Drawing.Point(730, 28)
+        Me.newmainclock.Name = "newmainclock"
+        Me.newmainclock.Size = New System.Drawing.Size(132, 27)
+        Me.newmainclock.TabIndex = 147
+        Me.newmainclock.Text = "Time:"
+        '
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1415,16 +1425,6 @@ Partial Class Main
         Me.IconButton2.TabIndex = 144
         Me.IconButton2.TextAlign = System.Drawing.ContentAlignment.TopRight
         Me.IconButton2.UseVisualStyleBackColor = True
-        '
-        'bigtimerlabel
-        '
-        Me.bigtimerlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.bigtimerlabel.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.bigtimerlabel.Location = New System.Drawing.Point(778, 184)
-        Me.bigtimerlabel.Name = "bigtimerlabel"
-        Me.bigtimerlabel.Size = New System.Drawing.Size(150, 18)
-        Me.bigtimerlabel.TabIndex = 186
-        Me.bigtimerlabel.Text = "Overall Time:  "
         '
         'IconButton1
         '
@@ -1469,7 +1469,7 @@ Partial Class Main
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(1061, 38)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "Dry Gas Meter Calibrator"
+        Me.TextBox1.Text = "DGM Calibration/Audit"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Panel2
@@ -1503,6 +1503,16 @@ Partial Class Main
         Me.btnabort.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnabort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnabort.UseVisualStyleBackColor = False
+        '
+        'bigtimerlabel
+        '
+        Me.bigtimerlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.bigtimerlabel.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.bigtimerlabel.Location = New System.Drawing.Point(778, 184)
+        Me.bigtimerlabel.Name = "bigtimerlabel"
+        Me.bigtimerlabel.Size = New System.Drawing.Size(150, 18)
+        Me.bigtimerlabel.TabIndex = 186
+        Me.bigtimerlabel.Text = "Overall Time:  "
         '
         'PictureBox3
         '
@@ -1936,7 +1946,7 @@ Partial Class Main
         Me.ydifflabel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(107, Byte), Integer))
         Me.ydifflabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.ydifflabel1.ForeColor = System.Drawing.Color.White
-        Me.ydifflabel1.Location = New System.Drawing.Point(988, 331)
+        Me.ydifflabel1.Location = New System.Drawing.Point(994, 332)
         Me.ydifflabel1.Name = "ydifflabel1"
         Me.ydifflabel1.Size = New System.Drawing.Size(58, 23)
         Me.ydifflabel1.TabIndex = 190
@@ -2002,16 +2012,6 @@ Partial Class Main
         Me.ydifflabel6.TabIndex = 195
         Me.ydifflabel6.Text = "0"
         Me.ydifflabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'newmainclock
-        '
-        Me.newmainclock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        Me.newmainclock.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.newmainclock.Location = New System.Drawing.Point(730, 28)
-        Me.newmainclock.Name = "newmainclock"
-        Me.newmainclock.Size = New System.Drawing.Size(132, 27)
-        Me.newmainclock.TabIndex = 147
-        Me.newmainclock.Text = "Time:"
         '
         'Main
         '
