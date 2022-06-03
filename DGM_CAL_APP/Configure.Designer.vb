@@ -31,6 +31,8 @@ Partial Class Configure
         Me.Label1 = New System.Windows.Forms.Label()
         Me.restoredefaultsbutton = New System.Windows.Forms.Button()
         Me.defaultlabel = New System.Windows.Forms.Label()
+        Me.tempoffsetlabel1 = New System.Windows.Forms.TextBox()
+        Me.tempoffsetlabel0 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'configconfirmbutton
@@ -66,7 +68,7 @@ Partial Class Configure
         '
         'usrstdtemptxtbox
         '
-        Me.usrstdtemptxtbox.Location = New System.Drawing.Point(239, 34)
+        Me.usrstdtemptxtbox.Location = New System.Drawing.Point(262, 34)
         Me.usrstdtemptxtbox.Name = "usrstdtemptxtbox"
         Me.usrstdtemptxtbox.Size = New System.Drawing.Size(157, 20)
         Me.usrstdtemptxtbox.TabIndex = 3
@@ -129,12 +131,32 @@ Partial Class Configure
         Me.defaultlabel.TabIndex = 9
         Me.defaultlabel.Text = "Default Settings: 20 degrees celsius (metric)"
         '
+        'tempoffsetlabel1
+        '
+        Me.tempoffsetlabel1.Location = New System.Drawing.Point(262, 82)
+        Me.tempoffsetlabel1.Name = "tempoffsetlabel1"
+        Me.tempoffsetlabel1.Size = New System.Drawing.Size(157, 20)
+        Me.tempoffsetlabel1.TabIndex = 11
+        '
+        'tempoffsetlabel0
+        '
+        Me.tempoffsetlabel0.AutoSize = True
+        Me.tempoffsetlabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
+        Me.tempoffsetlabel0.ForeColor = System.Drawing.SystemColors.Control
+        Me.tempoffsetlabel0.Location = New System.Drawing.Point(12, 82)
+        Me.tempoffsetlabel0.Name = "tempoffsetlabel0"
+        Me.tempoffsetlabel0.Size = New System.Drawing.Size(236, 20)
+        Me.tempoffsetlabel0.TabIndex = 10
+        Me.tempoffsetlabel0.Text = "Enter Ref Meter Temp Offset: "
+        '
         'Configure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkSlateGray
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.tempoffsetlabel1)
+        Me.Controls.Add(Me.tempoffsetlabel0)
         Me.Controls.Add(Me.defaultlabel)
         Me.Controls.Add(Me.restoredefaultsbutton)
         Me.Controls.Add(Me.Label1)
@@ -160,4 +182,6 @@ Partial Class Configure
     Friend WithEvents Label1 As Label
     Friend WithEvents restoredefaultsbutton As Button
     Friend WithEvents defaultlabel As Label
+    Friend WithEvents tempoffsetlabel1 As TextBox
+    Friend WithEvents tempoffsetlabel0 As Label
 End Class
