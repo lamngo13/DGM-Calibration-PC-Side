@@ -17,6 +17,9 @@ Module _Public
     Public GS_errorText As String
     Public Gs_UnitType As String
     Public Gs_ForXL
+    Public Gd_Ref_Offset As Double
+
+
 
     Public Const SCREEN_SIZE_MIN_X = 900
     Public Const SCREEN_SIZE_MIN_Y = 670

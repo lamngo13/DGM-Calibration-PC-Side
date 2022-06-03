@@ -1174,8 +1174,18 @@
             messagetxtbox.Text = "Message: Error! Test meter not connected!"
         End If
         If (refportgood And xdportgood) Then
+            'new stuff
+            If (refportgood) Then
+                Configure.StartPosition = FormStartPosition.CenterScreen
+                Configure.ShowDialog()
+                'pop up config screen and prompt for offset val 
+                'then try to write the val to the esb32
+                'catch error and give message if that doesn't work
+            End If
+            'end new stuff
             messagetxtbox.Text = "Message: Both ports connected!"
         End If
+
     End Sub
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click

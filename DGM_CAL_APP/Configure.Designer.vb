@@ -72,10 +72,12 @@ Partial Class Configure
         Me.usrstdtemptxtbox.Name = "usrstdtemptxtbox"
         Me.usrstdtemptxtbox.Size = New System.Drawing.Size(157, 20)
         Me.usrstdtemptxtbox.TabIndex = 3
+        Me.usrstdtemptxtbox.Text = "20"
         '
         'celsiusradiobutton
         '
         Me.celsiusradiobutton.AutoSize = True
+        Me.celsiusradiobutton.Checked = True
         Me.celsiusradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.celsiusradiobutton.ForeColor = System.Drawing.SystemColors.Control
         Me.celsiusradiobutton.Location = New System.Drawing.Point(178, 170)
