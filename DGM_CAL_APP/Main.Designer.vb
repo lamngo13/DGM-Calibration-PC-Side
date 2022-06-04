@@ -174,6 +174,7 @@ Partial Class Main
         Me.ydifflabel4 = New System.Windows.Forms.Label()
         Me.ydifflabel5 = New System.Windows.Forms.Label()
         Me.ydifflabel6 = New System.Windows.Forms.Label()
+        Me.fastertimer = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2013,6 +2014,10 @@ Partial Class Main
         Me.ydifflabel6.Text = "0"
         Me.ydifflabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'fastertimer
+        '
+        Me.fastertimer.Interval = 10
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2334,4 +2339,5 @@ Partial Class Main
     Friend WithEvents ydifflabel5 As Label
     Friend WithEvents ydifflabel6 As Label
     Friend WithEvents newmainclock As Label
+    Friend WithEvents fastertimer As Timer
 End Class
