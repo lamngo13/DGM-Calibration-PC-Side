@@ -1001,7 +1001,7 @@ Partial Class Main
         Me.refscalingtxtbox.Name = "refscalingtxtbox"
         Me.refscalingtxtbox.Size = New System.Drawing.Size(96, 24)
         Me.refscalingtxtbox.TabIndex = 96
-        Me.refscalingtxtbox.Text = ".0016968"
+        Me.refscalingtxtbox.Text = ".00193105"
         Me.refscalingtxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'pressureLabel6
