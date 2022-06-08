@@ -175,6 +175,7 @@ Partial Class Main
         Me.ydifflabel5 = New System.Windows.Forms.Label()
         Me.ydifflabel6 = New System.Windows.Forms.Label()
         Me.fastertimer = New System.Windows.Forms.Timer(Me.components)
+        Me.button_debug = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2018,12 +2019,22 @@ Partial Class Main
         '
         Me.fastertimer.Interval = 10
         '
+        'button_debug
+        '
+        Me.button_debug.Location = New System.Drawing.Point(926, 584)
+        Me.button_debug.Name = "button_debug"
+        Me.button_debug.Size = New System.Drawing.Size(119, 30)
+        Me.button_debug.TabIndex = 196
+        Me.button_debug.Text = "Button1"
+        Me.button_debug.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.button_debug)
         Me.Controls.Add(Me.ydifflabel6)
         Me.Controls.Add(Me.ydifflabel5)
         Me.Controls.Add(Me.bigtimerlabel)
@@ -2340,4 +2351,5 @@ Partial Class Main
     Friend WithEvents ydifflabel6 As Label
     Friend WithEvents newmainclock As Label
     Friend WithEvents fastertimer As Timer
+    Friend WithEvents button_debug As Button
 End Class

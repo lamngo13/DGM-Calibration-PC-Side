@@ -1595,4 +1595,13 @@
             experimentY(zz) = Math.Round(experimentY(zz), 4)
         Next
     End Sub
+
+    Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
+        button_debug.Text = CStr(inputambhum)
+
+    End Sub
+
+    Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
+        refport.Write("1234" + vbCrLf)
+    End Sub
 End Class

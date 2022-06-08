@@ -102,15 +102,24 @@ int ambhumitr = 0;
 static int pulsecount;  //no average needed
 static int checksum;  //this is handled in main
 
+static int zInboundsNum = 0;
+
 //initialize threading
 void xmainth(void *pvParameters);
 void xpressure(void *pvParameters);
 void xambtempth(void *pvParameters);
 void xreftempth(void *pvParameters);
 void xambhumth(void *pvParameters);
+void xprocessInbound(void *pvparameters);
  
 //system timer, this value changes 5 times a second 
+int inBoundsLength = 0;
+int oldInBoundsLength = 0;
+boolean readyInBounds = false;
+boolean timertwohundo = false;
 void IRAM_ATTR onTimer() {
+  timertwohundo = true;
+  
    shouldSend = true; 
 }
  
@@ -244,6 +253,7 @@ void setup() {
   xTaskCreatePinnedToCore(xambtempth, "xambtempth", 1500, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xreftempth, "xreftempth", 1500, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(xambhumth, "xambhumth", 1500, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(xprocessInbound, "processInbound", 1500, NULL, 1, NULL, 1);
  
 }
 
@@ -274,8 +284,8 @@ void xmainth(void *pvParameters) {
   add_sout(pressurechar);
 
   //add amb temp
-  char ambtempbuff [sizeof(ambtemp)*4+1];
-  char *ambtempchar = itoa(ambtemp,ambtempbuff,10);
+  char ambtempbuff [sizeof(zInboundsNum)*4+1];
+  char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
 
@@ -285,7 +295,7 @@ void xmainth(void *pvParameters) {
   String reftempstring = reftempchar;
   add_sout(reftempstring);
 
-  //add ambient humidity this is getting messed up but luckily it doesn't matter!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //CHANGE FROM ambHUM
   char ambhumbuff [sizeof(ambhum)*4+1];
   char *ambhumchar = itoa(ambhum,ambhumbuff,10);
   String ambhumstring = ambhumchar;
@@ -405,5 +415,47 @@ void xambhumth(void *pvParameters) {
     ambhum = (sumambhum/HUMBLOCKSIZE);
 
     vTaskDelay(1);
+
   }
 }
+
+
+char inBoundsString[256];
+ void xprocessInbound(void *pvParameters) {
+
+  char inLength;
+  while (1) {
+    if (timertwohundo) {
+      timertwohundo = false;
+      inBoundsLength = Serial.available();
+      if (oldInBoundsLength == inBoundsLength) {
+        readyInBounds = true;
+        oldInBoundsLength = 0;
+      } else {
+        oldInBoundsLength = inBoundsLength;
+      } 
+      if (inBoundsLength == 0) {readyInBounds = false;}
+      //=======================================
+
+      if (readyInBounds) {
+        readyInBounds = false;
+        inLength = Serial.available();
+        Serial.readBytes(inBoundsString, inLength);
+        zInboundsNum = 0;
+        for (int i = 0 ; i < 255; i++) {
+          if (inBoundsString[i]== 13) { break; }
+          else {
+            zInboundsNum *= 10;
+            zInboundsNum += inBoundsString[i] - '0';
+          }
+
+        }
+        //end for 
+     } // end ready in bounds
+   }
+   //zInboundsNum = 5555;
+    vTaskDelay(1);
+  }
+
+ }
+
