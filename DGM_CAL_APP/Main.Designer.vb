@@ -2017,6 +2017,7 @@ Partial Class Main
         '
         'fastertimer
         '
+        Me.fastertimer.Enabled = True
         Me.fastertimer.Interval = 10
         '
         'button_debug

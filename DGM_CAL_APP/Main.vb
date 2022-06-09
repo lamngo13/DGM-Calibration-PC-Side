@@ -8,7 +8,7 @@
     Const REF_INPUT_PRESSURE As Integer = 2
     Const REF_AMB_TEMP As Integer = 3
     Const REF_METER_TEMP As Integer = 4
-    Const REF_AMB_HUM As Integer = 5
+    Const REF_AMB_HUM As Integer = 3
     Const REF_PULSECOUNT As Integer = 6
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8
@@ -246,6 +246,10 @@
                 End If
             End If
         Next
+
+
+        inputambhum = CInt(s_ref_in(REF_AMB_HUM))
+
     End Sub
 
     Public Sub findRunnableTests()
