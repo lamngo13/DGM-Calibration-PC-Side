@@ -8,7 +8,7 @@
     Const REF_INPUT_PRESSURE As Integer = 2
     Const REF_AMB_TEMP As Integer = 3
     Const REF_METER_TEMP As Integer = 4
-    Const REF_AMB_HUM As Integer = 3
+    Const REF_AMB_HUM As Integer = 5
     Const REF_PULSECOUNT As Integer = 6
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8
@@ -1601,7 +1601,7 @@
     End Sub
 
     Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
-        button_debug.Text = CStr(inputambhum)
+        lblfrom_esb.Text = CStr(inputambhum)
 
     End Sub
 

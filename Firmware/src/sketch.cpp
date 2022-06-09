@@ -28,6 +28,7 @@ char Gc_DGM_1_Old = 0;
 bool Gb_New_DGM_1 = 0;
 bool shouldSend = false;
 hw_timer_t * timer = NULL;
+hw_timer_t * fasterTimer = NULL;
 long Gl_Pulse_DGM_1 = 0;
 
 //iterator for output string
@@ -104,6 +105,15 @@ static int checksum;  //this is handled in main
 
 static int zInboundsNum = 0;
 
+int counter10ms = 0;
+//for reading the pulse count!
+int fromPcPulses = 0;
+int givenTestCurrPulses = 0;
+int goalPulseCount = 0;
+double givenTestTimer = 0.0;
+bool sendPulseAndTimer = false;
+
+
 //initialize threading
 void xmainth(void *pvParameters);
 void xpressure(void *pvParameters);
@@ -117,10 +127,17 @@ int inBoundsLength = 0;
 int oldInBoundsLength = 0;
 boolean readyInBounds = false;
 boolean timertwohundo = false;
+
 void IRAM_ATTR onTimer() {
   timertwohundo = true;
   
    shouldSend = true; 
+   //counter10ms += 1;
+}
+
+//global faster timer for more PRECISON
+void IRAM_ATTR fasteronTimer() {
+  counter10ms += .01;
 }
  
 //function to append a string to the ultimate output 
@@ -232,9 +249,18 @@ void setup() {
 
   //create timer that sends data 5 times a second (aka once every 200ms)
   timer = timerBegin(1, 80, true);
+  fasterTimer = timerBegin(3,80,true);
+
+
+
   timerAttachInterrupt(timer, &onTimer, true);
+  timerAttachInterrupt(fasterTimer,&fasteronTimer,true);
+
   timerAlarmWrite(timer, 200000, true);
+  timerAlarmWrite(fasterTimer,10000,true);
+
   timerAlarmEnable(timer);
+  timerAlarmEnable(fasterTimer);
  
   //initialize pins to be read:
   pinMode(DGM_A, INPUT_PULLDOWN);
@@ -283,11 +309,15 @@ void xmainth(void *pvParameters) {
   String pressurestring = pressurechar;
   add_sout(pressurechar);
 
+  //honsetly I can mess with amb temp here
+  
   //add amb temp
   char ambtempbuff [sizeof(zInboundsNum)*4+1];
   char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
+  
+
 
   //add ref meter temp
   char reftempbuff [sizeof(reftemp)*4+1];
@@ -296,8 +326,12 @@ void xmainth(void *pvParameters) {
   add_sout(reftempstring);
 
   //CHANGE FROM ambHUM
-  char ambhumbuff [sizeof(ambhum)*4+1];
-  char *ambhumchar = itoa(ambhum,ambhumbuff,10);
+  // char ambhumbuff [sizeof(ambhum)*4+1];
+  // char *ambhumchar = itoa(ambhum,ambhumbuff,10);
+  // String ambhumstring = ambhumchar;
+  // add_sout(ambhumstring);
+  char ambhumbuff [sizeof(counter10ms)*4+1];
+  char *ambhumchar = itoa(counter10ms,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   add_sout(ambhumstring);
 
@@ -447,6 +481,8 @@ char inBoundsString[256];
           else {
             zInboundsNum *= 10;
             zInboundsNum += inBoundsString[i] - '0';
+            //IS zInboundsNum now the pulse count??
+            goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
           }
 
         }

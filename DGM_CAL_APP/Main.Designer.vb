@@ -176,6 +176,7 @@ Partial Class Main
         Me.ydifflabel6 = New System.Windows.Forms.Label()
         Me.fastertimer = New System.Windows.Forms.Timer(Me.components)
         Me.button_debug = New System.Windows.Forms.Button()
+        Me.lblfrom_esb = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2029,12 +2030,24 @@ Partial Class Main
         Me.button_debug.Text = "Button1"
         Me.button_debug.UseVisualStyleBackColor = True
         '
+        'lblfrom_esb
+        '
+        Me.lblfrom_esb.BackColor = System.Drawing.Color.White
+        Me.lblfrom_esb.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.lblfrom_esb.ForeColor = System.Drawing.Color.Firebrick
+        Me.lblfrom_esb.Location = New System.Drawing.Point(742, 612)
+        Me.lblfrom_esb.Name = "lblfrom_esb"
+        Me.lblfrom_esb.Size = New System.Drawing.Size(165, 36)
+        Me.lblfrom_esb.TabIndex = 197
+        Me.lblfrom_esb.Text = "From ESB:"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.lblfrom_esb)
         Me.Controls.Add(Me.button_debug)
         Me.Controls.Add(Me.ydifflabel6)
         Me.Controls.Add(Me.ydifflabel5)
@@ -2353,4 +2366,5 @@ Partial Class Main
     Friend WithEvents newmainclock As Label
     Friend WithEvents fastertimer As Timer
     Friend WithEvents button_debug As Button
+    Friend WithEvents lblfrom_esb As Label
 End Class
