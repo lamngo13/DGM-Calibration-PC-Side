@@ -141,6 +141,8 @@
     Dim filVarY = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim forPreciseRefVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim forPreciseXdVols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim hasSentCurrPulses = New Boolean() {False, False, False, False, False, False, False} 'BOOLEAN
+    Dim pulsesForESB = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
     Dim didItPass As Boolean
 
@@ -189,6 +191,7 @@
     Dim zrefinputambhum As String
     Dim weNeedPulseCountxd As Boolean = False
     Dim xdpulseholder As Integer = 0
+    Dim toEsbPulses As Integer = 0
 
     Dim xdWarmUpPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
     Dim xdInPulses = New Integer() {0, 0, 0, 0, 0, 0, 0}
@@ -721,8 +724,20 @@
 
                 'increment warmup timer(s)
                 If (duringwarmup) Then
+                    'STUFF FOR SENDING TO ESB32:::
+                    'maybe we can delay this a tiny bit?
+                    'starscream
+                    If (Not hasSentCurrPulses(currenttest)) Then
+                        hasSentCurrPulses(currenttest) = True
+                        pulsesForESB(currenttest) = xdGivenScaling * CDbl(endvoltxtbox(currenttest).Text) * 1000 'not super sure about this!
+                        refport.Write(pulsesForESB(currenttest))
+                        'send the data
+                        'but first calc the pulses
+                        'CHECK FOR NOT ZERO ANBTEMP IN THE NOT WARMUP ONLY
+                    End If
+                    'END STUFF FOR SENDING TO ESB32
                     If ((currenttest = 2) And warmuptimer > 3.0) Then
-                        Dim bruh2 As Integer = 5
+                        Dim bruh2 As Integer = 5 ' this is for debugging??
                     End If
                     warmuptimer += 0.1
                     warmuptimer = Math.Round(warmuptimer, 2)
@@ -739,6 +754,7 @@
 
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
+                    'screamstar
 
                     'ref stuff ------------------
                     testtimers(currenttest) += 0.1
@@ -1601,7 +1617,7 @@
     End Sub
 
     Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
-        lblfrom_esb.Text = CStr(inputambhum)
+        lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
 
     End Sub
 
