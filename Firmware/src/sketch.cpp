@@ -30,11 +30,14 @@ bool shouldSend = false;
 hw_timer_t * timer = NULL;
 hw_timer_t * fasterTimer = NULL;
 long Gl_Pulse_DGM_1 = 0;
+boolean timerShouldSend = false;
+double preciseTimer = 0;
 
 //iterator for output string
 int giterator = 0;
 //ultimate output string
 char sOutput[1024];
+
 
 //pins for MAX31855
 #define MAXDO   25
@@ -111,7 +114,12 @@ int fromPcPulses = 0;
 int givenTestCurrPulses = 0;
 int goalPulseCount = 0;
 double givenTestTimer = 0.0;
+int oldTestPulses = 0;
 bool sendPulseAndTimer = false;
+int oldPulseCont = 0;
+String ambtempindicator;
+//ambtempindicator[0] = '\0';
+//ambtempindicator[1] = '\0';
 
 
 //initialize threading
@@ -138,6 +146,16 @@ void IRAM_ATTR onTimer() {
 //global faster timer for more PRECISON
 void IRAM_ATTR fasteronTimer() {
   counter10ms += .01;
+  givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
+  if (givenTestCurrPulses >= goalPulseCount) {
+    //FOUND THE THING 
+    //zInboundsNum will be the flag indicator?
+    //ambhum should be the time elapsed
+    oldTestPulses = givenTestCurrPulses;
+    preciseTimer = counter10ms;
+    timerShouldSend;
+    counter10ms = 0;
+  }
 }
  
 //function to append a string to the ultimate output 
@@ -311,12 +329,19 @@ void xmainth(void *pvParameters) {
 
   //honsetly I can mess with amb temp here
   
-  //add amb temp
-  char ambtempbuff [sizeof(zInboundsNum)*4+1];
-  char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
+  //add amb temp this is the pulsecount todo change zInboundsNum
+  char ambtempbuff [sizeof(0)*4+1];
+  char *ambtempchar = itoa(0,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
-  
+  if (shouldSend) {
+    oldTestPulses = givenTestCurrPulses;
+    //maybe do this multiple times to make sure??
+    char ambtempbuff [sizeof(givenTestCurrPulses)*4+1];
+  char *ambtempchar = itoa(givenTestCurrPulses,ambtempbuff,10);
+  String ambtempstring = ambtempchar;
+  add_sout(ambtempchar);
+  }
 
 
   //add ref meter temp
@@ -330,10 +355,16 @@ void xmainth(void *pvParameters) {
   // char *ambhumchar = itoa(ambhum,ambhumbuff,10);
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
-  char ambhumbuff [sizeof(counter10ms)*4+1];
-  char *ambhumchar = itoa(counter10ms,ambhumbuff,10);
+  char ambhumbuff [sizeof(preciseTimer)*4+1];
+  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   add_sout(ambhumstring);
+  if (timerShouldSend) {
+    timerShouldSend = false;
+    preciseTimer = 0;
+    zInboundsNum = 0;
+    //find better way to reset the inbouds number!!
+  }
 
   //add pulse count
   char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
@@ -483,6 +514,8 @@ char inBoundsString[256];
             zInboundsNum += inBoundsString[i] - '0';
             //IS zInboundsNum now the pulse count??
             goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+            oldPulseCont = Gl_Pulse_DGM_1;
+            //DOES THIS ONLY HAPPEN ONCE????
           }
 
         }

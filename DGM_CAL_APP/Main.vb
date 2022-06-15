@@ -1606,6 +1606,9 @@
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("1234" + vbCrLf)
+        refport.Write("500" + vbCrLf)
+        'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
+        'ALSO MAKE IT BE A REAL END CONDITION
     End Sub
+
 End Class
