@@ -64,6 +64,7 @@
     Dim doublepressure As Double
 
     Dim inputambtemp As String = ""
+    Dim intinputambtemp As Integer = 0
     Dim intambtemp As Integer
     Dim doubleambtemp As Double
 
@@ -314,6 +315,7 @@
         inputlabel = s_ref_in(REF_INPUT_LABEL)
         intpressure = CInt(s_ref_in(REF_INPUT_PRESSURE))
         inputambtemp = CInt(s_ref_in(REF_AMB_TEMP))
+        intinputambtemp = CInt(s_ref_in(REF_AMB_TEMP))
         inputreftemp = CInt(s_ref_in(REF_METER_TEMP))
         inputambhum = CInt(s_ref_in(REF_AMB_HUM))
         intpulsecount = CInt(s_ref_in(REF_PULSECOUNT))
@@ -1621,7 +1623,14 @@
     End Sub
 
     Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
-        lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
+        Dim permy As Integer = 0
+        lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: "
+        If Not (intinputambtemp = 0) Then
+            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
+        Else
+            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: nah"
+        End If
+        'lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
 
 
     End Sub

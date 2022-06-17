@@ -162,7 +162,7 @@ void IRAM_ATTR fasteronTimer() {
     savedCounter10ms = counter10ms;
     preciseTimer = counter10ms;
     counter10ms = 0;
-    zInboundsNum = 0;
+    ///////////////zInboundsNum = 0;
   }
 }
  
