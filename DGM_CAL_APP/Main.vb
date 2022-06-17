@@ -9,6 +9,7 @@
     Const REF_AMB_TEMP As Integer = 3
     Const REF_METER_TEMP As Integer = 4
     Const REF_AMB_HUM As Integer = 5
+    Const DBG_AMB_HUM As Integer = 5 - 1
     Const REF_PULSECOUNT As Integer = 6
     Const REF_CHECKSUM As Integer = 7
     Const REF_MAX_MEMBERS = 8

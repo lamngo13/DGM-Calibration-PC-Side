@@ -31,7 +31,8 @@ hw_timer_t * timer = NULL;
 hw_timer_t * fasterTimer = NULL;
 long Gl_Pulse_DGM_1 = 0;
 boolean timerShouldSend = false;
-double preciseTimer = 0;
+int preciseTimer = 0;
+//boolean yesNumRecieved = false;
 
 //iterator for output string
 int giterator = 0;
@@ -118,6 +119,7 @@ int oldTestPulses = 0;
 bool sendPulseAndTimer = false;
 int oldPulseCont = 0;
 String ambtempindicator;
+int savedCounter10ms = 0;
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
 
@@ -145,15 +147,19 @@ void IRAM_ATTR onTimer() {
 
 //global faster timer for more PRECISON
 void IRAM_ATTR fasteronTimer() {
-  counter10ms += .01;
-  givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
-  if (givenTestCurrPulses >= goalPulseCount) {
+  //mongol
+  counter10ms += 1;
+  preciseTimer = counter10ms;
+  //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
+  //if (givenTestCurrPulses >= goalPulseCount) {
+  if (Gl_Pulse_DGM_1 >= goalPulseCount) {
     //FOUND THE THING 
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
-    oldTestPulses = givenTestCurrPulses;
-    preciseTimer = counter10ms;
-    timerShouldSend;
+    //oldTestPulses = givenTestCurrPulses;
+    oldTestPulses = Gl_Pulse_DGM_1;
+    timerShouldSend = true;
+    savedCounter10ms = counter10ms;
     counter10ms = 0;
   }
 }
@@ -308,6 +314,7 @@ void loop() {
 void xmainth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
+    //IN THE CASE THAT WE DO RECIEVE A TIMER:::::::: mongol
 
  //iterator for the final output string
  for (int a = 0; a < 1024; a++) {
@@ -329,16 +336,31 @@ void xmainth(void *pvParameters) {
 
   //honsetly I can mess with amb temp here
   
-  //add amb temp this is the pulsecount todo change zInboundsNum
-  char ambtempbuff [sizeof(0)*4+1];
-  char *ambtempchar = itoa(0,ambtempbuff,10);
-  String ambtempstring = ambtempchar;
-  add_sout(ambtempchar);
-  if (shouldSend) {
+  // //add amb temp this is the pulsecount todo change zInboundsNum
+  // char ambtempbuff [sizeof(0)*4+1];
+  // char *ambtempchar = itoa(0,ambtempbuff,10);
+  // String ambtempstring = ambtempchar;
+  // add_sout(ambtempchar);
+  // if (shouldSend) {
+  //   oldTestPulses = givenTestCurrPulses;
+  //   //maybe do this multiple times to make sure??
+  // char ambtempbuff [sizeof(givenTestCurrPulses)*4+1];
+  // char *ambtempchar = itoa(givenTestCurrPulses,ambtempbuff,10);
+  // String ambtempstring = ambtempchar;
+  // add_sout(ambtempchar);
+  // }
+
+  //amb temp which is kinda under production: Ming
+  if (timerShouldSend) {
     oldTestPulses = givenTestCurrPulses;
     //maybe do this multiple times to make sure??
-    char ambtempbuff [sizeof(givenTestCurrPulses)*4+1];
+  char ambtempbuff [sizeof(givenTestCurrPulses)*4+1];
   char *ambtempchar = itoa(givenTestCurrPulses,ambtempbuff,10);
+  String ambtempstring = ambtempchar;
+  add_sout(ambtempchar);
+  } else {
+    char ambtempbuff [sizeof(0)*4+1];
+  char *ambtempchar = itoa(0,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
   }
@@ -350,11 +372,12 @@ void xmainth(void *pvParameters) {
   String reftempstring = reftempchar;
   add_sout(reftempstring);
 
-  //CHANGE FROM ambHUM
+  //CHANGE FROM ambHUM Hann
   // char ambhumbuff [sizeof(ambhum)*4+1];
   // char *ambhumchar = itoa(ambhum,ambhumbuff,10);
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
+  //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
   char ambhumbuff [sizeof(preciseTimer)*4+1];
   char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
@@ -362,7 +385,8 @@ void xmainth(void *pvParameters) {
   if (timerShouldSend) {
     timerShouldSend = false;
     preciseTimer = 0;
-    zInboundsNum = 0;
+    counter10ms = 0;
+    //zInboundsNum = 0;
     //find better way to reset the inbouds number!!
   }
 
