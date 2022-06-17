@@ -152,7 +152,7 @@ void IRAM_ATTR fasteronTimer() {
   preciseTimer = counter10ms;
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   //if (givenTestCurrPulses >= goalPulseCount) {
-  if (Gl_Pulse_DGM_1 >= goalPulseCount) {
+  if (zInboundsNum && (Gl_Pulse_DGM_1 >= goalPulseCount)) {
     //FOUND THE THING 
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
@@ -160,7 +160,9 @@ void IRAM_ATTR fasteronTimer() {
     oldTestPulses = Gl_Pulse_DGM_1;
     timerShouldSend = true;
     savedCounter10ms = counter10ms;
+    preciseTimer = counter10ms;
     counter10ms = 0;
+    zInboundsNum = 0;
   }
 }
  
