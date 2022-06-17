@@ -353,19 +353,25 @@ void xmainth(void *pvParameters) {
   // }
 
   //amb temp which is kinda under production: Ming
-  if (timerShouldSend) {
-    oldTestPulses = givenTestCurrPulses;
-    //maybe do this multiple times to make sure??
-  char ambtempbuff [sizeof(givenTestCurrPulses)*4+1];
-  char *ambtempchar = itoa(givenTestCurrPulses,ambtempbuff,10);
+  char ambtempbuff [sizeof(zInboundsNum)*4+1];
+  char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
-  } else {
-    char ambtempbuff [sizeof(0)*4+1];
-  char *ambtempchar = itoa(0,ambtempbuff,10);
-  String ambtempstring = ambtempchar;
-  add_sout(ambtempchar);
-  }
+  // if (timerShouldSend) {
+  //   oldTestPulses = givenTestCurrPulses;
+  //   //maybe do this multiple times to make sure??
+  //   //GIVEN TEST PULSES?????????????
+  //   //TOOD SEND MULTIPLE TIMES IN CASE CORRUPTED
+  // char ambtempbuff [sizeof(zInboundsNum)*4+1];
+  // char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
+  // String ambtempstring = ambtempchar;
+  // add_sout(ambtempchar);
+  // } else {
+  // char ambtempbuff [sizeof(0)*4+1];
+  // char *ambtempchar = itoa(0,ambtempbuff,10);
+  // String ambtempstring = ambtempchar;
+  // add_sout(ambtempchar);
+  // }
 
 
   //add ref meter temp
@@ -380,17 +386,29 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
+  if (timerShouldSend) {
+    timerShouldSend = false;
   char ambhumbuff [sizeof(preciseTimer)*4+1];
   char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   add_sout(ambhumstring);
-  if (timerShouldSend) {
-    timerShouldSend = false;
-    preciseTimer = 0;
-    counter10ms = 0;
-    //zInboundsNum = 0;
-    //find better way to reset the inbouds number!!
+  } else {
+    char ambhumbuff [sizeof(preciseTimer)*4+1];
+  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  String ambhumstring = ambhumchar;
+  add_sout(ambhumstring);
   }
+  // char ambhumbuff [sizeof(preciseTimer)*4+1];
+  // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  // String ambhumstring = ambhumchar;
+  // add_sout(ambhumstring);
+  // if (timerShouldSend) {
+  //   timerShouldSend = false;
+  //   preciseTimer = 0;
+  //   counter10ms = 0;
+  //   //zInboundsNum = 0;
+  //   //find better way to reset the inbouds number!!
+  // }
 
   //add pulse count
   char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];

@@ -730,8 +730,11 @@
                     'starscream
                     If (Not hasSentCurrPulses(currenttest)) Then
                         hasSentCurrPulses(currenttest) = True
-                        pulsesForESB(currenttest) = xdGivenScaling * CDbl(endvoltxtbox(currenttest).Text) * 1000 'not super sure about this!
-                        refport.Write(pulsesForESB(currenttest))
+                        pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
+                        Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
+                        Dim bruh245 As Integer = pulsesForESB(currenttest)
+                        refport.Write(pulsesForESB(currenttest)) 'OPTIMUS PRIME
+
                         'send the data
                         'but first calc the pulses
                         'CHECK FOR NOT ZERO ANBTEMP IN THE NOT WARMUP ONLY
@@ -1619,6 +1622,7 @@
 
     Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
         lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
+
 
     End Sub
 

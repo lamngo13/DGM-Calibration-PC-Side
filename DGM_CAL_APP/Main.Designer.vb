@@ -2035,9 +2035,9 @@ Partial Class Main
         Me.lblfrom_esb.BackColor = System.Drawing.Color.White
         Me.lblfrom_esb.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.lblfrom_esb.ForeColor = System.Drawing.Color.Firebrick
-        Me.lblfrom_esb.Location = New System.Drawing.Point(742, 612)
+        Me.lblfrom_esb.Location = New System.Drawing.Point(742, 598)
         Me.lblfrom_esb.Name = "lblfrom_esb"
-        Me.lblfrom_esb.Size = New System.Drawing.Size(165, 36)
+        Me.lblfrom_esb.Size = New System.Drawing.Size(165, 50)
         Me.lblfrom_esb.TabIndex = 197
         Me.lblfrom_esb.Text = "From ESB:"
         '
