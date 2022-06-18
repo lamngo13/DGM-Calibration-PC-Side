@@ -364,8 +364,9 @@ void xmainth(void *pvParameters) {
   //logic is timerShouldSend
   if (timerShouldSend) {  //temppermflag
     holderambtemp = 123;
+    //send this until the next num is recieved!!!!!******
   } else {
-    holderambtemp = 0;
+    // holderambtemp = 0;
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
   char *ambtempchar = itoa(holderambtemp,ambtempbuff,10);
