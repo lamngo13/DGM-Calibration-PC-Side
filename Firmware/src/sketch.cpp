@@ -312,6 +312,7 @@ void setup() {
 void loop() {
   //empty bc threading lets goo
 }
+//LABEL, PRESSURE, AMBHUM(working), REFTEMP, Timer, Pulsecount
 
 void xmainth(void *pvParameters) {
   (void) pvParameters;
@@ -386,18 +387,31 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
-  if (timerShouldSend) {
-    timerShouldSend = false;
   char ambhumbuff [sizeof(preciseTimer)*4+1];
   char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
-  add_sout(ambhumstring);
+  if (timerShouldSend) {
+    add_sout("99"+ambhumstring);
   } else {
-    char ambhumbuff [sizeof(preciseTimer)*4+1];
-  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
-  String ambhumstring = ambhumchar;
-  add_sout(ambhumstring);
+    add_sout(ambhumstring);
+
   }
+  
+  //BRUH
+  // if (timerShouldSend) {
+  // timerShouldSend = false;
+  // char ambhumbuff [sizeof(preciseTimer)*4+1];
+  // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  // String ambhumstring = ambhumchar;
+  // add_sout(ambhumstring);
+  // } 
+  // else {
+  // char ambhumbuff [sizeof(preciseTimer)*4+1];
+  // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  // String ambhumstring = ambhumchar;
+  // add_sout(ambhumstring);
+  // }
+  //BRUH
   // char ambhumbuff [sizeof(preciseTimer)*4+1];
   // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   // String ambhumstring = ambhumchar;
