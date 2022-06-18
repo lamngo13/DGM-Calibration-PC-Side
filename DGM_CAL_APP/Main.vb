@@ -731,18 +731,18 @@
                     'STUFF FOR SENDING TO ESB32:::
                     'maybe we can delay this a tiny bit?
                     'starscream
-                    If (Not hasSentCurrPulses(currenttest)) Then
-                        hasSentCurrPulses(currenttest) = True
-                        pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
-                        'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
-                        intpulseholder = CInt(pulsesForESB(currenttest))
-                        refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
-                        'problem child?? it's going negative??
+                    '''''If (Not hasSentCurrPulses(currenttest)) Then
+                    '''''    hasSentCurrPulses(currenttest) = True
+                    '''''    pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
+                    '''''    'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
+                    '''''    intpulseholder = CInt(pulsesForESB(currenttest))
+                    '''''    refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
+                    '''''    'problem child?? it's going negative??
 
-                        'send the data
-                        'but first calc the pulses
-                        'CHECK FOR NOT ZERO ANBTEMP IN THE NOT WARMUP ONLY
-                    End If
+                    '''''    'send the data
+                    '''''    'but first calc the pulses
+                    '''''    'CHECK FOR NOT ZERO ANBTEMP IN THE NOT WARMUP ONLY
+                    '''''End If
                     'END STUFF FOR SENDING TO ESB32
                     If ((currenttest = 2) And warmuptimer > 3.0) Then
                         Dim bruh2 As Integer = 5 ' this is for debugging??
@@ -763,6 +763,19 @@
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
                     'screamstar
+                    'send to esb32
+                    If (Not hasSentCurrPulses(currenttest)) Then
+                        hasSentCurrPulses(currenttest) = True
+                        pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
+                        'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
+                        intpulseholder = CInt(pulsesForESB(currenttest))
+                        refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
+                        'problem child?? it's going negative??
+
+                        'send the data
+                        'but first calc the pulses
+                        'CHECK FOR NOT ZERO ANBTEMP IN THE NOT WARMUP ONLY
+                    End If
 
                     'ref stuff ------------------
                     testtimers(currenttest) += 0.1
@@ -849,7 +862,10 @@
 
                     'check for end condition off of pulses/volume
                     'go to next test
+                    'START OLD
+                    'endconditionbytime
                     If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                        'If (Len(inputambtemp) > 3) Then 'maybe stupid to measure by string? but idtso
                         'WRITE TO XD
                         If (Not filuutPulseFinal(currenttest) = 0) Then
                             weNeedPulseCountxd = False
@@ -860,6 +876,8 @@
                             requestRaw()
                             oldCurrTest = currenttest
                         End If
+                        'END OLD
+                        'start new end condition based on esb
 
 
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
@@ -1632,13 +1650,14 @@
         Else
             lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: nah"
         End If
-        'lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
+
+        'lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "ambhum: " + CStr(inputambtemp)
 
 
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("3832" + vbCrLf)
+        refport.Write("300" + vbCrLf)
         'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
         'ALSO MAKE IT BE A REAL END CONDITION
     End Sub

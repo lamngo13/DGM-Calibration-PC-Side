@@ -32,6 +32,7 @@ hw_timer_t * fasterTimer = NULL;
 long Gl_Pulse_DGM_1 = 0;
 boolean timerShouldSend = false;
 int preciseTimer = 0;
+int holderambtemp = 0;
 //boolean yesNumRecieved = false;
 
 //iterator for output string
@@ -137,6 +138,7 @@ int inBoundsLength = 0;
 int oldInBoundsLength = 0;
 boolean readyInBounds = false;
 boolean timertwohundo = false;
+boolean temppermflag = false;
 
 void IRAM_ATTR onTimer() {
   timertwohundo = true;
@@ -152,11 +154,14 @@ void IRAM_ATTR fasteronTimer() {
   preciseTimer = counter10ms;
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   //if (givenTestCurrPulses >= goalPulseCount) {
-  if (zInboundsNum && (Gl_Pulse_DGM_1 >= goalPulseCount)) {
+  if (zInboundsNum && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //maybe add zInboundsNum && logic
     //FOUND THE THING 
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
     //oldTestPulses = givenTestCurrPulses;
+
+    temppermflag = true;
+
     oldTestPulses = Gl_Pulse_DGM_1;
     timerShouldSend = true;
     savedCounter10ms = counter10ms;
@@ -354,10 +359,25 @@ void xmainth(void *pvParameters) {
   // }
 
   //amb temp which is kinda under production: Ming
-  char ambtempbuff [sizeof(goalPulseCount)*4+1];
-  char *ambtempchar = itoa(goalPulseCount,ambtempbuff,10);
+  //logic is timerShouldSend
+  if (temppermflag) {
+    holderambtemp = 12345;
+    //holderambtemp = goalPulseCount;
+  } else {
+    holderambtemp = 0;
+    //holderambtemp = goalPulseCount;
+  }
+  char ambtempbuff [sizeof(holderambtemp)*4+1];
+  char *ambtempchar = itoa(holderambtemp,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
+
+  // old but good for debugging
+  // char ambtempbuff [sizeof(goalPulseCount)*4+1];
+  // char *ambtempchar = itoa(goalPulseCount,ambtempbuff,10);
+  // String ambtempstring = ambtempchar;
+  // add_sout(ambtempchar);
+
   // if (timerShouldSend) {
   //   oldTestPulses = givenTestCurrPulses;
   //   //maybe do this multiple times to make sure??
