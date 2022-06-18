@@ -138,7 +138,8 @@ int inBoundsLength = 0;
 int oldInBoundsLength = 0;
 boolean readyInBounds = false;
 boolean timertwohundo = false;
-boolean temppermflag = false;
+boolean temppermflag = false; //DELETE THIS AND REPLACE WITH timerShouldSend in all instances
+boolean oktoprocess = false;
 
 void IRAM_ATTR onTimer() {
   timertwohundo = true;
@@ -153,8 +154,9 @@ void IRAM_ATTR fasteronTimer() {
   counter10ms += 1;
   preciseTimer = counter10ms;
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
+  //IMPERIALMIGHT
   //if (givenTestCurrPulses >= goalPulseCount) {
-  if (zInboundsNum && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //maybe add zInboundsNum && logic
+  if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //maybe add zInboundsNum && logic
     //FOUND THE THING 
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
@@ -360,7 +362,7 @@ void xmainth(void *pvParameters) {
 
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
-  if (temppermflag) {
+  if (timerShouldSend) {  //temppermflag
     holderambtemp = 12345;
     //holderambtemp = goalPulseCount;
   } else {
@@ -407,16 +409,15 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
-  char ambhumbuff [sizeof(preciseTimer)*4+1];
-  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  char ambhumbuff [sizeof(goalPulseCount)*4+1];
+  char *ambhumchar = itoa(goalPulseCount,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   if (timerShouldSend) {
+    oktoprocess = false;
     timerShouldSend = false;
     //add_sout("99"+ambhumstring);
     add_sout(ambhumstring);
     //reset timers
-    preciseTimer = 0;
-    counter10ms = 0;
     //HARGOW to reset everything
     counter10ms = 0;
     preciseTimer = 0;
@@ -597,6 +598,7 @@ char inBoundsString[256];
         preciseTimer = 0;
         zInboundsNum = 0;
         goalPulseCount = 0;
+        oktoprocess = true;
         //idk if necessary tbh lol
 
         readyInBounds = false;

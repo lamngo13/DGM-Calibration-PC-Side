@@ -864,8 +864,8 @@
                     'go to next test
                     'START OLD
                     'endconditionbytime
-                    If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
-                        'If (Len(inputambtemp) > 3) Then 'maybe stupid to measure by string? but idtso
+                    'If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
+                    If (Len(inputambtemp) > 3) Then 'maybe stupid to measure by string? but idtso
                         'WRITE TO XD
                         If (Not filuutPulseFinal(currenttest) = 0) Then
                             weNeedPulseCountxd = False
