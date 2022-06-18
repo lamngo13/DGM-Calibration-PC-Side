@@ -1626,7 +1626,7 @@
         Dim permy As Integer = 0
         lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: "
         If Not (intinputambtemp = 0) Then
-            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp)
+            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp) ' BREAKPOINT THIS PROBLEM CHILD
         Else
             lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: nah"
         End If
