@@ -231,6 +231,7 @@
     Dim foowarmup As Double = 0.0
     Dim shouldendonlynum As Boolean = False
     Dim percentoffnew As Double
+    Dim intpulseholder As Integer = 0
 
 
 
@@ -733,10 +734,9 @@
                     If (Not hasSentCurrPulses(currenttest)) Then
                         hasSentCurrPulses(currenttest) = True
                         pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
-                        pulsesForESB(currenttest) = CInt(pulsesForESB(currenttest))
                         'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
-                        Dim bruh245 As Integer = pulsesForESB(currenttest)
-                        refport.Write(CInt(pulsesForESB(currenttest))) 'OPTIMUS PRIME
+                        intpulseholder = CInt(pulsesForESB(currenttest))
+                        refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
                         'problem child?? it's going negative??
 
                         'send the data
@@ -1638,7 +1638,7 @@
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("500" + vbCrLf)
+        refport.Write("3832" + vbCrLf)
         'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
         'ALSO MAKE IT BE A REAL END CONDITION
     End Sub

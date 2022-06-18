@@ -398,6 +398,10 @@ void xmainth(void *pvParameters) {
     preciseTimer = 0;
     counter10ms = 0;
     //HARGOW to reset everything
+    counter10ms = 0;
+    preciseTimer = 0;
+    zInboundsNum = 0;
+    goalPulseCount = 0;
   } else {
     add_sout(ambhumstring);
 
@@ -569,6 +573,12 @@ char inBoundsString[256];
 
       if (readyInBounds) {
         //HARGOW RESET EVERYTHING
+        counter10ms = 0;
+        preciseTimer = 0;
+        zInboundsNum = 0;
+        goalPulseCount = 0;
+        //idk if necessary tbh lol
+
         readyInBounds = false;
         inLength = Serial.available();
         Serial.readBytes(inBoundsString, inLength);
