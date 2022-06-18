@@ -156,7 +156,7 @@ void IRAM_ATTR fasteronTimer() {
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   //IMPERIALMIGHT
   //if (givenTestCurrPulses >= goalPulseCount) {
-  if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //maybe add zInboundsNum && logic
+  if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
     //FOUND THE THING 
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
@@ -363,11 +363,9 @@ void xmainth(void *pvParameters) {
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
   if (timerShouldSend) {  //temppermflag
-    holderambtemp = 12345;
-    //holderambtemp = goalPulseCount;
+    holderambtemp = 123;
   } else {
     holderambtemp = 0;
-    //holderambtemp = goalPulseCount;
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
   char *ambtempchar = itoa(holderambtemp,ambtempbuff,10);
