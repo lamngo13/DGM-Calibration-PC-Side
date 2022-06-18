@@ -733,9 +733,11 @@
                     If (Not hasSentCurrPulses(currenttest)) Then
                         hasSentCurrPulses(currenttest) = True
                         pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
-                        Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
+                        pulsesForESB(currenttest) = CInt(pulsesForESB(currenttest))
+                        'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
                         Dim bruh245 As Integer = pulsesForESB(currenttest)
-                        refport.Write(pulsesForESB(currenttest)) 'OPTIMUS PRIME
+                        refport.Write(CInt(pulsesForESB(currenttest))) 'OPTIMUS PRIME
+                        'problem child?? it's going negative??
 
                         'send the data
                         'but first calc the pulses

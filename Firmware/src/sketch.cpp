@@ -354,8 +354,8 @@ void xmainth(void *pvParameters) {
   // }
 
   //amb temp which is kinda under production: Ming
-  char ambtempbuff [sizeof(zInboundsNum)*4+1];
-  char *ambtempchar = itoa(zInboundsNum,ambtempbuff,10);
+  char ambtempbuff [sizeof(goalPulseCount)*4+1];
+  char *ambtempchar = itoa(goalPulseCount,ambtempbuff,10);
   String ambtempstring = ambtempchar;
   add_sout(ambtempchar);
   // if (timerShouldSend) {
@@ -391,7 +391,13 @@ void xmainth(void *pvParameters) {
   char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   if (timerShouldSend) {
-    add_sout("99"+ambhumstring);
+    timerShouldSend = false;
+    //add_sout("99"+ambhumstring);
+    add_sout(ambhumstring);
+    //reset timers
+    preciseTimer = 0;
+    counter10ms = 0;
+    //HARGOW to reset everything
   } else {
     add_sout(ambhumstring);
 
@@ -556,11 +562,13 @@ char inBoundsString[256];
         oldInBoundsLength = 0;
       } else {
         oldInBoundsLength = inBoundsLength;
+        //ZINBOUNDS FALSE?????????????????????????????????????????????????????????????????????????????????????
       } 
       if (inBoundsLength == 0) {readyInBounds = false;}
       //=======================================
 
       if (readyInBounds) {
+        //HARGOW RESET EVERYTHING
         readyInBounds = false;
         inLength = Serial.available();
         Serial.readBytes(inBoundsString, inLength);
