@@ -123,6 +123,7 @@ String ambtempindicator;
 int savedCounter10ms = 0;
 int resendCounter = 0;
 boolean resendBoolean = false;
+double resendTimer = 0.0;
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -158,6 +159,8 @@ void IRAM_ATTR fasteronTimer() {
   preciseTimer = counter10ms;
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   //reset the resendBoolean if > 5;
+  resendTimer += 1;
+
   
   //IMPERIALMIGHT
   //if (givenTestCurrPulses >= goalPulseCount) {
@@ -369,9 +372,10 @@ void xmainth(void *pvParameters) {
 
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
-  if (resendCounter >= 5) {
+  if (resendTimer >= 700) {
     resendBoolean = false;
     resendCounter = 0;
+    resendTimer = 0;
   }
 
   if (resendBoolean) {  //temppermflag
@@ -381,8 +385,9 @@ void xmainth(void *pvParameters) {
     //send this until the next num is recieved!!!!!******
     //or just like 5 times or smth
   } else {
+    //comment works, so it appears this is reset - i will try to do based on time rather than instances?
     //THIS ELSE NEEDS TO HAPPEN THO???
-    //holderambtemp = 0;
+    holderambtemp = 0;
 
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
