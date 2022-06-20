@@ -121,6 +121,9 @@ bool sendPulseAndTimer = false;
 int oldPulseCont = 0;
 String ambtempindicator;
 int savedCounter10ms = 0;
+int resendCounter = 0;
+boolean resendBoolean = false;
+
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
 
@@ -154,6 +157,8 @@ void IRAM_ATTR fasteronTimer() {
   counter10ms += 1;
   preciseTimer = counter10ms;
   //givenTestCurrPulses = Gl_Pulse_DGM_1 - oldPulseCont;
+  //reset the resendBoolean if > 5;
+  
   //IMPERIALMIGHT
   //if (givenTestCurrPulses >= goalPulseCount) {
   if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
@@ -170,6 +175,8 @@ void IRAM_ATTR fasteronTimer() {
     preciseTimer = counter10ms;
     counter10ms = 0;
     ///////////////zInboundsNum = 0;
+    resendBoolean = true;
+    resendCounter = 0;
   }
 }
  
@@ -362,11 +369,21 @@ void xmainth(void *pvParameters) {
 
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
-  if (timerShouldSend) {  //temppermflag
-    holderambtemp = 123;
+  if (resendCounter >= 5) {
+    resendBoolean = false;
+    resendCounter = 0;
+  }
+
+  if (resendBoolean) {  //temppermflag
+    resendCounter++;
+    holderambtemp = 12345;
+
     //send this until the next num is recieved!!!!!******
+    //or just like 5 times or smth
   } else {
-    // holderambtemp = 0;
+    //THIS ELSE NEEDS TO HAPPEN THO???
+    //holderambtemp = 0;
+
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
   char *ambtempchar = itoa(holderambtemp,ambtempbuff,10);
@@ -408,8 +425,8 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
-  char ambhumbuff [sizeof(goalPulseCount)*4+1];
-  char *ambhumchar = itoa(goalPulseCount,ambhumbuff,10);
+  char ambhumbuff [sizeof(preciseTimer)*4+1];
+  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   String ambhumstring = ambhumchar;
   if (timerShouldSend) {
     oktoprocess = false;
