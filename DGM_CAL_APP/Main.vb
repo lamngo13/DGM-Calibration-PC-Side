@@ -1643,15 +1643,15 @@
     End Sub
 
     Private Sub fastertimer_Tick(sender As Object, e As EventArgs) Handles fastertimer.Tick
-        Dim permy As Integer = 0
-        lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: "
-        If Not (intinputambtemp = 0) Then
-            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp) ' BREAKPOINT THIS PROBLEM CHILD
-        Else
-            lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: nah"
-        End If
+        'Dim permy As Integer = 0
+        'lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: "
+        'If Not (intinputambtemp = 0) Then
+        '    lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: " + CStr(inputambtemp) ' BREAKPOINT THIS PROBLEM CHILD
+        'Else
+        '    lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "pulses: nah"
+        'End If
 
-        'lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "ambhum: " + CStr(inputambtemp)
+        lblfrom_esb.Text = "Timer: " + CStr(inputambhum) + vbCrLf + "ambhum: " + CStr(inputambtemp)
 
 
     End Sub
