@@ -254,7 +254,7 @@
         Next
 
 
-        inputambhum = CInt(s_ref_in(REF_AMB_HUM))
+        'hwatinputambhum = CInt(s_ref_in(REF_AMB_HUM))
 
     End Sub
 
@@ -379,19 +379,19 @@
         If (Gs_UnitType = "met") Then
             Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
             Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
-            Label9.Text = "Test Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
-            Label10.Text = "Std Test" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label9.Text = "UUT Meter" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
+            Label10.Text = "UUT Std" + vbCrLf + "Volume" + vbCrLf + "(Liters)"
             Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
-            Label12.Text = "Test Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
+            Label12.Text = "UUT Meter" + vbCrLf + "Temp" + vbCrLf + "(°C)"
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
         Else
             If (Gs_UnitType = "imp") Then
                 Label7.Text = "Volume" + vbCrLf + "(Cu Ft.)"
                 Label8.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
-                Label9.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
-                Label10.Text = "Volume" + vbCrLf + "(Cu. Ft)"
+                Label9.Text = "UUT Volume" + vbCrLf + "(Cu. Ft.)"
+                Label10.Text = "UUT Std Volume" + vbCrLf + "(Cu. Ft)"
                 Label11.Text = "Temp" + vbCrLf + "(°F)"
-                Label12.Text = "Temp" + vbCrLf + "(°F)"
+                Label12.Text = "UUT Temp" + vbCrLf + "(°F)"
                 pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
             End If
         End If
@@ -883,7 +883,12 @@
                         ''endstdrefvols(currenttest) = CDbl(stdVolLabel(currenttest).Text)
                         ''endlabel3.Text = CStr(endstdrefvols(currenttest))
                         'SAVE FINAL VALS HERE*****************CERTIFICATION*************************************
-                        filTestTime(currenttest) = testtimers(currenttest)
+                        'filTestTime(currenttest) = testtimers(currenttest)
+                        Dim bruh56 As String = inputambhum
+                        filTestTime(currenttest) = Math.Round(CInt(inputambhum) / 100, 2)
+                        Dim bruh55 As Double = filTestTime(currenttest)
+                        testtimerlabel(currenttest).Text = CStr(filTestTime(currenttest))
+
                         filuutFinalTemp(currenttest) = testxdtemp(currenttest)
                         filOutlsetFinalTemp(currenttest) = testreftemp(currenttest)
                         'filrefFinalVol(currenttest) = xdpulseholder
@@ -1657,7 +1662,7 @@
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("100" + vbCrLf)
+        refport.Write("500" + vbCrLf)
         'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
         'ALSO MAKE IT BE A REAL END CONDITION
     End Sub
