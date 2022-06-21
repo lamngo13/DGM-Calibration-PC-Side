@@ -435,6 +435,8 @@
                     If (InStr(ioStr, Chr(10)) And ioStr <> "" And ioStr.Length > 15) Then
 
                         Gs_currstr = ioStr
+                        'for debug
+                        DEBUG.Text = ioStr
                         goodParseRef()
                         Gs_str = Gs_currstr  ' this is for debugging
                         Dim tempinstr = Gs_str

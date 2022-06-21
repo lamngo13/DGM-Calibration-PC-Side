@@ -177,6 +177,7 @@ Partial Class Main
         Me.fastertimer = New System.Windows.Forms.Timer(Me.components)
         Me.button_debug = New System.Windows.Forms.Button()
         Me.lblfrom_esb = New System.Windows.Forms.Label()
+        Me.DEBUG = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,7 +381,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "2"
+        Me.endvoltxtbox1.Text = "5"
         Me.endvoltxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvollabel2
@@ -1004,7 +1005,7 @@ Partial Class Main
         Me.refscalingtxtbox.Name = "refscalingtxtbox"
         Me.refscalingtxtbox.Size = New System.Drawing.Size(96, 24)
         Me.refscalingtxtbox.TabIndex = 96
-        Me.refscalingtxtbox.Text = ".00193105"
+        Me.refscalingtxtbox.Text = ".002"
         Me.refscalingtxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'pressureLabel6
@@ -2041,12 +2042,23 @@ Partial Class Main
         Me.lblfrom_esb.TabIndex = 197
         Me.lblfrom_esb.Text = "From ESB:"
         '
+        'DEBUG
+        '
+        Me.DEBUG.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.DEBUG.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.DEBUG.Location = New System.Drawing.Point(43, 674)
+        Me.DEBUG.Name = "DEBUG"
+        Me.DEBUG.Size = New System.Drawing.Size(1002, 32)
+        Me.DEBUG.TabIndex = 198
+        Me.DEBUG.Text = "lbldbg"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.DEBUG)
         Me.Controls.Add(Me.lblfrom_esb)
         Me.Controls.Add(Me.button_debug)
         Me.Controls.Add(Me.ydifflabel6)
@@ -2367,4 +2379,5 @@ Partial Class Main
     Friend WithEvents fastertimer As Timer
     Friend WithEvents button_debug As Button
     Friend WithEvents lblfrom_esb As Label
+    Friend WithEvents DEBUG As Label
 End Class

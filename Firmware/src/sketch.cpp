@@ -126,6 +126,7 @@ boolean resendBoolean = false;
 double resendTimer = 0.0;
 double oldTimer = 0;
 String holderoftimer = "";
+double debugz[8] = {0,0,0,0,0,0,0,0};
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -166,24 +167,24 @@ void IRAM_ATTR fasteronTimer() {
   
   //IMPERIALMIGHT
   //if (givenTestCurrPulses >= goalPulseCount) {
-  if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
-    //FOUND THE THING 
-    //zInboundsNum will be the flag indicator?
-    //ambhum should be the time elapsed
-    //oldTestPulses = givenTestCurrPulses;
+  // if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
+  //   //FOUND THE THING 
+  //   //zInboundsNum will be the flag indicator?
+  //   //ambhum should be the time elapsed
+  //   //oldTestPulses = givenTestCurrPulses;
 
-    temppermflag = true;
+  //   temppermflag = true;
 
-    oldTestPulses = Gl_Pulse_DGM_1;
-    timerShouldSend = true;
-    savedCounter10ms = counter10ms;
-    preciseTimer = counter10ms;
-    oldTimer = counter10ms;
-    counter10ms = 0;
-    ///////////////zInboundsNum = 0;
-    resendBoolean = true;
-    resendCounter = 0;
-  }
+  //   oldTestPulses = Gl_Pulse_DGM_1;
+  //   timerShouldSend = true;
+  //   savedCounter10ms = counter10ms;
+  //   preciseTimer = counter10ms;
+  //   oldTimer = counter10ms;
+  //   counter10ms = 0;
+  //   ///////////////zInboundsNum = 0;
+  //   resendBoolean = true;
+  //   resendCounter = 0;
+  // }
 }
  
 //function to append a string to the ultimate output 
@@ -204,6 +205,7 @@ void add_sout(String input) {
  
 //called upon interrupt to read changes in the spinner 
 void Read_Quad_1(void) {
+  
   //read pins
   bool Pin_DGM_1_QUAD_A = digitalRead(DGM_A);
   bool Pin_DGM_1_QUAD_B = digitalRead(DGM_B);
@@ -282,6 +284,7 @@ void Read_Quad_1(void) {
       }
     }
   }
+    
 }
  
  
@@ -338,6 +341,28 @@ void xmainth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
     //IN THE CASE THAT WE DO RECIEVE A TIMER:::::::: mongol
+    debugz[0] = double(Gl_Pulse_DGM_1);
+  debugz[1] = double(goalPulseCount);
+  if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
+  
+  
+    //FOUND THE THING 
+    //zInboundsNum will be the flag indicator?
+    //ambhum should be the time elapsed
+    //oldTestPulses = givenTestCurrPulses;
+
+    temppermflag = true;
+
+    oldTestPulses = Gl_Pulse_DGM_1;
+    timerShouldSend = true;
+    savedCounter10ms = counter10ms;
+    preciseTimer = counter10ms;
+    oldTimer = counter10ms;
+    counter10ms = 0;
+    ///////////////zInboundsNum = 0;
+    resendBoolean = true;
+    resendCounter = 0;
+  }
 
  //iterator for the final output string
  for (int a = 0; a < 1024; a++) {
@@ -522,6 +547,15 @@ void xmainth(void *pvParameters) {
   char *acchar = itoa(iAccum,accumbuff,10);
   String accumstring = acchar;
   add_sout("|"+accumstring);
+
+  add_sout("---");
+  add_sout("bruh");
+  for (int ii = 0; ii < 4; ii++) {
+    char z [sizeof(debugz[ii])*4+1];
+  char *zz = itoa(debugz[ii],z,10);
+  String sd = zz;
+  add_sout(sd);
+  }
  
   //ultimate end
   sOutput[giterator++] = 13;  //line feed
@@ -650,7 +684,7 @@ char inBoundsString[256];
         preciseTimer = 0;
         zInboundsNum = 0;
         goalPulseCount = 0;
-        oktoprocess = true;
+        //oktoprocess = true;
         //idk if necessary tbh lol
 
         readyInBounds = false;
@@ -669,6 +703,7 @@ char inBoundsString[256];
           }
 
         }
+        oktoprocess = true;
         //end for 
      } // end ready in bounds
    }
