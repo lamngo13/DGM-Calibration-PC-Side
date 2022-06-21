@@ -124,6 +124,8 @@ int savedCounter10ms = 0;
 int resendCounter = 0;
 boolean resendBoolean = false;
 double resendTimer = 0.0;
+double oldTimer = 0;
+String holderoftimer = "";
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -176,6 +178,7 @@ void IRAM_ATTR fasteronTimer() {
     timerShouldSend = true;
     savedCounter10ms = counter10ms;
     preciseTimer = counter10ms;
+    oldTimer = counter10ms;
     counter10ms = 0;
     ///////////////zInboundsNum = 0;
     resendBoolean = true;
@@ -430,26 +433,54 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   //REPLACE WITH PRECISE TIMER!!!!!!!!!!!!!!!!!!
-  char ambhumbuff [sizeof(preciseTimer)*4+1];
-  char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
-  String ambhumstring = ambhumchar;
+  //if (ShouldSend) {
+    if (resendBoolean) {
+    //send old timer
+    char ambhumbuff [sizeof(oldTimer)*4+1];
+    char *ambhumchar = itoa(oldTimer,ambhumbuff,10);
+    String ambhumstring = ambhumchar;
+    add_sout(ambhumstring);
+  } else {
+    char ambhumbuff [sizeof(preciseTimer)*4+1];
+    char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+    String ambhumstring = ambhumchar;
+    add_sout(ambhumstring);
+  }
   if (timerShouldSend) {
     oktoprocess = false;
     timerShouldSend = false;
     //add_sout("99"+ambhumstring);
-    add_sout(ambhumstring);
+    //add_sout(ambhumstring);
     //reset timers
     //HARGOW to reset everything
     counter10ms = 0;
     preciseTimer = 0;
     zInboundsNum = 0;
     goalPulseCount = 0;
-  } else {
-    add_sout(ambhumstring);
-
   }
+  //}
   
-  //BRUH
+
+  // char ambhumbuff [sizeof(preciseTimer)*4+1];
+  // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
+  // String ambhumstring = ambhumchar;
+  // if (timerShouldSend) {
+  //   oktoprocess = false;
+  //   timerShouldSend = false;
+  //   //add_sout("99"+ambhumstring);
+  //   add_sout(ambhumstring);
+  //   //reset timers
+  //   //HARGOW to reset everything
+  //   counter10ms = 0;
+  //   preciseTimer = 0;
+  //   zInboundsNum = 0;
+  //   goalPulseCount = 0;
+  // } else {
+  //   add_sout(ambhumstring);
+
+  // }
+  
+  //BRUHfasdfasdfadsf
   // if (timerShouldSend) {
   // timerShouldSend = false;
   // char ambhumbuff [sizeof(preciseTimer)*4+1];
@@ -463,7 +494,7 @@ void xmainth(void *pvParameters) {
   // String ambhumstring = ambhumchar;
   // add_sout(ambhumstring);
   // }
-  //BRUH
+  //BRUHasdfasdfadsf
   // char ambhumbuff [sizeof(preciseTimer)*4+1];
   // char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
   // String ambhumstring = ambhumchar;
