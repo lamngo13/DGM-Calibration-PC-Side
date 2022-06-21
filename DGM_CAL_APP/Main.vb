@@ -766,8 +766,11 @@
                     'send to esb32
                     If (Not hasSentCurrPulses(currenttest)) Then
                         hasSentCurrPulses(currenttest) = True
-                        pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) * 1000 * 1000 'not super sure about this!
-                        'Dim bruh55 As Double = CDbl(endvoltxtbox(currenttest).Text)
+                        'for future pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) / (0.001) 'not super sure about this!
+                        'FRUIT SNACKS
+                        pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
+                        Dim bruh66 = CDbl(endvoltxtbox(currenttest).Text)
+                        Dim bruh55 As Double = pulsesForESB(currenttest)
                         intpulseholder = CInt(pulsesForESB(currenttest))
                         refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
                         'problem child?? it's going negative??
@@ -894,6 +897,10 @@
                         filOutlsetFinalTemp(currenttest) = testreftemp(currenttest)
                         'filrefFinalVol(currenttest) = xdpulseholder
                         'filrefTotalVol(currenttest) = xdpulseholder
+                        'FINALIZE VALS???????????? special case for a temp i forget which one
+                        'is final vals here even necessary??
+
+
                         If (Not xdpulseholder = 0) Then
                             xdpulseholder = 0
                         End If
@@ -1088,6 +1095,7 @@
     End Sub
 
     Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
+
         usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
     End Sub
 
