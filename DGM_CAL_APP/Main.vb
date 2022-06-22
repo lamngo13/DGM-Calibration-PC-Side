@@ -770,6 +770,7 @@
                         hasSentCurrPulses(currenttest) = True
                         'for future pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) / (0.001) 'not super sure about this!
                         'FRUIT SNACKS
+                        'pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
                         pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
                         Dim bruh66 = CDbl(endvoltxtbox(currenttest).Text)
                         Dim bruh55 As Double = pulsesForESB(currenttest)
@@ -785,8 +786,10 @@
                     'ref stuff ------------------
                     testtimers(currenttest) += 0.1
                     testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
-                    testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                    'testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                    testpulses(currenttest) = intpulsecount
                     Dim asdf As Integer = testpulses(currenttest)
+                    'dndn
                     Dim fda As Integer = usrrefscalingfactor
                     refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
                     'rnrnrn

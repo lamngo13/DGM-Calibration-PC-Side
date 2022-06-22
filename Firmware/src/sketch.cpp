@@ -341,8 +341,8 @@ void xmainth(void *pvParameters) {
   (void) pvParameters;
   while (1) {
     //IN THE CASE THAT WE DO RECIEVE A TIMER:::::::: mongol
-    debugz[0] = double(Gl_Pulse_DGM_1);
-  debugz[1] = double(goalPulseCount);
+    //debugz[0] = double(Gl_Pulse_DGM_1);
+  //debugz[1] = double(goalPulseCount);
   currzPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
   
@@ -354,7 +354,7 @@ void xmainth(void *pvParameters) {
 
     temppermflag = true;
 
-    oldTestPulses = Gl_Pulse_DGM_1;
+    oldTestPulses = currzPulses;
     timerShouldSend = true;
     savedCounter10ms = counter10ms;
     preciseTimer = counter10ms;
@@ -530,8 +530,8 @@ void xmainth(void *pvParameters) {
     String pulseString = pulsechar;
     add_sout(pulseString);
   } else {
-    char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
-    char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+    char pulsebuff[sizeof(currzPulses)*8+1];
+    char *pulsechar = ltoa(currzPulses,pulsebuff,10);
     String pulseString = pulsechar;
     add_sout(pulseString);
   }
@@ -552,6 +552,10 @@ void xmainth(void *pvParameters) {
 
   add_sout("---");
   add_sout("bruh");
+  debugz[0] = oldPulseCont;
+  debugz[1] = oldTestPulses;
+  debugz[2] = Gl_Pulse_DGM_1;
+  debugz[3] = goalPulseCount;
   for (int ii = 0; ii < 4; ii++) {
     char z [sizeof(debugz[ii])*4+1];
   char *zz = itoa(debugz[ii],z,10);
@@ -559,12 +563,13 @@ void xmainth(void *pvParameters) {
   add_sout(sd);
   }
 
-  //stopping value
-  char zaccumbuff [sizeof(goalPulseCount)*4+1];
-  char *zacchar = itoa(goalPulseCount,zaccumbuff,10);
-  String zaccumstring = zacchar;
-  add_sout(zaccumstring);
- 
+  // //stopping value ddebug
+  // char zaccumbuff [sizeof(goalPulseCount)*4+1];
+  // char *zacchar = itoa(goalPulseCount,zaccumbuff,10);
+  // String zaccumstring = zacchar;
+  // add_sout(zaccumstring);
+  // //global pulses
+  
   //ultimate end
   sOutput[giterator++] = 13;  //line feed
   sOutput[giterator++] = 10;  //carriage return
