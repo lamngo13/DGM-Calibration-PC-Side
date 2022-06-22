@@ -786,7 +786,10 @@
                     testtimers(currenttest) += 0.1
                     testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
                     testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
+                    Dim asdf As Integer = testpulses(currenttest)
+                    Dim fda As Integer = usrrefscalingfactor
                     refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    'rnrnrn
                     testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
                     pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
                     refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)

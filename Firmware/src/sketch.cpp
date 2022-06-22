@@ -126,6 +126,7 @@ double resendTimer = 0.0;
 double oldTimer = 0;
 String holderoftimer = "";
 double debugz[8] = {0,0,0,0,0,0,0,0};
+long currzPulses = 0;
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -342,6 +343,7 @@ void xmainth(void *pvParameters) {
     //IN THE CASE THAT WE DO RECIEVE A TIMER:::::::: mongol
     debugz[0] = double(Gl_Pulse_DGM_1);
   debugz[1] = double(goalPulseCount);
+  currzPulses = Gl_Pulse_DGM_1 - oldPulseCont;
   if (oktoprocess && (Gl_Pulse_DGM_1 >= goalPulseCount)) {  //weird logic oktoprocess
   
   
@@ -471,18 +473,7 @@ void xmainth(void *pvParameters) {
     String ambhumstring = ambhumchar;
     add_sout(ambhumstring);
   }
-  if (timerShouldSend) {
-    oktoprocess = false;
-    timerShouldSend = false;
-    //add_sout("99"+ambhumstring);
-    //add_sout(ambhumstring);
-    //reset timers
-    //HARGOW to reset everything
-    counter10ms = 0;
-    preciseTimer = 0;
-    zInboundsNum = 0;
-    goalPulseCount = 0;
-  }
+  
   //}
   
 
@@ -533,10 +524,21 @@ void xmainth(void *pvParameters) {
   // }
 
   //add pulse count
-  char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
-  char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
-  String pulseString = pulsechar;
-  add_sout(pulseString);
+  if (timerShouldSend) {
+    char pulsebuff[sizeof(oldTestPulses)*8+1];
+    char *pulsechar = ltoa(oldTestPulses,pulsebuff,10);
+    String pulseString = pulsechar;
+    add_sout(pulseString);
+  } else {
+    char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+    char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+    String pulseString = pulsechar;
+    add_sout(pulseString);
+  }
+  // char pulsebuff[sizeof(Gl_Pulse_DGM_1)*8+1];
+  // char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
+  // String pulseString = pulsechar;
+  // add_sout(pulseString);
 
   /// Calculate CRC
   uint16_t iAccum = 0xFFFF;
@@ -556,6 +558,12 @@ void xmainth(void *pvParameters) {
   String sd = zz;
   add_sout(sd);
   }
+
+  //stopping value
+  char zaccumbuff [sizeof(goalPulseCount)*4+1];
+  char *zacchar = itoa(goalPulseCount,zaccumbuff,10);
+  String zaccumstring = zacchar;
+  add_sout(zaccumstring);
  
   //ultimate end
   sOutput[giterator++] = 13;  //line feed
@@ -567,6 +575,18 @@ void xmainth(void *pvParameters) {
   if (shouldSend) {
     shouldSend = false;
     Serial.print(sOutput);
+  }
+  if (timerShouldSend) {
+    oktoprocess = false;
+    timerShouldSend = false;
+    //add_sout("99"+ambhumstring);
+    //add_sout(ambhumstring);
+    //reset timers
+    //HARGOW to reset everything
+    counter10ms = 0;
+    preciseTimer = 0;
+    zInboundsNum = 0;
+    goalPulseCount = 0;
   }
   //end while
   vTaskDelay(1);
