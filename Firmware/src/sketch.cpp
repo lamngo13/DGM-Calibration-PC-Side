@@ -31,8 +31,8 @@ hw_timer_t * timer = NULL;
 hw_timer_t * fasterTimer = NULL;
 long Gl_Pulse_DGM_1 = 0;
 boolean timerShouldSend = false;
-int preciseTimer = 0;
-int holderambtemp = 0;
+long preciseTimer = 0;
+long holderambtemp = 0;
 //boolean yesNumRecieved = false;
 
 //iterator for output string
@@ -110,17 +110,16 @@ static int checksum;  //this is handled in main
 
 static int zInboundsNum = 0;
 
-int counter10ms = 0;
+long counter10ms = 0;
 //for reading the pulse count!
-int fromPcPulses = 0;
-int givenTestCurrPulses = 0;
-int goalPulseCount = 0;
+long givenTestCurrPulses = 0;
+long goalPulseCount = 0;
 double givenTestTimer = 0.0;
-int oldTestPulses = 0;
+long oldTestPulses = 0;
 bool sendPulseAndTimer = false;
-int oldPulseCont = 0;
+long oldPulseCont = 0;
 String ambtempindicator;
-int savedCounter10ms = 0;
+long savedCounter10ms = 0;
 int resendCounter = 0;
 boolean resendBoolean = false;
 double resendTimer = 0.0;
@@ -447,6 +446,7 @@ void xmainth(void *pvParameters) {
 
 
   //add ref meter temp
+  //this is being neg sometimes??
   char reftempbuff [sizeof(reftemp)*4+1];
   char *reftempchar = itoa(reftemp,reftempbuff,10);
   String reftempstring = reftempchar;
@@ -461,12 +461,12 @@ void xmainth(void *pvParameters) {
   //if (ShouldSend) {
     if (resendBoolean) {
     //send old timer
-    char ambhumbuff [sizeof(oldTimer)*4+1];
+    char ambhumbuff [sizeof(oldTimer)*8+1];
     char *ambhumchar = itoa(oldTimer,ambhumbuff,10);
     String ambhumstring = ambhumchar;
     add_sout(ambhumstring);
   } else {
-    char ambhumbuff [sizeof(preciseTimer)*4+1];
+    char ambhumbuff [sizeof(preciseTimer)*8+1];
     char *ambhumchar = itoa(preciseTimer,ambhumbuff,10);
     String ambhumstring = ambhumchar;
     add_sout(ambhumstring);
