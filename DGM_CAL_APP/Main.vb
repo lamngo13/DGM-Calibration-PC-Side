@@ -181,6 +181,7 @@
     Dim processingDone As Boolean = False
     Dim havesScalingFactor As Boolean = False
     'Dim givenxdScaling As Double = 0.0
+    Dim goodOldRefTemp As Integer = 0
 
 
 
@@ -321,6 +322,11 @@
         inputambhum = CInt(s_ref_in(REF_AMB_HUM))
         intpulsecount = CInt(s_ref_in(REF_PULSECOUNT))
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
+        If (inputreftemp > 0 And inputreftemp < 200) Then
+            goodOldRefTemp = inputreftemp
+        Else
+            inputreftemp = goodOldRefTemp
+        End If
     End Sub
 
     Public Sub xdUpdateVals()

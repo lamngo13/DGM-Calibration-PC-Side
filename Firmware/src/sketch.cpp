@@ -553,7 +553,8 @@ void xmainth(void *pvParameters) {
   add_sout("---");
   add_sout("bruh");
   debugz[0] = oldPulseCont;
-  debugz[1] = oldTestPulses;
+  //debugz[1] = oldTestPulses;
+  debugz[1] = 22;
   debugz[2] = Gl_Pulse_DGM_1;
   debugz[3] = goalPulseCount;
   for (int ii = 0; ii < 4; ii++) {
