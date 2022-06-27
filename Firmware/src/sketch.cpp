@@ -36,6 +36,7 @@ long holderambtemp = 0;
 long oldgoal = 0;
 long oldgl = 0;
 long zgivenpulses = 0;
+boolean newSend = false;
 //boolean yesNumRecieved = false;
 
 //iterator for output string
@@ -126,10 +127,11 @@ long savedCounter10ms = 0;
 int resendCounter = 0;
 boolean resendBoolean = false;
 double resendTimer = 0.0;
-double oldTimer = 0;
+//double oldTimer = 0;
 String holderoftimer = "";
 double debugz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 long currzPulses = 0;
+long oldTimer = 0;
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -362,7 +364,7 @@ void xmainth(void *pvParameters) {
     timerShouldSend = true;
     savedCounter10ms = counter10ms;
     preciseTimer = counter10ms;
-    oldTimer = counter10ms;
+    //oldTimer = counter10ms;
     counter10ms = 0;
     ///////////////zInboundsNum = 0;
     resendBoolean = true;
@@ -528,12 +530,13 @@ void xmainth(void *pvParameters) {
   // }
 
   //add pulse count
-  if (timerShouldSend) {
-    char pulsebuff[sizeof(oldTestPulses)*8+1];
-    char *pulsechar = ltoa(oldTestPulses,pulsebuff,10);
+  if (resendBoolean) {
+    char pulsebuff[sizeof(zgivenpulses)*8+1];
+    char *pulsechar = ltoa(zgivenpulses,pulsebuff,10);
     String pulseString = pulsechar;
     add_sout(pulseString);
   } else {
+    //currzPulses
     char pulsebuff[sizeof(currzPulses)*8+1];
     char *pulsechar = ltoa(currzPulses,pulsebuff,10);
     String pulseString = pulsechar;
@@ -543,7 +546,7 @@ void xmainth(void *pvParameters) {
   // char *pulsechar = ltoa(Gl_Pulse_DGM_1,pulsebuff,10);
   // String pulseString = pulsechar;
   // add_sout(pulseString);
-
+//logitech
   /// Calculate CRC
   uint16_t iAccum = 0xFFFF;
   for (int i = 0; i < giterator; i++) {                         // #define SD_DATA_SECTOR_SIZE 510
@@ -560,7 +563,7 @@ void xmainth(void *pvParameters) {
   //debugz[1] = oldTestPulses;
   debugz[1] = 222;
   debugz[2] = Gl_Pulse_DGM_1;
-  debugz[3] = 333;
+  debugz[3] = oldTimer;
   debugz[4] = oldgoal;
   debugz[5] = oldgl;
   debugz[6] = zgivenpulses;
@@ -601,6 +604,7 @@ void xmainth(void *pvParameters) {
     oldgoal = goalPulseCount;
     oldgl = Gl_Pulse_DGM_1;
     zgivenpulses = currzPulses;
+    oldTimer = preciseTimer;
     //oldtestpulses or currzpulses
     //endd eubg
     counter10ms = 0;
