@@ -33,6 +33,9 @@ long Gl_Pulse_DGM_1 = 0;
 boolean timerShouldSend = false;
 long preciseTimer = 0;
 long holderambtemp = 0;
+long oldgoal = 0;
+long oldgl = 0;
+long zgivenpulses = 0;
 //boolean yesNumRecieved = false;
 
 //iterator for output string
@@ -125,7 +128,7 @@ boolean resendBoolean = false;
 double resendTimer = 0.0;
 double oldTimer = 0;
 String holderoftimer = "";
-double debugz[8] = {0,0,0,0,0,0,0,0};
+double debugz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 long currzPulses = 0;
 
 //ambtempindicator[0] = '\0';
@@ -351,6 +354,7 @@ void xmainth(void *pvParameters) {
     //zInboundsNum will be the flag indicator?
     //ambhum should be the time elapsed
     //oldTestPulses = givenTestCurrPulses;
+    //debugging values:
 
     temppermflag = true;
 
@@ -550,14 +554,18 @@ void xmainth(void *pvParameters) {
   String accumstring = acchar;
   add_sout("|"+accumstring);
 
-  add_sout("---");
-  add_sout("bruh");
+  //add_sout("---");
+  add_sout("db");
   debugz[0] = oldPulseCont;
   //debugz[1] = oldTestPulses;
-  debugz[1] = 22;
+  debugz[1] = 222;
   debugz[2] = Gl_Pulse_DGM_1;
-  debugz[3] = goalPulseCount;
-  for (int ii = 0; ii < 4; ii++) {
+  debugz[3] = 333;
+  debugz[4] = oldgoal;
+  debugz[5] = oldgl;
+  debugz[6] = zgivenpulses;
+  debugz[7] = 111;
+  for (int ii = 0; ii < 8; ii++) {
     char z [sizeof(debugz[ii])*4+1];
   char *zz = itoa(debugz[ii],z,10);
   String sd = zz;
@@ -589,6 +597,12 @@ void xmainth(void *pvParameters) {
     //add_sout(ambhumstring);
     //reset timers
     //HARGOW to reset everything
+    //debug before reset
+    oldgoal = goalPulseCount;
+    oldgl = Gl_Pulse_DGM_1;
+    zgivenpulses = currzPulses;
+    //oldtestpulses or currzpulses
+    //endd eubg
     counter10ms = 0;
     preciseTimer = 0;
     zInboundsNum = 0;

@@ -322,7 +322,8 @@
         inputambhum = CInt(s_ref_in(REF_AMB_HUM))
         intpulsecount = CInt(s_ref_in(REF_PULSECOUNT))
         Gs_inputchecksum = s_ref_in(REF_CHECKSUM)
-        If (inputreftemp > 0 And inputreftemp < 200) Then
+        'check ok val for ref temp
+        If (inputreftemp > 0 And inputreftemp < 20000) Then
             goodOldRefTemp = inputreftemp
         Else
             inputreftemp = goodOldRefTemp
