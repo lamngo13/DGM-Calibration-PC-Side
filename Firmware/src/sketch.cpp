@@ -411,6 +411,9 @@ void xmainth(void *pvParameters) {
     resendBoolean = false;
     resendCounter = 0;
     resendTimer = 0;
+    //RESET OTHER STUFF 
+    //including but not limited to currzpulses
+    //NEWDO
   }
 
   if (resendBoolean) {  //temppermflag

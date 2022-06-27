@@ -233,6 +233,8 @@
     Dim shouldendonlynum As Boolean = False
     Dim percentoffnew As Double
     Dim intpulseholder As Integer = 0
+    Dim newendcurrtest As Boolean = False
+    Dim forStringVol As String = ""
 
 
 
@@ -771,6 +773,11 @@
 
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
+                    'find end condition
+                    If (Len(inputambtemp) > 3) Then
+                        newendcurrtest = True
+                        Dim bruh66 As Integer = intpulsecount
+                    End If
                     'screamstar
                     'send to esb32
                     If (Not hasSentCurrPulses(currenttest)) Then
@@ -877,13 +884,38 @@
                         Dim bruhz As Double = newY(currenttest)
                         'save init vals
                     End If
+                    'hardcode updating the textbox vals???
+                    'newdo
+                    If (Math.Floor(refvols(currenttest)) = Math.Ceiling(refvols(currenttest))) Then
+                        forStringVol = CStr(refvols(currenttest)) & ".00"
+                    Else
+                        forStringVol = CStr(refvols(currenttest))
+                    End If
+                    'refpulselabel(currenttest).Text = CStr(refvols(currenttest))
+                    refpulselabel(currenttest).Text = forStringVol
+                    testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+                    reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
+                    pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
+                    stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
+
+
+                    'dgm --------------------------
+                    testtemplabel(currenttest).Text = CStr(testxdtemp(currenttest))
+                    testpulselabel(currenttest).Text = CStr(testxdvol(currenttest))
+                    xdstdvollabel(currenttest).Text = CStr(testxdstdvol(currenttest))
+                    ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
 
                     'check for end condition off of pulses/volume
                     'go to next test
                     'START OLD
                     'endconditionbytime
                     'If (refvols(currenttest) > CDbl(endvoltxtbox(currenttest).Text)) Then
-                    If (Len(inputambtemp) > 3) Then 'maybe stupid to measure by string? but idtso
+                    ''''' If (Len(inputambtemp) > 3) Then
+                    ''''' newendcurrtest = True
+
+                    ''''''End If
+                    If (newendcurrtest) Then 'maybe stupid to measure by string? but idtso
+                        newendcurrtest = False
                         Dim bruh66 As Integer = intpulsecount
                         'WRITE TO XD
                         If (Not filuutPulseFinal(currenttest) = 0) Then
@@ -978,6 +1010,7 @@
                         End If
 
                     End If
+                    'end if len or newendcurrtest
 
                 End If
 
