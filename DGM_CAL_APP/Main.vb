@@ -891,6 +891,8 @@
                     Else
                         forStringVol = CStr(refvols(currenttest))
                     End If
+                    'do this for more vals??
+                    'Math.Floor only works with doubles!
                     'refpulselabel(currenttest).Text = CStr(refvols(currenttest))
                     refpulselabel(currenttest).Text = forStringVol
                     testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
