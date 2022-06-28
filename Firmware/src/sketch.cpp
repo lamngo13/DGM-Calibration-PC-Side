@@ -380,7 +380,7 @@ void xmainth(void *pvParameters) {
   sOutput[giterator] = '>';
   giterator++;
  
-  //label
+  //labell
   add_sout("Cal-DGM-v1.0");  // the add_sout appends the string WITH COMMA AND SPACE to the ultimate output string
 
   //add pressure 

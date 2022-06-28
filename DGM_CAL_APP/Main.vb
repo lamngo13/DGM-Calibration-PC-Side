@@ -102,7 +102,7 @@
     Dim refvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim pressureArr = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
     Dim stdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-    Dim endstdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+    Dim endstdrefvols = New Double() {0, 0, 0, 0, 0, 0, 0} ' DOUBLEE
 
     Dim rowused = New Boolean() {False, False, False, False, False, False, False} ' BOOLEANS
 
