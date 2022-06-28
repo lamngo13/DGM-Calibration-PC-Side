@@ -758,6 +758,7 @@
                     If ((currenttest = 2) And warmuptimer > 3.0) Then
                         Dim bruh2 As Integer = 5 ' this is for debugging??
                     End If
+
                     warmuptimer += 0.1
                     warmuptimer = Math.Round(warmuptimer, 2)
                     warmuptimes(currenttest) += 0.1
@@ -774,7 +775,8 @@
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
                     'find end condition
-                    If (Len(inputambtemp) > 3) Then
+                    'If (Len(inputambtemp) > 3) Then
+                    If (inputambtemp = "12345") Then
                         newendcurrtest = True
                         Dim bruh66 As Integer = intpulsecount
                     End If
