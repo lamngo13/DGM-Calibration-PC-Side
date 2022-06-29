@@ -770,13 +770,16 @@ char inBoundsString[256];
           }
 
         }
-        oktoprocess = true;
-        seqnum = zInboundsNum % 10;
-        zInboundsNum /= 10;
-        testzin = zInboundsNum;
-        goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
-        oldPulseCont = Gl_Pulse_DGM_1;
-        resendseqcounter = 1;
+        if ((zInboundsNum % 10 != seqnum) && (zInboundsNum % 10 > 0)) {
+          oktoprocess = true;
+          seqnum = zInboundsNum % 10;
+          zInboundsNum /= 10;
+          testzin = zInboundsNum;
+          goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+          oldPulseCont = Gl_Pulse_DGM_1;
+          resendseqcounter = 1;
+        }
+        
         //WHY DOES IT NOT WORK IF I PUT GOAL PULSE COUNT HERE THO??????????????????????
         //i should reset some other vals here?!!?!??!!?!??!?!!?
 
