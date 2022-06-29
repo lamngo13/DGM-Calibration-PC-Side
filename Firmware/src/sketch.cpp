@@ -571,8 +571,10 @@ void xmainth(void *pvParameters) {
   //debugz[3] = oldTimer;
   debugz[3] = testzin;
   debugz[4] = oldgoal;
-  debugz[5] = oldgl;
-  debugz[6] = zgivenpulses;
+  //debugz[5] = oldgl;
+  debugz[5] = Gl_Pulse_DGM_1;
+  //debugz[6] = zgivenpulses;
+  debugz[6] = goalPulseCount;
   debugz[7] = 111;
   for (int ii = 0; ii < 8; ii++) {
     char z [sizeof(debugz[ii])*4+1];
@@ -747,8 +749,8 @@ char inBoundsString[256];
             zInboundsNum *= 10;
             zInboundsNum += inBoundsString[i] - '0';
             //IS zInboundsNum now the pulse count??
-            goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
-            oldPulseCont = Gl_Pulse_DGM_1;
+            // goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+            // oldPulseCont = Gl_Pulse_DGM_1;
             //DOES THIS ONLY HAPPEN ONCE????
           }
 
@@ -757,6 +759,11 @@ char inBoundsString[256];
         seqnum = zInboundsNum % 10;
         zInboundsNum /= 10;
         testzin = zInboundsNum;
+        goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+        oldPulseCont = Gl_Pulse_DGM_1;
+        //WHY DOES IT NOT WORK IF I PUT GOAL PULSE COUNT HERE THO??????????????????????
+        //i should reset some other vals here?!!?!??!!?!??!?!!?
+
         //end for 
      } // end ready in bounds
    }

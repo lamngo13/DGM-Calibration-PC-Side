@@ -791,7 +791,7 @@
                         Dim bruh66 = CDbl(endvoltxtbox(currenttest).Text)
                         Dim bruh55 As Double = pulsesForESB(currenttest)
                         intpulseholder = CInt(pulsesForESB(currenttest))
-                        refport.Write(CStr(intpulseholder) + vbCrLf) 'OPTIMUS PRIME
+                        refport.Write(CStr(intpulseholder) + CStr(currenttest) + vbCrLf) 'OPTIMUS PRIME
                         'problem child?? it's going negative??
 
                         'send the data
