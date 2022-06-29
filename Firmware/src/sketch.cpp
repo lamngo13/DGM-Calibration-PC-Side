@@ -37,6 +37,7 @@ long oldgoal = 0;
 long oldgl = 0;
 long zgivenpulses = 0;
 boolean newSend = false;
+int seqnum = 0;
 //boolean yesNumRecieved = false;
 
 //iterator for output string
@@ -112,7 +113,8 @@ int ambhumitr = 0;
 static int pulsecount;  //no average needed
 static int checksum;  //this is handled in main
 
-static int zInboundsNum = 0;
+static long zInboundsNum = 0;
+long testzin = 0;
 
 long counter10ms = 0;
 //for reading the pulse count!
@@ -565,8 +567,9 @@ void xmainth(void *pvParameters) {
   debugz[0] = oldPulseCont;
   //debugz[1] = oldTestPulses;
   debugz[1] = 222;
-  debugz[2] = Gl_Pulse_DGM_1;
-  debugz[3] = oldTimer;
+  debugz[2] = zInboundsNum;
+  //debugz[3] = oldTimer;
+  debugz[3] = testzin;
   debugz[4] = oldgoal;
   debugz[5] = oldgl;
   debugz[6] = zgivenpulses;
@@ -751,6 +754,9 @@ char inBoundsString[256];
 
         }
         oktoprocess = true;
+        seqnum = zInboundsNum % 10;
+        zInboundsNum /= 10;
+        testzin = zInboundsNum;
         //end for 
      } // end ready in bounds
    }
