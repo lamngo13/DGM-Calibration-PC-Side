@@ -134,6 +134,7 @@ String holderoftimer = "";
 double debugz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 long currzPulses = 0;
 long oldTimer = 0;
+int resendseqcounter = 0;
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -409,6 +410,13 @@ void xmainth(void *pvParameters) {
 
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
+  if (resendseqcounter >= 1 && resendseqcounter <= 90000) {
+    resendseqcounter++;
+  }
+  if (resendseqcounter >= 90000) {
+    resendseqcounter = 0;
+  }
+  
   if (resendTimer >= 700) {
     resendBoolean = false;
     resendCounter = 0;
@@ -427,7 +435,12 @@ void xmainth(void *pvParameters) {
   } else {
     //comment works, so it appears this is reset - i will try to do based on time rather than instances?
     //THIS ELSE NEEDS TO HAPPEN THO???
-    holderambtemp = 0;
+    if (resendseqcounter >= 1) {
+      holderambtemp = seqnum;
+    } else {
+      holderambtemp = 0;
+    }
+    //holderambtemp = 0;
 
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
@@ -569,8 +582,10 @@ void xmainth(void *pvParameters) {
   debugz[1] = 222;
   debugz[2] = zInboundsNum;
   //debugz[3] = oldTimer;
-  debugz[3] = testzin;
-  debugz[4] = oldgoal;
+  //debugz[3] = testzin;
+  debugz[3] = seqnum;
+  //debugz[4] = oldgoal;
+  debugz[4] = resendseqcounter;
   //debugz[5] = oldgl;
   debugz[5] = Gl_Pulse_DGM_1;
   //debugz[6] = zgivenpulses;
@@ -749,7 +764,7 @@ char inBoundsString[256];
             zInboundsNum *= 10;
             zInboundsNum += inBoundsString[i] - '0';
             //IS zInboundsNum now the pulse count??
-            // goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+            //ASDLFKAJSDFLKADSJ goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
             // oldPulseCont = Gl_Pulse_DGM_1;
             //DOES THIS ONLY HAPPEN ONCE????
           }
@@ -761,6 +776,7 @@ char inBoundsString[256];
         testzin = zInboundsNum;
         goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
         oldPulseCont = Gl_Pulse_DGM_1;
+        resendseqcounter = 1;
         //WHY DOES IT NOT WORK IF I PUT GOAL PULSE COUNT HERE THO??????????????????????
         //i should reset some other vals here?!!?!??!!?!??!?!!?
 
