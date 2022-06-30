@@ -226,6 +226,7 @@
 
     Dim xdthisinputtype As String = ""
 
+
     'for a private sub
     Dim fooflowrate As Double = 0.0
     Dim fooendvol As Double = 0.0
@@ -366,6 +367,8 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         ' Just hitching a ride ---------------------
+        Static counterToesp As Integer = 0
+        counterToesp += 1
         If Gb_Update_Screen_Size Then
             Gb_Update_Screen_Size = False
             Update_Screen_Size()
@@ -782,8 +785,11 @@
                     End If
                     'screamstar
                     'send to esb32
-                    If (Not hasSentCurrPulses(currenttest)) Then
-                        hasSentCurrPulses(currenttest) = True
+                    If (inputambtemp = CStr(currenttest)) Then
+                        hasSentCurrPulses(currenttest) = True 'ayo
+                    End If
+                    If (Not hasSentCurrPulses(currenttest) And (counterToesp Mod 4) = 0) Then
+                        'hasSentCurrPulses(currenttest) = True ayo 
                         'for future pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) / (0.001) 'not super sure about this!
                         'FRUIT SNACKS
                         'pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
@@ -792,6 +798,8 @@
                         Dim bruh55 As Double = pulsesForESB(currenttest)
                         intpulseholder = CInt(pulsesForESB(currenttest))
                         refport.Write(CStr(intpulseholder) + CStr(currenttest) + vbCrLf) 'OPTIMUS PRIME
+                        debug22.Text = (CStr(intpulseholder) + CStr(currenttest))
+                        Dim bruh75 As String = (CStr(intpulseholder) + CStr(currenttest) + vbCrLf)
                         'problem child?? it's going negative??
 
                         'send the data

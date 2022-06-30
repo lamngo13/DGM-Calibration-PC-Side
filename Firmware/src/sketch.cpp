@@ -134,7 +134,8 @@ String holderoftimer = "";
 double debugz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 long currzPulses = 0;
 long oldTimer = 0;
-int resendseqcounter = 0;
+//int resendseqcounter = 0;
+
 
 //ambtempindicator[0] = '\0';
 //ambtempindicator[1] = '\0';
@@ -313,7 +314,7 @@ void setup() {
   timerAttachInterrupt(timer, &onTimer, true);
   timerAttachInterrupt(fasterTimer,&fasteronTimer,true);
 
-  timerAlarmWrite(timer, 200000, true);
+  timerAlarmWrite(timer, 100000, true);   //this happens 5 times a second, aka 200 ms
   timerAlarmWrite(fasterTimer,10000,true);
 
   timerAlarmEnable(timer);
@@ -410,12 +411,12 @@ void xmainth(void *pvParameters) {
 
   //amb temp which is kinda under production: Ming
   //logic is timerShouldSend
-  if (resendseqcounter >= 1 && resendseqcounter <= 90000) {
-    resendseqcounter++;
-  }
-  if (resendseqcounter >= 90000) {
-    resendseqcounter = 0;
-  }
+  // if (resendseqcounter >= 1 && resendseqcounter <= 90000) {
+  //   resendseqcounter++;
+  // }
+  // if (resendseqcounter >= 90000) {
+  //   resendseqcounter = 0;
+  // }
   
   if (resendTimer >= 700) {
     resendBoolean = false;
@@ -433,14 +434,15 @@ void xmainth(void *pvParameters) {
     //send this until the next num is recieved!!!!!******
     //or just like 5 times or smth
   } else {
-    //comment works, so it appears this is reset - i will try to do based on time rather than instances?
-    //THIS ELSE NEEDS TO HAPPEN THO???
-    if (resendseqcounter >= 1) {
-      holderambtemp = seqnum;
-    } else {
-      holderambtemp = 0;
-    }
-    //holderambtemp = 0;
+    holderambtemp = seqnum;
+    // //comment works, so it appears this is reset - i will try to do based on time rather than instances?
+    // //THIS ELSE NEEDS TO HAPPEN THO???
+    // if (resendseqcounter >= 1) {
+    //   holderambtemp = seqnum;
+    // } else {
+    //   holderambtemp = 0;
+    // }
+    // //holderambtemp = 0;
 
   }
   char ambtempbuff [sizeof(holderambtemp)*4+1];
@@ -583,15 +585,15 @@ void xmainth(void *pvParameters) {
   debugz[2] = zInboundsNum;
   //debugz[3] = oldTimer;
   //debugz[3] = testzin;
-  debugz[3] = seqnum;
+  //debugz[3] = 0;
   //debugz[4] = oldgoal;
-  debugz[4] = resendseqcounter;
+  //debugz[4] = resendseqcounter;
   //debugz[5] = oldgl;
-  debugz[5] = Gl_Pulse_DGM_1;
+  //debugz[5] = seqnum;
   //debugz[6] = zgivenpulses;
   debugz[6] = goalPulseCount;
-  debugz[7] = 111;
-  for (int ii = 0; ii < 8; ii++) {
+  //debugz[7] = 111;
+  for (int ii = 0; ii < 15; ii++) {
     char z [sizeof(debugz[ii])*4+1];
   char *zz = itoa(debugz[ii],z,10);
   String sd = zz;
@@ -731,13 +733,18 @@ char inBoundsString[256];
  void xprocessInbound(void *pvParameters) {
 
   char inLength;
+  // debugz[7] +=1;
   while (1) {
+    debugz[10] = 1010;
+    debugz[7] +=1;
     if (timertwohundo) {
+      debugz[8] +=1;
       timertwohundo = false;
       inBoundsLength = Serial.available();
       if (oldInBoundsLength == inBoundsLength) {
         readyInBounds = true;
         oldInBoundsLength = 0;
+        debugz[9] += 1;
       } else {
         oldInBoundsLength = inBoundsLength;
         //ZINBOUNDS FALSE?????????????????????????????????????????????????????????????????????????????????????
@@ -746,7 +753,12 @@ char inBoundsString[256];
       //=======================================
 
       if (readyInBounds) {
+        debugz[11] += 1;
         //HARGOW RESET EVERYTHING
+        long tempinbounds = 0;
+        static int sequence = 0;
+        static int oldseqnum = 0;
+
         counter10ms = 0;
         preciseTimer = 0;
         zInboundsNum = 0;
@@ -761,8 +773,9 @@ char inBoundsString[256];
         for (int i = 0 ; i < 255; i++) {
           if (inBoundsString[i]== 13) { break; }
           else {
-            zInboundsNum *= 10;
-            zInboundsNum += inBoundsString[i] - '0';
+            
+            tempinbounds *= 10;
+            tempinbounds += inBoundsString[i] - '0';
             //IS zInboundsNum now the pulse count??
             //ASDLFKAJSDFLKADSJ goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
             // oldPulseCont = Gl_Pulse_DGM_1;
@@ -770,15 +783,37 @@ char inBoundsString[256];
           }
 
         }
-        if ((zInboundsNum % 10 != seqnum) && (zInboundsNum % 10 > 0)) {
+
+        sequence = tempinbounds % 10;
+        debugz[5] = sequence;
+        debugz[6] = 999;
+
+        if (((sequence) != oldseqnum)) {  // && (zInboundsNum % 10 > 0)
+          //do things conditionally
+          debugz[6] = 555;
+          zInboundsNum = tempinbounds / 10;
           oktoprocess = true;
-          seqnum = zInboundsNum % 10;
-          zInboundsNum /= 10;
-          testzin = zInboundsNum;
-          goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
-          oldPulseCont = Gl_Pulse_DGM_1;
-          resendseqcounter = 1;
+        //seqnum = zInboundsNum % 10;
+        oldseqnum = sequence;
+        seqnum = sequence;
+        //zInboundsNum /= 10;
+        //debug sequence
+        testzin = zInboundsNum;
+        debugz[3] = testzin;
+
+        goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+        oldPulseCont = Gl_Pulse_DGM_1;
+        //resendseqcounter = 1;
         }
+
+        // oktoprocess = true;
+        // seqnum = zInboundsNum % 10;
+        // oldseqnum = seqnum;
+        // zInboundsNum /= 10;
+        // testzin = zInboundsNum;
+        // goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
+        // oldPulseCont = Gl_Pulse_DGM_1;
+        // resendseqcounter = 1;
         
         //WHY DOES IT NOT WORK IF I PUT GOAL PULSE COUNT HERE THO??????????????????????
         //i should reset some other vals here?!!?!??!!?!??!?!!?
