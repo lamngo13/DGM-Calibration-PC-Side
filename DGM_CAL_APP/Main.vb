@@ -1507,6 +1507,66 @@
     End Sub
 
     Private Sub resetOutput()
+        xdGivenScaling = 0.0
+        kelvinusrstdtemp = 0.0
+
+        zDGM = "notyet"
+        Gs_str = "foo"
+        intpulsecount = 0
+        '''''''''''''' testpulses = New Integer() {1, 2, 3, 4, 5, 6, 7}
+        checksum = 0
+        backit = 9999
+
+        xdCurrStr = ""
+        xdIoStr = ""
+        xdParsedCheckStr = ""
+        xdParsedCheckInt = 0
+        xdStartCheck = 0
+        xdEndCheck = 0
+        xdGoodData = False
+        xdCalculatedCS = 0
+
+        debugstr = ""
+        stritt = 1
+        isgood = True
+        calchecksum = 0
+        inputlabel = ""
+
+        inputpressure = ""
+        intpressure = 0
+        doublepressure = 0.0
+
+        inputambtemp = ""
+        intinputambtemp = 0
+        intambtemp = 0
+        doubleambtemp = 0
+
+        inputreftemp = ""
+        intreftemp = 0
+        doublereftemp = 0.0
+
+        inputambhum = ""
+        intambhum = 0
+        doubleambhum = 0.0
+
+        inputpulsecount = ""
+
+        intchecksum = 0
+        trimmedcrc = ""
+
+        usrrefscalingfactor = 0.0
+        numtests = 0
+
+        finaldiabox = False
+
+        '''''''''''thisDate As Date
+
+
+        'testpulses = New Integer() {0, 0, 0, 0, 0, 0}
+        testendvolume = {0, 0, 0, 0, 0, 0, 0}
+        warmuptimes = {0, 0, 0, 0, 0, 0, 0}
+        testusrflowrate = {0, 0, 0, 0, 0, 0, 0}
+
         testtimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
         testwarmups = {0, 0, 0, 0, 0, 0, 0}
         warmuppulses = {0, 0, 0, 0, 0, 0, 0}
@@ -1515,19 +1575,137 @@
         refvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         pressureArr = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         stdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        endstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        endstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLEE
+
+        rowused = {False, False, False, False, False, False, False} ' BOOLEANS
+
         testxdtemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         testxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         testxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
-        currenttest = 1
-        testongoing = False
-        testover = False
-        duringwarmup = True
-        Gb_testgo = True
-        debugAbort = True
-        warmuptimer = 0
+        hypotheticaltestxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+        avghypotheticalxd = 0.0
 
-        For aa As Integer = 1 To NUM_OF_ROWS
+
+        'FILE STUFF
+        newY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        experimentY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filTestTime = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filOrrifice = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filuutPulseFinal = {0, 0, 0, 0, 0, 0, 0}
+        filuutPulseTotal = {0, 0, 0, 0, 0, 0, 0}
+        filuutInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filuutFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefStdInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefStdFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefStdTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'meter pressure?
+        filrefInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filOutletInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filOutlsetFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filrefflowrate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        xdflowrate = 0.0
+        filuutFlowRate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        thisTestSavedInits = {False, False, False, False, False, False, False}
+        thisTestSavedFinals = {False, False, False, False, False, False, False}
+        filuutPulseInit = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        oldCurrTest = 1
+        filuutcalcedpulses = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        filVarY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        forPreciseRefVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        forPreciseXdVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        hasSentCurrPulses = {False, False, False, False, False, False, False} 'BOOLEAN
+        pulsesForESB = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
+        didItPass = False
+
+        'END FILE STUFF
+        currenttest = 1
+        duringwarmup = False
+
+        bigtimer = 0.0
+
+        testover = False
+        testongoing = False
+        warmuptimer = 0.0
+
+        hasCalculatedAfterTest = False
+        continueButtonAvailable = False
+        'Gb_testgo As Boolean = True
+
+
+        ourcs = 0
+        ourcsitr = 0
+        refcrcstr = ""
+        refcrcint = 0
+
+
+        xdInputVol = 0.0
+        xdInputTemp = 0.0
+        xdDate = ""
+
+        avgStdRefVolPostTest = 0.0
+        avgStdTestVolPostTest = 0.0
+        processingDone = False
+        havesScalingFactor = False
+        'givenxdScaling As Double = 0.0
+        goodOldRefTemp = 0
+
+
+
+        'inputlabel, inputpressure, doublepressure, inputambtemp, inputreftemp, inputambhum, 
+        s_ref_in(REF_MAX_MEMBERS) = ""
+        zrefinputlabel = ""
+        zrefinputpressure = ""
+        zrefinputambtemp = ""
+        zrefinputreftemp = ""
+        zrefinputambhum = ""
+        weNeedPulseCountxd = False
+        xdpulseholder = 0
+        toEsbPulses = 0
+
+        xdWarmUpPulses = {0, 0, 0, 0, 0, 0, 0}
+        xdInPulses = {0, 0, 0, 0, 0, 0, 0}
+
+        s_xd_in(XD_MAX_MEMBERS) = ""
+        gooddata = True
+        refportgood = False
+        xdportgood = False
+
+
+        consecBadCSVals = 0
+        consecBadCRCVals = 0
+
+        refFailedConnectionCounter = 0
+        xdFailedConnectionCounter = 0
+
+        rowNumberCheck = 1
+
+        rowShouldBeFilled = False
+        reasonableVals = True
+
+        numRealTests = 0
+
+        debugAbort = False
+
+        xdthisinputtype = ""
+
+
+        'for a private sub
+        fooflowrate = 0.0
+        fooendvol = 0.0
+        foowarmup = 0.0
+        shouldendonlynum = False
+        percentoffnew = 0.0
+        intpulseholder = 0
+        newendcurrtest = False
+        forStringVol = ""
+        checkingDelay = 0
+        testactive = False
+
+        For aa = 1 To NUM_OF_ROWS
             'ref-------------------------
             refpulselabel(aa).Text = 0
             testtimerlabel(aa).Text = 0
