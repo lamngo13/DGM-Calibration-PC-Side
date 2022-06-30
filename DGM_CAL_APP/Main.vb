@@ -236,6 +236,8 @@
     Dim intpulseholder As Integer = 0
     Dim newendcurrtest As Boolean = False
     Dim forStringVol As String = ""
+    Dim checkingDelay As Integer = 0
+    Dim testactive As Boolean = False
 
 
 
@@ -367,6 +369,7 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         ' Just hitching a ride ---------------------
+        checkingDelay += 1
         Static counterToesp As Integer = 0
         counterToesp += 1
         If Gb_Update_Screen_Size Then
@@ -742,6 +745,7 @@
 
                 'increment warmup timer(s)
                 If (duringwarmup) Then
+                    checkingDelay = 0
                     'STUFF FOR SENDING TO ESB32:::
                     'maybe we can delay this a tiny bit?
                     'starscream
@@ -777,9 +781,10 @@
 
                 'USE VALS FROM INPUT **********************************************************
                 If (Not duringwarmup) Then
+
                     'find end condition
                     'If (Len(inputambtemp) > 3) Then
-                    If (inputambtemp = "12345") Then
+                    If (inputambtemp = "12345" And checkingDelay > 20 And testactive) Then
                         newendcurrtest = True
                         Dim bruh66 As Integer = intpulsecount
                     End If
@@ -798,6 +803,7 @@
                         Dim bruh55 As Double = pulsesForESB(currenttest)
                         intpulseholder = CInt(pulsesForESB(currenttest))
                         refport.Write(CStr(intpulseholder) + CStr(currenttest) + vbCrLf) 'OPTIMUS PRIME
+                        checkingDelay = 0
                         debug22.Text = (CStr(intpulseholder) + CStr(currenttest))
                         Dim bruh75 As String = (CStr(intpulseholder) + CStr(currenttest) + vbCrLf)
                         'problem child?? it's going negative??
@@ -1310,7 +1316,8 @@
     End Sub
 
     Private Sub btnstart_Click(sender As Object, e As EventArgs) Handles btnstart.Click
-
+        'yuh
+        testactive = True
         findRunnableTests()
         ''ensure reasonable vals
         'reasonableVals = True
@@ -1732,7 +1739,7 @@
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("500" + vbCrLf)
+        refport.Write("0" + vbCrLf)
         'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
         'ALSO MAKE IT BE A REAL END CONDITIONn
     End Sub

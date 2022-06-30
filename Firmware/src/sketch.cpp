@@ -418,14 +418,15 @@ void xmainth(void *pvParameters) {
   //   resendseqcounter = 0;
   // }
   
-  if (resendTimer >= 700) {
-    resendBoolean = false;
-    resendCounter = 0;
-    resendTimer = 0;
-    //RESET OTHER STUFF 
-    //including but not limited to currzpulses
-    //NEWDO
-  }
+  // if (resendTimer >= 700) {
+  //   resendBoolean = false;
+  //   resendCounter = 0;
+  //   resendTimer = 0;
+  //   currzPulses = 0;
+  // //   //RESET OTHER STUFF 
+  // //   //including but not limited to currzpulses
+  // //   //NEWDO
+  // }
 
   if (resendBoolean) {  //temppermflag
     resendCounter++;
@@ -804,6 +805,13 @@ char inBoundsString[256];
         goalPulseCount = Gl_Pulse_DGM_1 + zInboundsNum;
         oldPulseCont = Gl_Pulse_DGM_1;
         //resendseqcounter = 1;
+
+        //reset other stuff
+        //newdo
+        resendBoolean = false;
+        resendCounter = 0;
+        resendTimer = 0;
+        currzPulses = 0;
         }
 
         // oktoprocess = true;
