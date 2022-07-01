@@ -238,6 +238,7 @@
     Dim forStringVol As String = ""
     Dim checkingDelay As Integer = 0
     Dim testactive As Boolean = False
+    Dim nineninecounter As Integer = 0
 
 
 
@@ -369,6 +370,19 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         ' Just hitching a ride ---------------------
+        debug22.Text = CStr(nineninecounter)
+
+        'this is a counter that will make the pc send '99' three times when abort is pressed to reset the seqnum of the esp32, instead of three times, could be another num who knows
+        If (nineninecounter > 4) Then
+            nineninecounter = 0
+        End If
+        If (nineninecounter >= 1 And nineninecounter <= 4) Then
+            nineninecounter += 1
+            refport.Write("999" + vbCrLf)
+            'debug22.Text = "999"
+        End If
+
+
         checkingDelay += 1
         Static counterToesp As Integer = 0
         counterToesp += 1
@@ -838,7 +852,9 @@
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
-                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) * 60 / testtimers(currenttest)), 3)
+                    Dim bruh111 As Double = testxdstdvol(currenttest)
+                    Dim bruh222 As Double = testtimers(currenttest)
+                    filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) * 60 / testtimers(currenttest)), 3)    'newdo testtimers is 0?
                     filrefflowrate(currenttest) = Math.Round((stdrefvols(currenttest) * 60 / testtimers(currenttest)), 3)
                     '  If (testtimers(currenttest) >= 30) Then
                     ' Dim bruh99 = stdrefvols(currenttest)
@@ -851,7 +867,7 @@
                     forPreciseXdVols(currenttest) = Math.Round(conversions.standardize(forPreciseXdVols(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 4)
                     'FIND Y AND CAL
                     'YYYYYYYYYYYYYYY
-                    filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4)
+                    filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4) 'newdo problem here
                     filY(currenttest) = Math.Round(filVarY(currenttest) - 1, 4)
 
                     filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
@@ -1507,8 +1523,10 @@
     End Sub
 
     Private Sub resetOutput()
-        xdGivenScaling = 0.0
-        kelvinusrstdtemp = 0.0
+        'abortion
+        nineninecounter = 1
+        ''''''''newdo??????xdGivenScaling = 0.0
+        '''''kelvinusrstdtemp = 0.0
 
         zDGM = "notyet"
         Gs_str = "foo"
@@ -1554,7 +1572,7 @@
         intchecksum = 0
         trimmedcrc = ""
 
-        usrrefscalingfactor = 0.0
+        'NO GOODSKI usrrefscalingfactor = 0.0
         numtests = 0
 
         finaldiabox = False
@@ -1563,12 +1581,12 @@
 
 
         'testpulses = New Integer() {0, 0, 0, 0, 0, 0}
-        testendvolume = {0, 0, 0, 0, 0, 0, 0}
-        warmuptimes = {0, 0, 0, 0, 0, 0, 0}
-        testusrflowrate = {0, 0, 0, 0, 0, 0, 0}
+        'NO GOODSKItestendvolume = {0, 0, 0, 0, 0, 0, 0}
+        'NO GOODSKIwarmuptimes = {0, 0, 0, 0, 0, 0, 0}
+        'NO GOODSKItestusrflowrate = {0, 0, 0, 0, 0, 0, 0}
 
-        testtimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLE
-        testwarmups = {0, 0, 0, 0, 0, 0, 0}
+        'NO GOODSKItesttimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLEnewdo
+        'NO GOODSKItestwarmups = {0, 0, 0, 0, 0, 0, 0}
         warmuppulses = {0, 0, 0, 0, 0, 0, 0}
         xdWarmupVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         testreftemp = {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
@@ -1917,7 +1935,7 @@
     End Sub
 
     Private Sub button_debug_Click(sender As Object, e As EventArgs) Handles button_debug.Click
-        refport.Write("0" + vbCrLf)
+        refport.Write("999" + vbCrLf)
         'MAKE THIS HAPPEN AUTOMATICALLY INSTEAD OF BY BUTTON
         'ALSO MAKE IT BE A REAL END CONDITIONn
     End Sub

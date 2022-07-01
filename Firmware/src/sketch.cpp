@@ -589,6 +589,7 @@ void xmainth(void *pvParameters) {
   //debugz[3] = 0;
   //debugz[4] = oldgoal;
   //debugz[4] = resendseqcounter;
+  debugz[4] = 666;
   //debugz[5] = oldgl;
   //debugz[5] = seqnum;
   //debugz[6] = zgivenpulses;
@@ -787,11 +788,11 @@ char inBoundsString[256];
 
         sequence = tempinbounds % 10;
         debugz[5] = sequence;
-        debugz[6] = 999;
+        debugz[6] = zInboundsNum;
 
         if (((sequence) != oldseqnum)) {  // && (zInboundsNum % 10 > 0)
           //do things conditionally
-          debugz[6] = 555;
+          debugz[6] = zInboundsNum;
           zInboundsNum = tempinbounds / 10;
           oktoprocess = true;
         //seqnum = zInboundsNum % 10;
