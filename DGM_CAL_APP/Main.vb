@@ -867,6 +867,12 @@
                     forPreciseXdVols(currenttest) = Math.Round(conversions.standardize(forPreciseXdVols(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 4)
                     'FIND Y AND CAL
                     'YYYYYYYYYYYYYYY
+                    Dim zasdf As Integer = testpulses(currenttest)
+                    Dim asdgdas As Double = usrrefscalingfactor
+                    Dim asyo As Integer = intpulsecount
+                    Dim bruh123 As Double = forPreciseRefVols(currenttest)
+                    Dim bruh123123123 As Double = forPreciseXdVols(currenttest)
+
                     filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4) 'newdo problem here
                     filY(currenttest) = Math.Round(filVarY(currenttest) - 1, 4)
 
@@ -911,9 +917,11 @@
 
                         'Y stuff???
                         'new Y
-                        newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)
+                        Dim bruha As Integer = intpulsecount
+                        Dim bruhz As Double = forPreciseXdVols(currenttest)
+                        newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
                         ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
-                        Dim bruhz As Double = newY(currenttest)
+                        'Dim bruhz As Double = newY(currenttest)
                         'save init vals
                     End If
                     'hardcode updating the textbox vals???
