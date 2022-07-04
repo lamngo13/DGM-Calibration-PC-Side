@@ -851,7 +851,7 @@
                     'AGAIN, THIS MAKES IT CELSIUS
                     testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
-                    hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)
+                    hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)  'newdo xdgiven scaling must have more time??
                     Dim bruh111 As Double = testxdstdvol(currenttest)
                     Dim bruh222 As Double = testtimers(currenttest)
                     filuutFlowRate(currenttest) = Math.Round((testxdstdvol(currenttest) * 60 / testtimers(currenttest)), 3)    'newdo testtimers is 0?
@@ -924,7 +924,7 @@
                         'new Y
                         Dim bruha As Integer = intpulsecount
                         Dim bruhz As Double = forPreciseXdVols(currenttest)
-                        If (forPreciseXdVols = 0) Then
+                        If (Not forPreciseXdVols(currenttest) = 0) Then
                             newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
                         End If
                         'newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
@@ -1617,7 +1617,7 @@
         testxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         testxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
         hypotheticaltestxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
-        avghypotheticalxd = 0.0
+        'itnoresetavghypotheticalxd = 0.0
 
 
         'FILE STUFF
@@ -1705,8 +1705,8 @@
 
         s_xd_in(XD_MAX_MEMBERS) = ""
         gooddata = True
-        refportgood = False
-        xdportgood = False
+        'refportgood = False
+        'xdportgood = False
 
 
         consecBadCSVals = 0
