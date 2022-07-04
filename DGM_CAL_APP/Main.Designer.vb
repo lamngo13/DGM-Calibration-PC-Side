@@ -382,7 +382,7 @@ Partial Class Main
         Me.endvoltxtbox1.Name = "endvoltxtbox1"
         Me.endvoltxtbox1.Size = New System.Drawing.Size(58, 23)
         Me.endvoltxtbox1.TabIndex = 10
-        Me.endvoltxtbox1.Text = "5"
+        Me.endvoltxtbox1.Text = "2"
         Me.endvoltxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'endvollabel2
@@ -558,7 +558,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "5"
+        Me.warmuptxtbox1.Text = "1"
         Me.warmuptxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'refpulselabel1

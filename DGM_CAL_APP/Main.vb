@@ -872,8 +872,13 @@
                     Dim asyo As Integer = intpulsecount
                     Dim bruh123 As Double = forPreciseRefVols(currenttest)
                     Dim bruh123123123 As Double = forPreciseXdVols(currenttest)
+                    If (Not forPreciseRefVols(currenttest) = 0 And Not forPreciseXdVols(currenttest) = 0) Then
+                        filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4) 'newdo problem here
+                    End If
+                    'filVarY(currenttest) = (1 / forPreciseRefVols(currenttest))
 
-                    filVarY(currenttest) = Math.Round((1 / forPreciseRefVols(currenttest)) * forPreciseXdVols(currenttest), 4) 'newdo problem here
+
+
                     filY(currenttest) = Math.Round(filVarY(currenttest) - 1, 4)
 
                     filuutcalcedpulses(currenttest) = Math.Round((testxdstdvol(currenttest) * 1000 * xdGivenScaling), 0)
@@ -919,7 +924,10 @@
                         'new Y
                         Dim bruha As Integer = intpulsecount
                         Dim bruhz As Double = forPreciseXdVols(currenttest)
-                        newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
+                        If (forPreciseXdVols = 0) Then
+                            newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
+                        End If
+                        'newY(currenttest) = Math.Round((forPreciseRefVols(currenttest) / forPreciseXdVols(currenttest)), 4)   'newdo
                         ydifflabel(currenttest).Text = CStr(filVarY(currenttest))
                         'Dim bruhz As Double = newY(currenttest)
                         'save init vals
