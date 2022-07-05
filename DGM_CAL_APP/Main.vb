@@ -371,7 +371,7 @@
 
         ' Just hitching a ride ---------------------
         'debug22.Text = CStr(xdInputVol)
-        debug22.Text = CStr(testxdvol(currenttest))
+        'debug22.Text = CStr(testxdvol(currenttest))
 
         'this is a counter that will make the pc send '99' three times when abort is pressed to reset the seqnum of the esp32, instead of three times, could be another num who knows
         If (nineninecounter > 4) Then
@@ -632,7 +632,7 @@
         Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
         bigtimerlabel.Text = "Overall Time: " + CStr(bigtimer)
         If (testongoing) Then
-            ' refpulselabel(currenttest).Text = CStr(refvols(currenttest))  'omega
+            ' refpulselabel(currenttest).Text = CStr(refvols(currenttest))  'omega newdo maybe ican take all these out
             testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
             reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
             pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
@@ -901,7 +901,7 @@
                         testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
                         testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
                         pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                        'refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet newdo omega
+                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet newdo omega
                         testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'Liters to cubic feet
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
