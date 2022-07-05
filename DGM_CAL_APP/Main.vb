@@ -845,8 +845,11 @@
 
                     Dim buasfdghads As Double = (testpulses(currenttest) * usrrefscalingfactor)
                     Dim asfhg As String = CStr(Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2))
-                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2) ' krug3
+                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2) ' krug3 omega optum
                     Dim asfhgdad As Double = refvols(currenttest)
+                    Dim ashdglasd As Double = CDbl(conversions.Format4Two((testpulses(currenttest) * usrrefscalingfactor)))
+                    refvols(currenttest) = ashdglasd 'CDbl(conversions.Format4Two((testpulses(currenttest) * usrrefscalingfactor)))
+                    Dim ghgh As Double = refvols(currenttest)
 
 
                     'SOME ABSOLUTE CRAZINESS
@@ -1583,7 +1586,7 @@
         inputambtemp = ""
         intinputambtemp = 0
         intambtemp = 0
-        doubleambtemp = 0
+        doubleambtemp = 0.0
 
         inputreftemp = ""
         intreftemp = 0
@@ -1613,55 +1616,101 @@
 
         'NO GOODSKItesttimers = {0, 0, 0, 0, 0, 0, 0}  ' DOUBLEnewdo
         'NO GOODSKItestwarmups = {0, 0, 0, 0, 0, 0, 0}
-        warmuppulses = {0, 0, 0, 0, 0, 0, 0}
-        xdWarmupVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        testreftemp = {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
-        refvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        pressureArr = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        stdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        endstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLEE
+        'omgwarmuppulses = {0, 0, 0, 0, 0, 0, 0}
+        'omgWarmupVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgtestreftemp = {0, 0, 0, 0, 0, 0, 0}  'DOUBLE
+        'refvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        For i = 0 To 6
+            warmuppulses(i) = 0
+            xdWarmupVols(i) = 0
+            testreftemp(i) = 0
+            refvols(i) = 0
+            pressureArr(i) = 0
+            stdrefvols(i) = 0
+            endstdrefvols(i) = 0
+            testxdtemp(i) = 0
+            testxdvol(i) = 0
+            testxdstdvol(i) = 0
+            hypotheticaltestxdstdvol(i) = 0
+            newY(i) = 0
+            experimentY(i) = 0
+            filTestTime(i) = 0
+            filOrrifice(i) = 0
+            filuutPulseFinal(i) = 0
+            filuutPulseTotal(i) = 0
+            filuutInitTemp(i) = 0
+            filuutFinalTemp(i) = 0
+            filrefStdInitVol(i) = 0
+            filrefStdFinalVol(i) = 0
+            filrefStdTotalVol(i) = 0
+            filrefInitVol(i) = 0
+            filrefFinalVol(i) = 0
+            filrefTotalVol(i) = 0
+            filOutletInitTemp(i) = 0
+            filOutlsetFinalTemp(i) = 0
+            filrefflowrate(i) = 0
+            filuutFlowRate(i) = 0
+            filuutPulseInit(i) = 0
+            'oldCurrTest = 1
+            filuutcalcedpulses(i) = 0
+            filY(i) = 0
+            filVarY(i) = 0
+            forPreciseRefVols(i) = 0
+            forPreciseXdVols(i) = 0
+            pulsesForESB(i) = 0
+            xdWarmUpPulses(i) = 0
+            xdInPulses(i) = 0
+        Next
+        'omgpressureArr = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgendstdrefvols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLEE
 
         rowused = {False, False, False, False, False, False, False} ' BOOLEANS
 
-        testxdtemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        testxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        testxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
-        hypotheticaltestxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
-        'itnoresetavghypotheticalxd = 0.0
+        'omgtestxdtemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgtestxdvol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgtestxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+        'omghypotheticaltestxdstdvol = {0, 0, 0, 0, 0, 0, 0} 'DOUBLE
+        avghypotheticalxd = 0.0 'newdo idk if this should be
 
 
         'FILE STUFF
-        newY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        experimentY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filTestTime = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filOrrifice = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filuutPulseFinal = {0, 0, 0, 0, 0, 0, 0}
-        filuutPulseTotal = {0, 0, 0, 0, 0, 0, 0}
-        filuutInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filuutFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefStdInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefStdFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefStdTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgnewY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgexperimentY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilTestTime = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilOrrifice = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfiluutPulseFinal = {0, 0, 0, 0, 0, 0, 0}
+        'omgfiluutPulseTotal = {0, 0, 0, 0, 0, 0, 0}
+        'omgfiluutInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfiluutFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefStdInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefStdFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefStdTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
         'meter pressure?
-        filrefInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filOutletInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filOutlsetFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filrefflowrate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefInitVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefFinalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefTotalVol = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilOutletInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilOutlsetFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilrefflowrate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'ayoo
         xdflowrate = 0.0 'newdo
-        filuutFlowRate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
+        'omgfiluutFlowRate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         thisTestSavedInits = {False, False, False, False, False, False, False}
         thisTestSavedFinals = {False, False, False, False, False, False, False}
-        filuutPulseInit = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
+        'omgfiluutPulseInit = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         oldCurrTest = 1
-        filuutcalcedpulses = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        filVarY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        forPreciseRefVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        forPreciseXdVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfiluutcalcedpulses = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgfilVarY = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgforPreciseRefVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgforPreciseXdVols = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+
         hasSentCurrPulses = {False, False, False, False, False, False, False} 'BOOLEAN
-        pulsesForESB = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
+        'omgpulsesForESB = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
 
         didItPass = False
 
@@ -1710,8 +1759,8 @@
         xdpulseholder = 0
         toEsbPulses = 0
 
-        xdWarmUpPulses = {0, 0, 0, 0, 0, 0, 0}
-        xdInPulses = {0, 0, 0, 0, 0, 0, 0}
+        'omgxdWarmUpPulses = {0, 0, 0, 0, 0, 0, 0}
+        'omgxdInPulses = {0, 0, 0, 0, 0, 0, 0}
 
         s_xd_in(XD_MAX_MEMBERS) = ""
         gooddata = True

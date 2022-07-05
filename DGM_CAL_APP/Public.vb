@@ -217,7 +217,251 @@ Module _Public
 
         End Function
 
-        Public Shared Function roundDouble(inDouble As Double)
+        Function Format4Four(ByVal dTemp As Double) As String
+
+            ' Format a number to string with four (4) decimal places.
+
+            Dim dDecimal As Double
+
+            Dim sTemp As String
+
+
+
+            Dim bNeg_Flag As Boolean = False
+
+            If dTemp < 0 Then
+
+                bNeg_Flag = True
+
+                dTemp = -dTemp
+
+            End If
+
+
+
+            dTemp += 0.00005          ' For rounding up
+
+
+
+            dDecimal = dTemp - Int(dTemp)
+
+            dDecimal *= 10000
+
+            dDecimal = Int(dDecimal)
+
+            sTemp = CStr(dDecimal)
+
+            While Len(sTemp) < 4
+
+                sTemp = "0" & sTemp
+
+            End While
+
+            sTemp = CStr(Int(dTemp)) & "." & sTemp
+
+
+
+            If bNeg_Flag Then
+
+                Return "-" & sTemp
+
+            Else
+
+                Return sTemp
+
+            End If
+
+
+
+        End Function
+
+
+
+        Function Format4Three(ByVal dTemp As Double) As String
+
+
+
+            ' Format a number to string with three (3) decimal places.
+
+
+
+            Dim dDecimal As Double
+
+            Dim sTemp As String
+
+            Dim bNeg_Flag As Boolean = False
+
+            If dTemp < 0 Then
+
+                bNeg_Flag = True
+
+                dTemp = -dTemp
+
+            End If
+
+
+
+            dTemp += 0.0005       ' For rounding up
+
+
+
+            dDecimal = dTemp - Int(dTemp)
+
+            dDecimal *= 1000
+
+            dDecimal = Int(dDecimal)
+
+            sTemp = CStr(dDecimal)
+
+            While Len(sTemp) < 3
+
+                sTemp = "0" & sTemp
+
+            End While
+
+            sTemp = CStr(Int(dTemp)) & "." & sTemp
+
+
+
+            If bNeg_Flag Then
+
+                Return "-" & sTemp
+
+            Else
+
+                Return sTemp
+
+            End If
+
+
+
+        End Function
+
+
+
+
+
+        Public Shared Function Format4Two(ByVal dTemp As Double) As String
+
+
+
+            ' Format a number to string with two (2) decimal places.
+
+
+
+            Dim dDecimal As Double
+
+            Dim sTemp As String
+
+            Dim bNeg_Flag As Boolean = False
+
+            If dTemp < 0 Then
+
+                bNeg_Flag = True
+
+                dTemp = -dTemp
+
+            End If
+
+
+
+            dTemp += 0.005        ' For rounding up
+
+
+
+            dDecimal = dTemp - Int(dTemp)
+
+            dDecimal *= 100
+
+            dDecimal = Int(dDecimal)
+
+            sTemp = CStr(dDecimal)
+
+            While Len(sTemp) < 2
+
+                sTemp = "0" & sTemp
+
+            End While
+
+            sTemp = CStr(Int(dTemp)) & "." & sTemp
+
+
+
+            If bNeg_Flag Then
+
+                Return "-" & sTemp
+
+            Else
+
+                Return sTemp
+
+            End If
+
+
+
+        End Function
+
+
+
+        Function Format4One(ByVal dTemp As Double) As String
+
+
+
+            ' Format a number to string with one (1) decimal place.
+
+
+
+            Dim dDecimal As Double
+
+            Dim sTemp As String
+
+            Dim bNeg_Flag As Boolean = False
+
+            If dTemp < 0 Then
+
+                bNeg_Flag = True
+
+                dTemp = -dTemp
+
+            End If
+
+
+
+            dTemp += 0.05         ' For rounding up
+
+
+
+            dDecimal = dTemp - Int(dTemp)
+
+            dDecimal *= 10
+
+            dDecimal = Int(dDecimal)
+
+            sTemp = CStr(dDecimal)
+
+            While Len(sTemp) < 1
+
+                sTemp = "0" & sTemp
+
+            End While
+
+            sTemp = CStr(Int(dTemp)) & "." & sTemp
+
+
+
+            If bNeg_Flag Then
+
+                Return "-" & sTemp
+
+            Else
+
+                Return sTemp
+
+            End If
+
+
+
+
 
         End Function
 
