@@ -787,6 +787,11 @@ char inBoundsString[256];
         }
 
         sequence = tempinbounds % 10;
+        if (sequence == 9) {
+          debugz[9] = 1212;
+          ESP.restart();
+          debugz[9] = 1212;
+        }
         debugz[5] = sequence;
         debugz[6] = zInboundsNum;
 

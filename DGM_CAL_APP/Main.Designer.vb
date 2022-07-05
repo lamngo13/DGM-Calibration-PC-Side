@@ -119,6 +119,7 @@ Partial Class Main
         Me.btnstart = New FontAwesome.Sharp.IconButton()
         Me.btnconfig = New FontAwesome.Sharp.IconButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.debug22 = New System.Windows.Forms.Label()
         Me.newmainclock = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
@@ -178,7 +179,6 @@ Partial Class Main
         Me.button_debug = New System.Windows.Forms.Button()
         Me.lblfrom_esb = New System.Windows.Forms.Label()
         Me.DEBUG = New System.Windows.Forms.Label()
-        Me.debug22 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -558,7 +558,7 @@ Partial Class Main
         Me.warmuptxtbox1.Name = "warmuptxtbox1"
         Me.warmuptxtbox1.Size = New System.Drawing.Size(58, 23)
         Me.warmuptxtbox1.TabIndex = 26
-        Me.warmuptxtbox1.Text = "1"
+        Me.warmuptxtbox1.Text = "3"
         Me.warmuptxtbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'refpulselabel1
@@ -1396,6 +1396,16 @@ Partial Class Main
         Me.Panel1.Size = New System.Drawing.Size(1064, 135)
         Me.Panel1.TabIndex = 142
         '
+        'debug22
+        '
+        Me.debug22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.debug22.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.debug22.Location = New System.Drawing.Point(15, 92)
+        Me.debug22.Name = "debug22"
+        Me.debug22.Size = New System.Drawing.Size(323, 43)
+        Me.debug22.TabIndex = 144
+        Me.debug22.Text = "debug22"
+        '
         'newmainclock
         '
         Me.newmainclock.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
@@ -2053,16 +2063,6 @@ Partial Class Main
         Me.DEBUG.Size = New System.Drawing.Size(1002, 32)
         Me.DEBUG.TabIndex = 198
         Me.DEBUG.Text = "lbldbg"
-        '
-        'debug22
-        '
-        Me.debug22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.debug22.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.debug22.Location = New System.Drawing.Point(15, 92)
-        Me.debug22.Name = "debug22"
-        Me.debug22.Size = New System.Drawing.Size(323, 43)
-        Me.debug22.TabIndex = 144
-        Me.debug22.Text = "debug22"
         '
         'Main
         '

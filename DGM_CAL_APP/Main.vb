@@ -338,7 +338,7 @@
 
     Public Sub xdUpdateVals()
         Dim aaa = xdCurrStr
-        xdInputVol = CDbl(s_xd_in(XD_IN_VOL))
+        xdInputVol = CDbl(s_xd_in(XD_IN_VOL)) 'krug22
         xdInputTemp = CDbl(s_xd_in(XD_IN_TEMP))
         xdDate = s_xd_in(XD_IN_DATE)
         Dim bruh4 As Double = filuutFlowRate(currenttest)
@@ -370,7 +370,8 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         ' Just hitching a ride ---------------------
-        debug22.Text = CStr(nineninecounter)
+        'debug22.Text = CStr(xdInputVol)
+        debug22.Text = CStr(testxdvol(currenttest))
 
         'this is a counter that will make the pc send '99' three times when abort is pressed to reset the seqnum of the esp32, instead of three times, could be another num who knows
         If (nineninecounter > 4) Then
@@ -631,7 +632,7 @@
         Dim bruhasdf As Boolean = testongoing '''''''''''''''''''''''''''''''
         bigtimerlabel.Text = "Overall Time: " + CStr(bigtimer)
         If (testongoing) Then
-            refpulselabel(currenttest).Text = CStr(refvols(currenttest))
+            ' refpulselabel(currenttest).Text = CStr(refvols(currenttest))  'omega
             testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
             reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
             pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
@@ -831,15 +832,23 @@
                     testtimers(currenttest) += 0.1
                     testtimers(currenttest) = Math.Round(testtimers(currenttest), 2)
                     'testpulses(currenttest) = intpulsecount - warmuppulses(currenttest)
-                    testpulses(currenttest) = intpulsecount
+                    testpulses(currenttest) = intpulsecount 'krug4
                     Dim asdf As Integer = testpulses(currenttest)
                     'dndn
                     Dim fda As Integer = usrrefscalingfactor
-                    refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor)
+                    'refvols(currenttest) = (testpulses(currenttest) * usrrefscalingfactor) 'krug3 usrrefscalingfactor looks ok hurrr
                     'rnrnrn
                     testreftemp(currenttest) = Math.Round(conversions.cIntToDouble(inputreftemp), 2)
                     pressureArr(currenttest) = Math.Round(conversions.cIntToDouble(intpressure), 2)
-                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2)
+
+                    Dim bruhamasdf As Integer = testpulses(currenttest)
+
+                    Dim buasfdghads As Double = (testpulses(currenttest) * usrrefscalingfactor)
+                    Dim asfhg As String = CStr(Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2))
+                    refvols(currenttest) = Math.Round((testpulses(currenttest) * usrrefscalingfactor), 2) ' krug3
+                    Dim asfhgdad As Double = refvols(currenttest)
+
+
                     'SOME ABSOLUTE CRAZINESS
                     '''testreftemp(currenttest) = testxdtemp(currenttest)
                     stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2) ' DO I NEED DIFF VALS FOR THIS *********************
@@ -849,7 +858,7 @@
                     ' If (units = celsius)
                     '''testxdtemp(currenttest) = Math.Round(conversions.convertFarToCel(testxdtemp(currenttest)), 2)
                     'AGAIN, THIS MAKES IT CELSIUS
-                    testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2)
+                    testxdvol(currenttest) = Math.Round((xdInputVol - xdWarmupVols(currenttest)), 2) 'newdo has to do with krug
                     testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
                     hypotheticaltestxdstdvol(currenttest) = Math.Round(testxdvol(currenttest) / xdGivenScaling)  'newdo xdgiven scaling must have more time??
                     Dim bruh111 As Double = testxdstdvol(currenttest)
@@ -889,7 +898,7 @@
                         testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
                         testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
                         pressureArr(currenttest) = Math.Round((pressureArr(currenttest) / 25.4), 2)     'mmHg to inchesHg
-                        refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet
+                        'refvols(currenttest) = Math.Round((refvols(currenttest) / 28.317), 2)     'Liters to cubic feet newdo omega
                         testxdvol(currenttest) = Math.Round((testxdvol(currenttest) / 28.317), 2)     'Liters to cubic feet
                         stdrefvols(currenttest) = Math.Round(conversions.standardize(refvols(currenttest), testreftemp(currenttest), pressureArr(currenttest)), 2)
                         testxdstdvol(currenttest) = Math.Round(conversions.standardize(testxdvol(currenttest), testxdtemp(currenttest), pressureArr(currenttest)), 2)
@@ -935,14 +944,15 @@
                     'hardcode updating the textbox vals???
                     'newdo
                     If (Math.Floor(refvols(currenttest)) = Math.Ceiling(refvols(currenttest))) Then
-                        forStringVol = CStr(refvols(currenttest)) & ".00"
+                        forStringVol = CStr(refvols(currenttest)) & ".00"   'krug2
                     Else
                         forStringVol = CStr(refvols(currenttest))
                     End If
                     'do this for more vals??
                     'Math.Floor only works with doubles!
                     'refpulselabel(currenttest).Text = CStr(refvols(currenttest))
-                    refpulselabel(currenttest).Text = forStringVol
+                    refpulselabel(currenttest).Text = forStringVol 'krug1  'omega  bl
+
                     testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
                     reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
                     pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
@@ -1639,7 +1649,7 @@
         filOutletInitTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         filOutlsetFinalTemp = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         filrefflowrate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
-        xdflowrate = 0.0
+        xdflowrate = 0.0 'newdo
         filuutFlowRate = {0, 0, 0, 0, 0, 0, 0} ' DOUBLE
         thisTestSavedInits = {False, False, False, False, False, False, False}
         thisTestSavedFinals = {False, False, False, False, False, False, False}
