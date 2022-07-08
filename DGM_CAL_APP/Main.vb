@@ -633,7 +633,7 @@
         bigtimerlabel.Text = "Overall Time: " + CStr(bigtimer)
         If (testongoing) Then
             ' refpulselabel(currenttest).Text = CStr(refvols(currenttest))  'omega newdo maybe ican take all these out
-            testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+            'testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))  'brug1
             reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
             pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
             stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
@@ -956,7 +956,11 @@
                     'refpulselabel(currenttest).Text = CStr(refvols(currenttest))
                     refpulselabel(currenttest).Text = forStringVol 'krug1  'omega  bl
 
-                    testtimerlabel(currenttest).Text = CStr(testtimers(currenttest))
+                    'brug temp to fix timer
+                    Dim bruh556 As String = inputambhum
+                    testtimers(currenttest) = Math.Round(CInt(inputambhum) / 100, 2)
+
+                    testtimerlabel(currenttest).Text = CStr(testtimers(currenttest)) 'brug1
                     reftemplabel(currenttest).Text = CStr(testreftemp(currenttest))
                     pressureLabel(currenttest).Text = CStr(pressureArr(currenttest))
                     stdVolLabel(currenttest).Text = CStr(stdrefvols(currenttest))
@@ -1002,7 +1006,7 @@
                         Dim bruh56 As String = inputambhum
                         filTestTime(currenttest) = Math.Round(CInt(inputambhum) / 100, 2)
                         Dim bruh55 As Double = filTestTime(currenttest)
-                        testtimerlabel(currenttest).Text = CStr(filTestTime(currenttest))
+                        testtimerlabel(currenttest).Text = CStr(filTestTime(currenttest)) 'brug1
 
                         filuutFinalTemp(currenttest) = testxdtemp(currenttest)
                         filOutlsetFinalTemp(currenttest) = testreftemp(currenttest)
