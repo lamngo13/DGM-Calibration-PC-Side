@@ -1368,6 +1368,9 @@
         'yuh
         testactive = True
         findRunnableTests()
+
+        'newdo ensure refport good before trying to write?
+        refport.Write("999" + vbCrLf)
         ''ensure reasonable vals
         'reasonableVals = True
         'For p As Integer = 1 To NUM_OF_ROWS
