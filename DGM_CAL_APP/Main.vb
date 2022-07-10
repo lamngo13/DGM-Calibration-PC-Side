@@ -1212,7 +1212,7 @@
 
     Private Sub refscalingtxtbox_TextChanged(sender As Object, e As EventArgs) Handles refscalingtxtbox.TextChanged
 
-        usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
+        ''''' usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
     End Sub
 
     Private Sub continueButton_Click(sender As Object, e As EventArgs)
@@ -1849,12 +1849,14 @@
         If (Not shouldendonlynum) Then
             For dd As Integer = 1 To NUM_OF_ROWS
                 Try
+                    usrrefscalingfactor = CDbl(refscalingtxtbox.Text)
                     fooflowrate = CDbl(flowratetxtbox(dd).Text)
                     fooendvol = CDbl(endvoltxtbox(dd).Text)
                     foowarmup = CDbl(warmuptxtbox(dd).Text)
                 Catch ex As Exception
                     dd += NUM_OF_ROWS
                     shouldendonlynum = True
+                    'todo highlight the problem children newdo
                     'send error form
                     GS_errorText = "Only Use Number in Input"
                     ErrorForm.StartPosition = FormStartPosition.CenterScreen
