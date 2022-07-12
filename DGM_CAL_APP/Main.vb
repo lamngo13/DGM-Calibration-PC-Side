@@ -370,7 +370,7 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Main_Timer.Tick
 
         ' Just hitching a ride ---------------------
-        'debug22.Text = CStr(xdInputVol)
+        'debug22.Text = CStr(xdInputVol) 712 newdo
         'debug22.Text = CStr(testxdvol(currenttest))
 
         'this is a counter that will make the pc send '99' three times when abort is pressed to reset the seqnum of the esp32, instead of three times, could be another num who knows
@@ -816,7 +816,10 @@
                         pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
                         Dim bruh66 = CDbl(endvoltxtbox(currenttest).Text)
                         Dim bruh55 As Double = pulsesForESB(currenttest)
+                        'CONVERSIONSIMP
+                        'convert to imperial here
                         intpulseholder = CInt(pulsesForESB(currenttest))
+                        'newdo 712 make this work for imperial
                         refport.Write(CStr(intpulseholder) + CStr(currenttest) + vbCrLf) 'OPTIMUS PRIME
                         checkingDelay = 0
                         debug22.Text = (CStr(intpulseholder) + CStr(currenttest))
@@ -897,6 +900,9 @@
 
 
                     'IF IMPERIAL------------------------------------------
+                    'newdo 
+                    'maybe do the conversions here only for INPUTS like when the user inputs some data
+                    '
                     If (Gs_UnitType = "imp") Then
                         testreftemp(currenttest) = Math.Round((conversions.convertCelToFar(testreftemp(currenttest))), 2)   'convert cel to far
                         testxdtemp(currenttest) = Math.Round((conversions.convertCelToFar(testxdtemp(currenttest))), 2)     'convert cel to far
