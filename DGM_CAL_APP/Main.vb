@@ -812,7 +812,7 @@
                         'hasSentCurrPulses(currenttest) = True ayo 
                         'for future pulsesForESB(currenttest) = usrrefscalingfactor * CDbl(endvoltxtbox(currenttest).Text) / (0.001) 'not super sure about this!
                         'FRUIT SNACKS
-                        'pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
+                        'pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor 'newdo 712
                         pulsesForESB(currenttest) = CDbl(endvoltxtbox(currenttest).Text) / usrrefscalingfactor
                         Dim bruh66 = CDbl(endvoltxtbox(currenttest).Text)
                         Dim bruh55 As Double = pulsesForESB(currenttest)
@@ -820,6 +820,9 @@
                         'convert to imperial here
                         intpulseholder = CInt(pulsesForESB(currenttest))
                         'newdo 712 make this work for imperial
+                        If (Gs_UnitType = "imp") Then
+                            intpulseholder = CInt(CDbl(intpulseholder) * 28.317) 'convert liters to imperial?
+                        End If
                         refport.Write(CStr(intpulseholder) + CStr(currenttest) + vbCrLf) 'OPTIMUS PRIME
                         checkingDelay = 0
                         debug22.Text = (CStr(intpulseholder) + CStr(currenttest))
