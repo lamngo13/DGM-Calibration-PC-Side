@@ -47,14 +47,26 @@
     Private Sub Configure_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ErrorForm As New ErrorForm
         ErrorForm.StartPosition = FormStartPosition.CenterScreen
-        tempoffsetlabel1.Text = CStr(Gd_Ref_Offset)
-        If (tempoffsetlabel1.Text.Length < 2) Then
-            'make it yellow
-            tempoffsetlabel1.BackColor = Color.FromArgb(255, 200, 200, 0)
+        '^ for ui error stuff
+
+        'todo newdo 712 make the vals (including radio button) checked based on what vals already exist
+        If (Gs_UnitType = "met") Then
+            celsiusradiobutton.Checked = True
+            fahrenheitradiobutton.Checked = False
         Else
-            'make it white
-            tempoffsetlabel1.BackColor = Color.FromArgb(255, 255, 255, 255)
+            celsiusradiobutton.Checked = False
+            fahrenheitradiobutton.Checked = True
         End If
+        usrstdtemptxtbox.Text = CStr(Gd_usrStdTemp)
+        tempoffsetlabel1.Text = CStr(Gd_Ref_Offset)
+        'good for future... uiui
+        'If (tempoffsetlabel1.Text.Length < 2) Then
+        '    'make it yellow
+        '    tempoffsetlabel1.BackColor = Color.FromArgb(255, 200, 200, 0)
+        'Else
+        '    'make it white
+        '    tempoffsetlabel1.BackColor = Color.FromArgb(255, 255, 255, 255)
+        'End If
     End Sub
 
     Private Sub restoredefaultsbutton_Click(sender As Object, e As EventArgs) Handles restoredefaultsbutton.Click
@@ -66,7 +78,7 @@
     End Sub
 
     Private Sub tempoffsetlabel1_TextChanged(sender As Object, e As EventArgs) Handles tempoffsetlabel1.TextChanged
-        'make it so that a string doesn't work here!@
+        'make it so that a string doesn't work here!@ uiui
         Gd_Ref_Offset = CDbl(tempoffsetlabel1.Text)
     End Sub
 End Class
