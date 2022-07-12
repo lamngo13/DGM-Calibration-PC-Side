@@ -416,12 +416,12 @@
             pressureLabel0.Text = "Pressure" + vbCrLf + "(mmHg)"
         Else
             If (Gs_UnitType = "imp") Then
-                Label7.Text = "Volume" + vbCrLf + "(Cu Ft.)"
-                Label8.Text = "Volume" + vbCrLf + "(Cu. Ft.)"
-                Label9.Text = "UUT Volume" + vbCrLf + "(Cu. Ft.)"
+                Label7.Text = "Ref Meter" + vbCrLf + "Volume" + vbCrLf + "(Cu Ft.)"
+                Label8.Text = "Std Ref" + vbCrLf + "Volume" + vbCrLf + "(Cu. Ft.)"
+                Label9.Text = "UUT Meter" + vbCrLf + "Volume" + vbCrLf + "(Cu. Ft.)"
                 Label10.Text = "UUT Std Volume" + vbCrLf + "(Cu. Ft)"
-                Label11.Text = "Temp" + vbCrLf + "(°F)"
-                Label12.Text = "UUT Temp" + vbCrLf + "(°F)"
+                Label11.Text = "Ref Meter" + vbCrLf + "Temp" + vbCrLf + "(°F)"
+                Label12.Text = "UUT Meter" + vbCrLf + "Temp" + vbCrLf + "(°F)"
                 pressureLabel0.Text = "Pressure" + vbCrLf + "(InchesHg)"
             End If
         End If
