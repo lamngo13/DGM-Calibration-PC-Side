@@ -10,13 +10,14 @@
             Else
                 Try
                     Gd_usrStdTemp = CDbl(usrstdtemptxtbox.Text)
+                    Gd_Ref_Offset = CDbl(tempoffsetlabel1.Text)
                     'save Gs_unittype to registry
                     My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Unit_Type", Gs_UnitType)
                     My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\Apex Instruments\DGM_CAL", "Usr_std_temp", Gd_usrStdTemp)
                     Me.Close()
 
                 Catch ex As Exception
-                    GS_errorText = "enter a number"
+                    GS_errorText = "Only Enter Numbers in the Input"
                     ErrorForm.ShowDialog()
                 End Try
                 'Me.Close()
@@ -79,7 +80,7 @@
 
     Private Sub tempoffsetlabel1_TextChanged(sender As Object, e As EventArgs) Handles tempoffsetlabel1.TextChanged
         'make it so that a string doesn't work here!@ uiui
-        Gd_Ref_Offset = CDbl(tempoffsetlabel1.Text)
+        ''Gd_Ref_Offset = CDbl(tempoffsetlabel1.Text)
     End Sub
 
     Private Sub configtimer_Tick(sender As Object, e As EventArgs) Handles configtimer.Tick
