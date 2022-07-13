@@ -379,7 +379,10 @@
         End If
         If (nineninecounter >= 1 And nineninecounter <= 4) Then
             nineninecounter += 1
-            refport.Write("999" + vbCrLf)
+            If (refport.IsOpen) Then
+                refport.Write("999" + vbCrLf)
+            End If
+
             'debug22.Text = "999"
         End If
 

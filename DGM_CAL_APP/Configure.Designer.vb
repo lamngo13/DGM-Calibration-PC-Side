@@ -22,6 +22,7 @@ Partial Class Configure
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.configconfirmbutton = New System.Windows.Forms.Button()
         Me.configlabel1 = New System.Windows.Forms.Label()
         Me.configlabel2 = New System.Windows.Forms.Label()
@@ -33,6 +34,7 @@ Partial Class Configure
         Me.defaultlabel = New System.Windows.Forms.Label()
         Me.tempoffsetlabel1 = New System.Windows.Forms.TextBox()
         Me.tempoffsetlabel0 = New System.Windows.Forms.Label()
+        Me.configtimer = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'configconfirmbutton
@@ -77,14 +79,12 @@ Partial Class Configure
         'celsiusradiobutton
         '
         Me.celsiusradiobutton.AutoSize = True
-        Me.celsiusradiobutton.Checked = True
         Me.celsiusradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.celsiusradiobutton.ForeColor = System.Drawing.SystemColors.Control
         Me.celsiusradiobutton.Location = New System.Drawing.Point(178, 170)
         Me.celsiusradiobutton.Name = "celsiusradiobutton"
         Me.celsiusradiobutton.Size = New System.Drawing.Size(70, 24)
         Me.celsiusradiobutton.TabIndex = 4
-        Me.celsiusradiobutton.TabStop = True
         Me.celsiusradiobutton.Text = "Metric"
         Me.celsiusradiobutton.UseVisualStyleBackColor = True
         '
@@ -97,7 +97,6 @@ Partial Class Configure
         Me.fahrenheitradiobutton.Name = "fahrenheitradiobutton"
         Me.fahrenheitradiobutton.Size = New System.Drawing.Size(247, 24)
         Me.fahrenheitradiobutton.TabIndex = 5
-        Me.fahrenheitradiobutton.TabStop = True
         Me.fahrenheitradiobutton.Text = "Imperial (If you use Fahrenheit)"
         Me.fahrenheitradiobutton.UseVisualStyleBackColor = True
         '
@@ -135,7 +134,7 @@ Partial Class Configure
         '
         'tempoffsetlabel1
         '
-        Me.tempoffsetlabel1.Location = New System.Drawing.Point(262, 82)
+        Me.tempoffsetlabel1.Location = New System.Drawing.Point(262, 104)
         Me.tempoffsetlabel1.Name = "tempoffsetlabel1"
         Me.tempoffsetlabel1.Size = New System.Drawing.Size(157, 20)
         Me.tempoffsetlabel1.TabIndex = 11
@@ -145,11 +144,15 @@ Partial Class Configure
         Me.tempoffsetlabel0.AutoSize = True
         Me.tempoffsetlabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.tempoffsetlabel0.ForeColor = System.Drawing.SystemColors.Control
-        Me.tempoffsetlabel0.Location = New System.Drawing.Point(12, 82)
+        Me.tempoffsetlabel0.Location = New System.Drawing.Point(12, 104)
         Me.tempoffsetlabel0.Name = "tempoffsetlabel0"
         Me.tempoffsetlabel0.Size = New System.Drawing.Size(236, 20)
         Me.tempoffsetlabel0.TabIndex = 10
         Me.tempoffsetlabel0.Text = "Enter Ref Meter Temp Offset: "
+        '
+        'configtimer
+        '
+        Me.configtimer.Enabled = True
         '
         'Configure
         '
@@ -186,4 +189,5 @@ Partial Class Configure
     Friend WithEvents defaultlabel As Label
     Friend WithEvents tempoffsetlabel1 As TextBox
     Friend WithEvents tempoffsetlabel0 As Label
+    Friend WithEvents configtimer As Timer
 End Class

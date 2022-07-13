@@ -81,4 +81,15 @@
         'make it so that a string doesn't work here!@ uiui
         Gd_Ref_Offset = CDbl(tempoffsetlabel1.Text)
     End Sub
+
+    Private Sub configtimer_Tick(sender As Object, e As EventArgs) Handles configtimer.Tick
+        If (Gs_UnitType = "met") Then
+            configlabel1.Text = "Enter Standard Temperature:" + vbCrLf + "(Celsius)"
+            ''usrstdtemptxtbox.Text = CStr(Gd_usrStdTemp)
+        Else
+            configlabel1.Text = "Enter Standard Temperature:" + vbCrLf + "(Fahrenheit)"
+            ''Gd_usrStdTemp = conversions.convertFarToCel(Gd_usrStdTemp) 'CONVERT TO CELSIUS HERE BUT KEEP SHOWING FAHENHEIT newdo 712
+            'looks like the main works if it treats this as celsius always
+        End If
+    End Sub
 End Class

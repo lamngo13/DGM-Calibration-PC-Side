@@ -207,7 +207,7 @@ Module _Public
                 If (Gs_UnitType = "imp") Then
                     'convert to celsius then kelvin for temp
                     inTemp = (conversions.convertFarToCel(inTemp)) + 273.15
-                    tempusrStdTemp = (conversions.convertFarToCel(tempusrStdTemp)) + 273.15
+                    tempusrStdTemp = (conversions.convertFarToCel(Gd_usrStdTemp)) + 273.15
                     inPressure *= 25.4   'convert inchesHg to mmHg
                     returnable = (invol * (inPressure / usrStdPressure) * (tempusrStdTemp / inTemp))
                 End If
