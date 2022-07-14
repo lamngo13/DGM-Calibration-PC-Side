@@ -2036,4 +2036,9 @@
         'ALSO MAKE IT BE A REAL END CONDITIONn
     End Sub
 
+    Private Sub resetsizebutton_Click(sender As Object, e As EventArgs) Handles resetsizebutton.Click
+        'RESET WINDOW SIZE TO 1200 x 750
+        Me.Width = 1200 'smallest size possible
+        Me.Height = 750
+    End Sub
 End Class

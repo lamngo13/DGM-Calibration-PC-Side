@@ -179,6 +179,7 @@ Partial Class Main
         Me.button_debug = New System.Windows.Forms.Button()
         Me.lblfrom_esb = New System.Windows.Forms.Label()
         Me.DEBUG = New System.Windows.Forms.Label()
+        Me.resetsizebutton = New FontAwesome.Sharp.IconButton()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1369,7 +1370,7 @@ Partial Class Main
         Me.btnconfig.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnconfig.IconSize = 18
         Me.btnconfig.ImageAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.btnconfig.Location = New System.Drawing.Point(102, 614)
+        Me.btnconfig.Location = New System.Drawing.Point(53, 614)
         Me.btnconfig.Name = "btnconfig"
         Me.btnconfig.Size = New System.Drawing.Size(119, 28)
         Me.btnconfig.TabIndex = 141
@@ -2060,12 +2061,33 @@ Partial Class Main
         Me.DEBUG.TabIndex = 198
         Me.DEBUG.Text = "lbldbg"
         '
+        'resetsizebutton
+        '
+        Me.resetsizebutton.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.resetsizebutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.resetsizebutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.resetsizebutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.resetsizebutton.ForeColor = System.Drawing.Color.White
+        Me.resetsizebutton.IconChar = FontAwesome.Sharp.IconChar.Wrench
+        Me.resetsizebutton.IconColor = System.Drawing.Color.White
+        Me.resetsizebutton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.resetsizebutton.IconSize = 18
+        Me.resetsizebutton.ImageAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.resetsizebutton.Location = New System.Drawing.Point(186, 614)
+        Me.resetsizebutton.Name = "resetsizebutton"
+        Me.resetsizebutton.Size = New System.Drawing.Size(113, 28)
+        Me.resetsizebutton.TabIndex = 199
+        Me.resetsizebutton.Text = "RESET SIZE"
+        Me.resetsizebutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.resetsizebutton.UseVisualStyleBackColor = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(1064, 729)
+        Me.Controls.Add(Me.resetsizebutton)
         Me.Controls.Add(Me.DEBUG)
         Me.Controls.Add(Me.lblfrom_esb)
         Me.Controls.Add(Me.button_debug)
@@ -2389,4 +2411,5 @@ Partial Class Main
     Friend WithEvents lblfrom_esb As Label
     Friend WithEvents DEBUG As Label
     Friend WithEvents debug22 As Label
+    Friend WithEvents resetsizebutton As FontAwesome.Sharp.IconButton
 End Class
