@@ -1330,7 +1330,6 @@ Partial Class Main
         Me.btnconnect.IconSize = 23
         Me.btnconnect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnconnect.Location = New System.Drawing.Point(90, 19)
-        Me.btnconnect.MaximumSize = New System.Drawing.Size(175, 48)
         Me.btnconnect.Name = "btnconnect"
         Me.btnconnect.Size = New System.Drawing.Size(118, 30)
         Me.btnconnect.TabIndex = 139
