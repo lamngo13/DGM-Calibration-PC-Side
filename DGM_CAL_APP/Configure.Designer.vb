@@ -71,7 +71,7 @@ Partial Class Configure
         '
         Me.usrstdtemptxtbox.Location = New System.Drawing.Point(262, 34)
         Me.usrstdtemptxtbox.Name = "usrstdtemptxtbox"
-        Me.usrstdtemptxtbox.Size = New System.Drawing.Size(157, 20)
+        Me.usrstdtemptxtbox.Size = New System.Drawing.Size(87, 20)
         Me.usrstdtemptxtbox.TabIndex = 3
         Me.usrstdtemptxtbox.Text = "20"
         '
@@ -131,7 +131,7 @@ Partial Class Configure
         '
         Me.tempoffsetlabel1.Location = New System.Drawing.Point(262, 104)
         Me.tempoffsetlabel1.Name = "tempoffsetlabel1"
-        Me.tempoffsetlabel1.Size = New System.Drawing.Size(157, 20)
+        Me.tempoffsetlabel1.Size = New System.Drawing.Size(87, 20)
         Me.tempoffsetlabel1.TabIndex = 11
         '
         'tempoffsetlabel0
@@ -152,7 +152,7 @@ Partial Class Configure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.BackColor = System.Drawing.SystemColors.ControlText
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.tempoffsetlabel1)
         Me.Controls.Add(Me.tempoffsetlabel0)
