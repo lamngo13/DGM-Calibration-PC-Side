@@ -1349,7 +1349,6 @@ Partial Class Main
         Me.btnstart.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnstart.IconSize = 18
         Me.btnstart.Location = New System.Drawing.Point(216, 19)
-        Me.btnstart.MaximumSize = New System.Drawing.Size(175, 48)
         Me.btnstart.Name = "btnstart"
         Me.btnstart.Size = New System.Drawing.Size(118, 30)
         Me.btnstart.TabIndex = 140
@@ -1454,7 +1453,6 @@ Partial Class Main
         Me.IconButton1.IconSize = 16
         Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.IconButton1.Location = New System.Drawing.Point(3, 32)
-        Me.IconButton1.MaximumSize = New System.Drawing.Size(175, 50)
         Me.IconButton1.Name = "IconButton1"
         Me.IconButton1.Size = New System.Drawing.Size(91, 23)
         Me.IconButton1.TabIndex = 144
@@ -1510,7 +1508,6 @@ Partial Class Main
         Me.btnabort.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnabort.IconSize = 20
         Me.btnabort.Location = New System.Drawing.Point(340, 19)
-        Me.btnabort.MaximumSize = New System.Drawing.Size(175, 48)
         Me.btnabort.Name = "btnabort"
         Me.btnabort.Size = New System.Drawing.Size(118, 30)
         Me.btnabort.TabIndex = 143
