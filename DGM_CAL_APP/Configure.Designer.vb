@@ -49,7 +49,6 @@ Partial Class Configure
         '
         'configlabel1
         '
-        Me.configlabel1.AutoSize = True
         Me.configlabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.configlabel1.ForeColor = System.Drawing.SystemColors.Control
         Me.configlabel1.Location = New System.Drawing.Point(12, 32)
@@ -78,7 +77,6 @@ Partial Class Configure
         '
         'celsiusradiobutton
         '
-        Me.celsiusradiobutton.AutoSize = True
         Me.celsiusradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.celsiusradiobutton.ForeColor = System.Drawing.SystemColors.Control
         Me.celsiusradiobutton.Location = New System.Drawing.Point(178, 170)
@@ -90,7 +88,6 @@ Partial Class Configure
         '
         'fahrenheitradiobutton
         '
-        Me.fahrenheitradiobutton.AutoSize = True
         Me.fahrenheitradiobutton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.fahrenheitradiobutton.ForeColor = System.Drawing.SystemColors.Control
         Me.fahrenheitradiobutton.Location = New System.Drawing.Point(262, 170)
@@ -102,7 +99,6 @@ Partial Class Configure
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
         Me.Label1.Location = New System.Drawing.Point(12, 170)
@@ -123,7 +119,6 @@ Partial Class Configure
         '
         'defaultlabel
         '
-        Me.defaultlabel.AutoSize = True
         Me.defaultlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.defaultlabel.ForeColor = System.Drawing.SystemColors.Control
         Me.defaultlabel.Location = New System.Drawing.Point(154, 366)
@@ -141,7 +136,6 @@ Partial Class Configure
         '
         'tempoffsetlabel0
         '
-        Me.tempoffsetlabel0.AutoSize = True
         Me.tempoffsetlabel0.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.5!)
         Me.tempoffsetlabel0.ForeColor = System.Drawing.SystemColors.Control
         Me.tempoffsetlabel0.Location = New System.Drawing.Point(12, 104)
